@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+      "item": "ravencoffee:coffee_beans"
+  },
+  "result": "ravencoffee:coffee_beans_roasted",
+  "experience": 0.0,
+  "cookingtime": 100
+}

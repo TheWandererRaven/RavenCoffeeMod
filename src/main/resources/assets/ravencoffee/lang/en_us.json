@@ -1,0 +1,9 @@
+{
+  "itemGroup.ravencoffeeTab": "Raven Coffee Mod",
+  "item.ravencoffee.coffee_cherries": "Coffee Cherries",
+  "item.ravencoffee.coffee_beans": "Coffee Beans",
+  "item.ravencoffee.coffee_beans_roasted": "Roasted Coffee Beans",
+  "item.ravencoffee.coffee_ingot": "Coffee Ingot",
+  "block.ravencoffee.coffee_beans_roasted_block": "Roasted Coffee Block",
+  "block.ravencoffee.coffee_beans_roasted_magma_block": "Magma Coffee Block"
+}

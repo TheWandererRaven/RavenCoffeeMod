@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ravencoffee:block/coffee_beans_roasted_magma_block"
+    }
+  }
+}

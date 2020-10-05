@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ravencoffee:coffee_cherries"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:coffee_beans",
+    "count": 1
+  }
+}
