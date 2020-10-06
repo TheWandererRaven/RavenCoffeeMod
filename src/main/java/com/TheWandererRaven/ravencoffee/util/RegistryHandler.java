@@ -3,6 +3,7 @@ package com.TheWandererRaven.ravencoffee.util;
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedBlock;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedMagmaBlock;
+import com.TheWandererRaven.ravencoffee.blocks.CoffeeLeavesBlock;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -51,6 +52,10 @@ public class RegistryHandler {
             "coffee_beans_roasted_magma_block",
             CoffeeBeansRoastedMagmaBlock::new
     );
+    public static final RegistryObject<Block> COFFEE_LEAVES_BLOCK = BLOCKS.register(
+            "coffee_leaves_block",
+            CoffeeLeavesBlock::new
+    );
 
     // BLOCKS ITEMS
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_BLOCK_ITEM = ITEMS.register(
@@ -60,5 +65,9 @@ public class RegistryHandler {
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_MAGMA_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_magma_block",
             () -> new BlockItem(COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
+    );
+    public static final RegistryObject<Item> COFFEE_LEAVES_BLOCK_ITEM = ITEMS.register(
+            "coffee_leaves_block",
+            () -> new BlockItem(COFFEE_LEAVES_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
     );
 }
