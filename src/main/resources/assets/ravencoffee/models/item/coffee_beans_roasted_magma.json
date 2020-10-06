@@ -1,3 +1,6 @@
 {
-  "parent": "ravencoffee:item/coffee_beans_roasted_magma"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ravencoffee:items/coffee_beans_roasted_magma"
+  }
 }
