@@ -33,6 +33,10 @@ public class RegistryHandler {
             "coffee_beans_roasted",
             ItemBase::new
     );
+    public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_MAGMA = ITEMS.register(
+            "coffee_beans_roasted_magma",
+            ItemBase::new
+    );
     public static final RegistryObject<Item> COFFEE_INGOT = ITEMS.register(
             "coffee_ingot",
             ItemBase::new
