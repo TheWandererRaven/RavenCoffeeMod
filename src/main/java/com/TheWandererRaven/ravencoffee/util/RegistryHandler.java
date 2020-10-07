@@ -37,6 +37,10 @@ public class RegistryHandler {
             "coffee_beans_roasted_magma",
             ItemBase::new
     );
+    public static final RegistryObject<Item> COFFEE_PLATES = ITEMS.register(
+            "coffee_plates",
+            ItemBase::new
+    );
     public static final RegistryObject<Item> COFFEE_INGOT = ITEMS.register(
             "coffee_ingot",
             ItemBase::new
