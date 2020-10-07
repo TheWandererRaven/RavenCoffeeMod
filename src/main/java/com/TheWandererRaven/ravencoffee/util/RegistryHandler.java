@@ -4,9 +4,9 @@ import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedBlock;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedMagmaBlock;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
+import com.TheWandererRaven.ravencoffee.tools.RavenCoffeeItemTier;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -40,6 +40,29 @@ public class RegistryHandler {
     public static final RegistryObject<Item> COFFEE_INGOT = ITEMS.register(
             "coffee_ingot",
             ItemBase::new
+    );
+
+    // TOOLS
+    //                               Material Tier || Extra Attack Points || Attack Speed = 4 + n || Creative tab
+    public static final RegistryObject<Item> COFFEE_PICKAXE = ITEMS.register(
+            "coffee_pickaxe",
+            () -> new PickaxeItem(RavenCoffeeItemTier.COFFEE, 3, -2.8f, new Item.Properties().group(RavenCoffee.TAB))
+    );
+    public static final RegistryObject<Item> COFFEE_AXE = ITEMS.register(
+            "coffee_axe",
+            () -> new AxeItem(RavenCoffeeItemTier.COFFEE, 8, -2.7f, new Item.Properties().group(RavenCoffee.TAB))
+    );
+    public static final RegistryObject<Item> COFFEE_HOE = ITEMS.register(
+            "coffee_hoe",
+            () -> new HoeItem(RavenCoffeeItemTier.COFFEE, 0, 1.0f, new Item.Properties().group(RavenCoffee.TAB))
+    );
+    public static final RegistryObject<Item> COFFEE_SHOVEL = ITEMS.register(
+            "coffee_shovel",
+            () -> new ShovelItem(RavenCoffeeItemTier.COFFEE, 4, -3.0f, new Item.Properties().group(RavenCoffee.TAB))
+    );
+    public static final RegistryObject<Item> COFFEE_SWORD = ITEMS.register(
+            "coffee_sword",
+            () -> new SwordItem(RavenCoffeeItemTier.COFFEE, 5, -2.0f, new Item.Properties().group(RavenCoffee.TAB))
     );
 
     // BLOCKS
