@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 public enum RavenCoffeeItemTier implements IItemTier {
     // Material Tier / Durability / Efficiency / Base damage / enchantability / Repair material
     COFFEE(2, 500, 7.5f, 0.0f, 17, () -> {
-        return  Ingredient.fromItems(RegistryHandler.COFFEE_SWORD.get());
+        return  Ingredient.fromItems(RegistryHandler.COFFEE_INGOT.get());
     });
 
     private final int harvestLevel;
