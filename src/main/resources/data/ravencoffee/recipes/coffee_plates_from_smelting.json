@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "ravencoffee:coffee_beans_roasted_magma_block"
   },
-  "result": "ravencoffee:coffee_ingot",
+  "result": "ravencoffee:coffee_plates",
   "experience": 0.0,
   "cookingtime": 200
 }
