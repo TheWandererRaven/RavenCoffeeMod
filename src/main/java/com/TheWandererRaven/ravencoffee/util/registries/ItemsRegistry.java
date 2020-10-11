@@ -1,26 +1,20 @@
-package com.TheWandererRaven.ravencoffee.util;
+package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedBlock;
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedMagmaBlock;
+import com.TheWandererRaven.ravencoffee.items.CoffeeBrews;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
 import com.TheWandererRaven.ravencoffee.tools.RavenCoffeeItemTier;
-import net.minecraft.block.Block;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class RegistryHandler {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RavenCoffee.MOD_ID);
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RavenCoffee.MOD_ID);
-    public static void init() {
-        ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-    }
+public class ItemsRegistry {
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(
+            ForgeRegistries.ITEMS,
+            RavenCoffee.MOD_ID);
 
-    // ITEMS
+    // ############################################### BASIC COFFEE STUFF ##############################################
     public static final RegistryObject<Item> COFFEE_CHERRIES = ITEMS.register(
             "coffee_cherries",
             ItemBase::new
@@ -37,6 +31,34 @@ public class RegistryHandler {
             "coffee_beans_roasted_magma",
             ItemBase::new
     );
+
+    // ############################################### COFFEE INGREDIENTS ##############################################
+    public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_GROUND = ITEMS.register(
+            "coffee_beans_roasted_ground",
+            ItemBase::new
+    );
+
+    // ###################################################### CUPS #####################################################
+    public static final RegistryObject<Item> CUP_UNFIRED = ITEMS.register(
+            "cup_unfired",
+            ItemBase::new
+    );
+    public static final RegistryObject<Item> CUP = ITEMS.register(
+            "cup",
+            ItemBase::new
+    );
+    public static final RegistryObject<Item> COFFEE_CUP = ITEMS.register(
+            "coffee_cup",
+            ItemBase::new
+    );
+
+    // ################################################# COFFEE BREWS ##################################################
+    public static final RegistryObject<Item> COFFEE_CUP_BREW_AMERICAN = ITEMS.register(
+            "coffee_cup_brew_american",
+            CoffeeBrews.AMERICAN
+    );
+
+    // ############################################### COFFEE MATERIALS ################################################
     public static final RegistryObject<Item> COFFEE_PLATES = ITEMS.register(
             "coffee_plates",
             ItemBase::new
@@ -46,46 +68,36 @@ public class RegistryHandler {
             ItemBase::new
     );
 
-    // TOOLS
+    // ################################################# COFFEE TOOLS ##################################################
     //                               Material Tier || Extra Attack Points || Attack Speed = 4 + n || Creative tab
     public static final RegistryObject<Item> COFFEE_PICKAXE = ITEMS.register(
             "coffee_pickaxe",
             () -> new PickaxeItem(RavenCoffeeItemTier.COFFEE, 3, -2.8f, new Item.Properties().group(RavenCoffee.TAB))
     );
-    public static final RegistryObject<Item> COFFEE_AXE = ITEMS.register(
+    public static final RegistryObject<Item> COFFEE_AXE =  ITEMS.register(
             "coffee_axe",
             () -> new AxeItem(RavenCoffeeItemTier.COFFEE, 8, -2.7f, new Item.Properties().group(RavenCoffee.TAB))
     );
-    public static final RegistryObject<Item> COFFEE_HOE = ITEMS.register(
+    public static final RegistryObject<Item> COFFEE_HOE =  ITEMS.register(
             "coffee_hoe",
             () -> new HoeItem(RavenCoffeeItemTier.COFFEE, 0, 1.0f, new Item.Properties().group(RavenCoffee.TAB))
     );
-    public static final RegistryObject<Item> COFFEE_SHOVEL = ITEMS.register(
+    public static final RegistryObject<Item> COFFEE_SHOVEL =  ITEMS.register(
             "coffee_shovel",
             () -> new ShovelItem(RavenCoffeeItemTier.COFFEE, 4, -3.0f, new Item.Properties().group(RavenCoffee.TAB))
     );
-    public static final RegistryObject<Item> COFFEE_SWORD = ITEMS.register(
+    public static final RegistryObject<Item> COFFEE_SWORD =  ITEMS.register(
             "coffee_sword",
             () -> new SwordItem(RavenCoffeeItemTier.COFFEE, 5, -2.0f, new Item.Properties().group(RavenCoffee.TAB))
     );
 
-    // BLOCKS
-    public static final RegistryObject<Block> COFFEE_BEANS_ROASTED_BLOCK = BLOCKS.register(
-            "coffee_beans_roasted_block",
-            CoffeeBeansRoastedBlock::new
-    );
-    public static final RegistryObject<Block> COFFEE_BEANS_ROASTED_MAGMA_BLOCK = BLOCKS.register(
-            "coffee_beans_roasted_magma_block",
-            CoffeeBeansRoastedMagmaBlock::new
-    );
-
-    // BLOCKS ITEMS
+    // ############################################### COFFEE BLOCK ITEMS ################################################
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_block",
-            () -> new BlockItem(COFFEE_BEANS_ROASTED_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
+            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
     );
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_MAGMA_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_magma_block",
-            () -> new BlockItem(COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
+            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
     );
 }
