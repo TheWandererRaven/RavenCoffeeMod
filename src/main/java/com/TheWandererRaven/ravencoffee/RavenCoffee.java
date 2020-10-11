@@ -1,6 +1,7 @@
 package com.TheWandererRaven.ravencoffee;
 
-import com.TheWandererRaven.ravencoffee.util.RegistryHandler;
+import com.TheWandererRaven.ravencoffee.util.registries.BlocksRegistry;
+import com.TheWandererRaven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,7 +31,8 @@ public class RavenCoffee
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        RegistryHandler.init();
+        BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ItemsRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -43,7 +45,7 @@ public class RavenCoffee
     public static final ItemGroup TAB = new ItemGroup("ravencoffeeTab") {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(RegistryHandler.COFFEE_BEANS.get());
+            return new ItemStack(ItemsRegistry.COFFEE_CUP_BREW_AMERICAN.get());
         }
     };
 }
