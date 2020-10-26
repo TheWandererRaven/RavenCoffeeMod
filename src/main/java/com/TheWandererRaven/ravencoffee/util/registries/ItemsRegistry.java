@@ -39,6 +39,14 @@ public class ItemsRegistry {
     );
 
     // ###################################################### CUPS #####################################################
+    public static final RegistryObject<Item> SMALL_CUP_UNFIRED = ITEMS.register(
+            "small_cup_unfired",
+            ItemBase::new
+    );
+    public static final RegistryObject<Item> SMALL_CUP = ITEMS.register(
+            "small_cup",
+            ItemBase::new
+    );
     public static final RegistryObject<Item> CUP_UNFIRED = ITEMS.register(
             "cup_unfired",
             ItemBase::new
