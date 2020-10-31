@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ravencoffee:items/small_cup"
+    "layer0": "ravencoffee:items/cup_small/unfired"
   }
 }

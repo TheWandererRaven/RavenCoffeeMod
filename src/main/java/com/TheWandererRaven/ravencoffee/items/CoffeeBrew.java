@@ -34,13 +34,21 @@ public class CoffeeBrew extends Item {
         super(p_i48476_1_);
         this.parentContainer = _parentContainer;
         this.cupSize = _cupSize;
-        this.brew = _brew.adjustToSize(cupSize);
+        this.brew = _brew;
     }
 
     @Override
     @Nonnull
     public ItemStack getDefaultInstance() {
         return PotionUtils.addPotionToItemStack(super.getDefaultInstance(), Potions.SWIFTNESS);
+    }
+
+    public EffectInstance adjustEffectToSize(EffectInstance originalEffect) {
+        return new EffectInstance(
+                originalEffect.getPotion(),
+                (int) ((originalEffect.getDuration() / 20) * this.cupSize) * 20,
+                Math.max(((int) ((originalEffect.getAmplifier() + 1) * this.cupSize) - 1), 0)
+        );
     }
 
     @Override
@@ -50,9 +58,12 @@ public class CoffeeBrew extends Item {
         if (lvt_4_1_ instanceof ServerPlayerEntity) {
             CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayerEntity)lvt_4_1_, p_77654_1_);
         }
-
         if (!p_77654_2_.isRemote) {
             for(EffectInstance lvt_7_1_: brew.effects) {
+                p_77654_3_.sendMessage(ITextComponent.func_244388_a(
+                        lvt_7_1_.getEffectName() + " effect time: " + lvt_7_1_.getDuration()/20 + " seconds"),
+                        UUID.randomUUID()
+                );
                 double randVal = Math.random();
                 int effectIndex = brew.effects.indexOf(lvt_7_1_);
                 double effectChance = (brew.effectsChances.size() >= effectIndex + 1)
@@ -62,7 +73,7 @@ public class CoffeeBrew extends Item {
                     if (lvt_7_1_.getPotion().isInstant()) {
                         lvt_7_1_.getPotion().affectEntity(lvt_4_1_, lvt_4_1_, p_77654_3_, lvt_7_1_.getAmplifier(), 0.0d);
                     } else {
-                        p_77654_3_.addPotionEffect(new EffectInstance(lvt_7_1_));
+                        p_77654_3_.addPotionEffect(this.adjustEffectToSize(lvt_7_1_));
                     }
                 }
             }

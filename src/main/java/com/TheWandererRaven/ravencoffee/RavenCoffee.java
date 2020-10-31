@@ -47,7 +47,7 @@ public class RavenCoffee
     public static final ItemGroup TAB = new ItemGroup("ravencoffeeTab") {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(BrewsRegistry.COFFEE_CUP_BREW_AMERICAN.get());
+            return new ItemStack(BrewsRegistry.COFFEE_MUG_BREW_AMERICAN.get());
         }
     };
 }
