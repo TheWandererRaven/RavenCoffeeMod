@@ -38,24 +38,32 @@ public class ItemsRegistry {
     );
 
     // ###################################################### CUPS #####################################################
-    public static final RegistryObject<Item> SMALL_CUP_UNFIRED = ITEMS.register(
-            "small_cup_unfired",
+    public static final RegistryObject<Item> CUP_SMALL_UNFIRED = ITEMS.register(
+            "cup_small_unfired",
             ItemBase::new
     );
-    public static final RegistryObject<Item> SMALL_CUP = ITEMS.register(
-            "small_cup",
+    public static final RegistryObject<Item> CUP_SMALL = ITEMS.register(
+            "cup_small",
             ItemBase::new
     );
-    public static final RegistryObject<Item> CUP_UNFIRED = ITEMS.register(
-            "cup_unfired",
+    public static final RegistryObject<Item> CUP_MEDIUM_UNFIRED = ITEMS.register(
+            "cup_medium_unfired",
             ItemBase::new
     );
-    public static final RegistryObject<Item> CUP = ITEMS.register(
-            "cup",
+    public static final RegistryObject<Item> CUP_MEDIUM = ITEMS.register(
+            "cup_medium",
             ItemBase::new
     );
-    public static final RegistryObject<Item> COFFEE_CUP = ITEMS.register(
-            "coffee_cup",
+    public static final RegistryObject<Item> CUP_LARGE_UNFIRED = ITEMS.register(
+            "cup_large_unfired",
+            ItemBase::new
+    );
+    public static final RegistryObject<Item> CUP_LARGE = ITEMS.register(
+            "cup_large",
+            ItemBase::new
+    );
+    public static final RegistryObject<Item> COFFEE_MUG = ITEMS.register(
+            "coffee_mug",
             ItemBase::new
     );
 

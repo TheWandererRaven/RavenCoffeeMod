@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "ravencoffee:small_cup_unfired"
+    "item": "ravencoffee:cup_small_unfired"
   },
-  "result": "ravencoffee:small_cup",
+  "result": "ravencoffee:cup_small",
   "experience": 0.05,
   "cookingtime": 100
 }

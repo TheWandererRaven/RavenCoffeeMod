@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "ravencoffee:cup"
+      "item": "ravencoffee:cup_medium"
     },
     {
       "item": "minecraft:white_dye"
     }
   ],
   "result": {
-    "item": "ravencoffee:coffee_cup",
+    "item": "ravencoffee:coffee_mug",
     "count": 1
   }
 }

@@ -4,23 +4,38 @@
   "item.ravencoffee.coffee_beans": "Coffee Beans",
   "item.ravencoffee.coffee_beans_roasted": "Roasted Coffee Beans",
   "item.ravencoffee.coffee_beans_roasted_magma": "Magma Infused Coffee Beans",
+
+
   "item.ravencoffee.coffee_beans_roasted_ground": "Ground Coffee",
-  "item.ravencoffee.cup_unfired": "Unfired Cup",
-  "item.ravencoffee.cup": "Cup",
-  "item.ravencoffee.small_cup_unfired": "Small Unfired Cup",
-  "item.ravencoffee.small_cup": "Small Cup",
-  "item.ravencoffee.coffee_cup": "Coffee Cup",
-  "item.ravencoffee.small_cup_brew_american": "Small Coffee Brew",
-  "item.ravencoffee.cup_brew_american": "Coffee Brew",
-  "item.ravencoffee.coffee_cup_brew_american": "Coffee Brew",
-  "item.ravencoffee.coffee_cup_brew_american.description": "Smell the fragrance of<br>dark coffee",
+
+
+  "item.ravencoffee.cup_small_unfired": "Small Unfired Cup",
+  "item.ravencoffee.cup_small": "Small Cup",
+  "item.ravencoffee.cup_small_brew_american": "Small Americano",
+
+  "item.ravencoffee.cup_medium_unfired": "Unfired Cup",
+  "item.ravencoffee.cup_medium": "Cup",
+  "item.ravencoffee.cup_medium_brew_american": "Americano",
+
+  "item.ravencoffee.cup_large_unfired": "Large Unfired Cup",
+  "item.ravencoffee.cup_large": "Large Cup",
+  "item.ravencoffee.cup_large_brew_american": "Large Americano",
+
+  "item.ravencoffee.coffee_mug": "Coffee Mug",
+  "item.ravencoffee.coffee_mug_brew_american": "Americano",
+  "item.ravencoffee.coffee_mug_brew_american.description": "Smell the fragrance of<br>dark coffee",
+
+
   "item.ravencoffee.coffee_plates": "Coffee Plates",
   "item.ravencoffee.coffee_ingot": "Coffee Ingot",
+
   "item.ravencoffee.coffee_pickaxe": "Coffee Pickaxe",
   "item.ravencoffee.coffee_axe": "Coffee Axe",
   "item.ravencoffee.coffee_hoe": "Coffee Hoe",
   "item.ravencoffee.coffee_shovel": "Coffee Shovel",
   "item.ravencoffee.coffee_sword": "Coffee Sword",
+
+
   "block.ravencoffee.coffee_beans_roasted_block": "Roasted Coffee Block",
   "block.ravencoffee.coffee_beans_roasted_magma_block": "Magma Coffee Block"
 }
