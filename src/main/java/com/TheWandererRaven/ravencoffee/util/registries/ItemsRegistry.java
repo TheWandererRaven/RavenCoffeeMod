@@ -1,7 +1,6 @@
 package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import com.TheWandererRaven.ravencoffee.items.CoffeeBrews;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
 import com.TheWandererRaven.ravencoffee.tools.RavenCoffeeItemTier;
 import net.minecraft.item.*;
@@ -58,12 +57,6 @@ public class ItemsRegistry {
     public static final RegistryObject<Item> COFFEE_CUP = ITEMS.register(
             "coffee_cup",
             ItemBase::new
-    );
-
-    // ################################################# COFFEE BREWS ##################################################
-    public static final RegistryObject<Item> COFFEE_CUP_BREW_AMERICAN = ITEMS.register(
-            "coffee_cup_brew_american",
-            CoffeeBrews.AMERICAN
     );
 
     // ############################################### COFFEE MATERIALS ################################################
