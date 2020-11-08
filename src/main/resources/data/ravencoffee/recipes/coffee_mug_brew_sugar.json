@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    {
+      "item": "ravencoffee:coffee_mug"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:coffee_mug_brew_sugar",
+    "count": 1
+  }
+}
