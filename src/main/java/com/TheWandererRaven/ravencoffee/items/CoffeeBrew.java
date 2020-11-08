@@ -7,9 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
+import net.minecraft.potion.*;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DrinkHelper;
@@ -77,6 +75,10 @@ public class CoffeeBrew extends Item {
                     }
                 }
             }
+            if (!brew.removableEffects.isEmpty())
+                for(Effect lvt_7_2_: brew.removableEffects) {
+                    p_77654_3_.removePotionEffect(lvt_7_2_);
+                }
         }
 
         if (lvt_4_1_ != null) {
