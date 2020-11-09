@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "minecraft:apple"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    {
+      "item": "ravencoffee:cup_large"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:cup_large_brew_apple",
+    "count": 1
+  }
+}

@@ -1,7 +1,6 @@
 package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import com.TheWandererRaven.ravencoffee.items.CoffeeBrews;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
 import com.TheWandererRaven.ravencoffee.tools.RavenCoffeeItemTier;
 import net.minecraft.item.*;
@@ -39,23 +38,33 @@ public class ItemsRegistry {
     );
 
     // ###################################################### CUPS #####################################################
-    public static final RegistryObject<Item> CUP_UNFIRED = ITEMS.register(
-            "cup_unfired",
+    public static final RegistryObject<Item> CUP_SMALL_UNFIRED = ITEMS.register(
+            "cup_small_unfired",
             ItemBase::new
     );
-    public static final RegistryObject<Item> CUP = ITEMS.register(
-            "cup",
+    public static final RegistryObject<Item> CUP_SMALL = ITEMS.register(
+            "cup_small",
             ItemBase::new
     );
-    public static final RegistryObject<Item> COFFEE_CUP = ITEMS.register(
-            "coffee_cup",
+    public static final RegistryObject<Item> CUP_MEDIUM_UNFIRED = ITEMS.register(
+            "cup_medium_unfired",
             ItemBase::new
     );
-
-    // ################################################# COFFEE BREWS ##################################################
-    public static final RegistryObject<Item> COFFEE_CUP_BREW_AMERICAN = ITEMS.register(
-            "coffee_cup_brew_american",
-            CoffeeBrews.AMERICAN
+    public static final RegistryObject<Item> CUP_MEDIUM = ITEMS.register(
+            "cup_medium",
+            ItemBase::new
+    );
+    public static final RegistryObject<Item> CUP_LARGE_UNFIRED = ITEMS.register(
+            "cup_large_unfired",
+            ItemBase::new
+    );
+    public static final RegistryObject<Item> CUP_LARGE = ITEMS.register(
+            "cup_large",
+            ItemBase::new
+    );
+    public static final RegistryObject<Item> COFFEE_MUG = ITEMS.register(
+            "coffee_mug",
+            ItemBase::new
     );
 
     // ############################################### COFFEE MATERIALS ################################################

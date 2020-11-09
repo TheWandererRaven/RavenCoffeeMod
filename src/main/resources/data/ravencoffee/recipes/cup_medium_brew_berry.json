@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    {
+      "item": "ravencoffee:cup_medium"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:cup_medium_brew_berry",
+    "count": 1
+  }
+}
