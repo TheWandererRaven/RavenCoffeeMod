@@ -16,7 +16,10 @@ public class ItemsRegistry {
     // ############################################### BASIC COFFEE STUFF ##############################################
     public static final RegistryObject<Item> COFFEE_CHERRIES = ITEMS.register(
             "coffee_cherries",
-            ItemBase::new
+            () -> new BlockItem(
+                    BlocksRegistry.COFFEE_BEANS_BUSH_BLOCK.get(),
+                    new Item.Properties().group(RavenCoffee.TAB)
+            )
     );
     public static final RegistryObject<Item> COFFEE_BEANS = ITEMS.register(
             "coffee_beans",
