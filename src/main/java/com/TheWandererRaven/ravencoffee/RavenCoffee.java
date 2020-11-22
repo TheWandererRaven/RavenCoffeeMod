@@ -3,6 +3,8 @@ package com.TheWandererRaven.ravencoffee;
 import com.TheWandererRaven.ravencoffee.util.registries.BlocksRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.BrewsRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.ItemsRegistry;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,7 +37,6 @@ public class RavenCoffee
         BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ItemsRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BrewsRegistry.BREWS.register(FMLJavaModLoadingContext.get().getModEventBus());
-
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }

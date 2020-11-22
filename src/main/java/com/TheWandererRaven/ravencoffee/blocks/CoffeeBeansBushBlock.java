@@ -1,9 +1,12 @@
 package com.TheWandererRaven.ravencoffee.blocks;
 
+import com.TheWandererRaven.ravencoffee.util.registries.BlocksRegistry;
+import com.TheWandererRaven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.RavagerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -12,6 +15,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IItemProvider;
@@ -34,6 +38,7 @@ import java.util.Random;
 public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
         public static final IntegerProperty AGE;
         private static final VoxelShape[] SHAPE_BY_AGE;
+        private static final Block LEAVES_BLOCK;
 
         public CoffeeBeansBushBlock(Properties p_i48421_1_) {
             super(p_i48421_1_);
@@ -48,12 +53,16 @@ public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
             return p_200014_1_.isIn(Blocks.GRASS_BLOCK) || p_200014_1_.isIn(Blocks.DIRT);
         }
 
+        public Block getLeavesBlock() {
+            return LEAVES_BLOCK;
+        }
+
         public IntegerProperty getAgeProperty() {
             return AGE;
         }
 
         public int getMaxAge() {
-            return 7;
+            return 3;
         }
 
         protected int getAge(BlockState p_185527_1_) {
@@ -73,15 +82,26 @@ public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
         }
 
         public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
+            Minecraft.getInstance().player.sendChatMessage("Random Tick");
             if (p_225542_2_.isAreaLoaded(p_225542_3_, 1)) {
                 if (p_225542_2_.getLightSubtracted(p_225542_3_, 0) >= 9) {
-                    int i = this.getAge(p_225542_1_);
-                    if (i < this.getMaxAge()) {
-                        float f = getGrowthChance(this, p_225542_2_, p_225542_3_);
-                        if (ForgeHooks.onCropsGrowPre(p_225542_2_, p_225542_3_, p_225542_1_, p_225542_4_.nextInt((int)(25.0F / f) + 1) == 0)) {
-                            p_225542_2_.setBlockState(p_225542_3_, this.withAge(i + 1), 2);
-                            ForgeHooks.onCropsGrowPost(p_225542_2_, p_225542_3_, p_225542_1_);
+                    float f = CropsBlock.getGrowthChance(this, p_225542_2_, p_225542_3_);
+                    if (ForgeHooks.onCropsGrowPre(p_225542_2_, p_225542_3_, p_225542_1_, p_225542_4_.nextInt((int)(25.0F / f) + 1) == 0)) {
+                        int i = (Integer)p_225542_1_.get(AGE);
+                        Minecraft.getInstance().player.sendChatMessage("");
+                        if (i < this.getMaxAge()) {
+                            p_225542_2_.setBlockState(p_225542_3_, (BlockState)p_225542_1_.with(AGE, i + 1), 2);
+                        } else {
+                            BlockPos blockpos = p_225542_3_.up();
+                            BlockState blockstate = p_225542_2_.getBlockState(blockpos.down());
+                            Minecraft.getInstance().player.sendChatMessage("is air block: " + p_225542_2_.isAirBlock(blockpos));
+                            if (p_225542_2_.isAirBlock(blockpos)) {
+                                p_225542_2_.setBlockState(blockpos, this.getLeavesBlock().getDefaultState());
+                                //p_225542_2_.setBlockState(p_225542_3_, (BlockState)this.crop.getAttachedStem().getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, direction));
+                            }
                         }
+
+                        ForgeHooks.onCropsGrowPost(p_225542_2_, p_225542_3_, p_225542_1_);
                     }
                 }
 
@@ -149,18 +169,22 @@ public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
             Iterator<Direction> var4 = Direction.Plane.HORIZONTAL.iterator();
             Direction direction;
             Material material;
+            BlockState blockstate;
 
             do {
                 if (!var4.hasNext()) {
                     BlockState blockstate1 = p_196260_2_.getBlockState(p_196260_3_.down());
+                    Minecraft.getInstance().player.sendChatMessage("Light substracted: " + p_196260_2_.getLightSubtracted(p_196260_3_, 0));
+                    Minecraft.getInstance().player.sendChatMessage("Can see sky: " + p_196260_2_.canSeeSky(p_196260_3_));
                     return (p_196260_2_.getLightSubtracted(p_196260_3_, 0) >= 8 || p_196260_2_.canSeeSky(p_196260_3_))
                             && this.isValidGround(p_196260_2_.getBlockState(blockpos), p_196260_2_, blockpos);
                 }
 
                 direction = (Direction)var4.next();
-                BlockState blockstate = p_196260_2_.getBlockState(p_196260_3_.offset(direction));
+                blockstate = p_196260_2_.getBlockState(p_196260_3_.offset(direction));
                 material = blockstate.getMaterial();
-            } while(!material.isSolid() && !p_196260_2_.getFluidState(p_196260_3_.offset(direction)).isTagged(FluidTags.LAVA));
+            } while((!material.isSolid() || blockstate.getBlock() == this.getLeavesBlock()) && !p_196260_2_.getFluidState(p_196260_3_.offset(direction)).isTagged(FluidTags.LAVA));
+            Minecraft.getInstance().player.sendChatMessage("Not Valid Position");
             return false;
         }
 
@@ -173,7 +197,7 @@ public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
         }
 
         protected IItemProvider getSeedsItem() {
-            return Items.WHEAT_SEEDS;
+            return ItemsRegistry.COFFEE_CHERRIES.get();
         }
 
         public ItemStack getItem(IBlockReader p_185473_1_, BlockPos p_185473_2_, BlockState p_185473_3_) {
@@ -197,7 +221,38 @@ public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
         }
 
         static {
-            AGE = BlockStateProperties.AGE_0_7;
-            SHAPE_BY_AGE = new VoxelShape[]{Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
+            LEAVES_BLOCK = BlocksRegistry.COFFEE_BEANS_ROASTED_BLOCK.get();
+            AGE = BlockStateProperties.AGE_0_3;
+            SHAPE_BY_AGE = new VoxelShape[]{
+                    Block.makeCuboidShape(
+                            6.0D,//
+                            0.0D,// VOLUME BOTTOM
+                            6.0D,//
+                            10.0D,// TOP
+                            5.0D,// VOLUME TOP
+                            9.0D// RIGHT
+                    ), Block.makeCuboidShape(
+                            4.0D,
+                            0.0D,
+                            4.0D,
+                            12.0D,
+                            8.0D,
+                            10.0D
+                    ), Block.makeCuboidShape(
+                            3.0D,
+                            0.0D,
+                            3.0D,
+                            13.0D,
+                            12.0D,
+                            12.0D
+                    ), Block.makeCuboidShape(
+                    2.0D,
+                    0.0D,// volume bottom
+                    2.0D,
+                    14.0D,// top
+                    16.0D,// volume top
+                    13.0D// right
+            )
+            };
         }
     }
