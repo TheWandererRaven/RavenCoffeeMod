@@ -32,6 +32,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.ForgeEventFactory;
 
+import javax.swing.text.Position;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -78,7 +79,7 @@ public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
         }
 
         public boolean ticksRandomly(BlockState p_149653_1_) {
-            return !this.isMaxAge(p_149653_1_);
+            return true;
         }
 
         public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
@@ -88,17 +89,13 @@ public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
                     float f = CropsBlock.getGrowthChance(this, p_225542_2_, p_225542_3_);
                     if (ForgeHooks.onCropsGrowPre(p_225542_2_, p_225542_3_, p_225542_1_, p_225542_4_.nextInt((int)(25.0F / f) + 1) == 0)) {
                         int i = (Integer)p_225542_1_.get(AGE);
-                        Minecraft.getInstance().player.sendChatMessage("");
+                        Minecraft.getInstance().player.sendChatMessage("Current Age: " + i);
+                        BlockPos blockpos = p_225542_3_.up();
                         if (i < this.getMaxAge()) {
                             p_225542_2_.setBlockState(p_225542_3_, (BlockState)p_225542_1_.with(AGE, i + 1), 2);
-                        } else {
-                            BlockPos blockpos = p_225542_3_.up();
-                            BlockState blockstate = p_225542_2_.getBlockState(blockpos.down());
+                        } else if(p_225542_2_.isAirBlock(blockpos)) {
                             Minecraft.getInstance().player.sendChatMessage("is air block: " + p_225542_2_.isAirBlock(blockpos));
-                            if (p_225542_2_.isAirBlock(blockpos)) {
-                                p_225542_2_.setBlockState(blockpos, this.getLeavesBlock().getDefaultState());
-                                //p_225542_2_.setBlockState(p_225542_3_, (BlockState)this.crop.getAttachedStem().getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, direction));
-                            }
+                            p_225542_2_.setBlockState(blockpos, this.getLeavesBlock().getDefaultState());
                         }
 
                         ForgeHooks.onCropsGrowPost(p_225542_2_, p_225542_3_, p_225542_1_);

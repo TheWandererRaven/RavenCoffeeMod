@@ -28,6 +28,10 @@ public class BlocksRegistry {
     );
     public static final RegistryObject<Block> COFFEE_BEANS_BUSH_BLOCK = BLOCKS.register(
             "coffee_bush_block",
-            () -> new CoffeeBeansBushBlock(AbstractBlock.Properties.create(Material.CACTUS).sound(SoundType.PLANT).notSolid())
+            () -> new CoffeeBeansBushBlock(AbstractBlock.Properties.create(Material.CACTUS)
+                    .sound(SoundType.PLANT)
+                    .notSolid()
+                    .tickRandomly()
+            )
     );
 }
