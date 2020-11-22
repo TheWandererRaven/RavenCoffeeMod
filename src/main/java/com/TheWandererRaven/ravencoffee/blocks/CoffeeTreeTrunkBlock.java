@@ -36,12 +36,12 @@ import javax.swing.text.Position;
 import java.util.Iterator;
 import java.util.Random;
 
-public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
+public class CoffeeTreeTrunkBlock extends CropsBlock implements IGrowable {
         public static final IntegerProperty AGE;
         private static final VoxelShape[] SHAPE_BY_AGE;
         private static final Block LEAVES_BLOCK;
 
-        public CoffeeBeansBushBlock(Properties p_i48421_1_) {
+        public CoffeeTreeTrunkBlock(Properties p_i48421_1_) {
             super(p_i48421_1_);
             this.setDefaultState((BlockState)((BlockState)this.stateContainer.getBaseState()).with(this.getAgeProperty(), 0));
         }
@@ -227,7 +227,7 @@ public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
                             6.0D,//
                             10.0D,// TOP
                             5.0D,// VOLUME TOP
-                            9.0D// RIGHT
+                            10.0D// RIGHT
                     ), Block.makeCuboidShape(
                             4.0D,
                             0.0D,
@@ -243,12 +243,12 @@ public class CoffeeBeansBushBlock extends CropsBlock implements IGrowable {
                             12.0D,
                             12.0D
                     ), Block.makeCuboidShape(
-                    2.0D,
+                    1.0D,
                     0.0D,// volume bottom
-                    2.0D,
-                    14.0D,// top
+                    1.0D,
+                    15.0D,// top
                     16.0D,// volume top
-                    13.0D// right
+                    15.0D// right
             )
             };
         }

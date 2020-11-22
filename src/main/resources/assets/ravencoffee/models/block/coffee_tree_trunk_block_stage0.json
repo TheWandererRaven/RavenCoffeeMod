@@ -1,7 +1,7 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "stem": "ravencoffee:blocks/coffee_bush_block_stage1",
+    "stem": "ravencoffee:blocks/coffee_tree_trunk_block_stage0",
     "particle": "#stem"
   },
   "elements": [
