@@ -16,5 +16,6 @@ public class ClientEventBusSubscriber {
     public static void clientSetup(FMLClientSetupEvent event) {
         // Add transparency to block
         RenderTypeLookup.setRenderLayer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.getCutout());
     }
 }
