@@ -58,7 +58,7 @@ public class CoffeeBrew extends Item {
         }
         if (!p_77654_2_.isRemote) {
             for(EffectInstance lvt_7_1_: brew.effects) {
-                p_77654_3_.sendMessage(ITextComponent.func_244388_a(
+                p_77654_3_.sendMessage(ITextComponent.getTextComponentOrEmpty(
                         lvt_7_1_.getEffectName() + " effect time: " + lvt_7_1_.getDuration()/20 + " seconds"),
                         UUID.randomUUID()
                 );
@@ -114,7 +114,7 @@ public class CoffeeBrew extends Item {
     @Override
     @Nonnull
     public ActionResult<ItemStack> onItemRightClick(@Nonnull World p_77659_1_, @Nonnull PlayerEntity p_77659_2_, @Nonnull Hand p_77659_3_) {
-        return DrinkHelper.func_234707_a_(p_77659_1_, p_77659_2_, p_77659_3_);
+        return DrinkHelper.startDrinking(p_77659_1_, p_77659_2_, p_77659_3_);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -123,7 +123,7 @@ public class CoffeeBrew extends Item {
         String completeDescription = (new TranslationTextComponent(descriptionKey)).getString();
         if(!completeDescription.equals(descriptionKey))
             for(String line: completeDescription.split("<br>")) {
-                p_77624_3_.add(ITextComponent.func_244388_a(String.format(
+                p_77624_3_.add(ITextComponent.getTextComponentOrEmpty(String.format(
                         "\u00A77%s\u00A77",
                         line
                 )));
