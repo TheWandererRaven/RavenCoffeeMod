@@ -5,6 +5,7 @@ import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeLeavesBlock;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedBlock;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedMagmaBlock;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
