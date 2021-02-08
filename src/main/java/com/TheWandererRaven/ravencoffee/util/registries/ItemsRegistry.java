@@ -3,6 +3,7 @@ package com.TheWandererRaven.ravencoffee.util.registries;
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
 import com.TheWandererRaven.ravencoffee.tools.RavenCoffeeItemTier;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,7 +17,11 @@ public class ItemsRegistry {
     // ############################################### BASIC COFFEE STUFF ##############################################
     public static final RegistryObject<Item> COFFEE_CHERRIES = ITEMS.register(
             "coffee_cherries",
-            ItemBase::new
+            () -> new BlockNamedItem(
+                    BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(),
+                    new Item.Properties()
+                            .group(RavenCoffee.TAB)
+            )
     );
     public static final RegistryObject<Item> COFFEE_BEANS = ITEMS.register(
             "coffee_beans",
