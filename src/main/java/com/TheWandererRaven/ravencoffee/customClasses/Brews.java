@@ -11,6 +11,14 @@ public class Brews {
             .addEffect(new EffectInstance(
                     Effects.SPEED, 1800), 0.3d
             );
+    public static final Brew ESPRESSO = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.HASTE,3600, 1), 1.0d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.SPEED, 3600, 1), 1.0d
+            );
+    // TODO: ADD COUNTER EFFECTS TO ESPRESSO AFTER SOME TIME
 
     public static final Brew SUGAR = new Brew()
             .addEffect(new EffectInstance(
@@ -116,16 +124,13 @@ public class Brews {
             )
             .addEffect(new EffectInstance(
                     Effects.SPEED, 1800), 1.0d
-            );;
+            );
     public static final Brew PHANTASM = new Brew()
             .addEffect(new EffectInstance(
                     Effects.INVISIBILITY, 1800), 1.0d
             )
             .addEffect(new EffectInstance(
                     Effects.SLOW_FALLING, 1800), 1.0d
-            )
-            .addEffect(new EffectInstance(
-                    Effects.GLOWING, 1800), 1.0d
             )
             .addEffect(new EffectInstance(
                     Effects.WEAKNESS, 1800), 1.0d
