@@ -135,4 +135,18 @@ public class Brews {
             .addEffect(new EffectInstance(
                     Effects.WEAKNESS, 1800), 1.0d
             );
+    public static final Brew PUMPKINSPICELATTE = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.HASTE,3600), 1.0d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.SPEED, 1800), 0.3d
+            );
+    public static final Brew PUMPKINSPICELATTE_WITH_PUMPKIN = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.HASTE,3600), 1.0d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.SPEED, 1800), 0.3d
+            );
 }

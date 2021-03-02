@@ -20,7 +20,7 @@
   "item.ravencoffee.cup_medium_brew_berry": "Berry Coffee",
   "item.ravencoffee.cup_medium_brew_chocolate": "Chocolate",
   "item.ravencoffee.cup_medium_brew_honey": "Honey Coffee",
-  "item.ravencoffee.cup_medium_brew_milk": "Coffee with Milk",
+  "item.ravencoffee.cup_medium_brew_milk": "Latte Coffee",
   "item.ravencoffee.cup_medium_brew_mocha": "Mocha",
   "item.ravencoffee.cup_medium_brew_sugar": "Coffee with Sugar",
   "item.ravencoffee.cup_medium_brew_awkward": "Awkward Coffee",
@@ -32,6 +32,8 @@
   "item.ravencoffee.cup_medium_brew_melon_golden": "Glistering Coffee",
   "item.ravencoffee.cup_medium_brew_nether": "Nether Coffee",
   "item.ravencoffee.cup_medium_brew_phantasm": "Phantasm Coffee",
+  "item.ravencoffee.cup_medium_brew_pumpkinspicelatte": "Pumpkin Spice Latte",
+  "item.ravencoffee.cup_medium_brew_pumpkinspicelatte_with_pumpkin": "Pumpkin Spice Latte (With Pumpkin)",
 
   "item.ravencoffee.cup_large_unfired": "Large Unfired Cup",
   "item.ravencoffee.cup_large": "Large Cup",
@@ -40,7 +42,7 @@
   "item.ravencoffee.cup_large_brew_berry": "Large Berry Coffee",
   "item.ravencoffee.cup_large_brew_chocolate": "Large Chocolate",
   "item.ravencoffee.cup_large_brew_honey": "Large Honey Coffee",
-  "item.ravencoffee.cup_large_brew_milk": "Large Coffee with Milk",
+  "item.ravencoffee.cup_large_brew_milk": "Large Latte Coffee",
   "item.ravencoffee.cup_large_brew_mocha": "Large Mocha",
   "item.ravencoffee.cup_large_brew_sugar": "Large Coffee with Sugar",
   "item.ravencoffee.cup_large_brew_awkward": "Large Awkward Coffee",
@@ -52,6 +54,8 @@
   "item.ravencoffee.cup_large_brew_melon_golden": "Large Glistering Coffee",
   "item.ravencoffee.cup_large_brew_nether": "Large Nether Coffee",
   "item.ravencoffee.cup_large_brew_phantasm": "Large Phantasm Coffee",
+  "item.ravencoffee.cup_large_brew_pumpkinspicelatte": "Venti Pumpkin Spice Latte",
+  "item.ravencoffee.cup_large_brew_pumpkinspicelatte_with_pumpkin": "Venti Pumpkin Spice Latte (With Pumpkin)",
 
   "item.ravencoffee.coffee_mug": "Coffee Mug",
   "item.ravencoffee.coffee_mug_brew_american": "Americano",
@@ -60,7 +64,7 @@
   "item.ravencoffee.coffee_mug_brew_berry": "Berry Coffee",
   "item.ravencoffee.coffee_mug_brew_chocolate": "Chocolate",
   "item.ravencoffee.coffee_mug_brew_honey": "Honey Coffee",
-  "item.ravencoffee.coffee_mug_brew_milk": "Coffee with Milk",
+  "item.ravencoffee.coffee_mug_brew_milk": "Latte Coffee",
   "item.ravencoffee.coffee_mug_brew_mocha": "Mocha",
   "item.ravencoffee.coffee_mug_brew_sugar": "Coffee with Sugar",
   "item.ravencoffee.coffee_mug_brew_awkward": "Awkward Coffee",
@@ -72,6 +76,8 @@
   "item.ravencoffee.coffee_mug_brew_melon_golden": "Glistering Coffee",
   "item.ravencoffee.coffee_mug_brew_nether": "Nether Coffee",
   "item.ravencoffee.coffee_mug_brew_phantasm": "Phantasm Coffee",
+  "item.ravencoffee.coffee_mug_brew_pumpkinspicelatte": "Pumpkin Spice Latte",
+  "item.ravencoffee.coffee_mug_brew_pumpkinspicelatte_with_pumpkin": "Pumpkin Spice Latte (With Pumpkin)",
 
 
   "item.ravencoffee.coffee_plates": "Coffee Plates",

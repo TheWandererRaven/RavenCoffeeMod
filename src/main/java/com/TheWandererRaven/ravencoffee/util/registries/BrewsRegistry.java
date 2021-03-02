@@ -654,4 +654,60 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
             )
     );
+    //           #######################################   PUMPKINSPICELATTE   #############################################
+    public static final RegistryObject<Item> CUP_MEDIUM_BREW_PUMPKINSPICELATTE = BREWS.register(
+            "cup_medium_brew_pumpkinspicelatte",
+            () -> new CoffeeBrew(
+                    CupSizes.MEDIUM,
+                    ItemsRegistry.CUP_MEDIUM.get(),
+                    Brews.PUMPKINSPICELATTE,
+                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+            )
+    );
+    public static final RegistryObject<Item> CUP_LARGE_BREW_PUMPKINSPICELATTE = BREWS.register(
+            "cup_large_brew_pumpkinspicelatte",
+            () -> new CoffeeBrew(
+                    CupSizes.LARGE,
+                    ItemsRegistry.CUP_LARGE.get(),
+                    Brews.PUMPKINSPICELATTE,
+                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+            )
+    );
+    public static final RegistryObject<Item> COFFEE_MUG_BREW_PUMPKINSPICELATTE = BREWS.register(
+            "coffee_mug_brew_pumpkinspicelatte",
+            () -> new CoffeeBrew(
+                    CupSizes.MEDIUM,
+                    ItemsRegistry.COFFEE_MUG.get(),
+                    Brews.PUMPKINSPICELATTE,
+                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+            )
+    );
+    //           #######################################   PUMPKINSPICELATTE_WITH_PUMPKIN   #############################################
+    public static final RegistryObject<Item> CUP_MEDIUM_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
+            "cup_medium_brew_pumpkinspicelatte_with_pumpkin",
+            () -> new CoffeeBrew(
+                    CupSizes.MEDIUM,
+                    ItemsRegistry.CUP_MEDIUM.get(),
+                    Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
+                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+            )
+    );
+    public static final RegistryObject<Item> CUP_LARGE_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
+            "cup_large_brew_pumpkinspicelatte_with_pumpkin",
+            () -> new CoffeeBrew(
+                    CupSizes.LARGE,
+                    ItemsRegistry.CUP_LARGE.get(),
+                    Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
+                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+            )
+    );
+    public static final RegistryObject<Item> COFFEE_MUG_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
+            "coffee_mug_brew_pumpkinspicelatte_with_pumpkin",
+            () -> new CoffeeBrew(
+                    CupSizes.MEDIUM,
+                    ItemsRegistry.COFFEE_MUG.get(),
+                    Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
+                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+            )
+    );
 }
