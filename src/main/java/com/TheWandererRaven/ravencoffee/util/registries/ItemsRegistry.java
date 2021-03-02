@@ -20,7 +20,7 @@ public class ItemsRegistry {
             () -> new BlockNamedItem(
                     BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(),
                     new Item.Properties()
-                            .group(RavenCoffee.TAB)
+                            .group(RavenCoffee.GENERAL_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_BEANS = ITEMS.register(
@@ -45,31 +45,31 @@ public class ItemsRegistry {
     // ###################################################### CUPS #####################################################
     public static final RegistryObject<Item> CUP_SMALL_UNFIRED = ITEMS.register(
             "cup_small_unfired",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_SMALL_TAB)
     );
     public static final RegistryObject<Item> CUP_SMALL = ITEMS.register(
             "cup_small",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_SMALL_TAB)
     );
     public static final RegistryObject<Item> CUP_MEDIUM_UNFIRED = ITEMS.register(
             "cup_medium_unfired",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_MEDIUM_TAB)
     );
     public static final RegistryObject<Item> CUP_MEDIUM = ITEMS.register(
             "cup_medium",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_MEDIUM_TAB)
     );
     public static final RegistryObject<Item> CUP_LARGE_UNFIRED = ITEMS.register(
             "cup_large_unfired",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_LARGE_TAB)
     );
     public static final RegistryObject<Item> CUP_LARGE = ITEMS.register(
             "cup_large",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_LARGE_TAB)
     );
     public static final RegistryObject<Item> COFFEE_MUG = ITEMS.register(
             "coffee_mug",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.COFFEE_MUG_TAB)
     );
 
     // ############################################### COFFEE MATERIALS ################################################
@@ -83,35 +83,35 @@ public class ItemsRegistry {
     );
 
     // ################################################# COFFEE TOOLS ##################################################
-    //                               Material Tier || Extra Attack Points || Attack Speed = 4 + n || Creative tab
+    //                               Material Tier || Extra Attack Points || Attack Speed = 4 + n || Creative GENERAL_TAB
     public static final RegistryObject<Item> COFFEE_PICKAXE = ITEMS.register(
             "coffee_pickaxe",
-            () -> new PickaxeItem(RavenCoffeeItemTier.COFFEE, 3, -2.8f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new PickaxeItem(RavenCoffeeItemTier.COFFEE, 3, -2.8f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_AXE =  ITEMS.register(
             "coffee_axe",
-            () -> new AxeItem(RavenCoffeeItemTier.COFFEE, 8, -2.7f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new AxeItem(RavenCoffeeItemTier.COFFEE, 8, -2.7f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_HOE =  ITEMS.register(
             "coffee_hoe",
-            () -> new HoeItem(RavenCoffeeItemTier.COFFEE, 0, 1.0f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new HoeItem(RavenCoffeeItemTier.COFFEE, 0, 1.0f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_SHOVEL =  ITEMS.register(
             "coffee_shovel",
-            () -> new ShovelItem(RavenCoffeeItemTier.COFFEE, 4, -3.0f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new ShovelItem(RavenCoffeeItemTier.COFFEE, 4, -3.0f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_SWORD =  ITEMS.register(
             "coffee_sword",
-            () -> new SwordItem(RavenCoffeeItemTier.COFFEE, 5, -2.0f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new SwordItem(RavenCoffeeItemTier.COFFEE, 5, -2.0f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
 
     // ############################################### COFFEE BLOCK ITEMS ################################################
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_block",
-            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
+            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_BLOCK.get(), new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_MAGMA_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_magma_block",
-            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
+            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
 }

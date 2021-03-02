@@ -9,7 +9,7 @@ public class CoffeeCup extends BucketItem {
     public CoffeeCup() {
         super(() -> Fluids.EMPTY,
                 new Item.Properties()
-                .group(RavenCoffee.TAB)
+                .group(RavenCoffee.GENERAL_TAB)
                 );
     }
 }

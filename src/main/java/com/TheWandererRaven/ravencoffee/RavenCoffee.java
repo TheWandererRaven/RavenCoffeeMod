@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -45,10 +46,54 @@ public class RavenCoffee
 
     private void doClientStuff(final FMLClientSetupEvent event) {}
 
-    public static final ItemGroup TAB = new ItemGroup("ravencoffeeTab") {
+    public static final ItemGroup GENERAL_TAB = new ItemGroup("ravencoffee_general_Tab") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(ItemsRegistry.COFFEE_BEANS_ROASTED.get());
+        }
+        @Override
+        public ITextComponent getGroupName() {
+            return ITextComponent.getTextComponentOrEmpty("Coffee Items");
+        }
+    };
+    public static final ItemGroup COFFEE_MUG_TAB = new ItemGroup("ravencoffee_mug_Tab") {
         @Override
         public ItemStack createIcon() {
             return new ItemStack(BrewsRegistry.COFFEE_MUG_BREW_AMERICAN.get());
+        }
+        @Override
+        public ITextComponent getGroupName() {
+            return ITextComponent.getTextComponentOrEmpty("Coffee Mugs");
+        }
+    };
+    public static final ItemGroup CUP_SMALL_TAB = new ItemGroup("ravencoffee_small_Tab") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(BrewsRegistry.CUP_SMALL_BREW_AMERICAN.get());
+        }
+        @Override
+        public ITextComponent getGroupName() {
+            return ITextComponent.getTextComponentOrEmpty("Small Coffee Cups");
+        }
+    };
+    public static final ItemGroup CUP_MEDIUM_TAB = new ItemGroup("ravencoffee_medium_Tab") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(BrewsRegistry.CUP_MEDIUM_BREW_AMERICAN.get());
+        }
+        @Override
+        public ITextComponent getGroupName() {
+            return ITextComponent.getTextComponentOrEmpty("Medium Coffee Cups");
+        }
+    };
+    public static final ItemGroup CUP_LARGE_TAB = new ItemGroup("ravencoffee_large_Tab") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(BrewsRegistry.CUP_LARGE_BREW_AMERICAN.get());
+        }
+        @Override
+        public ITextComponent getGroupName() {
+            return ITextComponent.getTextComponentOrEmpty("Large Coffee Cups");
         }
     };
 }

@@ -1,9 +1,9 @@
 package com.TheWandererRaven.ravencoffee.customClasses;
 
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.potion.*;
 
 public class Brews {
+    // duration => x = seconds * 20
     public static final Brew AMERICAN = new Brew()
             .addEffect(new EffectInstance(
                     Effects.HASTE,3600), 1.0d
@@ -69,5 +69,65 @@ public class Brews {
             )
             .addEffect(new EffectInstance(
                     Effects.HASTE,1800), 0.33d
+            );
+    public static final Brew AWKWARD = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.HASTE,3600), 1.0d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.SPEED, 1800), 0.3d
+            );
+    public static final Brew CARROT = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.HASTE,1800), 0.5d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.SPEED, 900), 0.1d
+            );
+    public static final Brew CARROT_GOLDEN = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.NIGHT_VISION,1800), 0.3d
+            );
+    public static final Brew COOKIESANDCREAM = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.SPEED,900), 0.7d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.JUMP_BOOST, 900), 0.2d
+            );
+    public static final Brew END = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.LEVITATION,200), 1.0d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.SLOW_FALLING, 300), 1.0d
+            );
+    public static final Brew MELON = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.HASTE,1800), 0.5d
+            );
+    public static final Brew MELON_GOLDEN = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.INSTANT_HEALTH, 1, 0), 1.0d
+            );
+    public static final Brew NETHER = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.FIRE_RESISTANCE, 1800), 1.0d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.SPEED, 1800), 1.0d
             );;
+    public static final Brew PHANTASM = new Brew()
+            .addEffect(new EffectInstance(
+                    Effects.INVISIBILITY, 1800), 1.0d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.SLOW_FALLING, 1800), 1.0d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.GLOWING, 1800), 1.0d
+            )
+            .addEffect(new EffectInstance(
+                    Effects.WEAKNESS, 1800), 1.0d
+            );
 }
