@@ -1,6 +1,9 @@
 package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
+import com.TheWandererRaven.ravencoffee.customClasses.Brews;
+import com.TheWandererRaven.ravencoffee.customClasses.CupSizes;
+import com.TheWandererRaven.ravencoffee.items.CoffeeBrew;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
 import com.TheWandererRaven.ravencoffee.tools.RavenCoffeeItemTier;
 import net.minecraft.block.Blocks;
@@ -40,6 +43,140 @@ public class ItemsRegistry {
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_GROUND = ITEMS.register(
             "coffee_beans_roasted_ground",
             ItemBase::new
+    );
+
+    // ############################################### FOODSTUFF ##############################################
+    public static final RegistryObject<Item> POPCHORUS = ITEMS.register(
+            "popchorus",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(12)
+                            .saturation(8.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> SANDWICH_HAM = ITEMS.register(
+            "sandwich_ham",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(7)
+                            .saturation(6.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> SANDWICH_BEEF = ITEMS.register(
+            "sandwich_beef",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(12)
+                            .saturation(16.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> SANDWICH_CHICKEN = ITEMS.register(
+            "sandwich_chicken",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(11)
+                            .saturation(12.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> CROISSANT = ITEMS.register(
+            "croissant",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(5)
+                            .saturation(5.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> CROISSANT_HAM = ITEMS.register(
+            "croissant_ham",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(8)
+                            .saturation(5.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> CROISSANT_BEEF = ITEMS.register(
+            "croissant_beef",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(12)
+                            .saturation(16.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> CROISSANT_CHICKEN = ITEMS.register(
+            "croissant_chicken",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(11)
+                            .saturation(11.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> BAGEL = ITEMS.register(
+            "bagel",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(6)
+                            .saturation(5.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> BAGEL_HAM = ITEMS.register(
+            "bagel_ham",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(13)
+                            .saturation(6.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> BAGEL_BEEF = ITEMS.register(
+            "bagel_beef",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(12)
+                            .saturation(16.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> BAGEL_CHICKEN = ITEMS.register(
+            "bagel_chicken",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(9)
+                            .saturation(12.0f)
+                            .build()
+                    )
+            )
     );
 
     // ###################################################### CUPS #####################################################
