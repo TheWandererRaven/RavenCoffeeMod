@@ -5,6 +5,7 @@ import com.TheWandererRaven.ravencoffee.customClasses.Brews;
 import com.TheWandererRaven.ravencoffee.customClasses.CupSizes;
 import com.TheWandererRaven.ravencoffee.items.CoffeeBrew;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
+import com.TheWandererRaven.ravencoffee.items.ItemThrowable;
 import com.TheWandererRaven.ravencoffee.tools.RavenCoffeeItemTier;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
@@ -53,6 +54,17 @@ public class ItemsRegistry {
                     .food(new Food.Builder()
                             .hunger(12)
                             .saturation(8.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> MUFFIN = ITEMS.register(
+            "muffin",
+            () -> new ItemThrowable(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(2)
+                            .saturation(2.0f)
                             .build()
                     )
             )

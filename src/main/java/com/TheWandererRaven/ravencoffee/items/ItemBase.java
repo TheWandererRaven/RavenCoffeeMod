@@ -11,4 +11,7 @@ public class ItemBase extends Item {
     public ItemBase(ItemGroup tab) {
         super(new Item.Properties().group(tab));
     }
+    public ItemBase(Properties props) {
+        super(props);
+    }
 }

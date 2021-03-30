@@ -62,10 +62,6 @@ public class CoffeeBrew extends Item {
         }
         if (!p_77654_2_.isRemote) {
             for(EffectInstance lvt_7_1_: brew.effects) {
-                p_77654_3_.sendMessage(ITextComponent.getTextComponentOrEmpty(
-                        lvt_7_1_.getEffectName() + " effect time: " + lvt_7_1_.getDuration()/20 + " seconds, Level :" + lvt_7_1_.getAmplifier()),
-                        UUID.randomUUID()
-                );
                 double randVal = Math.random();
                 int effectIndex = brew.effects.indexOf(lvt_7_1_);
                 double effectChance = (brew.effectsChances.size() >= effectIndex + 1)
