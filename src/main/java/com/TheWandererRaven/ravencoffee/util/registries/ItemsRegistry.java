@@ -69,6 +69,17 @@ public class ItemsRegistry {
                     )
             )
     );
+    public static final RegistryObject<Item> MELON_PAN = ITEMS.register(
+            "melon_pan",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(6)
+                            .saturation(8.5f)
+                            .build()
+                    )
+            )
+    );
     public static final RegistryObject<Item> SANDWICH_HAM = ITEMS.register(
             "sandwich_ham",
             () -> new Item(new Item.Properties()
