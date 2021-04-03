@@ -2,9 +2,8 @@ package com.TheWandererRaven.ravencoffee;
 
 import com.TheWandererRaven.ravencoffee.util.registries.BlocksRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.BrewsRegistry;
+import com.TheWandererRaven.ravencoffee.util.registries.IDispenserBehaviourRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.ItemsRegistry;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -12,6 +11,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +34,7 @@ public class RavenCoffee
         //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::postInit);
 
         BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ItemsRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -42,9 +43,18 @@ public class RavenCoffee
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {}
+    private void setup(final FMLCommonSetupEvent event) {
 
-    private void doClientStuff(final FMLClientSetupEvent event) {}
+    }
+
+    private void doClientStuff(final FMLClientSetupEvent event) {
+
+    }
+
+    private void postInit(FMLLoadCompleteEvent event) {
+        // Register new behaviour for dispensing certain items
+        IDispenserBehaviourRegistry.registerBehaviours();
+    }
 
     public static final ItemGroup GENERAL_TAB = new ItemGroup("ravencoffee_general_Tab") {
         @Override

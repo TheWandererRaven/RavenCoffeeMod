@@ -16,7 +16,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ItemsRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(
             ForgeRegistries.ITEMS,
-            RavenCoffee.MOD_ID);
+            RavenCoffee.MOD_ID
+    );
 
     // ############################################### BASIC COFFEE STUFF ##############################################
     public static final RegistryObject<Item> COFFEE_CHERRIES = ITEMS.register(
