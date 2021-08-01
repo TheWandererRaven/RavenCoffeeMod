@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:melon_slice"
+    },
+    {
+      "item": "minecraft:melon_slice"
+    },
+    {
+      "item": "ravencoffee:cup_large_brew_american"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:cup_large_brew_melon",
+    "count": 1
+  }
+}

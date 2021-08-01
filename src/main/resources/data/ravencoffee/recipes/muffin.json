@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " x ",
+    " y "
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:wheat"
+    },
+    "y": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "item": "ravencoffee:muffin",
+    "count": 1
+  }
+}

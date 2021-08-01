@@ -5,13 +5,7 @@
       "item": "minecraft:milk_bucket"
     },
     {
-      "item": "ravencoffee:coffee_beans_roasted_ground"
-    },
-    {
-      "item": "ravencoffee:coffee_beans_roasted_ground"
-    },
-    {
-      "item": "ravencoffee:cup_medium"
+      "item": "ravencoffee:cup_medium_brew_american"
     }
   ],
   "result": {

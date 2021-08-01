@@ -1,7 +1,11 @@
 package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
+import com.TheWandererRaven.ravencoffee.customClasses.Brews;
+import com.TheWandererRaven.ravencoffee.customClasses.CupSizes;
+import com.TheWandererRaven.ravencoffee.items.CoffeeBrew;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
+import com.TheWandererRaven.ravencoffee.items.ItemThrowable;
 import com.TheWandererRaven.ravencoffee.tools.RavenCoffeeItemTier;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
@@ -12,7 +16,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ItemsRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(
             ForgeRegistries.ITEMS,
-            RavenCoffee.MOD_ID);
+            RavenCoffee.MOD_ID
+    );
 
     // ############################################### BASIC COFFEE STUFF ##############################################
     public static final RegistryObject<Item> COFFEE_CHERRIES = ITEMS.register(
@@ -20,7 +25,7 @@ public class ItemsRegistry {
             () -> new BlockNamedItem(
                     BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(),
                     new Item.Properties()
-                            .group(RavenCoffee.TAB)
+                            .group(RavenCoffee.GENERAL_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_BEANS = ITEMS.register(
@@ -42,34 +47,190 @@ public class ItemsRegistry {
             ItemBase::new
     );
 
+    // ############################################### FOODSTUFF ##############################################
+    public static final RegistryObject<Item> POPCHORUS = ITEMS.register(
+            "popchorus",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(12)
+                            .saturation(8.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> MUFFIN = ITEMS.register(
+            "muffin",
+            () -> new ItemThrowable(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(2)
+                            .saturation(2.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> MELON_PAN = ITEMS.register(
+            "melon_pan",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(6)
+                            .saturation(8.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> SANDWICH_HAM = ITEMS.register(
+            "sandwich_ham",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(7)
+                            .saturation(6.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> SANDWICH_BEEF = ITEMS.register(
+            "sandwich_beef",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(12)
+                            .saturation(16.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> SANDWICH_CHICKEN = ITEMS.register(
+            "sandwich_chicken",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(11)
+                            .saturation(12.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> CROISSANT = ITEMS.register(
+            "croissant",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(5)
+                            .saturation(5.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> CROISSANT_HAM = ITEMS.register(
+            "croissant_ham",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(8)
+                            .saturation(5.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> CROISSANT_BEEF = ITEMS.register(
+            "croissant_beef",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(12)
+                            .saturation(16.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> CROISSANT_CHICKEN = ITEMS.register(
+            "croissant_chicken",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(11)
+                            .saturation(11.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> BAGEL = ITEMS.register(
+            "bagel",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(6)
+                            .saturation(5.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> BAGEL_HAM = ITEMS.register(
+            "bagel_ham",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(13)
+                            .saturation(6.0f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> BAGEL_BEEF = ITEMS.register(
+            "bagel_beef",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(12)
+                            .saturation(16.5f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> BAGEL_CHICKEN = ITEMS.register(
+            "bagel_chicken",
+            () -> new Item(new Item.Properties()
+                    .group(RavenCoffee.GENERAL_TAB)
+                    .food(new Food.Builder()
+                            .hunger(9)
+                            .saturation(12.0f)
+                            .build()
+                    )
+            )
+    );
+
     // ###################################################### CUPS #####################################################
     public static final RegistryObject<Item> CUP_SMALL_UNFIRED = ITEMS.register(
             "cup_small_unfired",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_SMALL_TAB)
     );
     public static final RegistryObject<Item> CUP_SMALL = ITEMS.register(
             "cup_small",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_SMALL_TAB)
     );
     public static final RegistryObject<Item> CUP_MEDIUM_UNFIRED = ITEMS.register(
             "cup_medium_unfired",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_MEDIUM_TAB)
     );
     public static final RegistryObject<Item> CUP_MEDIUM = ITEMS.register(
             "cup_medium",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_MEDIUM_TAB)
     );
     public static final RegistryObject<Item> CUP_LARGE_UNFIRED = ITEMS.register(
             "cup_large_unfired",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_LARGE_TAB)
     );
     public static final RegistryObject<Item> CUP_LARGE = ITEMS.register(
             "cup_large",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.CUP_LARGE_TAB)
     );
     public static final RegistryObject<Item> COFFEE_MUG = ITEMS.register(
             "coffee_mug",
-            ItemBase::new
+            () -> new ItemBase(RavenCoffee.COFFEE_MUG_TAB)
     );
 
     // ############################################### COFFEE MATERIALS ################################################
@@ -83,35 +244,35 @@ public class ItemsRegistry {
     );
 
     // ################################################# COFFEE TOOLS ##################################################
-    //                               Material Tier || Extra Attack Points || Attack Speed = 4 + n || Creative tab
+    //                               Material Tier || Extra Attack Points || Attack Speed = 4 + n || Creative GENERAL_TAB
     public static final RegistryObject<Item> COFFEE_PICKAXE = ITEMS.register(
             "coffee_pickaxe",
-            () -> new PickaxeItem(RavenCoffeeItemTier.COFFEE, 3, -2.8f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new PickaxeItem(RavenCoffeeItemTier.COFFEE, 3, -2.8f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_AXE =  ITEMS.register(
             "coffee_axe",
-            () -> new AxeItem(RavenCoffeeItemTier.COFFEE, 8, -2.7f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new AxeItem(RavenCoffeeItemTier.COFFEE, 8, -2.7f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_HOE =  ITEMS.register(
             "coffee_hoe",
-            () -> new HoeItem(RavenCoffeeItemTier.COFFEE, 0, 1.0f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new HoeItem(RavenCoffeeItemTier.COFFEE, 0, 1.0f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_SHOVEL =  ITEMS.register(
             "coffee_shovel",
-            () -> new ShovelItem(RavenCoffeeItemTier.COFFEE, 4, -3.0f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new ShovelItem(RavenCoffeeItemTier.COFFEE, 4, -3.0f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_SWORD =  ITEMS.register(
             "coffee_sword",
-            () -> new SwordItem(RavenCoffeeItemTier.COFFEE, 5, -2.0f, new Item.Properties().group(RavenCoffee.TAB))
+            () -> new SwordItem(RavenCoffeeItemTier.COFFEE, 5, -2.0f, new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
 
     // ############################################### COFFEE BLOCK ITEMS ################################################
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_block",
-            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
+            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_BLOCK.get(), new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_MAGMA_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_magma_block",
-            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().group(RavenCoffee.TAB))
+            () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
 }

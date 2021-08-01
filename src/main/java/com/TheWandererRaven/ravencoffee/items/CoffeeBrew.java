@@ -52,16 +52,16 @@ public class CoffeeBrew extends Item {
     @Override
     @Nonnull
     public ItemStack onItemUseFinish(@Nonnull ItemStack p_77654_1_, @Nonnull World p_77654_2_, @Nonnull LivingEntity p_77654_3_) {
+        p_77654_3_.sendMessage(ITextComponent.getTextComponentOrEmpty(
+                brew.effects.get(0).getEffectName() + " effect time: " + brew.effects.get(0).getDuration()/20 + " seconds, Level :" + brew.effects.get(0).getAmplifier()),
+                UUID.randomUUID()
+        );
         PlayerEntity lvt_4_1_ = p_77654_3_ instanceof PlayerEntity ? (PlayerEntity)p_77654_3_ : null;
         if (lvt_4_1_ instanceof ServerPlayerEntity) {
             CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayerEntity)lvt_4_1_, p_77654_1_);
         }
         if (!p_77654_2_.isRemote) {
             for(EffectInstance lvt_7_1_: brew.effects) {
-                p_77654_3_.sendMessage(ITextComponent.getTextComponentOrEmpty(
-                        lvt_7_1_.getEffectName() + " effect time: " + lvt_7_1_.getDuration()/20 + " seconds"),
-                        UUID.randomUUID()
-                );
                 double randVal = Math.random();
                 int effectIndex = brew.effects.indexOf(lvt_7_1_);
                 double effectChance = (brew.effectsChances.size() >= effectIndex + 1)
@@ -69,9 +69,13 @@ public class CoffeeBrew extends Item {
                         : 0.0d;
                 if (randVal < effectChance && randVal != 0.0d) {
                     if (lvt_7_1_.getPotion().isInstant()) {
-                        lvt_7_1_.getPotion().affectEntity(lvt_4_1_, lvt_4_1_, p_77654_3_, lvt_7_1_.getAmplifier(), 0.0d);
+                        EffectInstance adjustedEffect = this.adjustEffectToSize(lvt_7_1_);
+                        adjustedEffect.getPotion().affectEntity(lvt_4_1_, lvt_4_1_, p_77654_3_, adjustedEffect.getAmplifier(), 1.0d);
                     } else {
-                        p_77654_3_.addPotionEffect(this.adjustEffectToSize(lvt_7_1_));
+                        if(lvt_7_1_.getEffectName().equals(Effects.INSTANT_HEALTH.getName()))
+                            p_77654_3_.setHealth(p_77654_3_.getHealth() + 2.0f);
+                        else
+                            p_77654_3_.addPotionEffect(this.adjustEffectToSize(lvt_7_1_));
                     }
                 }
             }
