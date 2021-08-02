@@ -3,6 +3,12 @@
   "ingredients": [
     {
       "item": "ravencoffee:coffee_beans_roasted"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted"
     }
   ],
   "result": {
