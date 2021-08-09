@@ -1,10 +1,7 @@
 package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeLeavesBlock;
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedBlock;
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeBeansRoastedMagmaBlock;
+import com.TheWandererRaven.ravencoffee.blocks.*;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -37,6 +34,12 @@ public class BlocksRegistry {
                     .sound(SoundType.PLANT)
                     .notSolid()
                     .tickRandomly()
+            )
+    );
+    public static final RegistryObject<Block> COFFEE_GRINDER = BLOCKS.register(
+            "coffee_grinder",
+            () -> new CoffeeGrinder(AbstractBlock.Properties.create(Material.WOOD)
+                    .sound(SoundType.WOOD)
             )
     );
 }
