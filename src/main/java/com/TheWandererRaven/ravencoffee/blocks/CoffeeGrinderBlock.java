@@ -1,10 +1,15 @@
 package com.TheWandererRaven.ravencoffee.blocks;
 
+import com.TheWandererRaven.ravencoffee.RavenCoffee;
+import com.TheWandererRaven.ravencoffee.containers.CoffeeGrinderContainer;
 import com.TheWandererRaven.ravencoffee.tileEntity.CoffeeGrinderTileEntity;
+import com.TheWandererRaven.ravencoffee.util.registries.RecipesRegistry;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
+import net.minecraft.inventory.container.WorkbenchContainer;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -20,10 +25,12 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -45,6 +52,7 @@ public class CoffeeGrinderBlock extends ContainerBlock {
             .orElse(Block.makeCuboidShape(4.625, 10.5, 7.625, 5.375, 11.25, 8.375));
     public static final Map<Direction, VoxelShape> SHAPES = new HashMap<Direction, VoxelShape>();
     public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
+    private static final ITextComponent CONTAINER_NAME = new TranslationTextComponent("container.coffee_grinder");
 
     public CoffeeGrinderBlock(AbstractBlock.Properties properties) {
         super(properties);
@@ -138,22 +146,24 @@ public class CoffeeGrinderBlock extends ContainerBlock {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        player.sendStatusMessage(ITextComponent.getTextComponentOrEmpty("Click step 1"), false);
         if (worldIn.isRemote) return ActionResultType.SUCCESS; // on client side, don't do anything
 
         INamedContainerProvider namedContainerProvider = this.getContainer(state, worldIn, pos);
-        player.sendStatusMessage(namedContainerProvider.getDisplayName(), false);
         if (namedContainerProvider != null) {
-            player.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(String.valueOf(player instanceof ServerPlayerEntity)), false);
             if (!(player instanceof ServerPlayerEntity)) return ActionResultType.FAIL;  // should always be true, but just in case...
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
             NetworkHooks.openGui(serverPlayerEntity, namedContainerProvider, (packetBuffer)->{});
             // (packetBuffer)->{} is just a do-nothing because we have no extra data to send
         }
-        player.sendStatusMessage(ITextComponent.getTextComponentOrEmpty("Click step 2"), false);
         return ActionResultType.SUCCESS;
     }
 
+    @Override
+    public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
+        return new SimpleNamedContainerProvider((id, inventory, player) -> {
+            return new CoffeeGrinderContainer(id, inventory, IWorldPosCallable.of(worldIn, pos));
+        }, CONTAINER_NAME);
+    }
     // This is where you can do something when the block is broken. In this case drop the inventory's contents
     // Code is copied directly from vanilla eg ChestBlock, CampfireBlock
     @Override

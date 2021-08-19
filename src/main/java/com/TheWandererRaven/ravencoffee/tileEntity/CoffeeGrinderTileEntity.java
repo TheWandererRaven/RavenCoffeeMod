@@ -158,6 +158,6 @@ public class CoffeeGrinderTileEntity extends TileEntity implements INamedContain
     @Nullable
     @Override
     public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return CoffeeGrinderContainer.createContainerServerSide(windowID, playerInventory, inputZoneContents, outputZoneContents);
+        return CoffeeGrinderContainer.createContainerServerSide(windowID, playerInventory);
     }
 }
