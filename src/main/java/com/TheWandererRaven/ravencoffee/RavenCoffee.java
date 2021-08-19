@@ -5,10 +5,13 @@ import com.TheWandererRaven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.SmithingRecipe;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -27,7 +30,6 @@ public class RavenCoffee
     // Directly reference a log4j logger.
     public static final String MOD_ID = "ravencoffee";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-    public static IRecipeType<SmithingRecipe> COFFEE_GRINDING = null;
 
     public RavenCoffee() {
         // Register the setup method for modloading
@@ -55,8 +57,7 @@ public class RavenCoffee
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        // Register new RecipeTypes
-        COFFEE_GRINDING = IRecipeType.register("coffee_grinding");
+
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

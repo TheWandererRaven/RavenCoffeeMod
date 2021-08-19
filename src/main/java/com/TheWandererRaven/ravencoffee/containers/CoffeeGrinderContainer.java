@@ -6,6 +6,7 @@ import com.TheWandererRaven.ravencoffee.containers.slots.CoffeeGrinderOutputSlot
 import com.TheWandererRaven.ravencoffee.recipes.CoffeeGrinderRecipe;
 import com.TheWandererRaven.ravencoffee.tileEntity.CoffeeGrinderTileEntity;
 import com.TheWandererRaven.ravencoffee.util.registries.ContainersRegistry;
+import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.RecipesRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -211,23 +212,14 @@ public class CoffeeGrinderContainer extends Container {
     public void onCraftMatrixChanged(IInventory inventoryIn) {
         if (!world.isRemote) {
             RavenCoffee.LOGGER.info("Update crafting result!");
-            Optional<? extends IRecipe<?>> optional = world.getServer().getRecipeManager().getRecipe(RavenCoffee.COFFEE_GRINDING, this.craftMatrix, this.world);
-            world.getServer().getRecipeManager().getRecipesForType(RavenCoffee.COFFEE_GRINDING).forEach((recipe -> {
+            Optional<? extends IRecipe<?>> optional = world.getServer().getRecipeManager().getRecipe(RecipeTypesRegistry.COFFEE_GRINDING, this.craftMatrix, this.world);
+            world.getServer().getRecipeManager().getRecipesForType(RecipeTypesRegistry.COFFEE_GRINDING).forEach((recipe -> {
                 RavenCoffee.LOGGER.info("================ Recipe =================");
                 RavenCoffee.LOGGER.info(recipe.getId().toString());
             }));
-            RavenCoffee.LOGGER.info(optional.isPresent() ? "############ Found recipe": "############## Not found recipe");
-            RavenCoffee.LOGGER.info(RavenCoffee.COFFEE_GRINDING.toString());
-            ArrayList<String> foundTypes = new ArrayList<String>();
-            world.getServer().getRecipeManager().getRecipes().forEach((recipe -> {
-                if (!foundTypes.contains(recipe.getType().toString())) {
-                    foundTypes.add(recipe.getType().toString());
-                    RavenCoffee.LOGGER.info(recipe.getId().getNamespace());
-                    RavenCoffee.LOGGER.info(recipe.getId().getPath());
-                }
-            }));
-            foundTypes.forEach((RavenCoffee.LOGGER::info));
-            RavenCoffee.LOGGER.info("################################################################################");
+            if(optional.isPresent()) {
+
+            }
         }
     }
 }

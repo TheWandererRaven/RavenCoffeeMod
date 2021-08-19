@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:coffee_grinding",
+  "type": "ravencoffee:coffee_grinding",
   "ingredients": [
     {
       "item": "ravencoffee:coffee_beans_roasted"

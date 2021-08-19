@@ -1,6 +1,7 @@
 package com.TheWandererRaven.ravencoffee.recipes;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
+import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.RecipesRegistry;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -19,14 +20,14 @@ public class CoffeeGrinderRecipe extends ShapelessRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return RavenCoffee.COFFEE_GRINDING;
+        return RecipeTypesRegistry.COFFEE_GRINDING;
     }
 
     public IRecipeSerializer<?> getSerializer() {
         return RecipesRegistry.COFFEE_GRINDER_SERIALIZER.get();
     }
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<CoffeeGrinderRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("ravencoffee", "coffee_grinder");
+        private static final ResourceLocation NAME = new ResourceLocation(RavenCoffee.MOD_ID, "coffee_grinding");
         public CoffeeGrinderRecipe read(ResourceLocation recipeId, JsonObject json) {
             String s = JSONUtils.getString(json, "group", "");
             NonNullList<Ingredient> nonnulllist = readIngredients(JSONUtils.getJsonArray(json, "ingredients"));
