@@ -6,16 +6,87 @@ import com.TheWandererRaven.ravencoffee.util.registries.RecipesRegistry;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import it.unimi.dsi.fastutil.ints.IntList;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 
-public class CoffeeGrinderRecipe extends ShapelessRecipe {
+public class CoffeeGrinderRecipe implements ICraftingRecipe {
+    private final ResourceLocation id;
+    private final String group;
+    private final ItemStack recipeOutput;
+    private final NonNullList<Ingredient> recipeItems;
+    private final boolean isSimple;
     public CoffeeGrinderRecipe(ResourceLocation idIn, String groupIn, ItemStack recipeOutputIn, NonNullList<Ingredient> recipeItemsIn) {
-        super(idIn, groupIn, recipeOutputIn, recipeItemsIn);
+        this.id = idIn;
+        this.group = groupIn;
+        this.recipeOutput = recipeOutputIn;
+        this.recipeItems = recipeItemsIn;
+        this.isSimple = recipeItemsIn.stream().allMatch(Ingredient::isSimple);
+    }
+
+
+    public ResourceLocation getId() {
+        return this.id;
+    }
+
+    /**
+     * Recipes with equal group are combined into one button in the recipe book
+     */
+    public String getGroup() {
+        return this.group;
+    }
+
+    /**
+     * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one
+     * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
+     */
+    public ItemStack getRecipeOutput() {
+        return this.recipeOutput;
+    }
+
+    public NonNullList<Ingredient> getIngredients() {
+        return this.recipeItems;
+    }
+
+    /**
+     * Used to check if a recipe matches current crafting inventory
+     */
+    public boolean matches(CraftingInventory inv, World worldIn) {
+        RecipeItemHelper recipeitemhelper = new RecipeItemHelper();
+        java.util.List<ItemStack> inputs = new java.util.ArrayList<>();
+        int i = 0;
+
+        for(int j = 0; j < inv.getSizeInventory(); ++j) {
+            ItemStack itemstack = inv.getStackInSlot(j);
+            if (!itemstack.isEmpty()) {
+                ++i;
+                if (isSimple)
+                    recipeitemhelper.func_221264_a(itemstack, 1);
+                else inputs.add(itemstack);
+            }
+        }
+
+        return i == this.recipeItems.size() && (isSimple ? recipeitemhelper.canCraft(this, (IntList)null) : net.minecraftforge.common.util.RecipeMatcher.findMatches(inputs,  this.recipeItems) != null);
+    }
+
+    /**
+     * Returns an Item that is the result of this recipe
+     */
+    public ItemStack getCraftingResult(CraftingInventory inv) {
+        return this.recipeOutput.copy();
+    }
+
+    /**
+     * Used to determine if this recipe can fit in a grid of the given width/height
+     */
+    public boolean canFit(int width, int height) {
+        return width * height >= this.recipeItems.size();
     }
 
     @Override
@@ -68,14 +139,14 @@ public class CoffeeGrinderRecipe extends ShapelessRecipe {
         }
 
         public void write(PacketBuffer buffer, CoffeeGrinderRecipe recipe) {
-            buffer.writeString(recipe.getGroup());
-            buffer.writeVarInt(recipe.getIngredients().size());
+            buffer.writeString(recipe.group);
+            buffer.writeVarInt(recipe.recipeItems.size());
 
-            for(Ingredient ingredient : recipe.getIngredients()) {
+            for(Ingredient ingredient : recipe.recipeItems) {
                 ingredient.write(buffer);
             }
 
-            buffer.writeItemStack(recipe.getRecipeOutput());
+            buffer.writeItemStack(recipe.recipeOutput);
         }
     }
 }

@@ -50,11 +50,11 @@ public class CoffeeGrinderContainer extends Container {
     private static final int OUTPUT_SLOT_COUNT = CoffeeGrinderTileEntity.OUTPUT_SLOTS_COUNT;
     private static final int COFFEE_GRINDER_SLOTS_COUNT = INPUT_SLOT_COUNT + OUTPUT_SLOT_COUNT;
 
-    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
+    private static final int FIRST_OUTPUT_SLOT_INDEX = 0;
+    private static final int FIRST_INPUT_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOT_COUNT;
+    private static final int VANILLA_FIRST_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOT_COUNT;
     private static final int HOTBAR_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX;
     private static final int PLAYER_INVENTORY_FIRST_SLOT_INDEX = HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT;
-    private static final int FIRST_INPUT_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-    private static final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOT_COUNT;
 
     public static final int PLAYER_HOTBAR_XPOS = 8;
     public static final int PLAYER_HOTBAR_YPOS = 142;
@@ -112,6 +112,16 @@ public class CoffeeGrinderContainer extends Container {
         PlayerInvWrapper playerInventoryForge = new PlayerInvWrapper(playerInventory);  // wrap the IInventory in a Forge IItemHandler.
         // Not actually necessary - can use Slot(playerInventory) instead of SlotItemHandler(playerInventoryForge)
 
+        // Add the tile output containers to the gui
+        for (int y = 0; y < OUTPUT_SLOT_COUNT; y++) {
+            int slotNumber = y;
+            addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, slotNumber, OUTPUT_SLOT_POS_X,  OUTPUT_SLOT_POS_Y + SLOT_Y_SPACING * y));
+        }
+        // Add the tile input containers to the gui
+        for (int x = 0; x < INPUT_SLOT_COUNT; x++) {
+            int slotNumber = x;
+            addSlot(new Slot(craftMatrix, slotNumber, INPUT_SLOT_POS_X,  INPUT_SLOT_POS_Y + INPUT_SLOT_Y_SPACING * x));
+        }
         // Add the players hotbar to the gui - the [xpos, ypos] location of each item
         for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
             int slotNumber = x;
@@ -126,17 +136,6 @@ public class CoffeeGrinderContainer extends Container {
                 int ypos = PLAYER_INVENTORY_YPOS + y * SLOT_Y_SPACING;
                 addSlot(new Slot(playerInventory, slotNumber,  xpos, ypos));
             }
-        }
-
-        // Add the tile input containers to the gui
-        for (int x = 0; x < INPUT_SLOT_COUNT; x++) {
-            int slotNumber = x;
-            addSlot(new Slot(craftMatrix, slotNumber, INPUT_SLOT_POS_X,  INPUT_SLOT_POS_Y + INPUT_SLOT_Y_SPACING * x));
-        }
-
-        for (int y = 0; y < OUTPUT_SLOT_COUNT; y++) {
-            int slotNumber = y;
-            addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, slotNumber, OUTPUT_SLOT_POS_X,  OUTPUT_SLOT_POS_Y + SLOT_Y_SPACING * y));
         }
     }
 
@@ -209,17 +208,29 @@ public class CoffeeGrinderContainer extends Container {
 
     // ########################################### RECIPES #############################################################
 
-    public void onCraftMatrixChanged(IInventory inventoryIn) {
+    public void updateCraftingResult(int id, World world, PlayerEntity player, CraftingInventory inventory, CraftResultInventory inventoryResult) {
         if (!world.isRemote) {
+            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)player;
             RavenCoffee.LOGGER.info("Update crafting result!");
-            Optional<? extends IRecipe<?>> optional = world.getServer().getRecipeManager().getRecipe(RecipeTypesRegistry.COFFEE_GRINDING, this.craftMatrix, this.world);
-            world.getServer().getRecipeManager().getRecipesForType(RecipeTypesRegistry.COFFEE_GRINDING).forEach((recipe -> {
-                RavenCoffee.LOGGER.info("================ Recipe =================");
-                RavenCoffee.LOGGER.info(recipe.getId().toString());
-            }));
+            Optional<ICraftingRecipe> optional = world.getServer().getRecipeManager().getRecipe(RecipeTypesRegistry.COFFEE_GRINDING, inventory, world);
+            ItemStack itemstack = ItemStack.EMPTY;
             if(optional.isPresent()) {
-
+                ICraftingRecipe icraftingrecipe = optional.get();
+                if (inventoryResult.canUseRecipe(world, serverplayerentity, icraftingrecipe)) {
+                    itemstack = icraftingrecipe.getCraftingResult(inventory);
+                }
             }
+
+            inventoryResult.setInventorySlotContents(0, itemstack);
+            serverplayerentity.connection.sendPacket(new SSetSlotPacket(id, 0, itemstack));
         }
+    }
+    /**
+     * Callback for when the crafting matrix is changed.
+     */
+    public void onCraftMatrixChanged(IInventory inventoryIn) {
+        this.worldPosCallable.consume((p_217069_1_, p_217069_2_) -> {
+            updateCraftingResult(this.windowId, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
+        });
     }
 }
