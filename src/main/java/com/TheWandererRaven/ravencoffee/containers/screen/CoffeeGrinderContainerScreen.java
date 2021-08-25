@@ -11,10 +11,13 @@ import net.minecraft.util.text.ITextComponent;
 import java.awt.*;
 
 public class CoffeeGrinderContainerScreen extends ContainerScreen<CoffeeGrinderContainer> {
+    //public static final float STATION_NAME_XPOS = CoffeeGrinderContainer.PLAYER_INVENTORY_XPOS;
+    public static final float STATION_NAME_YPOS = 10;
+    private CoffeeGrinderContainer coffeeGrinderContainer;
 
-    public CoffeeGrinderContainerScreen(CoffeeGrinderContainer containerBasic, PlayerInventory playerInventory, ITextComponent title) {
-        super(containerBasic, playerInventory, title);
-
+    public CoffeeGrinderContainerScreen(CoffeeGrinderContainer coffeeGrinderContainer, PlayerInventory playerInventory, ITextComponent title) {
+        super(coffeeGrinderContainer, playerInventory, title);
+        this.coffeeGrinderContainer = coffeeGrinderContainer;
         // Set the width and height of the gui.  Should match the size of the texture!
         xSize = 176;
         ySize = 166;
@@ -33,11 +36,10 @@ public class CoffeeGrinderContainerScreen extends ContainerScreen<CoffeeGrinderC
      */
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY) {
-        final float LABEL_XPOS = 5;
+        final float LABEL_XPOS = CoffeeGrinderContainer.PLAYER_INVENTORY_XPOS;
         final float FONT_Y_SPACING = 12;
-        final float CHEST_LABEL_YPOS = CoffeeGrinderContainer.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
         this.font.func_243248_b(matrixStack, this.title,
-                LABEL_XPOS, CHEST_LABEL_YPOS, Color.darkGray.getRGB());  //this.font.drawString;
+                LABEL_XPOS, STATION_NAME_YPOS, Color.darkGray.getRGB());  //this.font.drawString;
 
         final float PLAYER_INV_LABEL_YPOS = CoffeeGrinderContainer.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
         this.font.func_243248_b(matrixStack, this.playerInventory.getDisplayName(),                  ///    this.font.drawString

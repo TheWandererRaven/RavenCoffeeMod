@@ -1,21 +1,42 @@
 package com.TheWandererRaven.ravencoffee.containers;
 
+import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.containers.inventory.CoffeeGrinderContents;
 import com.TheWandererRaven.ravencoffee.containers.slots.CoffeeGrinderOutputSlot;
+import com.TheWandererRaven.ravencoffee.recipes.CoffeeGrinderRecipe;
 import com.TheWandererRaven.ravencoffee.tileEntity.CoffeeGrinderTileEntity;
 import com.TheWandererRaven.ravencoffee.util.registries.ContainersRegistry;
+import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
+import com.TheWandererRaven.ravencoffee.util.registries.RecipesRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.CraftResultInventory;
+import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ICraftingRecipe;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.network.play.server.SSetSlotPacket;
+import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
+
 public class CoffeeGrinderContainer extends Container {
     private final World world;
+    private final PlayerEntity player;
+    private final IWorldPosCallable worldPosCallable;
 
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -27,11 +48,11 @@ public class CoffeeGrinderContainer extends Container {
     private static final int OUTPUT_SLOT_COUNT = CoffeeGrinderTileEntity.OUTPUT_SLOTS_COUNT;
     private static final int COFFEE_GRINDER_SLOTS_COUNT = INPUT_SLOT_COUNT + OUTPUT_SLOT_COUNT;
 
-    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
+    private static final int FIRST_OUTPUT_SLOT_INDEX = 0;
+    private static final int FIRST_INPUT_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOT_COUNT;
+    private static final int VANILLA_FIRST_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOT_COUNT;
     private static final int HOTBAR_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX;
     private static final int PLAYER_INVENTORY_FIRST_SLOT_INDEX = HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT;
-    private static final int FIRST_INPUT_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-    private static final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOT_COUNT;
 
     public static final int PLAYER_HOTBAR_XPOS = 8;
     public static final int PLAYER_HOTBAR_YPOS = 142;
@@ -48,27 +69,22 @@ public class CoffeeGrinderContainer extends Container {
     public static final int SLOT_X_SPACING = 18;
     public static final int SLOT_Y_SPACING = 18;
 
-    private CoffeeGrinderContents inputZoneContents;
-    private CoffeeGrinderContents outputZoneContents;
-    private static final Logger LOGGER = LogManager.getLogger();
+    private final CraftingInventory craftMatrix = new CraftingInventory(this, 1, 2);
+    private final CraftResultInventory craftResult = new CraftResultInventory();
 
-    public static CoffeeGrinderContainer createContainerServerSide(int windowID, PlayerInventory playerInventory,
-                                                                   CoffeeGrinderContents inputZoneContents,
-                                                                   CoffeeGrinderContents outputZoneContents) {
-        return new CoffeeGrinderContainer(windowID, playerInventory, inputZoneContents, outputZoneContents);
+    public static CoffeeGrinderContainer createContainerServerSide(int windowID, PlayerInventory playerInventory) {
+        return new CoffeeGrinderContainer(windowID, playerInventory);
     }
 
     public static CoffeeGrinderContainer createContainerClientSide(int windowID, PlayerInventory playerInventory, net.minecraft.network.PacketBuffer extraData) {
         //  don't need extraData for this example; if you want you can use it to provide extra information from the server, that you can use
         //  when creating the client container
         //  eg String detailedDescription = extraData.readString(128);
-        CoffeeGrinderContents inputZoneContents = CoffeeGrinderContents.createForClientSideContainer(CoffeeGrinderTileEntity.INPUT_SLOTS_COUNT);
-        CoffeeGrinderContents outputZoneContents = CoffeeGrinderContents.createForClientSideContainer(CoffeeGrinderTileEntity.OUTPUT_SLOTS_COUNT);
 
         // on the client side there is no parent TileEntity to communicate with, so we:
         // 1) use a dummy inventory
         // 2) use "do nothing" lambda functions for canPlayerAccessInventory and markDirty
-        return new CoffeeGrinderContainer(windowID, playerInventory, inputZoneContents, outputZoneContents);
+        return new CoffeeGrinderContainer(windowID, playerInventory);
     }
 
     // must assign a slot number to each of the slots used by the GUI.
@@ -78,24 +94,32 @@ public class CoffeeGrinderContainer extends Container {
     //  9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
     //  36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
 
+    private CoffeeGrinderContainer(int windowID, PlayerInventory playerInventory) {
+        this(windowID, playerInventory, IWorldPosCallable.DUMMY);
+    }
 
-    /**
-     * Creates a container suitable for server side or client side
-     * @param windowID ID of the container
-     * @param playerInventory the inventory of the player
-     * @param chestContents the inventory stored in the chest
-     */
-    private CoffeeGrinderContainer(int windowID, PlayerInventory playerInventory, CoffeeGrinderContents inputZoneContents, CoffeeGrinderContents outputZoneContents) {
+    public CoffeeGrinderContainer(int windowID, PlayerInventory playerInventory, IWorldPosCallable worldPosCallable) {
         super(ContainersRegistry.COFFEE_GRINDER_CONTAINER.get(), windowID);
+        RavenCoffee.LOGGER.info("Container creation!");
+        this.worldPosCallable = worldPosCallable;
         if (ContainersRegistry.COFFEE_GRINDER_CONTAINER == null)
             throw new IllegalStateException("Must initialise containerBasicContainerType before constructing a ContainerBasic!");
 
         this.world = playerInventory.player.world;
+        this.player = playerInventory.player;
         PlayerInvWrapper playerInventoryForge = new PlayerInvWrapper(playerInventory);  // wrap the IInventory in a Forge IItemHandler.
         // Not actually necessary - can use Slot(playerInventory) instead of SlotItemHandler(playerInventoryForge)
-        this.inputZoneContents = inputZoneContents;
-        this.outputZoneContents = outputZoneContents;
 
+        // Add the tile output containers to the gui
+        for (int y = 0; y < OUTPUT_SLOT_COUNT; y++) {
+            int slotNumber = y;
+            addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, slotNumber, OUTPUT_SLOT_POS_X,  OUTPUT_SLOT_POS_Y + SLOT_Y_SPACING * y));
+        }
+        // Add the tile input containers to the gui
+        for (int x = 0; x < INPUT_SLOT_COUNT; x++) {
+            int slotNumber = x;
+            addSlot(new Slot(craftMatrix, slotNumber, INPUT_SLOT_POS_X,  INPUT_SLOT_POS_Y + INPUT_SLOT_Y_SPACING * x));
+        }
         // Add the players hotbar to the gui - the [xpos, ypos] location of each item
         for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
             int slotNumber = x;
@@ -110,17 +134,6 @@ public class CoffeeGrinderContainer extends Container {
                 int ypos = PLAYER_INVENTORY_YPOS + y * SLOT_Y_SPACING;
                 addSlot(new Slot(playerInventory, slotNumber,  xpos, ypos));
             }
-        }
-
-        // Add the tile input containers to the gui
-        for (int x = 0; x < INPUT_SLOT_COUNT; x++) {
-            int slotNumber = x;
-            addSlot(new Slot(inputZoneContents, slotNumber, INPUT_SLOT_POS_X,  INPUT_SLOT_POS_Y + INPUT_SLOT_Y_SPACING * x));
-        }
-
-        for (int y = 0; y < OUTPUT_SLOT_COUNT; y++) {
-            int slotNumber = y;
-            addSlot(new CoffeeGrinderOutputSlot(outputZoneContents, slotNumber, OUTPUT_SLOT_POS_X,  OUTPUT_SLOT_POS_Y + SLOT_Y_SPACING * y));
         }
     }
 
@@ -138,7 +151,7 @@ public class CoffeeGrinderContainer extends Container {
         // return this.furnaceInventory.isUsableByPlayer(playerEntity);
         // Sometimes it perform an additional check (eg for EnderChests - the player owns the chest)
 
-        return inputZoneContents.isUsableByPlayer(playerEntity) && outputZoneContents.isUsableByPlayer(playerEntity);
+        return craftMatrix.isUsableByPlayer(playerEntity) && craftResult.isUsableByPlayer(playerEntity);
     }
 
     // This is where you specify what happens when a player shift clicks a slot in the gui
@@ -168,7 +181,7 @@ public class CoffeeGrinderContainer extends Container {
                 return ItemStack.EMPTY;
             }
         } else {
-            LOGGER.warn("Invalid slotIndex:" + sourceSlotIndex);
+             RavenCoffee.LOGGER.warn("Invalid slotIndex:" + sourceSlotIndex);
             return ItemStack.EMPTY;
         }
 
@@ -189,53 +202,28 @@ public class CoffeeGrinderContainer extends Container {
     public void onContainerClosed(PlayerEntity playerIn)
     {
         super.onContainerClosed(playerIn);
+        this.worldPosCallable.consume((p_217068_2_, p_217068_3_) -> {
+            this.clearContainer(playerIn, p_217068_2_, this.craftMatrix);
+        });
     }
 
-    /*
-    private void updateRecipeOutput() {
-        ItemStack itemstack = this.inputZoneContents.getStackInSlot(0);
-        ItemStack itemstack1 = this.inputZoneContents.getStackInSlot(1);
-        boolean flag1 = !itemstack.isEmpty() && !itemstack1.isEmpty();
-        if (itemstack.isEmpty() || itemstack1.isEmpty()) {
-            this.outputZoneContents.setInventorySlotContents(0, ItemStack.EMPTY);
+    // ########################################### RECIPES #############################################################
+
+    public void updateCraftingResult(int id, World world, PlayerEntity player, CraftingInventory inventory, CraftResultInventory inventoryResult) {
+        if (!world.isRemote) {
+            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)player;
+            ItemStack itemstack = CoffeeGrinderTileEntity.getGrindingResultForItems(world, inventory);
+
+            inventoryResult.setInventorySlotContents(0, itemstack);
+            serverplayerentity.connection.sendPacket(new SSetSlotPacket(id, 0, itemstack));
         }
-        else {
-            int j = 1;
-            int i;
-            ItemStack itemstack2;
-            if (flag1) {
-                if (itemstack.getItem() != itemstack1.getItem()) {
-                    this.outputZoneContents.setInventorySlotContents(0, ItemStack.EMPTY);
-                    this.detectAndSendChanges();
-                    return;
-                }
-
-                Item item = itemstack.getItem();
-                int k = itemstack.getMaxDamage() - itemstack.getDamage();
-                int l = itemstack.getMaxDamage() - itemstack1.getDamage();
-                int i1 = k + l + itemstack.getMaxDamage() * 5 / 100;
-                i = Math.max(itemstack.getMaxDamage() - i1, 0);
-                itemstack2 = this.copyEnchantments(itemstack, itemstack1);
-                if (!itemstack2.isRepairable()) i = itemstack.getDamage();
-                if (!itemstack2.isDamageable() || !itemstack2.isRepairable()) {
-                    if (!ItemStack.areItemStacksEqual(itemstack, itemstack1)) {
-                        this.outputZoneContents.setInventorySlotContents(0, ItemStack.EMPTY);
-                        this.detectAndSendChanges();
-                        return;
-                    }
-
-                    j = 2;
-                }
-            } else {
-                boolean flag3 = !itemstack.isEmpty();
-                i = flag3 ? itemstack.getDamage() : itemstack1.getDamage();
-                itemstack2 = flag3 ? itemstack : itemstack1;
-            }
-
-            this.outputInventory.setInventorySlotContents(0, this.removeEnchantments(itemstack2, i, j));
-        }
-
-        this.detectAndSendChanges();
     }
+    /**
+     * Callback for when the crafting matrix is changed.
      */
+    public void onCraftMatrixChanged(IInventory inventoryIn) {
+        this.worldPosCallable.consume((p_217069_1_, p_217069_2_) -> {
+            updateCraftingResult(this.windowId, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
+        });
+    }
 }

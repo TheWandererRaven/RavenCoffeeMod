@@ -5,12 +5,21 @@ import com.TheWandererRaven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.SmithingRecipe;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,8 +30,8 @@ import org.apache.logging.log4j.Logger;
 public class RavenCoffee
 {
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "ravencoffee";
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public RavenCoffee() {
         // Register the setup method for modloading
@@ -35,7 +44,7 @@ public class RavenCoffee
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::postInit);
 
-        //RecipesRegistry.RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        RecipesRegistry.RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ContainersRegistry.CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -46,6 +55,8 @@ public class RavenCoffee
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        LOGGER.debug("RAVEN COFFEE FINISHED SETUP!");
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {
