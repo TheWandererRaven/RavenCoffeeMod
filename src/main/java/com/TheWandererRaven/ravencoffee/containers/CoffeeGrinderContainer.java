@@ -1,5 +1,7 @@
 package com.TheWandererRaven.ravencoffee.containers;
 
+import com.TheWandererRaven.ravencoffee.RavenCoffee;
+import com.TheWandererRaven.ravencoffee.containers.inventory.CoffeeGrinderResultSlot;
 import com.TheWandererRaven.ravencoffee.util.registries.ContainersRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,8 +38,8 @@ public class CoffeeGrinderContainer extends Container {
     private static final int FIRST_OUTPUT_SLOT_INDEX = 0;
     private static final int FIRST_INPUT_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOT_COUNT;
     private static final int VANILLA_FIRST_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOT_COUNT;
-    private static final int HOTBAR_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX;
-    private static final int PLAYER_INVENTORY_FIRST_SLOT_INDEX = HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT;
+    private static final int PLAYER_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX;
+    private static final int HOTBAR_FIRST_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT;
 
     public static final int PLAYER_HOTBAR_XPOS = 8;
     public static final int PLAYER_HOTBAR_YPOS = 142;
@@ -94,7 +96,7 @@ public class CoffeeGrinderContainer extends Container {
         // Not actually necessary - can use Slot(playerInventory) instead of SlotItemHandler(playerInventoryForge)
 
         // Add the tile output containers to the gui
-        addSlot(new CraftingResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, OUTPUT_SLOT_COUNT, OUTPUT_SLOT_POS_X,  OUTPUT_SLOT_POS_Y));
+        addSlot(new CoffeeGrinderResultSlot(playerInventory.player, this.craftMatrix, this.craftResult, OUTPUT_SLOT_COUNT, OUTPUT_SLOT_POS_X,  OUTPUT_SLOT_POS_Y));
         // Add the tile input containers to the gui
         for (int x = 0; x < INPUT_SLOT_COUNT; x++) {
             addSlot(new Slot(craftMatrix, x, INPUT_SLOT_POS_X,  INPUT_SLOT_POS_Y + INPUT_SLOT_Y_SPACING * x));
@@ -148,63 +150,68 @@ public class CoffeeGrinderContainer extends Container {
      */
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        // Get selected slot
         Slot slot = this.inventorySlots.get(index);
-        // if slot has items...
         if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
-            // if clicked on OUTPUT SLOT
             if (index == FIRST_OUTPUT_SLOT_INDEX) {
+                RavenCoffee.LOGGER.info("============================ 1 ============================");
                 this.worldPosCallable.consume((p_217067_2_, p_217067_3_) -> {
                     itemstack1.getItem().onCreated(itemstack1, p_217067_2_, playerIn);
                 });
                 if (!this.mergeItemStack(itemstack1, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, true)) {
+                    RavenCoffee.LOGGER.info("============================ 2 ============================");
                     return ItemStack.EMPTY;
                 }
 
+                RavenCoffee.LOGGER.info("============================ 3 ============================");
                 slot.onSlotChange(itemstack1, itemstack);
             }
-            // if clicked on VANILLA INVENTORY
             else if (index >= VANILLA_FIRST_SLOT_INDEX && index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-                // send to INPUT SLOTS
-                if (!this.mergeItemStack(itemstack1, FIRST_INPUT_SLOT_INDEX, INPUT_SLOT_COUNT, false)) {
-                    if (index < HOTBAR_FIRST_SLOT_INDEX) {
-                        // HOTBAR
+                RavenCoffee.LOGGER.info("============================ 4 ============================");
+                if (!this.mergeItemStack(itemstack1, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOT_COUNT, false)) {
+                    RavenCoffee.LOGGER.info("============================ 5 ============================");
+                    if (index < PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT) {
+                        RavenCoffee.LOGGER.info("============================ 6 ============================");
                         if (!this.mergeItemStack(itemstack1, HOTBAR_FIRST_SLOT_INDEX, HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT, false)) {
+                            RavenCoffee.LOGGER.info("============================ 7 ============================");
                             return ItemStack.EMPTY;
                         }
-                        // INVENTORY
-                    } else if (!this.mergeItemStack(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT, false)) {
+                    }
+                    else if (!this.mergeItemStack(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT, false)) {
+                        RavenCoffee.LOGGER.info("============================ 8 ============================");
                         return ItemStack.EMPTY;
                     }
                 }
             }
-            // senf to VANILLA INVENTORY
             else if (!this.mergeItemStack(itemstack1, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+                RavenCoffee.LOGGER.info("============================ 9 ============================");
                 return ItemStack.EMPTY;
             }
 
             if (itemstack1.isEmpty()) {
+                RavenCoffee.LOGGER.info("============================ 10 ============================");
                 slot.putStack(ItemStack.EMPTY);
-            }
-            else {
+            } else {
+                RavenCoffee.LOGGER.info("============================ 11 ============================");
                 slot.onSlotChanged();
             }
 
             if (itemstack1.getCount() == itemstack.getCount()) {
+                RavenCoffee.LOGGER.info("============================ 12 ============================");
                 return ItemStack.EMPTY;
             }
 
+            RavenCoffee.LOGGER.info("============================ 13 ============================");
             ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
             if (index == FIRST_OUTPUT_SLOT_INDEX) {
+                RavenCoffee.LOGGER.info("============================ 14 ============================");
                 playerIn.dropItem(itemstack2, false);
             }
         }
 
         return itemstack;
     }
-
     // pass the close container message to the parent inventory (not strictly needed for this example)
     //  see ContainerChest and TileEntityChest - used to animate the lid when no players are accessing the chest any more
     @Override
