@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [17, 18],
 	"textures": {
-		"0": "ravencoffee:blocks/coffee_grinder",
+		"0": "ravencoffee:blocks/coffee_grinder_block",
 		"particle": "block/oak_planks"
 	},
 	"elements": [

@@ -1,22 +1,17 @@
 package com.TheWandererRaven.ravencoffee.blocks;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.containers.CoffeeGrinderContainer;
-import com.TheWandererRaven.ravencoffee.tileEntity.CoffeeGrinderTileEntity;
-import com.TheWandererRaven.ravencoffee.util.registries.RecipesRegistry;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
-import net.minecraft.inventory.container.WorkbenchContainer;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +26,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -96,12 +90,6 @@ public class CoffeeGrinderBlock extends ContainerBlock {
         return state.with(HORIZONTAL_FACING, direction.rotate(state.get(HORIZONTAL_FACING)));
     }
 
-    //@Nullable
-    //@Override
-    //public BlockState getStateForPlacement(BlockItemUseContext context) {
-    //    return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
-    //}
-
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
@@ -134,12 +122,6 @@ public class CoffeeGrinderBlock extends ContainerBlock {
         return createNewTileEntity(world);
     }
 
-    @Nullable
-    @Override
-    public TileEntity createNewTileEntity(IBlockReader worldIn) {
-        return new CoffeeGrinderTileEntity();
-    }
-
     @Override
     public boolean hasTileEntity(BlockState state) {
         return true;
@@ -150,7 +132,6 @@ public class CoffeeGrinderBlock extends ContainerBlock {
         if (worldIn.isRemote) return ActionResultType.SUCCESS; // on client side, don't do anything
 
         INamedContainerProvider namedContainerProvider = this.getContainer(state, worldIn, pos);
-        RavenCoffee.LOGGER.info("############################## " + namedContainerProvider.toString());
         if (namedContainerProvider != null) {
             if (!(player instanceof ServerPlayerEntity)) return ActionResultType.FAIL;  // should always be true, but just in case...
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
@@ -158,34 +139,17 @@ public class CoffeeGrinderBlock extends ContainerBlock {
             // (packetBuffer)->{} is just a do-nothing because we have no extra data to send
         }
         return ActionResultType.SUCCESS;
-    }/*
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.isRemote) {
-            return ActionResultType.SUCCESS;
-        } else {
-            player.openContainer(state.getContainer(worldIn, pos));
-            //player.addStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
-            return ActionResultType.CONSUME;
-        }
-    }*/
+    }
     @Override
     public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
         return new SimpleNamedContainerProvider((id, inventory, player) -> {
             return new CoffeeGrinderContainer(id, inventory, IWorldPosCallable.of(worldIn, pos));
         }, new TranslationTextComponent("container.ravencoffee.coffee_grinder_registry_name"));
     }
-    // This is where you can do something when the block is broken. In this case drop the inventory's contents
-    // Code is copied directly from vanilla eg ChestBlock, CampfireBlock
+
+    @Nullable
     @Override
-    public void onReplaced(BlockState state, World world, BlockPos blockPos, BlockState newState, boolean isMoving) {
-        if (state.getBlock() != newState.getBlock()) {
-            TileEntity tileentity = world.getTileEntity(blockPos);
-            if (tileentity instanceof CoffeeGrinderTileEntity) {
-                CoffeeGrinderTileEntity tileEntityFurnace = (CoffeeGrinderTileEntity) tileentity;
-                tileEntityFurnace.dropAllContents(world, blockPos);
-            }
-//      worldIn.updateComparatorOutputLevel(pos, this);  if the inventory is used to set redstone power for comparators
-            super.onReplaced(state, world, blockPos, newState, isMoving);  // call it last, because it removes the TileEntity
-        }
+    public TileEntity createNewTileEntity(IBlockReader worldIn) {
+        return null;
     }
 }

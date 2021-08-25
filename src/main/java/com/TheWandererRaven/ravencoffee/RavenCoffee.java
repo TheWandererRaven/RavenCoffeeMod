@@ -5,21 +5,12 @@ import com.TheWandererRaven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.SmithingRecipe;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,7 +39,7 @@ public class RavenCoffee
         ContainersRegistry.CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        TileEntityTypeRegistry.TILE_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        //TileEntityTypeRegistry.TILE_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         ItemsRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BrewsRegistry.BREWS.register(FMLJavaModLoadingContext.get().getModEventBus());

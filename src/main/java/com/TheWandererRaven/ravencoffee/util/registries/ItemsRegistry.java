@@ -276,7 +276,7 @@ public class ItemsRegistry {
             () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_GRINDER_ITEM = ITEMS.register(
-            "coffee_grinder",
+            "coffee_grinder_block",
             () -> new BlockItem(BlocksRegistry.COFFEE_GRINDER.get(), new Item.Properties().group(RavenCoffee.GENERAL_TAB))
     );
 }

@@ -37,7 +37,7 @@ public class BlocksRegistry {
             )
     );
     public static final RegistryObject<Block> COFFEE_GRINDER = BLOCKS.register(
-            "coffee_grinder",
+            "coffee_grinder_block",
             () -> new CoffeeGrinderBlock(AbstractBlock.Properties.create(Material.WOOD)
                     .sound(SoundType.WOOD)
             )
