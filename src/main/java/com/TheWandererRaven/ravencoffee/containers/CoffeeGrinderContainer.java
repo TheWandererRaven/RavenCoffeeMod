@@ -14,16 +14,14 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.CraftResultInventory;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.CraftingResultSlot;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.inventory.container.WorkbenchContainer;
+import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.network.play.server.SSetSlotPacket;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
@@ -204,6 +202,9 @@ public class CoffeeGrinderContainer extends Container {
     public void onContainerClosed(PlayerEntity playerIn)
     {
         super.onContainerClosed(playerIn);
+        this.worldPosCallable.consume((p_217068_2_, p_217068_3_) -> {
+            this.clearContainer(playerIn, p_217068_2_, this.craftMatrix);
+        });
     }
 
     // ########################################### RECIPES #############################################################
@@ -211,15 +212,7 @@ public class CoffeeGrinderContainer extends Container {
     public void updateCraftingResult(int id, World world, PlayerEntity player, CraftingInventory inventory, CraftResultInventory inventoryResult) {
         if (!world.isRemote) {
             ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)player;
-            RavenCoffee.LOGGER.info("Update crafting result!");
-            Optional<ICraftingRecipe> optional = world.getServer().getRecipeManager().getRecipe(RecipeTypesRegistry.COFFEE_GRINDING, inventory, world);
-            ItemStack itemstack = ItemStack.EMPTY;
-            if(optional.isPresent()) {
-                ICraftingRecipe icraftingrecipe = optional.get();
-                if (inventoryResult.canUseRecipe(world, serverplayerentity, icraftingrecipe)) {
-                    itemstack = icraftingrecipe.getCraftingResult(inventory);
-                }
-            }
+            ItemStack itemstack = CoffeeGrinderTileEntity.getGrindingResultForItems(world, inventory);
 
             inventoryResult.setInventorySlotContents(0, itemstack);
             serverplayerentity.connection.sendPacket(new SSetSlotPacket(id, 0, itemstack));

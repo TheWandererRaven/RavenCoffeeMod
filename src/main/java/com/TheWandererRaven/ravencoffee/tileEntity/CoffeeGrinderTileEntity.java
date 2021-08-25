@@ -2,16 +2,19 @@ package com.TheWandererRaven.ravencoffee.tileEntity;
 
 import com.TheWandererRaven.ravencoffee.containers.CoffeeGrinderContainer;
 import com.TheWandererRaven.ravencoffee.containers.inventory.CoffeeGrinderContents;
+import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.TileEntityTypeRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipe;
+import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.nbt.CompoundNBT;
@@ -31,6 +34,7 @@ import java.util.Optional;
 public class CoffeeGrinderTileEntity extends TileEntity implements INamedContainerProvider {
     public static final int INPUT_SLOTS_COUNT = 2;
     public static final int OUTPUT_SLOTS_COUNT = 1;
+    public static final int TOTAL_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
 
     private final CoffeeGrinderContents inputZoneContents; // holds the ItemStacks in the input zones
     private final CoffeeGrinderContents outputZoneContents; // holds the ItemStacks in the output zones
@@ -58,7 +62,17 @@ public class CoffeeGrinderTileEntity extends TileEntity implements INamedContain
         final double MAXIMUM_DISTANCE_SQ = 8.0 * 8.0;
         return player.getDistanceSq(pos.getX() + X_CENTRE_OFFSET, pos.getY() + Y_CENTRE_OFFSET, pos.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
     }
-
+    // returns the smelting result for the given stack. Returns ItemStack.EMPTY if the given stack can not be smelted
+    public static ItemStack getGrindingResultForItems(World world, CraftingInventory craftingInventory) {
+        Optional<ICraftingRecipe> matchingRecipe = getMatchingRecipeForInput(world, craftingInventory);
+        if (!matchingRecipe.isPresent()) return ItemStack.EMPTY;
+        return matchingRecipe.get().getRecipeOutput().copy();  // beware! You must deep copy otherwise you will alter the recipe itself
+    }
+    // gets the recipe which matches the given input, or Missing if none.
+    public static Optional<ICraftingRecipe> getMatchingRecipeForInput(World world, CraftingInventory craftingInventory) {
+        Optional<ICraftingRecipe> matchingRecipe = world.getRecipeManager().getRecipe(RecipeTypesRegistry.COFFEE_GRINDING, craftingInventory, world);
+        return matchingRecipe;
+    }
     // This is where you save any data that you don't want to lose when the tile entity unloads
     // In this case, it saves the chestContents, which contains the ItemStacks stored in the chest
     @Override
@@ -145,7 +159,7 @@ public class CoffeeGrinderTileEntity extends TileEntity implements INamedContain
      */
     @Override
     public ITextComponent getDisplayName() {
-        return new TranslationTextComponent("container.ravencoffee.coffee_grinder");
+        return new TranslationTextComponent("container.ravencoffee.coffee_grinder_registry_name");
     }
 
     /**

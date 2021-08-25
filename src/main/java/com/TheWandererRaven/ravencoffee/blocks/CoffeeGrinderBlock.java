@@ -16,6 +16,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -149,6 +150,7 @@ public class CoffeeGrinderBlock extends ContainerBlock {
         if (worldIn.isRemote) return ActionResultType.SUCCESS; // on client side, don't do anything
 
         INamedContainerProvider namedContainerProvider = this.getContainer(state, worldIn, pos);
+        RavenCoffee.LOGGER.info("############################## " + namedContainerProvider.toString());
         if (namedContainerProvider != null) {
             if (!(player instanceof ServerPlayerEntity)) return ActionResultType.FAIL;  // should always be true, but just in case...
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
@@ -156,13 +158,21 @@ public class CoffeeGrinderBlock extends ContainerBlock {
             // (packetBuffer)->{} is just a do-nothing because we have no extra data to send
         }
         return ActionResultType.SUCCESS;
-    }
-
+    }/*
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (worldIn.isRemote) {
+            return ActionResultType.SUCCESS;
+        } else {
+            player.openContainer(state.getContainer(worldIn, pos));
+            //player.addStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
+            return ActionResultType.CONSUME;
+        }
+    }*/
     @Override
     public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
         return new SimpleNamedContainerProvider((id, inventory, player) -> {
             return new CoffeeGrinderContainer(id, inventory, IWorldPosCallable.of(worldIn, pos));
-        }, CONTAINER_NAME);
+        }, new TranslationTextComponent("container.ravencoffee.coffee_grinder_registry_name"));
     }
     // This is where you can do something when the block is broken. In this case drop the inventory's contents
     // Code is copied directly from vanilla eg ChestBlock, CampfireBlock

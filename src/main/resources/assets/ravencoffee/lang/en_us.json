@@ -106,6 +106,7 @@
 
 
   "block.ravencoffee.coffee_grinder": "Coffee Grinder",
+  "container.ravencoffee.coffee_grinder_registry_name": "Coffee Grinder",
   "block.ravencoffee.coffee_beans_roasted_block": "Roasted Coffee Block",
   "block.ravencoffee.coffee_beans_roasted_magma_block": "Magma Coffee Block",
   "block.ravencoffee.coffee_leaves_block": "Coffee Leaves"
