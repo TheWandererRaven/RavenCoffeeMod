@@ -1,9 +1,8 @@
 package com.TheWandererRaven.ravencoffee;
 
-import com.TheWandererRaven.ravencoffee.util.registries.BlocksRegistry;
-import com.TheWandererRaven.ravencoffee.util.registries.BrewsRegistry;
-import com.TheWandererRaven.ravencoffee.util.registries.IDispenserBehaviourRegistry;
-import com.TheWandererRaven.ravencoffee.util.registries.ItemsRegistry;
+import com.TheWandererRaven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
+import com.TheWandererRaven.ravencoffee.util.registries.*;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -22,8 +21,8 @@ import org.apache.logging.log4j.Logger;
 public class RavenCoffee
 {
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "ravencoffee";
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public RavenCoffee() {
         // Register the setup method for modloading
@@ -36,11 +35,19 @@ public class RavenCoffee
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::postInit);
 
+        RecipesRegistry.RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ContainersRegistry.CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
+
         BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        //TileEntityTypeRegistry.TILE_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+
         ItemsRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BrewsRegistry.BREWS.register(FMLJavaModLoadingContext.get().getModEventBus());
+
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        LOGGER.debug("RAVEN COFFEE FINISHED SETUP!");
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -48,7 +55,7 @@ public class RavenCoffee
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-
+        ScreenManager.registerFactory(ContainersRegistry.COFFEE_GRINDER_CONTAINER.get(), CoffeeGrinderContainerScreen::new);
     }
 
     private void postInit(FMLLoadCompleteEvent event) {
