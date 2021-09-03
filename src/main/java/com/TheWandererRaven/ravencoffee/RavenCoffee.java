@@ -1,12 +1,15 @@
 package com.TheWandererRaven.ravencoffee;
 
 import com.TheWandererRaven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
+import com.TheWandererRaven.ravencoffee.gen.features.CoffeeTreeConfiguredFeatures;
 import com.TheWandererRaven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,6 +35,7 @@ public class RavenCoffee
         // Register the processIMC method for modloading
         //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
+        MinecraftForge.EVENT_BUS.addListener(this::doBiomeStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::postInit);
 
@@ -51,7 +55,10 @@ public class RavenCoffee
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+    }
 
+    private void doBiomeStuff(final BiomeLoadingEvent event) {
+        event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> CoffeeTreeConfiguredFeatures.COFFEE_TREE);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
