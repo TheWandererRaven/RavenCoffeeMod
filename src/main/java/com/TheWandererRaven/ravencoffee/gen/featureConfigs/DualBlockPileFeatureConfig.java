@@ -1,6 +1,5 @@
-package com.TheWandererRaven.ravencoffee.gen.features;
+package com.TheWandererRaven.ravencoffee.gen.featureConfigs;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
@@ -10,7 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.blockplacer.BlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
-import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 import java.util.List;
