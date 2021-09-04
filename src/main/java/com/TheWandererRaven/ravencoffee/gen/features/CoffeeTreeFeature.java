@@ -42,5 +42,6 @@ public abstract class CoffeeTreeFeature<U extends IFeatureConfig> extends Featur
 
     public abstract BlockPos getNearbyPos(Random rand, BlockPos pos, U config);
 
-    public abstract BlockState getFlowerToPlace(Random rand, BlockPos pos, U confgi);
+    public abstract BlockState getTrunkToPlace(Random rand, BlockPos pos, U config);
+    public abstract BlockState getLeavesToPlace(Random rand, BlockPos pos, U config);
 }

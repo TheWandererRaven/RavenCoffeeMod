@@ -61,7 +61,6 @@ public class RavenCoffee
 
     private void doBiomeStuff(final BiomeLoadingEvent event) {
         event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> RavenCoffeeFeatures.COFFEE_TREE);
-        event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> RavenCoffeeFeatures.TEST_COFFEE_TREE);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

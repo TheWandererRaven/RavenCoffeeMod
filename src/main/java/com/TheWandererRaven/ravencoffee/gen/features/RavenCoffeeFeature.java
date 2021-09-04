@@ -9,8 +9,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class RavenCoffeeFeature {
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, RavenCoffee.MOD_ID);
-    public static final RegistryObject<DefaultCoffeeTreesFeature<BlockClusterFeatureConfig>> COFFEE_TREE = FEATURES.register(
+    public static final RegistryObject<DefaultCoffeeTreesFeature<DualBlockPileFeatureConfig>> COFFEE_TREE = FEATURES.register(
             "test_coffee_tree",
-            () -> new DefaultCoffeeTreesFeature<BlockClusterFeatureConfig>(BlockClusterFeatureConfig.field_236587_a_)
+            () -> new DefaultCoffeeTreesFeature<DualBlockPileFeatureConfig>(DualBlockPileFeatureConfig.CODEC)
     );
 }

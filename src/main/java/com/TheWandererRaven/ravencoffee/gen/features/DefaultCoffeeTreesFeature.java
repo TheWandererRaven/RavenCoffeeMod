@@ -28,24 +28,27 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 
 import java.util.*;
 
-public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<BlockClusterFeatureConfig> {
-    public DefaultCoffeeTreesFeature(Codec<BlockClusterFeatureConfig> p_i231945_1_) {
+public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPileFeatureConfig> {
+    public DefaultCoffeeTreesFeature(Codec<DualBlockPileFeatureConfig> p_i231945_1_) {
         super(p_i231945_1_);
     }
 
-    public boolean isValidPosition(IWorld world, BlockPos pos, BlockClusterFeatureConfig config) {
+    public boolean isValidPosition(IWorld world, BlockPos pos, DualBlockPileFeatureConfig config) {
         return !config.blacklist.contains(world.getBlockState(pos));
     }
 
-    public int getFlowerCount(BlockClusterFeatureConfig config) {
+    public int getFlowerCount(DualBlockPileFeatureConfig config) {
         return config.tryCount;
     }
 
-    public BlockPos getNearbyPos(Random rand, BlockPos pos, BlockClusterFeatureConfig config) {
+    public BlockPos getNearbyPos(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
         return pos.add(rand.nextInt(config.xSpread) - rand.nextInt(config.xSpread), rand.nextInt(config.ySpread) - rand.nextInt(config.ySpread), rand.nextInt(config.zSpread) - rand.nextInt(config.zSpread));
     }
 
-    public BlockState getFlowerToPlace(Random rand, BlockPos pos, BlockClusterFeatureConfig confgi) {
-        return confgi.stateProvider.getBlockState(rand, pos);
+    public BlockState getTrunkToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
+        return config.trunkStateProvider.getBlockState(rand, pos);
+    }
+    public BlockState getLeavesToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
+        return config.leavesStateProvider.getBlockState(rand, pos);
     }
 }
