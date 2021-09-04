@@ -1,7 +1,8 @@
 package com.TheWandererRaven.ravencoffee;
 
 import com.TheWandererRaven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
-import com.TheWandererRaven.ravencoffee.gen.features.CoffeeTreeConfiguredFeatures;
+import com.TheWandererRaven.ravencoffee.gen.features.RavenCoffeeFeature;
+import com.TheWandererRaven.ravencoffee.gen.features.RavenCoffeeFeatures;
 import com.TheWandererRaven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
@@ -44,6 +45,7 @@ public class RavenCoffee
 
         BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         //TileEntityTypeRegistry.TILE_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        RavenCoffeeFeature.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         ItemsRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BrewsRegistry.BREWS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -58,7 +60,8 @@ public class RavenCoffee
     }
 
     private void doBiomeStuff(final BiomeLoadingEvent event) {
-        event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> CoffeeTreeConfiguredFeatures.COFFEE_TREE);
+        event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> RavenCoffeeFeatures.COFFEE_TREE);
+        event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> RavenCoffeeFeatures.TEST_COFFEE_TREE);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
