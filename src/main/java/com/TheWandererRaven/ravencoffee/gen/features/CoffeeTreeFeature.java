@@ -20,15 +20,17 @@ public abstract class CoffeeTreeFeature<U extends IFeatureConfig> extends Featur
     }
 
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, U config) {
-        BlockState blockstate_trunk = ((CoffeeTreeTrunkBlock)BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get()).getBiomeGenState();
-        BlockState blockstate_leaves = ((CoffeeTreeLeavesBlock)BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get()).getBiomeGenState();
+        BlockState blockstate_trunk = this.getTrunkToPlace(rand, pos, config);
         int i = 0;
 
         for(int j = 0; j < this.getFlowerCount(config); ++j) {
             BlockPos blockpos = this.getNearbyPos(rand, pos, config);
-            if (reader.isAirBlock(blockpos) && blockpos.getY() < 255 && blockstate_trunk.isValidPosition(reader, blockpos) && this.isValidPosition(reader, blockpos, config)) {
+            if (reader.isAirBlock(blockpos) && reader.isAirBlock(blockpos.up()) &&
+                    blockpos.up().getY() < 255 &&
+                    blockstate_trunk.isValidPosition(reader, blockpos) && //blockstate_leaves.isValidPosition(reader, blockpos.up()) &&
+                    this.isValidPosition(reader, blockpos, config)) {
                 reader.setBlockState(blockpos, blockstate_trunk, 2);
-                reader.setBlockState(blockpos.up(), blockstate_leaves, 2);
+                reader.setBlockState(blockpos.up(), this.getLeavesToPlace(rand, pos, config), 2);
                 ++i;
             }
         }

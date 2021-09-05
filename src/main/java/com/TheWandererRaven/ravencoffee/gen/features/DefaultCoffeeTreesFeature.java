@@ -1,5 +1,6 @@
 package com.TheWandererRaven.ravencoffee.gen.features;
 
+import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
 import com.TheWandererRaven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
@@ -26,9 +27,9 @@ public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPil
     }
 
     public BlockState getTrunkToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
-        return config.trunkStateProvider.getBlockState(rand, pos);
+        return config.trunkStateProvider.getBlockState(rand, pos).with(CoffeeTreeTrunkBlock.AGE, 3);
     }
     public BlockState getLeavesToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
-        return config.leavesStateProvider.getBlockState(rand, pos);
+        return config.leavesStateProvider.getBlockState(rand, pos).with(CoffeeTreeTrunkBlock.AGE, rand.nextInt(3));
     }
 }
