@@ -5,6 +5,8 @@ import com.TheWandererRaven.ravencoffee.util.registries.FeaturesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.ConfiguredFeaturesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -64,6 +66,8 @@ public class RavenCoffee
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
+        RenderTypeLookup.setRenderLayer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.getCutout());
         ScreenManager.registerFactory(ContainersRegistry.COFFEE_GRINDER_CONTAINER.get(), CoffeeGrinderContainerScreen::new);
     }
 

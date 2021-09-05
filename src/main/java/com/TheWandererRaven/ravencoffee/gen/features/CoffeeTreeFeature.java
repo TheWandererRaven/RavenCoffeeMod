@@ -1,8 +1,5 @@
 package com.TheWandererRaven.ravencoffee.gen.features;
 
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeLeavesBlock;
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
-import com.TheWandererRaven.ravencoffee.util.registries.BlocksRegistry;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
