@@ -10,6 +10,8 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -62,7 +64,8 @@ public class RavenCoffee
     }
 
     private void doBiomeStuff(final BiomeLoadingEvent event) {
-        event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.COFFEE_TREE);
+        if(event.getCategory().equals(Biome.Category.SAVANNA) || event.getCategory().equals(Biome.Category.JUNGLE))
+            event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.COFFEE_TREE);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

@@ -15,7 +15,19 @@ public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPil
     }
 
     public boolean isValidPosition(IWorld world, BlockPos pos, DualBlockPileFeatureConfig config) {
-        return !config.blacklist.contains(world.getBlockState(pos));
+        boolean isTrunkValid = (
+                (world.isAirBlock(pos.north()) || !world.getBlockState(pos.north()).isSolid()) &&
+                        (world.isAirBlock(pos.south()) || !world.getBlockState(pos.south()).isSolid()) &&
+                        (world.isAirBlock(pos.east()) || !world.getBlockState(pos.east()).isSolid()) &&
+                        (world.isAirBlock(pos.west()) || !world.getBlockState(pos.west()).isSolid())
+        );
+        boolean isLeavesValid = (
+                (world.isAirBlock(pos.up().north()) || !world.getBlockState(pos.up().north()).isSolid()) &&
+                        (world.isAirBlock(pos.up().south()) || !world.getBlockState(pos.up().south()).isSolid()) &&
+                        (world.isAirBlock(pos.up().east()) || !world.getBlockState(pos.up().east()).isSolid()) &&
+                        (world.isAirBlock(pos.up().west()) || !world.getBlockState(pos.up().west()).isSolid())
+        );
+        return !config.blacklist.contains(world.getBlockState(pos)) && isTrunkValid && isLeavesValid;
     }
 
     public int getFlowerCount(DualBlockPileFeatureConfig config) {

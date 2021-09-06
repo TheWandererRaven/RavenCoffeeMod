@@ -41,8 +41,8 @@ public class ConfiguredFeaturesRegistry {
         public static final ConfiguredPlacement<?> COFFEE_TREE_PLACEMENT = Placement.SPREAD_32_ABOVE.configure(NoPlacementConfig.INSTANCE);
     }
     public static class States {
-        protected static final BlockState COFFEE_TREE_TRUNK = ((CoffeeTreeTrunkBlock)BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get()).getBiomeGenState();
-        protected static final BlockState COFFEE_TREE_LEAVES = ((CoffeeTreeLeavesBlock)BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get()).getDefaultState();
+        protected static final BlockState COFFEE_TREE_TRUNK = BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get().getDefaultState();
+        protected static final BlockState COFFEE_TREE_LEAVES = BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get().getDefaultState();
         protected static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.getDefaultState();
     }
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {

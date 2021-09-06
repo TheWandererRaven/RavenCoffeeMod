@@ -2,6 +2,7 @@ package com.TheWandererRaven.ravencoffee.gen.features;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
@@ -22,7 +23,8 @@ public abstract class CoffeeTreeFeature<U extends IFeatureConfig> extends Featur
 
         for(int j = 0; j < this.getFlowerCount(config); ++j) {
             BlockPos blockpos = this.getNearbyPos(rand, pos, config);
-            if (reader.isAirBlock(blockpos) && reader.isAirBlock(blockpos.up()) &&
+            if (reader.isAirBlock(blockpos) &&
+                    reader.isAirBlock(blockpos.up()) &&
                     blockpos.up().getY() < 255 &&
                     blockstate_trunk.isValidPosition(reader, blockpos) && //blockstate_leaves.isValidPosition(reader, blockpos.up()) &&
                     this.isValidPosition(reader, blockpos, config)) {
