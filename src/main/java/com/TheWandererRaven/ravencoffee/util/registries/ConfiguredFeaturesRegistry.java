@@ -16,15 +16,25 @@ import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 
 public class ConfiguredFeaturesRegistry {
-    public static final ConfiguredFeature<?, ?> COFFEE_TREE = register(
-            "coffee_tree",
+    public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_DEFAULT = register(
+            "patch_coffee_tree",
             FeaturesRegistry.COFFEE_TREE.get()
-                    .withConfiguration(Configs.COFFEE_TREE_PATCH_CONFIG)
+                    .withConfiguration(Configs.COFFEE_TREE_PATCH_DEFAULT_CONFIG)
+                    .withPlacement(Features.Placements.PATCH_PLACEMENT)
+                    .func_242731_b(2)
+    );
+    public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_SPARSE = register(
+            "patch_coffee_tree_sparse", PATCH_COFFEE_TREE_DEFAULT.chance(12)
+    );
+    public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_TIGHT = register(
+            "patch_coffee_tree_sparse",
+            FeaturesRegistry.COFFEE_TREE.get()
+                    .withConfiguration(Configs.COFFEE_TREE_PATCH_TIGHT_CONFIG)
                     .withPlacement(Features.Placements.PATCH_PLACEMENT)
                     .func_242731_b(2)
     );
     public static class Configs {
-        public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_CONFIG = (
+        public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_DEFAULT_CONFIG = (
                 new DualBlockPileFeatureConfig.Builder(
                         new SimpleBlockStateProvider(States.COFFEE_TREE_TRUNK),
                         new SimpleBlockStateProvider(States.COFFEE_TREE_LEAVES),
@@ -35,6 +45,18 @@ public class ConfiguredFeaturesRegistry {
                 .func_227317_b_()
                 .xSpread(10)
                 .zSpread(10)
+                .build();
+        public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_TIGHT_CONFIG = (
+                new DualBlockPileFeatureConfig.Builder(
+                        new SimpleBlockStateProvider(States.COFFEE_TREE_TRUNK),
+                        new SimpleBlockStateProvider(States.COFFEE_TREE_LEAVES),
+                        SimpleBlockPlacer.PLACER
+                ))
+                .tries(200)
+                .whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock()))
+                .func_227317_b_()
+                .xSpread(6)
+                .zSpread(6)
                 .build();
     }
     public static class Placements {

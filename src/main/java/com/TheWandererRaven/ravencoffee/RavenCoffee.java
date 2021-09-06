@@ -64,8 +64,10 @@ public class RavenCoffee
     }
 
     private void doBiomeStuff(final BiomeLoadingEvent event) {
-        if(event.getCategory().equals(Biome.Category.SAVANNA) || event.getCategory().equals(Biome.Category.JUNGLE))
-            event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.COFFEE_TREE);
+        if(event.getCategory().equals(Biome.Category.JUNGLE))
+            event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_TIGHT);
+        if(event.getCategory().equals(Biome.Category.SAVANNA))
+            event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_SPARSE);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
