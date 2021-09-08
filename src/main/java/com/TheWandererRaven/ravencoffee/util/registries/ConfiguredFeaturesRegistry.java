@@ -21,17 +21,17 @@ public class ConfiguredFeaturesRegistry {
             FeaturesRegistry.COFFEE_TREE.get()
                     .withConfiguration(Configs.COFFEE_TREE_PATCH_DEFAULT_CONFIG)
                     .withPlacement(Features.Placements.PATCH_PLACEMENT)
-                    .func_242731_b(2)
+                    .func_242731_b(5)
     );
     public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_SPARSE = register(
-            "patch_coffee_tree_sparse", PATCH_COFFEE_TREE_DEFAULT.chance(12)
+            "patch_coffee_tree_sparse", PATCH_COFFEE_TREE_DEFAULT.chance(6)
     );
     public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_TIGHT = register(
             "patch_coffee_tree_sparse",
             FeaturesRegistry.COFFEE_TREE.get()
                     .withConfiguration(Configs.COFFEE_TREE_PATCH_TIGHT_CONFIG)
                     .withPlacement(Features.Placements.PATCH_PLACEMENT)
-                    .func_242731_b(2)
+                    .func_242731_b(20)
     );
     public static class Configs {
         public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_DEFAULT_CONFIG = (
