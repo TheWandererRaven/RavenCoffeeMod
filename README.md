@@ -61,7 +61,7 @@ So far whta I have planned is:
 # Brews
 The following are the multiple brews included in the mod, their ingredients and effects.
 
-|Brew|Recipe (S)|Recipe (M)|Recipe (L)|Restored Hunger|Effects|
+|Brew|Recipe (S)|Recipe (M)|Recipe (L)|Hunger/Saturation|Effects|
 |-|-|-|-|-|-|
 |**Coffee (Simple)**|N/A|![AMERICANO](https://user-images.githubusercontent.com/36650776/109729698-e5b67300-7b7d-11eb-9d09-fa0402ea00ed.png)|![AMERICANO](https://user-images.githubusercontent.com/36650776/109729732-f4048f00-7b7d-11eb-8e1c-b2ddfe602f7d.png)|N/A|TO DO|
 |**Coffee with Sugar**|N/A|![SUGAR](https://user-images.githubusercontent.com/36650776/109730450-1a76fa00-7b7f-11eb-8760-cc4217baa70a.png)|![SUGAR](https://user-images.githubusercontent.com/36650776/109730861-d0424880-7b7f-11eb-9afe-5bfd5b75f218.png)|N/A|
@@ -77,6 +77,7 @@ The following are the multiple brews included in the mod, their ingredients and 
 |**Glistering Coffee**|N/A|![GLISTERING_1](https://user-images.githubusercontent.com/36650776/109730694-82c5db80-7b7f-11eb-923e-e5af2cfa98cf.png)|![GLISTERING_1](https://user-images.githubusercontent.com/36650776/109730977-08e22200-7b80-11eb-8975-42e602baff5d.png)|2/1.2|
 |**Pumpkin Spice Latte**|N/A|![PUMPKIN SPICE LATTE_1](https://user-images.githubusercontent.com/36650776/109730702-86f1f900-7b7f-11eb-9ea0-4ebc9dec99d8.png)|![PUMPKIN SPICE LATTE_1](https://user-images.githubusercontent.com/36650776/109730988-0e3f6c80-7b80-11eb-91dc-7a13fb23f844.png)|N/A|
 |**Pumpkin Spice Latte (with Punpkin)**|N/A|![PUMPKIN SPICE LATTE WITH PUMPKIN](https://user-images.githubusercontent.com/36650776/109730711-8bb6ad00-7b7f-11eb-8fa5-cb7a20382c21.png)|![PUMPKIN SPICE LATTE WITH PUMPKIN](https://user-images.githubusercontent.com/36650776/109731000-11d2f380-7b80-11eb-9cef-b2eebbc3c7bd.png)|5/3|
+|**Cookies and Cream**|N/A|![COOKIESANDCREAM_1](https://user-images.githubusercontent.com/36650776/132449541-c93b83f8-2797-4981-930c-c84c7962b91a.png)|![COOKIESANDCREAM_1](https://user-images.githubusercontent.com/36650776/132449583-238a3b49-20be-4829-846c-db97a3e6e099.png)|4/0.8|
 |**Awkward Coffee**|N/A|![AWKWARD](https://user-images.githubusercontent.com/36650776/109730718-9113f780-7b7f-11eb-8d2e-d68d72fa4917.png)|![AWKWARD](https://user-images.githubusercontent.com/36650776/109731009-15667a80-7b80-11eb-9735-a09349aff671.png)|N/A|
 |**Phantasm Coffee**|N/A|![PHANTASM](https://user-images.githubusercontent.com/36650776/109730732-95d8ab80-7b7f-11eb-9917-62b802b7a6d9.png)|![PHANTASM](https://user-images.githubusercontent.com/36650776/109731019-19929800-7b80-11eb-8897-d549a49cdd61.png)|N/A|
 |**Nether Coffee**|N/A|![NETHER_1](https://user-images.githubusercontent.com/36650776/109730745-9bce8c80-7b7f-11eb-84b9-947ac2e638d6.png)|![NETHER_1](https://user-images.githubusercontent.com/36650776/109731027-1eefe280-7b80-11eb-9c9d-7068c7ae204d.png)|1/0.2|
