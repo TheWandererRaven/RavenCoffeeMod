@@ -94,7 +94,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                     .food(new Food.Builder()
                             .hunger(2)
-                            .saturation(1.2f)
+                            .saturation(0.3f)
                             .build())
             )
     );
@@ -106,8 +106,8 @@ public class BrewsRegistry {
                     Brews.APPLE,
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
-                                    .hunger(4)
-                                    .saturation(2.4f)
+                                    .hunger(3)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -120,7 +120,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(1.2f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -134,7 +134,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
                                     .hunger(1)
-                                    .saturation(0.4f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -147,7 +147,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(0.8f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -160,7 +160,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(1)
-                                    .saturation(0.4f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -174,7 +174,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
                                     .hunger(6)
-                                    .saturation(1.2f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -186,8 +186,8 @@ public class BrewsRegistry {
                     Brews.HONEY,
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
-                                    .hunger(8)
-                                    .saturation(2.4f)
+                                    .hunger(9)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -200,7 +200,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(6)
-                                    .saturation(1.2f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -214,7 +214,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(0.4f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -227,7 +227,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
                                     .hunger(3)
-                                    .saturation(0.8f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -240,7 +240,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(0.4f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -252,9 +252,6 @@ public class BrewsRegistry {
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.MILK,
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .saturation(0.4f)
-                                    .build())
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_MILK = BREWS.register(
@@ -264,9 +261,6 @@ public class BrewsRegistry {
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.MILK,
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .saturation(0.8f)
-                                    .build())
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MILK = BREWS.register(
@@ -276,9 +270,6 @@ public class BrewsRegistry {
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.MILK,
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .saturation(0.4f)
-                                    .build())
             )
     );
     //           #######################################   MOCHA   #############################################
@@ -289,9 +280,6 @@ public class BrewsRegistry {
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.MOCHA,
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .saturation(0.4f)
-                                    .build())
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_MOCHA = BREWS.register(
@@ -301,9 +289,6 @@ public class BrewsRegistry {
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.MOCHA,
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .saturation(0.8f)
-                                    .build())
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MOCHA = BREWS.register(
@@ -313,9 +298,6 @@ public class BrewsRegistry {
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.MOCHA,
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .saturation(0.4f)
-                                    .build())
             )
     );
     //           #######################################   AWKWARD   #############################################
@@ -356,7 +338,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
                                     .hunger(3)
-                                    .saturation(3.6f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -368,8 +350,8 @@ public class BrewsRegistry {
                     Brews.CARROT,
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
-                                    .hunger(4)
-                                    .saturation(4.1f)
+                                    .hunger(3)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -382,7 +364,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(3)
-                                    .saturation(3.6f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -395,8 +377,8 @@ public class BrewsRegistry {
                     Brews.CARROT_GOLDEN,
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
-                                    .hunger(5)
-                                    .saturation(12.0f)
+                                    .hunger(6)
+                                    .saturation(0.8f)
                                     .build())
             )
     );
@@ -408,8 +390,8 @@ public class BrewsRegistry {
                     Brews.CARROT_GOLDEN,
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
-                                    .hunger(8)
-                                    .saturation(17.0f)
+                                    .hunger(9)
+                                    .saturation(0.8f)
                                     .build())
             )
     );
@@ -421,8 +403,8 @@ public class BrewsRegistry {
                     Brews.CARROT_GOLDEN,
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
-                                    .hunger(5)
-                                    .saturation(12.0f)
+                                    .hunger(6)
+                                    .saturation(0.8f)
                                     .build())
             )
     );
@@ -436,7 +418,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
                                     .hunger(4)
-                                    .saturation(1.0f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -448,8 +430,8 @@ public class BrewsRegistry {
                     Brews.COOKIESANDCREAM,
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
-                                    .hunger(7)
-                                    .saturation(1.5f)
+                                    .hunger(4)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -462,7 +444,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(4)
-                                    .saturation(1.0f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -476,7 +458,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(1.0f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -489,7 +471,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
                                     .hunger(3)
-                                    .saturation(1.5f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -502,7 +484,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(1.0f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -516,7 +498,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(1.5f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -529,7 +511,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
                                     .hunger(3)
-                                    .saturation(3.0f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -542,7 +524,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(1.5f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -556,7 +538,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(1.5f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -569,7 +551,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
                                     .hunger(3)
-                                    .saturation(3.0f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -582,7 +564,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(2)
-                                    .saturation(1.5f)
+                                    .saturation(0.3f)
                                     .build())
             )
     );
@@ -596,7 +578,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
                             .food(new Food.Builder()
                                     .hunger(1)
-                                    .saturation(0.5f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -608,8 +590,8 @@ public class BrewsRegistry {
                     Brews.NETHER,
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
                             .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(1.0f)
+                                    .hunger(1)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -622,7 +604,7 @@ public class BrewsRegistry {
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
                             .food(new Food.Builder()
                                     .hunger(1)
-                                    .saturation(0.5f)
+                                    .saturation(0.1f)
                                     .build())
             )
     );
@@ -690,6 +672,10 @@ public class BrewsRegistry {
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
                     new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new Food.Builder()
+                                    .hunger(5)
+                                    .saturation(0.3f)
+                                    .build())
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
@@ -699,6 +685,10 @@ public class BrewsRegistry {
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
                     new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new Food.Builder()
+                                    .hunger(5)
+                                    .saturation(0.3f)
+                                    .build())
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
@@ -708,6 +698,10 @@ public class BrewsRegistry {
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
                     new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new Food.Builder()
+                                    .hunger(5)
+                                    .saturation(0.3f)
+                                    .build())
             )
     );
 }
