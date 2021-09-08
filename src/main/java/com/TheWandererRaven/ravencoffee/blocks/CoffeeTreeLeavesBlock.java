@@ -196,6 +196,11 @@ public class CoffeeTreeLeavesBlock extends CropsBlock implements IGrowable {
             p_206840_1_.add(new Property[]{AGE});
         }
 
+        public BlockState getBiomeGenState() {
+            Random R = new Random();
+            return this.stateContainer.getBaseState().with(this.getAgeProperty(), R.nextInt(3));
+        }
+
         static {
             AGE = BlockStateProperties.AGE_0_3;
             SHAPE_BY_AGE = new VoxelShape[]{

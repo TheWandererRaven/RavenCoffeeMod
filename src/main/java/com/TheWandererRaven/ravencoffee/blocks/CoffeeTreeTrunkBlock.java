@@ -211,6 +211,9 @@ public class CoffeeTreeTrunkBlock extends CropsBlock implements IGrowable {
         protected void fillStateContainer(StateContainer.Builder<Block, BlockState> p_206840_1_) {
             p_206840_1_.add(new Property[]{AGE});
         }
+        public BlockState getBiomeGenState() {
+            return this.stateContainer.getBaseState().with(this.getAgeProperty(), 3);
+        }
 
         static {
             LEAVES_BLOCK = BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get();
