@@ -84,20 +84,19 @@ The following are the multiple brews included in the mod, their ingredients and 
 
 # Food
 The following are the multiple brews included in the mod, their ingredients and effects.
-
-|Name|Recipe|Restored Hunger|Restored Saturation|Effects|
-|-|-|-|-|-|-|
-|**Ham Sandwich**|![AMERICANO](https://user-images.githubusercontent.com/36650776/109729698-e5b67300-7b7d-11eb-9d09-fa0402ea00ed.png)|8 (4 hunger points)|7.2|N/A|
-|**Beef Sandwich**|![SUGAR](https://user-images.githubusercontent.com/36650776/109730450-1a76fa00-7b7f-11eb-8760-cc4217baa70a.png)|11 (5.5 hunger points)|15.4|N/A|
-|**Chicken Sandwich**|![MILK](https://user-images.githubusercontent.com/36650776/109730463-219e0800-7b7f-11eb-996e-6a7b0798f6cd.png)|9 (4.5 hunger points)|10.8|N/A|
-|**Croissant**|![CHOCOLATE](https://user-images.githubusercontent.com/36650776/109730544-42665d80-7b7f-11eb-9ba0-14e589de8d29.png)|5 (2.5 hunger points)|6.0|N/A|
-|**Ham Croissant**|![MOCHA_1](https://user-images.githubusercontent.com/36650776/109730477-2662bc00-7b7f-11eb-821a-4cd5a621ddcc.png)|8 (4 hunger points)|7.2|N/A|
-|**Beef Croissant**|![APPLE](https://user-images.githubusercontent.com/36650776/109729829-1c8c8900-7b7e-11eb-9704-45379ac30c9d.png)|11 (5.5 hunger points)|15.4|N/A|
-|**Chicken Croissant**|![BERRY](https://user-images.githubusercontent.com/36650776/109730608-5ca03b80-7b7f-11eb-956f-b7945a39c3b0.png)|9 (4.5 hunger points)|10.8|N/A|
-|**Bagel**|![HONEY](https://user-images.githubusercontent.com/36650776/109730644-6f1a7500-7b7f-11eb-9c5e-0fa88fdca670.png)|7 (3.5 hunger points)|8.4|N/A|
-|**Ham Bagel**|![CARROT](https://user-images.githubusercontent.com/36650776/109730658-7477bf80-7b7f-11eb-9224-fd60f1a15bfc.png)|10 (5 hunger points)|9|N/A|
-|**Beef Bagel**|![MELON](https://user-images.githubusercontent.com/36650776/109730667-780b4680-7b7f-11eb-8052-3d6708fef69c.png)|13 (6.5 hunger points)|18.2|N/A|
-|**Chicken Bagel**|![KARAT_1](https://user-images.githubusercontent.com/36650776/109730676-7c376400-7b7f-11eb-8bc1-3b01c4f71154.png)|11 (5.5 hunger points)|13.2|N/A|
-|**Melon Pan**|![GLISTERING_1](https://user-images.githubusercontent.com/36650776/109730694-82c5db80-7b7f-11eb-923e-e5af2cfa98cf.png)|7 (3.5 hunger points)|5.6|N/A|
-|**Popchorus**|![PUMPKIN SPICE LATTE_1](https://user-images.githubusercontent.com/36650776/109730702-86f1f900-7b7f-11eb-9ea0-4ebc9dec99d8.png)|12 (6 hunger points)|3.6|N/A|
-|**Muffin**|![PUMPKIN SPICE LATTE WITH PUMPKIN](https://user-images.githubusercontent.com/36650776/109730711-8bb6ad00-7b7f-11eb-8fa5-cb7a20382c21.png)|2 (1 hunger points)|1.0|N/A|
+|Name|Recipe|Restored Hunger|Restored Saturation|
+|-|-|-|-|
+|**Ham Sandwich**|![HAM SANDWICH](https://user-images.githubusercontent.com/36650776/132444769-965584e2-2f19-4768-862b-69c2f1881bfb.png)|8 (4 hunger points)|7.2|
+|**Beef Sandwich**|![BEEF SANDWICH](https://user-images.githubusercontent.com/36650776/132445284-bee5401b-2161-4ed9-975a-42c4638d8657.png)|11 (5.5 hunger points)|15.4|
+|**Chicken Sandwich**|![CHICKEN SANDWICH](https://user-images.githubusercontent.com/36650776/132445341-85c5bdd6-9d1d-4105-912d-b9e143912c59.png)|9 (4.5 hunger points)|10.8|
+|**Croissant**|![CROISSANT](https://user-images.githubusercontent.com/36650776/132445365-f8cef590-3cd5-4482-ad1f-4f72803359ef.png)|5 (2.5 hunger points)|6.0|
+|**Ham Croissant**|![HAM CROISSANT](https://user-images.githubusercontent.com/36650776/132445384-fd532a18-eeac-4dea-ac24-8fef7702986b.png)|8 (4 hunger points)|7.2|
+|**Beef Croissant**|![BEEF CROISSANT](https://user-images.githubusercontent.com/36650776/132445410-909a6889-723b-44b7-a442-dd64073d1c7c.png)|11 (5.5 hunger points)|15.4|
+|**Chicken Croissant**|![CHICKEN CROISSANT](https://user-images.githubusercontent.com/36650776/132445452-a8dd79e0-5fd0-4e44-b8ab-25ff7eeceeab.png)|9 (4.5 hunger points)|10.8|
+|**Bagel**|![BAGEL](https://user-images.githubusercontent.com/36650776/132445487-0ae19255-5fc7-4e9d-a95f-ff52098934ac.png)|7 (3.5 hunger points)|8.4|
+|**Ham Bagel**|![HAM BAGEL](https://user-images.githubusercontent.com/36650776/132445512-8a9a5f56-ddf4-4347-808f-a1f5208b463d.png)|10 (5 hunger points)|9|
+|**Beef Bagel**|![BEEF BAGEL](https://user-images.githubusercontent.com/36650776/132445543-4fef8ecb-9421-47b1-8d16-a7fc14617c50.png)|13 (6.5 hunger points)|18.2|
+|**Chicken Bagel**|![CHICKEN BAGEL](https://user-images.githubusercontent.com/36650776/132445594-13eecd5e-b6d2-453f-a3aa-1bca29355d9e.png)|11 (5.5 hunger points)|13.2|
+|**Melon Pan**|![MELON PAN](https://user-images.githubusercontent.com/36650776/132445614-7e8cda87-a7cc-4520-a8ab-d77dd05a8234.png)|7 (3.5 hunger points)|5.6|
+|**Popchorus**|![POPCHORUS](https://user-images.githubusercontent.com/36650776/132445878-bd6fb454-f962-4d41-8ad6-ab4e3d9d5c8b.png)|12 (6 hunger points)|3.6|
+|**Muffin**|![MUFFIN](https://user-images.githubusercontent.com/36650776/132445748-5b261d7b-1e13-40fc-81d7-6516b3166ff9.png)|2 (1 hunger points)|1.0|
