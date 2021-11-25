@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ravencoffee:coffee_grinder"
+          "name": "ravencoffee:coffee_grinder_block"
         }
       ]
     }
