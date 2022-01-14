@@ -4,15 +4,13 @@ import com.TheWandererRaven.ravencoffee.containers.screen.CoffeeGrinderContainer
 import com.TheWandererRaven.ravencoffee.util.registries.FeaturesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.ConfiguredFeaturesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.*;
-import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -43,6 +41,7 @@ public class RavenCoffee
         MinecraftForge.EVENT_BUS.addListener(this::doBiomeStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::postInit);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerEntityRenderers);
 
         RecipesRegistry.RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ContainersRegistry.CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -64,16 +63,20 @@ public class RavenCoffee
     }
 
     private void doBiomeStuff(final BiomeLoadingEvent event) {
-        if(event.getCategory().equals(Biome.Category.JUNGLE))
-            event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_TIGHT);
-        if(event.getCategory().equals(Biome.Category.SAVANNA))
-            event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_SPARSE);
+        if(event.getCategory().equals(Biome.BiomeCategory.JUNGLE))
+            event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_TIGHT);
+        if(event.getCategory().equals(Biome.BiomeCategory.SAVANNA))
+            event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_SPARSE);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.getCutout());
-        ScreenManager.registerFactory(ContainersRegistry.COFFEE_GRINDER_CONTAINER.get(), CoffeeGrinderContainerScreen::new);
+        MenuScreens.register(ContainersRegistry.COFFEE_GRINDER_CONTAINER.get(), CoffeeGrinderContainerScreen::new);
+    }
+
+    //@SubscribeEvent
+    public void registerEntityRenderers(final EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
+        event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
     }
 
     private void postInit(FMLLoadCompleteEvent event) {
@@ -81,54 +84,34 @@ public class RavenCoffee
         IDispenserBehaviourRegistry.registerBehaviours();
     }
 
-    public static final ItemGroup GENERAL_TAB = new ItemGroup("ravencoffee_general_Tab") {
+    public static final CreativeModeTab GENERAL_TAB = new CreativeModeTab("ravencoffee_general_Tab") {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(ItemsRegistry.COFFEE_BEANS_ROASTED.get());
         }
-        @Override
-        public ITextComponent getGroupName() {
-            return ITextComponent.getTextComponentOrEmpty("Coffee Items");
-        }
     };
-    public static final ItemGroup COFFEE_MUG_TAB = new ItemGroup("ravencoffee_mug_Tab") {
+    public static final CreativeModeTab COFFEE_MUG_TAB = new CreativeModeTab("ravencoffee_mug_Tab") {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.COFFEE_MUG_BREW_AMERICAN.get());
         }
-        @Override
-        public ITextComponent getGroupName() {
-            return ITextComponent.getTextComponentOrEmpty("Coffee Mugs");
-        }
     };
-    public static final ItemGroup CUP_SMALL_TAB = new ItemGroup("ravencoffee_small_Tab") {
+    public static final CreativeModeTab CUP_SMALL_TAB = new CreativeModeTab("ravencoffee_small_Tab") {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.CUP_SMALL_BREW_AMERICAN.get());
         }
-        @Override
-        public ITextComponent getGroupName() {
-            return ITextComponent.getTextComponentOrEmpty("Small Coffee Cups");
-        }
     };
-    public static final ItemGroup CUP_MEDIUM_TAB = new ItemGroup("ravencoffee_medium_Tab") {
+    public static final CreativeModeTab CUP_MEDIUM_TAB = new CreativeModeTab("ravencoffee_medium_Tab") {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.CUP_MEDIUM_BREW_AMERICAN.get());
         }
-        @Override
-        public ITextComponent getGroupName() {
-            return ITextComponent.getTextComponentOrEmpty("Medium Coffee Cups");
-        }
     };
-    public static final ItemGroup CUP_LARGE_TAB = new ItemGroup("ravencoffee_large_Tab") {
+    public static final CreativeModeTab CUP_LARGE_TAB = new CreativeModeTab("ravencoffee_large_Tab") {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.CUP_LARGE_BREW_AMERICAN.get());
-        }
-        @Override
-        public ITextComponent getGroupName() {
-            return ITextComponent.getTextComponentOrEmpty("Large Coffee Cups");
         }
     };
 }
