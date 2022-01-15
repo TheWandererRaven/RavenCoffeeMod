@@ -2,13 +2,13 @@ package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.blocks.*;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class BlocksRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RavenCoffee.MOD_ID);
@@ -22,23 +22,21 @@ public class BlocksRegistry {
     );
     public static final RegistryObject<Block> COFFEE_TREE_LEAVES_BLOCK = BLOCKS.register(
             "coffee_tree_leaves_block",
-            () -> new CoffeeTreeLeavesBlock(AbstractBlock.Properties.create(Material.CACTUS)
-                    .sound(SoundType.PLANT)
-                    .notSolid()
-                    .tickRandomly()
+            () -> new CoffeeTreeLeavesBlock(Block.Properties.of(Material.CACTUS)
+                    .sound(SoundType.GRASS)
+                    .randomTicks()
             )
     );
     public static final RegistryObject<Block> COFFEE_TREE_TRUNK_BLOCK = BLOCKS.register(
             "coffee_tree_trunk_block",
-            () -> new CoffeeTreeTrunkBlock(AbstractBlock.Properties.create(Material.CACTUS)
-                    .sound(SoundType.PLANT)
-                    .notSolid()
-                    .tickRandomly()
+            () -> new CoffeeTreeTrunkBlock(Block.Properties.of(Material.CACTUS)
+                    .sound(SoundType.GRASS)
+                    .randomTicks()
             )
     );
     public static final RegistryObject<Block> COFFEE_GRINDER = BLOCKS.register(
             "coffee_grinder_block",
-            () -> new CoffeeGrinderBlock(AbstractBlock.Properties.create(Material.WOOD)
+            () -> new CoffeeGrinderBlock(Block.Properties.of(Material.WOOD)
                     .sound(SoundType.WOOD)
             )
     );
