@@ -1,46 +1,48 @@
 package com.TheWandererRaven.ravencoffee.items;
 
 import com.TheWandererRaven.ravencoffee.customClasses.Brew;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 
 public class ChorusBrew extends CoffeeBrew {
     public ChorusBrew(double _cupSize, Item _parentContainer, Brew _brew, Properties p_i48476_1_) {
         super(_cupSize, _parentContainer, _brew, p_i48476_1_);
     }
-    public ItemStack onItemUseFinish(ItemStack p_77654_1_, World p_77654_2_, LivingEntity p_77654_3_) {
-        ItemStack lvt_4_1_ = super.onItemUseFinish(p_77654_1_, p_77654_2_, p_77654_3_);
-        if (!p_77654_2_.isRemote) {
-            double lvt_5_1_ = p_77654_3_.getPosX();
-            double lvt_7_1_ = p_77654_3_.getPosY();
-            double lvt_9_1_ = p_77654_3_.getPosZ();
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
+        ItemStack lvt_4_1_ = super.finishUsingItem(stack, world, entity);
+        if (world.isClientSide) {
+            double lvt_5_1_ = entity.getX();
+            double lvt_7_1_ = entity.getY();
+            double lvt_9_1_ = entity.getZ();
 
             for(int lvt_11_1_ = 0; lvt_11_1_ < 16; ++lvt_11_1_) {
-                double lvt_12_1_ = p_77654_3_.getPosX() + (p_77654_3_.getRNG().nextDouble() - 0.5D) * 16.0D;
-                double lvt_14_1_ = MathHelper.clamp(p_77654_3_.getPosY() + (double)(p_77654_3_.getRNG().nextInt(16) - 8), 0.0D, (double)(p_77654_2_.func_234938_ad_() - 1));
-                double lvt_16_1_ = p_77654_3_.getPosZ() + (p_77654_3_.getRNG().nextDouble() - 0.5D) * 16.0D;
-                if (p_77654_3_.isPassenger()) {
-                    p_77654_3_.stopRiding();
+                double lvt_12_1_ = entity.getX() + (entity.getRandom().nextDouble() - 0.5D) * 16.0D;
+                double lvt_14_1_ = Mth.clamp(entity.getY() + (double)(entity.getRandom().nextInt(16) - 8), (double)world.getMinBuildHeight(), (double)(world.getMinBuildHeight() + ((ServerLevel)world).getLogicalHeight() - 1));
+                double lvt_16_1_ = entity.getZ() + (entity.getRandom().nextDouble() - 0.5D) * 16.0D;
+                if (entity.isPassenger()) {
+                    entity.stopRiding();
                 }
 
-                if (p_77654_3_.attemptTeleport(lvt_12_1_, lvt_14_1_, lvt_16_1_, true)) {
-                    SoundEvent lvt_18_1_ = p_77654_3_ instanceof FoxEntity ? SoundEvents.ENTITY_FOX_TELEPORT : SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
-                    p_77654_2_.playSound((PlayerEntity)null, lvt_5_1_, lvt_7_1_, lvt_9_1_, lvt_18_1_, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    p_77654_3_.playSound(lvt_18_1_, 1.0F, 1.0F);
+                if (entity.randomTeleport(lvt_12_1_, lvt_14_1_, lvt_16_1_, true)) {
+                    SoundEvent lvt_18_1_ = entity instanceof Fox ? SoundEvents.FOX_TELEPORT : SoundEvents.CHORUS_FRUIT_TELEPORT;
+                    world.playSound((Player) null, lvt_5_1_, lvt_7_1_, lvt_9_1_, lvt_18_1_, SoundSource.PLAYERS, 1.0F, 1.0F);
+                    entity.playSound(lvt_18_1_, 1.0F, 1.0F);
                     break;
                 }
             }
 
-            if (p_77654_3_ instanceof PlayerEntity) {
-                ((PlayerEntity)p_77654_3_).getCooldownTracker().setCooldown(this, 20);
+            if (entity instanceof Player) {
+                ((Player)entity).getCooldowns().addCooldown(this, 20);
             }
         }
 

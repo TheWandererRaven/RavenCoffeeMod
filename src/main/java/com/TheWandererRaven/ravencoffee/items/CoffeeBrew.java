@@ -1,27 +1,29 @@
 package com.TheWandererRaven.ravencoffee.items;
 
 import com.TheWandererRaven.ravencoffee.customClasses.Brew;
+import com.TheWandererRaven.ravencoffee.customClasses.BrewEffect;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.potion.*;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DrinkHelper;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.UUID;
 
 public class CoffeeBrew extends Item {
     private final Item parentContainer;
@@ -38,67 +40,66 @@ public class CoffeeBrew extends Item {
     @Override
     @Nonnull
     public ItemStack getDefaultInstance() {
-        return PotionUtils.addPotionToItemStack(super.getDefaultInstance(), Potions.SWIFTNESS);
+        return PotionUtils.setPotion(super.getDefaultInstance(), Potions.SWIFTNESS);
     }
 
-    public EffectInstance adjustEffectToSize(EffectInstance originalEffect) {
-        return new EffectInstance(
-                originalEffect.getPotion(),
-                (int) ((originalEffect.getDuration() / 20) * this.cupSize) * 20,
-                Math.max(((int) ((originalEffect.getAmplifier() + 1) * this.cupSize) - 1), 0)
+    // TODO: ADD EFFECT AMPLIFIER (?)
+    public MobEffectInstance adjustEffectToSize(BrewEffect brewEffect) {
+        return new MobEffectInstance(
+                brewEffect.effect,
+                //(int) ((originalEffect.getDuration() / 20) * this.cupSize) * 20,
+                (int) ((brewEffect.duration / 20) * this.cupSize) * 20
+                //Math.max(((int) ((originalEffect.getAmplifier() + 1) * this.cupSize) - 1), 0)
         );
     }
 
     @Override
     @Nonnull
-    public ItemStack onItemUseFinish(@Nonnull ItemStack p_77654_1_, @Nonnull World p_77654_2_, @Nonnull LivingEntity p_77654_3_) {
-        PlayerEntity lvt_4_1_ = p_77654_3_ instanceof PlayerEntity ? (PlayerEntity)p_77654_3_ : null;
-        if (lvt_4_1_ instanceof ServerPlayerEntity) {
-            CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayerEntity)lvt_4_1_, p_77654_1_);
+    public ItemStack finishUsingItem(@Nonnull ItemStack stack, @Nonnull Level world, @Nonnull LivingEntity entity) {
+        Player player = entity instanceof Player ? (Player)entity : null;
+        if (player instanceof ServerPlayer) {
+            CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer)player, stack);
         }
-        if (!p_77654_2_.isRemote) {
-            for(EffectInstance lvt_7_1_: brew.effects) {
-                double randVal = Math.random();
-                int effectIndex = brew.effects.indexOf(lvt_7_1_);
-                double effectChance = (brew.effectsChances.size() >= effectIndex + 1)
-                        ? brew.effectsChances.get(effectIndex)
-                        : 0.0d;
-                if (randVal < effectChance && randVal != 0.0d) {
-                    if (lvt_7_1_.getPotion().isInstant()) {
-                        EffectInstance adjustedEffect = this.adjustEffectToSize(lvt_7_1_);
-                        adjustedEffect.getPotion().affectEntity(lvt_4_1_, lvt_4_1_, p_77654_3_, adjustedEffect.getAmplifier(), 1.0d);
-                    } else {
-                        if(lvt_7_1_.getEffectName().equals(Effects.INSTANT_HEALTH.getName()))
-                            p_77654_3_.setHealth(p_77654_3_.getHealth() + 2.0f);
-                        else
-                            p_77654_3_.addPotionEffect(this.adjustEffectToSize(lvt_7_1_));
+        if (world.isClientSide) {
+            for(BrewEffect brewEffect: brew.effects) {
+                if(!brewEffect.isForRemoving) {
+                    double randVal = Math.random();
+                    if (randVal < brewEffect.chance && randVal != 0.0d) {
+                        // TODO: REWORK THIS CODE (I have no idea if the effect works smoothly without the conditionals)
+                        if (brewEffect.effect.isInstantenous()) {
+                            MobEffectInstance adjustedEffect = this.adjustEffectToSize(brewEffect);
+                            adjustedEffect.applyEffect(entity);
+                        } else {
+                            if (brewEffect.effect.equals(MobEffects.HEAL))
+                                entity.setHealth(entity.getHealth() + 2.0f);
+                            else
+                                entity.addEffect(this.adjustEffectToSize(brewEffect));
+                        }
                     }
+                } else {
+                    entity.removeEffect(brewEffect.effect);
                 }
-            }
-            if (!brew.removableEffects.isEmpty())
-                for(Effect lvt_7_2_: brew.removableEffects) {
-                    p_77654_3_.removePotionEffect(lvt_7_2_);
-                }
-        }
-
-        if (lvt_4_1_ != null) {
-            lvt_4_1_.addStat(Stats.ITEM_USED.get(this));
-            if (!lvt_4_1_.abilities.isCreativeMode) {
-                p_77654_1_.shrink(1);
             }
         }
 
-        if (lvt_4_1_ == null || !lvt_4_1_.abilities.isCreativeMode) {
-            if (p_77654_1_.isEmpty()) {
+        if (player != null) {
+            player.awardStat(Stats.ITEM_USED.get(this));
+            if (!player.isCreative()) {
+                stack.shrink(1);
+            }
+        }
+
+        if (player == null || !player.isCreative()) {
+            if (stack.isEmpty()) {
                 return new ItemStack(parentContainer);
             }
 
-            if (lvt_4_1_ != null) {
-                lvt_4_1_.inventory.addItemStackToInventory(new ItemStack(parentContainer));
+            if (player != null) {
+                player.getInventory().add(new ItemStack(parentContainer));
             }
         }
 
-        return p_77654_1_;
+        return stack;
     }
 
     public int getUseDuration(@Nonnull ItemStack p_77626_1_) {
@@ -107,23 +108,24 @@ public class CoffeeBrew extends Item {
 
     @Override
     @Nonnull
-    public UseAction getUseAction(@Nonnull ItemStack p_77661_1_) {
-        return UseAction.DRINK;
+    public UseAnim getUseAnimation(@Nonnull ItemStack p_77661_1_) {
+        return UseAnim.DRINK;
     }
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull World p_77659_1_, @Nonnull PlayerEntity p_77659_2_, @Nonnull Hand p_77659_3_) {
-        return DrinkHelper.startDrinking(p_77659_1_, p_77659_2_, p_77659_3_);
+    public InteractionResultHolder<ItemStack> use(@Nonnull Level p_77659_1_, @Nonnull Player p_77659_2_, @Nonnull InteractionHand p_77659_3_) {
+        // ItemUtils.useDrink(...) ?????
+        return ItemUtils.startUsingInstantly(p_77659_1_, p_77659_2_, p_77659_3_);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(@Nonnull ItemStack p_77624_1_, @Nullable World p_77624_2_, @Nonnull List<ITextComponent> p_77624_3_, @Nonnull ITooltipFlag p_77624_4_) {
-        String descriptionKey = this.getTranslationKey().concat(".description");
-        String completeDescription = (new TranslationTextComponent(descriptionKey)).getString();
+    public void addInformation(@Nonnull ItemStack p_77624_1_, @Nullable Level p_77624_2_, @Nonnull List<Component> p_77624_3_, @Nonnull TooltipFlag p_77624_4_) {
+        String descriptionKey = this.getDescriptionId().concat(".description");
+        String completeDescription = (new TranslatableComponent(descriptionKey)).getString();
         if(!completeDescription.equals(descriptionKey))
             for(String line: completeDescription.split("<br>")) {
-                p_77624_3_.add(ITextComponent.getTextComponentOrEmpty(String.format(
+                p_77624_3_.add(Component.nullToEmpty(String.format(
                         "\u00A77%s\u00A77",
                         line
                 )));
@@ -131,7 +133,7 @@ public class CoffeeBrew extends Item {
     }
 
     public boolean hasEffect(@Nonnull ItemStack p_77636_1_) {
-        return super.hasEffect(p_77636_1_) || !PotionUtils.getEffectsFromStack(p_77636_1_).isEmpty();
+        return super.hasCustomEntity(p_77636_1_) || !PotionUtils.getPotion(p_77636_1_).getEffects().isEmpty();
     }
 
 }

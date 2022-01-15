@@ -5,11 +5,11 @@ import com.TheWandererRaven.ravencoffee.customClasses.Brews;
 import com.TheWandererRaven.ravencoffee.customClasses.CupSizes;
 import com.TheWandererRaven.ravencoffee.items.ChorusBrew;
 import com.TheWandererRaven.ravencoffee.items.CoffeeBrew;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class BrewsRegistry {
     public static final DeferredRegister<Item> BREWS = DeferredRegister.create(
@@ -25,7 +25,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_SMALL.get(),
                     Brews.ESPRESSO,
-                    new Item.Properties().group(RavenCoffee.CUP_SMALL_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_SMALL_TAB)
             )
     );
     //           #######################################   AMERICANO   #############################################
@@ -35,7 +35,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.AMERICAN,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_AMERICAN = BREWS.register(
@@ -44,7 +44,7 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.AMERICAN,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_AMERICAN = BREWS.register(
@@ -53,7 +53,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.AMERICAN,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   SUGAR   #############################################
@@ -63,7 +63,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.SUGAR,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_SUGAR = BREWS.register(
@@ -72,7 +72,7 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.SUGAR,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_SUGAR = BREWS.register(
@@ -81,7 +81,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.SUGAR,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   APPLE   #############################################
@@ -91,10 +91,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.APPLE,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                    .food(new Food.Builder()
-                            .hunger(2)
-                            .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(2)
+                            .saturationMod(0.3f)
                             .build())
             )
     );
@@ -104,10 +104,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.APPLE,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(3)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(3)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -117,10 +117,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.APPLE,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -131,10 +131,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.BERRY,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(1)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(1)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -144,10 +144,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.BERRY,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -157,10 +157,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.BERRY,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(1)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(1)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -171,10 +171,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.HONEY,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(6)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(6)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -184,10 +184,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.HONEY,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(9)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(9)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -197,10 +197,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.HONEY,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(6)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(6)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -211,10 +211,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.CHOCOLATE,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -224,10 +224,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.CHOCOLATE,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(3)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(3)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -237,10 +237,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.CHOCOLATE,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -251,7 +251,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.MILK,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_MILK = BREWS.register(
@@ -260,7 +260,7 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.MILK,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MILK = BREWS.register(
@@ -269,7 +269,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.MILK,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   MOCHA   #############################################
@@ -279,7 +279,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.MOCHA,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_MOCHA = BREWS.register(
@@ -288,7 +288,7 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.MOCHA,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MOCHA = BREWS.register(
@@ -297,7 +297,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.MOCHA,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   AWKWARD   #############################################
@@ -307,7 +307,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.AWKWARD,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_AWKWARD = BREWS.register(
@@ -316,7 +316,7 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.AWKWARD,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_AWKWARD = BREWS.register(
@@ -325,7 +325,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.AWKWARD,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   CARROT   #############################################
@@ -335,10 +335,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.CARROT,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(3)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(3)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -348,10 +348,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.CARROT,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(3)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(3)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -361,10 +361,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.CARROT,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(3)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(3)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -375,10 +375,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.CARROT_GOLDEN,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(6)
-                                    .saturation(0.8f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(6)
+                                    .saturationMod(0.8f)
                                     .build())
             )
     );
@@ -388,10 +388,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.CARROT_GOLDEN,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(9)
-                                    .saturation(0.8f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(9)
+                                    .saturationMod(0.8f)
                                     .build())
             )
     );
@@ -401,10 +401,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.CARROT_GOLDEN,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(6)
-                                    .saturation(0.8f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(6)
+                                    .saturationMod(0.8f)
                                     .build())
             )
     );
@@ -415,10 +415,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.COOKIESANDCREAM,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(4)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(4)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -428,10 +428,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.COOKIESANDCREAM,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(4)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(4)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -441,10 +441,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.COOKIESANDCREAM,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(4)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(4)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -455,10 +455,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.END,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -468,10 +468,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.END,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(3)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(3)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -481,10 +481,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.END,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -495,10 +495,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.MELON,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -508,10 +508,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.MELON,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(3)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(3)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -521,10 +521,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.MELON,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -535,10 +535,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.MELON_GOLDEN,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -548,10 +548,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.MELON_GOLDEN,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(3)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(3)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -561,10 +561,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.MELON_GOLDEN,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(2)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(2)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -575,10 +575,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.NETHER,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(1)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(1)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -588,10 +588,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.NETHER,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(1)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(1)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -601,10 +601,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.NETHER,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(1)
-                                    .saturation(0.1f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(1)
+                                    .saturationMod(0.1f)
                                     .build())
             )
     );
@@ -615,7 +615,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.PHANTASM,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_PHANTASM = BREWS.register(
@@ -624,7 +624,7 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.PHANTASM,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_PHANTASM = BREWS.register(
@@ -633,7 +633,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.PHANTASM,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   PUMPKINSPICELATTE   #############################################
@@ -643,7 +643,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.PUMPKINSPICELATTE,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_PUMPKINSPICELATTE = BREWS.register(
@@ -652,7 +652,7 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.PUMPKINSPICELATTE,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_PUMPKINSPICELATTE = BREWS.register(
@@ -661,7 +661,7 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.PUMPKINSPICELATTE,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   PUMPKINSPICELATTE_WITH_PUMPKIN   #############################################
@@ -671,10 +671,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.CUP_MEDIUM.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
-                    new Item.Properties().group(RavenCoffee.CUP_MEDIUM_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(5)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(5)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -684,10 +684,10 @@ public class BrewsRegistry {
                     CupSizes.LARGE,
                     ItemsRegistry.CUP_LARGE.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
-                    new Item.Properties().group(RavenCoffee.CUP_LARGE_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(5)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(5)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );
@@ -697,10 +697,10 @@ public class BrewsRegistry {
                     CupSizes.MEDIUM,
                     ItemsRegistry.COFFEE_MUG.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
-                    new Item.Properties().group(RavenCoffee.COFFEE_MUG_TAB)
-                            .food(new Food.Builder()
-                                    .hunger(5)
-                                    .saturation(0.3f)
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+                            .food(new FoodProperties.Builder()
+                                    .nutrition(5)
+                                    .saturationMod(0.3f)
                                     .build())
             )
     );

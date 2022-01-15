@@ -1,31 +1,25 @@
 package com.TheWandererRaven.ravencoffee.customClasses;
 
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Brew {
-    public List<EffectInstance> effects;
-    public List<Double> effectsChances;
-    public List<Effect> removableEffects;
+    public List<BrewEffect> effects;
 
     public Brew(){
         this.effects = new ArrayList<>();
-        this.effectsChances = new ArrayList<>();
-        this.removableEffects = new ArrayList<>();
     }
 
-    public Brew addEffect(EffectInstance effect, double effectChance) {
-        this.effects.add(effect);
-        this.effectsChances.add(effectChance);
+    public Brew addEffect(MobEffect effect, double duration, double effectChance) {
+        this.effects.add(new BrewEffect(effect, duration, effectChance));
         return this;
     }
 
-    public Brew addRemovableEffect(Effect effect) {
-        this.removableEffects.add(effect);
+    public Brew addRemovableEffect(MobEffect effect) {
+        this.effects.add(new BrewEffect(effect));
         return this;
     }
 }
