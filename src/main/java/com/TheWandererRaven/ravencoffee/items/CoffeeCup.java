@@ -1,15 +1,15 @@
 package com.TheWandererRaven.ravencoffee.items;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.material.Fluids;
 
 public class CoffeeCup extends BucketItem {
     public CoffeeCup() {
         super(() -> Fluids.EMPTY,
                 new Item.Properties()
-                .group(RavenCoffee.GENERAL_TAB)
+                .tab(RavenCoffee.GENERAL_TAB)
                 );
     }
 }
