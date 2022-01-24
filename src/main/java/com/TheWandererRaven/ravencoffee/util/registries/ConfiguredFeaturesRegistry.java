@@ -1,46 +1,54 @@
 package com.TheWandererRaven.ravencoffee.util.registries;
 
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeLeavesBlock;
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
 import com.TheWandererRaven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
-import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placement.ConfiguredPlacement;
-import net.minecraft.world.gen.placement.NoPlacementConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.Features;
+import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.VegetationPatchFeature;
+import net.minecraft.world.level.levelgen.feature.blockplacers.SimpleBlockPlacer;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneDecoratorConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.placement.ConfiguredDecorator;
 
 public class ConfiguredFeaturesRegistry {
     public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_DEFAULT = register(
             "patch_coffee_tree",
             FeaturesRegistry.COFFEE_TREE.get()
-                    .withConfiguration(Configs.COFFEE_TREE_PATCH_DEFAULT_CONFIG)
-                    .withPlacement(Features.Placements.PATCH_PLACEMENT)
-                    .func_242731_b(5)
+                    .configured(Configs.COFFEE_TREE_PATCH_DEFAULT_CONFIG)
+                    .decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE)
+                    .count(5)
     );
     public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_SPARSE = register(
-            "patch_coffee_tree_sparse", PATCH_COFFEE_TREE_DEFAULT.chance(6)
+            "patch_coffee_tree_sparse", PATCH_COFFEE_TREE_DEFAULT.rarity(100)
     );
     public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_TIGHT = register(
-            "patch_coffee_tree_sparse",
+            "patch_coffee_tree_tight",
             FeaturesRegistry.COFFEE_TREE.get()
-                    .withConfiguration(Configs.COFFEE_TREE_PATCH_TIGHT_CONFIG)
-                    .withPlacement(Features.Placements.PATCH_PLACEMENT)
-                    .func_242731_b(20)
+                    .configured(Configs.COFFEE_TREE_PATCH_TIGHT_CONFIG)
+                    .decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE)
+                    .count(10)
+                    .rarity(20)
     );
     public static class Configs {
         public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_DEFAULT_CONFIG = (
                 new DualBlockPileFeatureConfig.Builder(
-                        new SimpleBlockStateProvider(States.COFFEE_TREE_TRUNK),
-                        new SimpleBlockStateProvider(States.COFFEE_TREE_LEAVES),
-                        SimpleBlockPlacer.PLACER
+                        new SimpleStateProvider(States.COFFEE_TREE_TRUNK),
+                        new SimpleStateProvider(States.COFFEE_TREE_LEAVES),
+                        SimpleBlockPlacer.INSTANCE
                 ))
-                .tries(128)
+                .tries(25)
                 .whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock()))
                 .func_227317_b_()
                 .xSpread(10)
@@ -48,26 +56,26 @@ public class ConfiguredFeaturesRegistry {
                 .build();
         public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_TIGHT_CONFIG = (
                 new DualBlockPileFeatureConfig.Builder(
-                        new SimpleBlockStateProvider(States.COFFEE_TREE_TRUNK),
-                        new SimpleBlockStateProvider(States.COFFEE_TREE_LEAVES),
-                        SimpleBlockPlacer.PLACER
+                        new SimpleStateProvider(States.COFFEE_TREE_TRUNK),
+                        new SimpleStateProvider(States.COFFEE_TREE_LEAVES),
+                        SimpleBlockPlacer.INSTANCE
                 ))
-                .tries(200)
+                .tries(250)
                 .whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock()))
                 .func_227317_b_()
-                .xSpread(6)
-                .zSpread(6)
+                .xSpread(15)
+                .zSpread(15)
                 .build();
     }
     public static class Placements {
-        public static final ConfiguredPlacement<?> COFFEE_TREE_PLACEMENT = Placement.SPREAD_32_ABOVE.configure(NoPlacementConfig.INSTANCE);
+        public static final ConfiguredDecorator<?> COFFEE_TREE_PLACEMENT = Features.Decorators.ADD_32;
     }
     public static class States {
-        protected static final BlockState COFFEE_TREE_TRUNK = BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get().getDefaultState();
-        protected static final BlockState COFFEE_TREE_LEAVES = BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get().getDefaultState();
-        protected static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.getDefaultState();
+        protected static final BlockState COFFEE_TREE_TRUNK = BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get().defaultBlockState();
+        protected static final BlockState COFFEE_TREE_LEAVES = BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get().defaultBlockState();
+        protected static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.defaultBlockState();
     }
-    private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
-        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, key, configuredFeature);
+    private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
+        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, key, configuredFeature);
     }
 }

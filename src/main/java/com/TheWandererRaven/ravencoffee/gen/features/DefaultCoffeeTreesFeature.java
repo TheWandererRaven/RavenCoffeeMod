@@ -3,29 +3,32 @@ package com.TheWandererRaven.ravencoffee.gen.features;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
 import com.TheWandererRaven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.material.Material;
 
 import java.util.*;
 
 public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPileFeatureConfig> {
-    public DefaultCoffeeTreesFeature(Codec<DualBlockPileFeatureConfig> p_i231945_1_) {
-        super(p_i231945_1_);
+    public DefaultCoffeeTreesFeature(Codec<DualBlockPileFeatureConfig> p_i231922_1_) {
+        super(p_i231922_1_);
     }
 
-    public boolean isValidPosition(IWorld world, BlockPos pos, DualBlockPileFeatureConfig config) {
+    boolean isSurroundingBlockAcceptable(LevelAccessor world, BlockPos pos) {
+        return world.isEmptyBlock(pos) || (!world.getBlockState(pos).getMaterial().isSolid() && !world.getBlockState(pos).getMaterial().equals(Material.LEAVES));
+    }
+
+    public boolean isValidPosition(LevelAccessor world, BlockPos pos, DualBlockPileFeatureConfig config) {
         boolean isTrunkValid = (
-                (world.isAirBlock(pos.north()) || !world.getBlockState(pos.north()).isSolid()) &&
-                        (world.isAirBlock(pos.south()) || !world.getBlockState(pos.south()).isSolid()) &&
-                        (world.isAirBlock(pos.east()) || !world.getBlockState(pos.east()).isSolid()) &&
-                        (world.isAirBlock(pos.west()) || !world.getBlockState(pos.west()).isSolid())
+                isSurroundingBlockAcceptable(world, pos.north()) && isSurroundingBlockAcceptable(world, pos.south())
+                        && isSurroundingBlockAcceptable(world, pos.east()) && isSurroundingBlockAcceptable(world, pos.west())
         );
         boolean isLeavesValid = (
-                (world.isAirBlock(pos.up().north()) || !world.getBlockState(pos.up().north()).isSolid()) &&
-                        (world.isAirBlock(pos.up().south()) || !world.getBlockState(pos.up().south()).isSolid()) &&
-                        (world.isAirBlock(pos.up().east()) || !world.getBlockState(pos.up().east()).isSolid()) &&
-                        (world.isAirBlock(pos.up().west()) || !world.getBlockState(pos.up().west()).isSolid())
+                isSurroundingBlockAcceptable(world, pos.above().north()) && isSurroundingBlockAcceptable(world, pos.above().south()) &&
+                        isSurroundingBlockAcceptable(world, pos.above().east()) && isSurroundingBlockAcceptable(world, pos.above().west())
         );
         return !config.blacklist.contains(world.getBlockState(pos)) && isTrunkValid && isLeavesValid;
     }
@@ -35,13 +38,13 @@ public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPil
     }
 
     public BlockPos getNearbyPos(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
-        return pos.add(rand.nextInt(config.xSpread) - rand.nextInt(config.xSpread), rand.nextInt(config.ySpread) - rand.nextInt(config.ySpread), rand.nextInt(config.zSpread) - rand.nextInt(config.zSpread));
+        return pos.offset(rand.nextInt(config.xSpread) - rand.nextInt(config.xSpread), rand.nextInt(config.ySpread) - rand.nextInt(config.ySpread), rand.nextInt(config.zSpread) - rand.nextInt(config.zSpread));
     }
 
     public BlockState getTrunkToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
-        return config.trunkStateProvider.getBlockState(rand, pos).with(CoffeeTreeTrunkBlock.AGE, 3);
+        return config.trunkStateProvider.getState(rand, pos).setValue(CoffeeTreeTrunkBlock.AGE, 3);
     }
     public BlockState getLeavesToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
-        return config.leavesStateProvider.getBlockState(rand, pos).with(CoffeeTreeTrunkBlock.AGE, rand.nextInt(4));
+        return config.leavesStateProvider.getState(rand, pos).setValue(CoffeeTreeTrunkBlock.AGE, rand.nextInt(4));
     }
 }

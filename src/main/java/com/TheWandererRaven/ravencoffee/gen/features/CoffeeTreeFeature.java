@@ -1,35 +1,41 @@
 package com.TheWandererRaven.ravencoffee.gen.features;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
 import java.util.Random;
 
-public abstract class CoffeeTreeFeature<U extends IFeatureConfig> extends Feature<U> {
+public abstract class CoffeeTreeFeature<U extends FeatureConfiguration> extends Feature<U> {
     public CoffeeTreeFeature(Codec<U> p_i231922_1_) {
         super(p_i231922_1_);
     }
 
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, U config) {
+    @Override
+    public boolean place(FeaturePlaceContext<U> context) {
+        WorldGenLevel reader = context.level();
+        //ChunkGenerator generator = context.chunkGenerator();
+        Random rand = context.random();
+        BlockPos pos = context.origin();
+        U config = context.config();
         BlockState blockstate_trunk = this.getTrunkToPlace(rand, pos, config);
         int i = 0;
 
         for(int j = 0; j < this.getFlowerCount(config); ++j) {
             BlockPos blockpos = this.getNearbyPos(rand, pos, config);
-            if (reader.isAirBlock(blockpos) &&
-                    reader.isAirBlock(blockpos.up()) &&
-                    blockpos.up().getY() < 255 &&
-                    blockstate_trunk.isValidPosition(reader, blockpos) && //blockstate_leaves.isValidPosition(reader, blockpos.up()) &&
+            if (reader.isEmptyBlock(blockpos) &&
+                    reader.isEmptyBlock(blockpos.above()) &&
+                    blockpos.above().getY() < 255 &&
+                    blockstate_trunk.canSurvive(reader, blockpos) && //blockstate_leaves.isValidPosition(reader, blockpos.up()) &&
                     this.isValidPosition(reader, blockpos, config)) {
-                reader.setBlockState(blockpos, blockstate_trunk, 2);
-                reader.setBlockState(blockpos.up(), this.getLeavesToPlace(rand, pos, config), 2);
+                reader.setBlock(blockpos, blockstate_trunk, 2);
+                reader.setBlock(blockpos.above(), this.getLeavesToPlace(rand, pos, config), 2);
                 ++i;
             }
         }
@@ -37,7 +43,7 @@ public abstract class CoffeeTreeFeature<U extends IFeatureConfig> extends Featur
         return i > 0;
     }
 
-    public abstract boolean isValidPosition(IWorld world, BlockPos pos, U config);
+    public abstract boolean isValidPosition(LevelAccessor world, BlockPos pos, U config);
 
     public abstract int getFlowerCount(U config);
 
