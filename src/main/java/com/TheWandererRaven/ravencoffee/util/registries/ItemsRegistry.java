@@ -3,12 +3,12 @@ package com.TheWandererRaven.ravencoffee.util.registries;
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.items.ItemBase;
 import com.TheWandererRaven.ravencoffee.items.ItemThrowable;
-import com.TheWandererRaven.ravencoffee.tools.RavenCoffeeItemTier;
+import com.TheWandererRaven.ravencoffee.items.tools.RavenCoffeeItemTier;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ItemsRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(
@@ -21,8 +21,7 @@ public class ItemsRegistry {
             "coffee_cherries",
             () -> new ItemNameBlockItem(
                     BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(),
-                    new Item.Properties()
-                            .tab(RavenCoffee.GENERAL_TAB)
+                    new Item.Properties().tab(RavenCoffee.GENERAL_TAB)
             )
     );
     public static final RegistryObject<Item> COFFEE_BEANS = ITEMS.register(
@@ -272,6 +271,7 @@ public class ItemsRegistry {
             "coffee_beans_roasted_magma_block",
             () -> new BlockItem(BlocksRegistry.COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
     );
+
     public static final RegistryObject<Item> COFFEE_GRINDER_ITEM = ITEMS.register(
             "coffee_grinder_block",
             () -> new BlockItem(BlocksRegistry.COFFEE_GRINDER.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))

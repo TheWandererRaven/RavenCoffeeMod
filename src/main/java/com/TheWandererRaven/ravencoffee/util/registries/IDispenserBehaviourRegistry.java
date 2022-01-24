@@ -1,19 +1,19 @@
-package com.TheWandererRaven.ravencoffee.util.registries;
+package com.TheWandererRaven.ravencoffee.util.registries;//package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.customClasses.ThrowableFoodEntity;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.dispenser.IPosition;
-import net.minecraft.dispenser.ProjectileDispenseBehavior;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DispenserBlock;
 
 public interface IDispenserBehaviourRegistry {
     static void registerBehaviours() {
-        DispenserBlock.registerDispenseBehavior(ItemsRegistry.MUFFIN::get, new ProjectileDispenseBehavior() {
+        DispenserBlock.registerBehavior(ItemsRegistry.MUFFIN::get, new AbstractProjectileDispenseBehavior() {
             @Override
-            protected ProjectileEntity getProjectileEntity(World world, IPosition iPosition, ItemStack itemStack) {
-                ThrowableFoodEntity foodEntity = new ThrowableFoodEntity(world, iPosition.getX(), iPosition.getY(), iPosition.getZ());
+            protected Projectile getProjectile(Level world, Position iPosition, ItemStack itemStack) {
+                ThrowableFoodEntity foodEntity = new ThrowableFoodEntity(world, iPosition.x(), iPosition.y(), iPosition.z());
                 foodEntity.setItem(itemStack);
                 return foodEntity;
             }

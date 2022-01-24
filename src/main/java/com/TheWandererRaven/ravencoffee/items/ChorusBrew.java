@@ -27,7 +27,7 @@ public class ChorusBrew extends CoffeeBrew {
 
             for(int lvt_11_1_ = 0; lvt_11_1_ < 16; ++lvt_11_1_) {
                 double lvt_12_1_ = entity.getX() + (entity.getRandom().nextDouble() - 0.5D) * 16.0D;
-                double lvt_14_1_ = Mth.clamp(entity.getY() + (double)(entity.getRandom().nextInt(16) - 8), (double)world.getMinBuildHeight(), (double)(world.getMinBuildHeight() + ((ServerLevel)world).getLogicalHeight() - 1));
+                double lvt_14_1_ = Mth.clamp(entity.getY() + (double)(entity.getRandom().nextInt(16) - 8), (double)world.getMinBuildHeight(), (double)(world.getMinBuildHeight() + ((ServerLevel)world).getHeight() - 1));
                 double lvt_16_1_ = entity.getZ() + (entity.getRandom().nextDouble() - 0.5D) * 16.0D;
                 if (entity.isPassenger()) {
                     entity.stopRiding();

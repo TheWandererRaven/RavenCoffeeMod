@@ -1,18 +1,19 @@
 package com.TheWandererRaven.ravencoffee;
 
 import com.TheWandererRaven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
-import com.TheWandererRaven.ravencoffee.util.registries.FeaturesRegistry;
-import com.TheWandererRaven.ravencoffee.util.registries.ConfiguredFeaturesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -31,32 +32,32 @@ public class RavenCoffee
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public RavenCoffee() {
-        // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        eventBus.addListener(this::setup);
+        MinecraftForge.EVENT_BUS.addListener(this::doBiomeStuff);
+        eventBus.addListener(this::setupClient);
+        eventBus.addListener(this::postInit);
+        eventBus.addListener(this::registerEntityRenderers);
+
+
         // Register the enqueueIMC method for modloading
         //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
         //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
-        MinecraftForge.EVENT_BUS.addListener(this::doBiomeStuff);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::postInit);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerEntityRenderers);
 
         RecipesRegistry.RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ContainersRegistry.CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
 
-        BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        //TileEntityTypeRegistry.TILE_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-        FeaturesRegistry.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        TileEntityTypeRegistry.TILE_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
+        BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ItemsRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BrewsRegistry.BREWS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        FeaturesRegistry.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        LOGGER.debug("RAVEN COFFEE FINISHED SETUP!");
-
+        LOGGER.info("RAVEN COFFEE FINISHED SETUP!");
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -69,14 +70,17 @@ public class RavenCoffee
             event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_SPARSE);
     }
 
-    private void doClientStuff(final FMLClientSetupEvent event) {
+    private void setupClient(final FMLClientSetupEvent event) {
+        ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
         MenuScreens.register(ContainersRegistry.COFFEE_GRINDER_CONTAINER.get(), CoffeeGrinderContainerScreen::new);
     }
 
     //@SubscribeEvent
     public void registerEntityRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
-        event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
+        // pre 1.17.1
+        //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
+        //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
     }
 
     private void postInit(FMLLoadCompleteEvent event) {

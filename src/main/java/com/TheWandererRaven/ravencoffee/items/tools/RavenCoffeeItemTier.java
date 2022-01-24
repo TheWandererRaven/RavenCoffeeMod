@@ -1,4 +1,4 @@
-package com.TheWandererRaven.ravencoffee.tools;
+package com.TheWandererRaven.ravencoffee.items.tools;
 
 import com.TheWandererRaven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.world.item.Tier;
