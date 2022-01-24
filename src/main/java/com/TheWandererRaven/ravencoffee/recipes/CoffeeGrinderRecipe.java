@@ -17,8 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-import javax.annotation.Nullable;
-
 public class CoffeeGrinderRecipe implements CraftingRecipe {
     private final ResourceLocation id;
     private final String group;
@@ -113,7 +111,7 @@ public class CoffeeGrinderRecipe implements CraftingRecipe {
         @Override
         public CoffeeGrinderRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             String s = GsonHelper.getAsString(json, "group", "");
-            NonNullList<Ingredient> nonnulllist = readIngredients(GsonHelper.convertToJsonArray(json, "ingredients"));
+            NonNullList<Ingredient> nonnulllist = readIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (nonnulllist.isEmpty()) {
                 throw new JsonParseException("No ingredients for coffee grinder recipe");
             } else if (nonnulllist.size() > 2) {

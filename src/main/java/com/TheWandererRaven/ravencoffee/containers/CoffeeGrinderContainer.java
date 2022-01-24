@@ -1,6 +1,5 @@
 package com.TheWandererRaven.ravencoffee.containers;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.containers.inventory.CoffeeGrinderResultSlot;
 import com.TheWandererRaven.ravencoffee.util.registries.ContainersRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
@@ -28,18 +27,22 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
 
     private static final int INPUT_SLOT_COUNT = 2;
     private static final int OUTPUT_SLOT_COUNT = 1;
+
+    private static final int PLAYER_INVENTORY_SLOTS_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
+    private static final int VANILLA_SLOTS_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOTS_COUNT;
     private static final int COFFEE_GRINDER_SLOTS_COUNT = INPUT_SLOT_COUNT + OUTPUT_SLOT_COUNT;
 
-    private static final int FIRST_OUTPUT_SLOT_INDEX = 0;
-    private static final int FIRST_INPUT_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOT_COUNT;
-    private static final int VANILLA_FIRST_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOT_COUNT;
+
+    private static final int OUTPUT_FIRST_SLOT_INDEX = 0;
+    private static final int INPUT_FIRST_SLOT_INDEX = OUTPUT_FIRST_SLOT_INDEX + OUTPUT_SLOT_COUNT;
+    private static final int VANILLA_FIRST_SLOT_INDEX = INPUT_FIRST_SLOT_INDEX + INPUT_SLOT_COUNT;
     private static final int PLAYER_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX;
-    private static final int HOTBAR_FIRST_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT;
+    private static final int HOTBAR_FIRST_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT;
+
+    // ########################### POSITIONS ###########################
 
     public static final int PLAYER_HOTBAR_XPOS = 8;
     public static final int PLAYER_HOTBAR_YPOS = 142;
@@ -101,6 +104,7 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
         for (int x = 0; x < INPUT_SLOT_COUNT; x++) {
             addSlot(new Slot(craftMatrix, x, INPUT_SLOT_POS_X,  INPUT_SLOT_POS_Y + INPUT_SLOT_Y_SPACING * x));
         }
+
         // Add the players hotbar to the gui - the [xpos, ypos] location of each item
         for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
             addSlot(new Slot(playerInventory, x, PLAYER_HOTBAR_XPOS + SLOT_X_SPACING * x, PLAYER_HOTBAR_YPOS));
@@ -146,6 +150,7 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
      * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
      * inventory and the other inventory(s).
      */
+    /*
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
@@ -154,7 +159,7 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
             if (index == FIRST_OUTPUT_SLOT_INDEX) {
-                RavenCoffee.LOGGER.info("============================ 1 ============================");
+                RavenCoffee.LOGGER.info("============================ transfer item is from output slot");
                 this.worldPosCallable.execute((p_217067_2_, p_217067_3_) -> {
                     itemstack1.getItem().onCraftedBy(itemstack1, p_217067_2_, playerIn);
                 });
@@ -168,24 +173,24 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
                 slot.onQuickCraft(itemstack1, itemstack);
             }
             else if (index >= VANILLA_FIRST_SLOT_INDEX && index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-                RavenCoffee.LOGGER.info("============================ 4 ============================");
+                RavenCoffee.LOGGER.info("============================ transfer item is from player menu");
                 if (!this.moveItemStackTo(itemstack1, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOT_COUNT, false)) {
-                    RavenCoffee.LOGGER.info("============================ 5 ============================");
+                    RavenCoffee.LOGGER.info("============================ couldn't move stack to input slots");
                     if (index < PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT) {
-                        RavenCoffee.LOGGER.info("============================ 6 ============================");
+                        RavenCoffee.LOGGER.info("============================ transfer item is from player inventory");
                         if (!this.moveItemStackTo(itemstack1, HOTBAR_FIRST_SLOT_INDEX, HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT, false)) {
-                            RavenCoffee.LOGGER.info("============================ 7 ============================");
+                            RavenCoffee.LOGGER.info("============================ couldn't transfer to hotbar slots");
                             return ItemStack.EMPTY;
                         }
                     }
                     else if (!this.moveItemStackTo(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT, false)) {
-                        RavenCoffee.LOGGER.info("============================ 8 ============================");
+                        RavenCoffee.LOGGER.info("============================ couldn't transfer item from player hotbar to player inventory");
                         return ItemStack.EMPTY;
                     }
                 }
             }
             else if (!this.moveItemStackTo(itemstack1, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
-                RavenCoffee.LOGGER.info("============================ 9 ============================");
+                RavenCoffee.LOGGER.info("============================ couldn't transfer item to any player menu slots");
                 return ItemStack.EMPTY;
             }
 
@@ -213,6 +218,63 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
         }
 
         return itemstack;
+    }*/
+    @Override
+    public ItemStack quickMoveStack(Player playerIn, int index) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+            // If selected item is in output...
+            if (index == OUTPUT_FIRST_SLOT_INDEX) {
+                this.worldPosCallable.execute((p_217067_2_, p_217067_3_) -> {
+                    itemstack1.getItem().onCraftedBy(itemstack1, p_217067_2_, playerIn);
+                });
+                // ...move to vanilla slots
+                if (!this.moveItemStackTo(itemstack1, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT, false))
+                    return ItemStack.EMPTY;
+                //slot.onSlotChanged(itemstack1, itemstack);
+                slot.onQuickCraft(itemstack1, itemstack);
+            }
+            // If selected item is in vanilla slots...
+            else if (index >= VANILLA_FIRST_SLOT_INDEX && index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT) {
+                // ...move to input slots...
+                if (!this.moveItemStackTo(itemstack1, INPUT_FIRST_SLOT_INDEX, INPUT_FIRST_SLOT_INDEX + INPUT_SLOT_COUNT, false))
+                    // ...if input slots are full, and if selected slot is from player inventory...
+                    if (index < PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT) {
+                        // ...move to hotbar...
+                        if (!this.moveItemStackTo(itemstack1, HOTBAR_FIRST_SLOT_INDEX, HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT, false)) {
+                            return ItemStack.EMPTY;
+                        }
+                        // ...otherwise, move to inventory
+                    else if (!this.moveItemStackTo(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT, false))
+                        return ItemStack.EMPTY;
+                }
+            }
+            // If selected item is in input slots...
+            // ...move to Player vanilla slots
+            else if (!this.moveItemStackTo(itemstack1, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT, false))
+                return ItemStack.EMPTY;
+
+            if (itemstack1.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+
+            if (itemstack1.getCount() == itemstack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            //ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
+            ItemStack itemstack2 = slot.getItem();
+            slot.onTake(playerIn, itemstack1);
+            if (index == OUTPUT_FIRST_SLOT_INDEX)
+                playerIn.drop(itemstack2, false);
+        }
+
+        return itemstack;
     }
     // pass the close container message to the parent inventory (not strictly needed for this example)
     //  see ContainerChest and TileEntityChest - used to animate the lid when no players are accessing the chest any more
@@ -236,17 +298,22 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
         return world.getRecipeManager().getRecipeFor(RecipeTypesRegistry.COFFEE_GRINDING, craftingInventory, world);
     }
 
-    public void updateCraftingResult(int id, Level world, Player player, CraftingContainer inventory, ResultContainer inventoryResult) {
-        player.sendMessage(Component.nullToEmpty("Get Crafting Result"), UUID.randomUUID());
+    public void updateCraftingResult(AbstractContainerMenu containerMenu, Level world, Player player, CraftingContainer inventory, ResultContainer inventoryResult) {
         if (!world.isClientSide) {
-            player.sendMessage(Component.nullToEmpty("== Is client side"), UUID.randomUUID());
-            ServerPlayer serverplayerentity = (ServerPlayer)player;
-            player.sendMessage(Component.nullToEmpty("== == Item 1: " + inventory.getItem(0).getDescriptionId()), UUID.randomUUID());
-            ItemStack itemstack = getGrindingResultForItems(world, inventory);
-            player.sendMessage(Component.nullToEmpty("== == Result: " + itemstack.getDescriptionId()), UUID.randomUUID());
+            ServerPlayer serverplayer = (ServerPlayer)player;
+            ItemStack itemstack = ItemStack.EMPTY;
+            Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeTypesRegistry.COFFEE_GRINDING, inventory, world);
+            if (optional.isPresent()) {
+                CraftingRecipe craftingrecipe = optional.get();
+                if (inventoryResult.setRecipeUsed(world, serverplayer, craftingrecipe)) {
+                    itemstack = craftingrecipe.assemble(inventory);
+                }
+            }
+            player.sendMessage(Component.nullToEmpty("#########################################"), UUID.randomUUID());
 
             inventoryResult.setItem(0, itemstack);
-            serverplayerentity.connection.send(new ClientboundContainerSetSlotPacket(id, 0, this.incrementStateId(), itemstack));
+            containerMenu.setRemoteSlot(0, itemstack);
+            serverplayer.connection.send(new ClientboundContainerSetSlotPacket(containerMenu.containerId, containerMenu.incrementStateId(), 0, itemstack));
         }
     }
     /**
@@ -255,7 +322,7 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
     @Override
     public void slotsChanged(Container inventoryIn) {
         this.worldPosCallable.execute((p_217069_1_, p_217069_2_) -> {
-            updateCraftingResult(this.containerId, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
+            updateCraftingResult(this, p_217069_1_, this.player, this.craftMatrix, this.craftResult);
         });
     }
 }
