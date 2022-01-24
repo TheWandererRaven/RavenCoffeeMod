@@ -1,4 +1,4 @@
-package com.TheWandererRaven.ravencoffee.recipes;
+package com.TheWandererRaven.ravencoffee.recipes;//package com.TheWandererRaven.ravencoffee.recipes;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
@@ -7,16 +7,19 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.*;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.Level;
 
-public class CoffeeGrinderRecipe implements ICraftingRecipe {
+import javax.annotation.Nullable;
+
+public class CoffeeGrinderRecipe implements CraftingRecipe {
     private final ResourceLocation id;
     private final String group;
     private final ItemStack recipeOutput;
@@ -30,7 +33,7 @@ public class CoffeeGrinderRecipe implements ICraftingRecipe {
         this.isSimple = recipeItemsIn.stream().allMatch(Ingredient::isSimple);
     }
 
-
+    @Override
     public ResourceLocation getId() {
         return this.id;
     }
@@ -38,6 +41,7 @@ public class CoffeeGrinderRecipe implements ICraftingRecipe {
     /**
      * Recipes with equal group are combined into one button in the recipe book
      */
+    @Override
     public String getGroup() {
         return this.group;
     }
@@ -46,10 +50,12 @@ public class CoffeeGrinderRecipe implements ICraftingRecipe {
      * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one
      * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
      */
-    public ItemStack getRecipeOutput() {
+    @Override
+    public ItemStack getResultItem() {
         return this.recipeOutput;
     }
 
+    @Override
     public NonNullList<Ingredient> getIngredients() {
         return this.recipeItems;
     }
@@ -57,17 +63,18 @@ public class CoffeeGrinderRecipe implements ICraftingRecipe {
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(CraftingInventory inv, World worldIn) {
-        RecipeItemHelper recipeitemhelper = new RecipeItemHelper();
+    @Override
+    public boolean matches(CraftingContainer inv, Level worldIn) {
+        StackedContents recipeitemhelper = new StackedContents();
         java.util.List<ItemStack> inputs = new java.util.ArrayList<>();
         int i = 0;
 
-        for(int j = 0; j < inv.getSizeInventory(); ++j) {
-            ItemStack itemstack = inv.getStackInSlot(j);
+        for(int j = 0; j < inv.getContainerSize(); ++j) {
+            ItemStack itemstack = inv.getItem(j);
             if (!itemstack.isEmpty()) {
                 ++i;
                 if (isSimple)
-                    recipeitemhelper.func_221264_a(itemstack, 1);
+                    recipeitemhelper.accountStack(itemstack, 1);
                 else inputs.add(itemstack);
             }
         }
@@ -78,36 +85,41 @@ public class CoffeeGrinderRecipe implements ICraftingRecipe {
     /**
      * Returns an Item that is the result of this recipe
      */
-    public ItemStack getCraftingResult(CraftingInventory inv) {
+    @Override
+    public ItemStack assemble(CraftingContainer inv) {
         return this.recipeOutput.copy();
     }
 
     /**
      * Used to determine if this recipe can fit in a grid of the given width/height
      */
-    public boolean canFit(int width, int height) {
+    @Override
+    public boolean canCraftInDimensions(int width, int height) {
         return width * height >= this.recipeItems.size();
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RecipeTypesRegistry.COFFEE_GRINDING;
     }
 
-    public IRecipeSerializer<?> getSerializer() {
+    @Override
+    public RecipeSerializer<?> getSerializer() {
         return RecipesRegistry.COFFEE_GRINDER_SERIALIZER.get();
     }
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<CoffeeGrinderRecipe> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<CoffeeGrinderRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation(RavenCoffee.MOD_ID, "coffee_grinding");
-        public CoffeeGrinderRecipe read(ResourceLocation recipeId, JsonObject json) {
-            String s = JSONUtils.getString(json, "group", "");
-            NonNullList<Ingredient> nonnulllist = readIngredients(JSONUtils.getJsonArray(json, "ingredients"));
+
+        @Override
+        public CoffeeGrinderRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+            String s = GsonHelper.getAsString(json, "group", "");
+            NonNullList<Ingredient> nonnulllist = readIngredients(GsonHelper.convertToJsonArray(json, "ingredients"));
             if (nonnulllist.isEmpty()) {
                 throw new JsonParseException("No ingredients for coffee grinder recipe");
             } else if (nonnulllist.size() > 2) {
                 throw new JsonParseException("Too many ingredients for coffee grinder recipe the max is 2");
             } else {
-                ItemStack itemstack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
+                ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
                 return new CoffeeGrinderRecipe(recipeId, s, itemstack, nonnulllist);
             }
         }
@@ -116,8 +128,8 @@ public class CoffeeGrinderRecipe implements ICraftingRecipe {
             NonNullList<Ingredient> nonnulllist = NonNullList.create();
 
             for(int i = 0; i < ingredientArray.size(); ++i) {
-                Ingredient ingredient = Ingredient.deserialize(ingredientArray.get(i));
-                if (!ingredient.hasNoMatchingItems()) {
+                Ingredient ingredient = Ingredient.fromJson(ingredientArray.get(i));
+                if (!ingredient.isEmpty()) {
                     nonnulllist.add(ingredient);
                 }
             }
@@ -125,28 +137,30 @@ public class CoffeeGrinderRecipe implements ICraftingRecipe {
             return nonnulllist;
         }
 
-        public CoffeeGrinderRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-            String s = buffer.readString(32767);
+        @Override
+        public CoffeeGrinderRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+            String s = buffer.readUtf(32767);
             int i = buffer.readVarInt();
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i, Ingredient.EMPTY);
 
             for(int j = 0; j < nonnulllist.size(); ++j) {
-                nonnulllist.set(j, Ingredient.read(buffer));
+                nonnulllist.set(j, Ingredient.fromNetwork(buffer));
             }
 
-            ItemStack itemstack = buffer.readItemStack();
+            ItemStack itemstack = buffer.readItem();
             return new CoffeeGrinderRecipe(recipeId, s, itemstack, nonnulllist);
         }
 
-        public void write(PacketBuffer buffer, CoffeeGrinderRecipe recipe) {
-            buffer.writeString(recipe.group);
+        @Override
+        public void toNetwork(FriendlyByteBuf buffer, CoffeeGrinderRecipe recipe) {
+            buffer.writeUtf(recipe.group);
             buffer.writeVarInt(recipe.recipeItems.size());
 
             for(Ingredient ingredient : recipe.recipeItems) {
-                ingredient.write(buffer);
+                ingredient.toNetwork(buffer);
             }
 
-            buffer.writeItemStack(recipe.recipeOutput);
+            buffer.writeItem(recipe.recipeOutput);
         }
     }
 }

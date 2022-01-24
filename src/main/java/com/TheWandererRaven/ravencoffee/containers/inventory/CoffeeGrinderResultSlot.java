@@ -1,15 +1,15 @@
 package com.TheWandererRaven.ravencoffee.containers.inventory;
 
-import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.CraftingResultSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.util.NonNullList;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.ResultSlot;
 
-public class CoffeeGrinderResultSlot extends CraftingResultSlot {
+public class CoffeeGrinderResultSlot extends ResultSlot {
+    public CoffeeGrinderResultSlot(Player p_40166_, CraftingContainer p_40167_, Container p_40168_, int p_40169_, int p_40170_, int p_40171_) {
+        super(p_40166_, p_40167_, p_40168_, p_40169_, p_40170_, p_40171_);
+    }
+    /*
     private final CraftingInventory craftMatrix;
     private final PlayerEntity player;
     public CoffeeGrinderResultSlot(PlayerEntity player, CraftingInventory craftingInventory, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
@@ -45,4 +45,5 @@ public class CoffeeGrinderResultSlot extends CraftingResultSlot {
 
         return stack;
     }
+     */
 }

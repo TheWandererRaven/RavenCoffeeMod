@@ -1,12 +1,12 @@
-package com.TheWandererRaven.ravencoffee.util.registries;
+package com.TheWandererRaven.ravencoffee.util.registries;//package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import net.minecraft.item.crafting.ICraftingRecipe;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
 
 public interface RecipeTypesRegistry {
-    IRecipeType<ICraftingRecipe> COFFEE_GRINDING = register("coffee_grinding");
+    RecipeType<CraftingRecipe> COFFEE_GRINDING = register("coffee_grinding");
 
     /**
      * Registers a new recipe type, prefixing with the mod ID
@@ -14,7 +14,7 @@ public interface RecipeTypesRegistry {
      * @param <T>   Recipe type
      * @return  Registered recipe type
      */
-    static <T extends IRecipe<?>> IRecipeType<T> register(String name) {
-        return IRecipeType.register(RavenCoffee.MOD_ID + ":" + name);
+    static <T extends Recipe<?>> RecipeType<T> register(String name) {
+        return RecipeType.register(RavenCoffee.MOD_ID + ":" + name);
     }
 }

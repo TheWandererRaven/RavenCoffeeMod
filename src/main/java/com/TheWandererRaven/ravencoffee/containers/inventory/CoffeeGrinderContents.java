@@ -1,14 +1,14 @@
 package com.TheWandererRaven.ravencoffee.containers.inventory;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.function.Predicate;
 
-public class CoffeeGrinderContents implements IInventory {
+public class CoffeeGrinderContents implements Container {
 
     /**
      * Use this constructor to create a FurnaceZoneContents which is linked to its parent TileEntity.
@@ -26,7 +26,7 @@ public class CoffeeGrinderContents implements IInventory {
      * @return the new ChestContents.
      */
     public static CoffeeGrinderContents createForTileEntity(int size,
-                                                          Predicate<PlayerEntity> canPlayerAccessInventoryLambda,
+                                                          Predicate<Player> canPlayerAccessInventoryLambda,
                                                           Notify markDirtyNotificationLambda) {
         return new CoffeeGrinderContents(size, canPlayerAccessInventoryLambda, markDirtyNotificationLambda);
     }
@@ -49,7 +49,7 @@ public class CoffeeGrinderContents implements IInventory {
      * Writes the chest contents to a CompoundNBT tag (used to save the contents to disk)
      * @return the tag containing the contents
      */
-    public CompoundNBT serializeNBT()  {
+    public CompoundTag serializeNBT()  {
         return furnaceComponentContents.serializeNBT();
     }
 
@@ -57,7 +57,7 @@ public class CoffeeGrinderContents implements IInventory {
      * Fills the chest contents from the nbt; resizes automatically to fit.  (used to load the contents from disk)
      * @param nbt
      */
-    public void deserializeNBT(CompoundNBT nbt)   {
+    public void deserializeNBT(CompoundTag nbt)   {
         furnaceComponentContents.deserializeNBT(nbt);
     }
 
@@ -79,7 +79,7 @@ public class CoffeeGrinderContents implements IInventory {
      * sets the function that the container should call in order to decide if the given player can access the container's
      *   contents not.  The lambda function is only used on the server side
      */
-    public void setCanPlayerAccessInventoryLambda(Predicate<PlayerEntity> canPlayerAccessInventoryLambda) {
+    public void setCanPlayerAccessInventoryLambda(Predicate<Player> canPlayerAccessInventoryLambda) {
         this.canPlayerAccessInventoryLambda = canPlayerAccessInventoryLambda;
     }
 
@@ -109,13 +109,8 @@ public class CoffeeGrinderContents implements IInventory {
     //    or ask the parent TileEntity.
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        return canPlayerAccessInventoryLambda.test(player);  // on the client, this does nothing. on the server, ask our parent TileEntity.
-    }
+    public void clearContent() {
 
-    @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return furnaceComponentContents.isItemValid(index, stack);
     }
 
     // ----- Methods used to inform the parent tile entity that something has happened to the contents
@@ -128,25 +123,8 @@ public class CoffeeGrinderContents implements IInventory {
     }
 
     @Override
-    public void markDirty() {
-        markDirtyNotificationLambda.invoke();
-    }
-
-    @Override
-    public void openInventory(PlayerEntity player) {
-        openInventoryNotificationLambda.invoke();
-    }
-
-    @Override
-    public void closeInventory(PlayerEntity player) {
-        closeInventoryNotificationLambda.invoke();
-    }
-
-    //---------These following methods are called by Vanilla container methods to manipulate the inventory contents ---
-
-    @Override
-    public int getSizeInventory() {
-        return furnaceComponentContents.getSlots();
+    public int getContainerSize() {
+        return 0;
     }
 
     @Override
@@ -158,32 +136,33 @@ public class CoffeeGrinderContents implements IInventory {
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
-        return furnaceComponentContents.getStackInSlot(index);
+    public ItemStack getItem(int p_18941_) {
+        return null;
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        if (count < 0) throw new IllegalArgumentException("count should be >= 0:" + count);
-        return furnaceComponentContents.extractItem(index, count, false);
+    public ItemStack removeItem(int p_18942_, int p_18943_) {
+        return null;
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        int maxPossibleItemStackSize = furnaceComponentContents.getSlotLimit(index);
-        return furnaceComponentContents.extractItem(index, maxPossibleItemStackSize, false);
+    public ItemStack removeItemNoUpdate(int p_18951_) {
+        return null;
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
-        furnaceComponentContents.setStackInSlot(index, stack);
+    public void setItem(int p_18944_, ItemStack p_18945_) {
+
     }
 
     @Override
-    public void clear() {
-        for (int i = 0; i < furnaceComponentContents.getSlots(); ++i) {
-            furnaceComponentContents.setStackInSlot(i, ItemStack.EMPTY);
-        }
+    public void setChanged() {
+
+    }
+
+    @Override
+    public boolean stillValid(Player p_18946_) {
+        return false;
     }
 
     //--------- useful functions that aren't in IInventory but are useful anyway
@@ -218,7 +197,7 @@ public class CoffeeGrinderContents implements IInventory {
         this.furnaceComponentContents = new ItemStackHandler(size);
     }
 
-    private CoffeeGrinderContents(int size, Predicate<PlayerEntity> canPlayerAccessInventoryLambda, Notify markDirtyNotificationLambda) {
+    private CoffeeGrinderContents(int size, Predicate<Player> canPlayerAccessInventoryLambda, Notify markDirtyNotificationLambda) {
         this.furnaceComponentContents = new ItemStackHandler(size);
         this.canPlayerAccessInventoryLambda = canPlayerAccessInventoryLambda;
         this.markDirtyNotificationLambda = markDirtyNotificationLambda;
@@ -227,7 +206,7 @@ public class CoffeeGrinderContents implements IInventory {
     // the function that the container should call in order to decide if the
     // given player can access the container's Inventory or not.  Only valid server side
     //  default is "true".
-    private Predicate<PlayerEntity> canPlayerAccessInventoryLambda = x-> true;
+    private Predicate<Player> canPlayerAccessInventoryLambda = x-> true;
 
     // the function that the container should call in order to tell the parent TileEntity that the
     // contents of its inventory have been changed.

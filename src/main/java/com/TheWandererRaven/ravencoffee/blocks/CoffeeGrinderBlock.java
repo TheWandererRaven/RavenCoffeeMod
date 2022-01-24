@@ -1,11 +1,18 @@
 package com.TheWandererRaven.ravencoffee.blocks;
 
+import com.TheWandererRaven.ravencoffee.containers.CoffeeGrinderContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -17,12 +24,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -44,19 +53,25 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
     public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final Component CONTAINER_NAME = new TranslatableComponent("container.coffee_grinder");
 
-    public CoffeeGrinderBlock(Block.Properties properties) {
+    public CoffeeGrinderBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(HORIZONTAL_FACING, Direction.NORTH));
         runCalculation(SHAPE);
     }
 
+    @Override
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Level level = context.getLevel();
         ItemStack itemstack = context.getItemInHand();
         CompoundTag compoundtag = itemstack.getTag();
         Player playerentity = context.getPlayer();
         boolean flag = false;
-        // ============= 1.16
+        // ============= pre 1.17.1
         //if (!world.isRemote && playerentity != null && compoundnbt != null && playerentity.canUseCommandBlock() && compoundnbt.contains("BlockEntityTag")) {
         if (level.isClientSide && playerentity != null && compoundtag != null && playerentity.canUseGameMasterBlocks() && compoundtag.contains("BlockEntityTag")) {
             CompoundTag compoundntagsub = compoundtag.getCompound("BlockEntityTag");
@@ -70,15 +85,15 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
 
     @SuppressWarnings("deprecation")
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos,
-                                        CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos,
+                        CollisionContext context) {
         return SHAPES.get(state.getValue(HORIZONTAL_FACING));
     }
     //                       DIRECTIONAL
 
     @SuppressWarnings("deprecation")
     @Override
-    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(HORIZONTAL_FACING)));
     }
 
@@ -88,7 +103,7 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(HORIZONTAL_FACING);
     }
@@ -113,7 +128,6 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
 
     //                    ENDS DIRECTIONAL
 
-//    @Nullable
 //    @Override
 //    public BlockEntity createTileEntity(BlockState state, BlockGetter world) {
 //        Blocks.GRINDSTONE
@@ -124,34 +138,33 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
 //    public boolean hasTileEntity(BlockState state) {
 //        return true;
 //    }
-//
-//    @Override
-//    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-//        if (worldIn.isRemote) return ActionResultType.SUCCESS; // on client side, don't do anything
-//
-//        INamedContainerProvider namedContainerProvider = this.getContainer(state, worldIn, pos);
-//        if (namedContainerProvider != null) {
-//            if (!(player instanceof ServerPlayerEntity)) return ActionResultType.FAIL;  // should always be true, but just in case...
-//            ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
-//            NetworkHooks.openGui(serverPlayerEntity, namedContainerProvider, (packetBuffer)->{});
-//            // (packetBuffer)->{} is just a do-nothing because we have no extra data to send
-//        }
-//        return ActionResultType.SUCCESS;
-//    }
-//    @Override
-//    public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
-//        return new SimpleNamedContainerProvider((id, inventory, player) -> {
-//            return new CoffeeGrinderContainer(id, inventory, IWorldPosCallable.of(worldIn, pos));
-//        }, new TranslationTextComponent("container.ravencoffee.coffee_grinder_registry_name"));
-//    }
-//
+
+    @Override
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        if (worldIn.isClientSide) return InteractionResult.SUCCESS; // on client side, don't do anything
+
+        MenuProvider namedContainerProvider = this.getMenuProvider(state, worldIn, pos);
+        if (namedContainerProvider != null) {
+            if (!(player instanceof ServerPlayer serverPlayerEntity)) return InteractionResult.FAIL;  // should always be true, but just in case...
+            NetworkHooks.openGui(serverPlayerEntity, namedContainerProvider, (packetBuffer)->{});
+            // (packetBuffer)->{} is just a do-nothing because we have no extra data to send
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+        return new SimpleMenuProvider((id, inventory, player) -> {
+            return new CoffeeGrinderContainer(id, inventory, ContainerLevelAccess.create(worldIn, pos));
+        }, new TranslatableComponent("container.ravencoffee.coffee_grinder_registry_name"));
+    }
+
 //    @Nullable
 //    @Override
 //    public TileEntity createNewTileEntity(IBlockReader worldIn) {
 //        return null;
 //    }
-//
-    @org.jetbrains.annotations.Nullable
+
     @Override
     public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
         return null;
