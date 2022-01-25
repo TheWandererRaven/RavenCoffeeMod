@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "ravencoffee:cup_large_brew_american"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:cup_large_brew_carrot",
+    "count": 1
+  }
+}

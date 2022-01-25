@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:iron_hoe"
+  },
+  "addition": {
+    "item": "ravencoffee:coffee_ingot"
+  },
+  "result": {
+    "item": "ravencoffee:coffee_hoe"
+  }
+}

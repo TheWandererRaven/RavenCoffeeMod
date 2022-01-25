@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ravencoffee:cup_medium_brew_chocolate"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:cup_medium_brew_mocha",
+    "count": 1
+  }
+}

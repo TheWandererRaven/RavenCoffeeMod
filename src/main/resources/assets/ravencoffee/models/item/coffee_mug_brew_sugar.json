@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ravencoffee:items/coffee_mug/brew_sugar"
+  }
+}
