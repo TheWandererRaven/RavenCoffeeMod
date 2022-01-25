@@ -1,13 +1,13 @@
 modLoader="javafml"
 loaderVersion="[34,)"
 license="All rights reserved"
-issueTrackerURL="http://myurl.me/"
+issueTrackerURL="https://github.com/TheWandererRaven/RavenCoffeeMod/issues"
 [[mods]]
 modId="ravencoffee"
-version="1.16.3-0.1"
+version="0.4.0-1.17.1-37.1.1"
 displayName="Raven Coffee Mod"
-updateJSONURL="http://myurl.me/"
-displayURL="http://example.com/"
+updateJSONURL="https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
+displayURL="https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
 logoFile="examplemod.png"
 credits="Credits go for me, TheWandererRaven, cheers."
 authors="TheWandererRaven"
@@ -25,6 +25,6 @@ I haven't finished this yet! Thanks for downloading tho.
 [[dependencies.raven_coffee]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3]"
+    versionRange="[1.17.1]"
     ordering="NONE"
     side="BOTH"
