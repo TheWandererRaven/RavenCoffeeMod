@@ -7,17 +7,17 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -26,13 +26,13 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class CoffeeBrew extends Item {
-    private final Item parentContainer;
+    private final Item parentVessel;
     private final double cupSize;
     private final Brew brew;
 
-    public CoffeeBrew(double _cupSize, Item _parentContainer, Brew _brew, Item.Properties p_i48476_1_) {
+    public CoffeeBrew(double _cupSize, Item _parentVessel, Brew _brew, Item.Properties p_i48476_1_) {
         super(p_i48476_1_);
-        this.parentContainer = _parentContainer;
+        this.parentVessel = _parentVessel;
         this.cupSize = _cupSize;
         this.brew = _brew;
     }
@@ -55,25 +55,23 @@ public class CoffeeBrew extends Item {
 
     @Override
     @Nonnull
-    public ItemStack finishUsingItem(@Nonnull ItemStack stack, @Nonnull Level world, @Nonnull LivingEntity entity) {
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         Player player = entity instanceof Player ? (Player)entity : null;
         if (player instanceof ServerPlayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer)player, stack);
         }
-        if (world.isClientSide) {
-            for(BrewEffect brewEffect: brew.effects) {
+
+        if (!level.isClientSide) {
+            for(BrewEffect brewEffect : this.brew.effects) {
                 if(!brewEffect.isForRemoving) {
-                    double randVal = Math.random();
-                    if (randVal < brewEffect.chance && randVal != 0.0d) {
-                        // TODO: REWORK THIS CODE (I have no idea if the effect works smoothly without the conditionals)
+                    double randomValue = Math.random();
+                    if(randomValue < brewEffect.chance && randomValue != 0.0d) {
                         if (brewEffect.effect.isInstantenous()) {
                             MobEffectInstance adjustedEffect = this.adjustEffectToSize(brewEffect);
-                            adjustedEffect.applyEffect(entity);
+                            // TODO: ADD AMPLIFIER TO BREW EFFECT
+                            brewEffect.effect.applyInstantenousEffect(player, player, entity, 1, 1.0D);
                         } else {
-                            if (brewEffect.effect.equals(MobEffects.HEAL))
-                                entity.setHealth(entity.getHealth() + 2.0f);
-                            else
-                                entity.addEffect(this.adjustEffectToSize(brewEffect));
+                            entity.addEffect(this.adjustEffectToSize(brewEffect));
                         }
                     }
                 } else {
@@ -84,23 +82,25 @@ public class CoffeeBrew extends Item {
 
         if (player != null) {
             player.awardStat(Stats.ITEM_USED.get(this));
-            if (!player.isCreative()) {
+            if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
         }
 
-        if (player == null || !player.isCreative()) {
+        if (player == null || !player.getAbilities().instabuild) {
             if (stack.isEmpty()) {
-                return new ItemStack(parentContainer);
+                return new ItemStack(this.parentVessel);
             }
 
             if (player != null) {
-                player.getInventory().add(new ItemStack(parentContainer));
+                player.getInventory().add(new ItemStack(this.parentVessel));
             }
         }
 
+        level.gameEvent(entity, GameEvent.DRINKING_FINISH, entity.eyeBlockPosition());
         return stack;
     }
+
 
     public int getUseDuration(@Nonnull ItemStack p_77626_1_) {
         return 32;

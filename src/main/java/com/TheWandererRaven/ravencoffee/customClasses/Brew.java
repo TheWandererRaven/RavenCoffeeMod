@@ -13,7 +13,7 @@ public class Brew {
         this.effects = new ArrayList<>();
     }
 
-    public Brew addEffect(MobEffect effect, double duration, double effectChance) {
+    public Brew addEffect(MobEffect effect, int duration, double effectChance) {
         this.effects.add(new BrewEffect(effect, duration, effectChance));
         return this;
     }
