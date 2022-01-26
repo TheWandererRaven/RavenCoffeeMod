@@ -5,6 +5,7 @@ import com.TheWandererRaven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
@@ -93,11 +94,21 @@ public class RavenCoffee
         public ItemStack makeIcon() {
             return new ItemStack(ItemsRegistry.COFFEE_BEANS_ROASTED.get());
         }
+
+        @Override
+        public Component getDisplayName() {
+            return Component.nullToEmpty("Raven Coffee General Items");
+        }
     };
     public static final CreativeModeTab COFFEE_MUG_TAB = new CreativeModeTab("ravencoffee_mug_Tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.COFFEE_MUG_BREW_AMERICAN.get());
+        }
+
+        @Override
+        public Component getDisplayName() {
+            return Component.nullToEmpty("Coffee Mug Brews");
         }
     };
     public static final CreativeModeTab CUP_SMALL_TAB = new CreativeModeTab("ravencoffee_small_Tab") {
@@ -105,17 +116,32 @@ public class RavenCoffee
         public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.CUP_SMALL_BREW_AMERICAN.get());
         }
+
+        @Override
+        public Component getDisplayName() {
+            return Component.nullToEmpty("Small Brews");
+        }
     };
     public static final CreativeModeTab CUP_MEDIUM_TAB = new CreativeModeTab("ravencoffee_medium_Tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.CUP_MEDIUM_BREW_AMERICAN.get());
         }
+
+        @Override
+        public Component getDisplayName() {
+            return Component.nullToEmpty("Medium Brews");
+        }
     };
     public static final CreativeModeTab CUP_LARGE_TAB = new CreativeModeTab("ravencoffee_large_Tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.CUP_LARGE_BREW_AMERICAN.get());
+        }
+
+        @Override
+        public Component getDisplayName() {
+            return Component.nullToEmpty("Large Brews");
         }
     };
 }
