@@ -34,7 +34,6 @@ public class ItemThrowable extends ItemBase {
             ThrowableFoodEntity foodEntity = new ThrowableFoodEntity(level, player);
             foodEntity.setItem(stack);
             foodEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
-            player.sendMessage(Component.nullToEmpty(foodEntity.position().toString()), UUID.randomUUID());
             level.addFreshEntity(foodEntity);
         }
 

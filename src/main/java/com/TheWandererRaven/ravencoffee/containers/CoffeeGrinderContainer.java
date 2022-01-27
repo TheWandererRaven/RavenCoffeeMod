@@ -163,10 +163,14 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
                     itemstack1.getItem().onCraftedBy(itemstack1, p_217067_2_, playerIn);
                 });
                 // ...move to rightmost hotbar slot...
+                /*
                 if (!this.moveItemStackTo(itemstack1, HOTBAR_FIRST_SLOT_INDEX, HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT, true))
                     // ...if hotbar is full, move to rightmost and downmost empty slot
                     if (!this.moveItemStackTo(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT, true))
                         return ItemStack.EMPTY;
+                 */
+                if (!this.moveItemStackTo(itemstack1, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT, true))
+                    return ItemStack.EMPTY;
                 //slot.onSlotChanged(itemstack1, itemstack);
                 slot.onQuickCraft(itemstack1, itemstack);
             }

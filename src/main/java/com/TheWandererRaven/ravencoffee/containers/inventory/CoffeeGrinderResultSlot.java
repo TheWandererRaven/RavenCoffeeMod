@@ -1,13 +1,20 @@
 package com.TheWandererRaven.ravencoffee.containers.inventory;
 
+import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.ResultSlot;
+import net.minecraft.world.item.ItemStack;
 
 public class CoffeeGrinderResultSlot extends ResultSlot {
-    public CoffeeGrinderResultSlot(Player p_40166_, CraftingContainer p_40167_, Container p_40168_, int p_40169_, int p_40170_, int p_40171_) {
-        super(p_40166_, p_40167_, p_40168_, p_40169_, p_40170_, p_40171_);
+    private final CraftingContainer craftSlots;
+    private final Player player;
+    public CoffeeGrinderResultSlot(Player player, CraftingContainer craftingContainer, Container container, int slot, int x, int y) {
+        super(player, craftingContainer, container, slot, x, y);
+        this.player = player;
+        this.craftSlots = craftingContainer;
     }
     /*
     private final CraftingInventory craftMatrix;
@@ -17,33 +24,32 @@ public class CoffeeGrinderResultSlot extends ResultSlot {
         this.craftMatrix = craftingInventory;
         this.player = player;
     }
+     */
 
-    public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack) {
-        this.onCrafting(stack);
+    @Override
+    public void onTake(Player thePlayer, ItemStack stack) {
+        this.checkTakeAchievements(stack);
         net.minecraftforge.common.ForgeHooks.setCraftingPlayer(thePlayer);
-        NonNullList<ItemStack> nonnulllist = thePlayer.world.getRecipeManager().getRecipeNonNull(RecipeTypesRegistry.COFFEE_GRINDING, this.craftMatrix, thePlayer.world);
+        NonNullList<ItemStack> nonnulllist = thePlayer.level.getRecipeManager().getRemainingItemsFor(RecipeTypesRegistry.COFFEE_GRINDING, this.craftSlots, thePlayer.level);
         net.minecraftforge.common.ForgeHooks.setCraftingPlayer(null);
         for(int i = 0; i < nonnulllist.size(); ++i) {
-            ItemStack itemstack = this.craftMatrix.getStackInSlot(i);
+            ItemStack itemstack = this.craftSlots.getItem(i);
             ItemStack itemstack1 = nonnulllist.get(i);
             if (!itemstack.isEmpty()) {
-                this.craftMatrix.decrStackSize(i, 1);
-                itemstack = this.craftMatrix.getStackInSlot(i);
+                this.craftSlots.removeItem(i, 1);
+                itemstack = this.craftSlots.getItem(i);
             }
 
             if (!itemstack1.isEmpty()) {
                 if (itemstack.isEmpty()) {
-                    this.craftMatrix.setInventorySlotContents(i, itemstack1);
-                } else if (ItemStack.areItemsEqual(itemstack, itemstack1) && ItemStack.areItemStackTagsEqual(itemstack, itemstack1)) {
+                    this.craftSlots.setItem(i, itemstack1);
+                } else if (ItemStack.isSame(itemstack, itemstack1) && ItemStack.tagMatches(itemstack, itemstack1)) {
                     itemstack1.grow(itemstack.getCount());
-                    this.craftMatrix.setInventorySlotContents(i, itemstack1);
-                } else if (!this.player.inventory.addItemStackToInventory(itemstack1)) {
-                    this.player.dropItem(itemstack1, false);
+                    this.craftSlots.setItem(i, itemstack1);
+                } else if (!this.player.getInventory().add(itemstack1)) {
+                    this.player.drop(itemstack1, false);
                 }
             }
         }
-
-        return stack;
     }
-     */
 }
