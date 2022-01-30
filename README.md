@@ -47,6 +47,7 @@ Some ideas I have:
 |`1`|*Config file*			|Implement a config file (mainly for the coffee tree generation)|
 |`1`|*Special Brews Effects*			|Create custom effects for special brews & Desserts|
 |`1`|*Brews Effects*			|Redefine & adjust the effects|
+|`2`|*Barista Guidebook*			|Create a Guide book for coffee related stuff|
 |`2`|*Coffee Tree better bonemeal*			|Enmhance bonemeanable capabilities to Coffee Tree so if the player bonemeals the trunk at full age the leaves grow|
 |`2`|*Coffee Cups are coockable*			|If Mojang implements the ceramic cooking system they showed on some previous minecon|
 |`3`|*Coffee Armor*			|Simple Coffee Armor|
