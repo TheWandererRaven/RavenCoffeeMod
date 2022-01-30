@@ -2,31 +2,22 @@ package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.Features;
-import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.VegetationPatchFeature;
 import net.minecraft.world.level.levelgen.feature.blockplacers.SimpleBlockPlacer;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneDecoratorConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.ConfiguredDecorator;
 
 public class ConfiguredFeaturesRegistry {
     public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_DEFAULT = register(
             "patch_coffee_tree",
             FeaturesRegistry.COFFEE_TREE.get()
-                    .configured(Configs.COFFEE_TREE_PATCH_DEFAULT_CONFIG)
+                    .configured(FeatureConfigs.COFFEE_TREE_PATCH_DEFAULT_CONFIG)
                     .decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE)
                     .count(5)
     );
@@ -36,12 +27,12 @@ public class ConfiguredFeaturesRegistry {
     public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_TIGHT = register(
             "patch_coffee_tree_tight",
             FeaturesRegistry.COFFEE_TREE.get()
-                    .configured(Configs.COFFEE_TREE_PATCH_TIGHT_CONFIG)
+                    .configured(FeatureConfigs.COFFEE_TREE_PATCH_TIGHT_CONFIG)
                     .decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE)
                     .count(10)
                     .rarity(20)
     );
-    public static class Configs {
+    public static class FeatureConfigs {
         public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_DEFAULT_CONFIG = (
                 new DualBlockPileFeatureConfig.Builder(
                         new SimpleStateProvider(States.COFFEE_TREE_TRUNK),
