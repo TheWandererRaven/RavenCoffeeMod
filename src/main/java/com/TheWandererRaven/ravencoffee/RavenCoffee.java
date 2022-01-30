@@ -1,6 +1,7 @@
 package com.TheWandererRaven.ravencoffee;
 
 import com.TheWandererRaven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
+import com.TheWandererRaven.ravencoffee.util.configuration.ModConfiguration;
 import com.TheWandererRaven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -9,13 +10,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -57,6 +59,8 @@ public class RavenCoffee
         BrewsRegistry.BREWS.register(FMLJavaModLoadingContext.get().getModEventBus());
         FeaturesRegistry.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_SPEC);
+
         MinecraftForge.EVENT_BUS.register(this);
         LOGGER.info("RAVEN COFFEE FINISHED SETUP!");
     }
@@ -65,10 +69,10 @@ public class RavenCoffee
     }
 
     private void doBiomeStuff(final BiomeLoadingEvent event) {
-        if(event.getCategory().equals(Biome.BiomeCategory.JUNGLE))
-            event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_TIGHT);
-        if(event.getCategory().equals(Biome.BiomeCategory.SAVANNA))
-            event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_SPARSE);
+        if(event.getCategory().equals(Biome.BiomeCategory.JUNGLE) && ModConfiguration.COMMON.COFFEE_TREE_JUNGLE_ENABLED.get())
+            event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_JUNGLE);
+        if(event.getCategory().equals(Biome.BiomeCategory.SAVANNA) && ModConfiguration.COMMON.COFFEE_TREE_SAVANNAH_ENABLED.get())
+            event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> ConfiguredFeaturesRegistry.PATCH_COFFEE_TREE_SAVANNAH);
     }
 
     private void setupClient(final FMLClientSetupEvent event) {

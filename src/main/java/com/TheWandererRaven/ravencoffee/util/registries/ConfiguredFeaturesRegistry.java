@@ -1,6 +1,7 @@
 package com.TheWandererRaven.ravencoffee.util.registries;
 
 import com.TheWandererRaven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
+import com.TheWandererRaven.ravencoffee.util.configuration.ModConfiguration;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
@@ -14,23 +15,21 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProv
 import net.minecraft.world.level.levelgen.placement.ConfiguredDecorator;
 
 public class ConfiguredFeaturesRegistry {
-    public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_DEFAULT = register(
-            "patch_coffee_tree",
+    public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_SAVANNAH = register(
+            "patch_coffee_tree_savannah",
             FeaturesRegistry.COFFEE_TREE.get()
                     .configured(FeatureConfigs.COFFEE_TREE_PATCH_DEFAULT_CONFIG)
                     .decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE)
-                    .count(5)
+                    .count(ModConfiguration.COMMON.COFFEE_TREE_SAVANNAH_COUNT.get())
+                    .rarity(ModConfiguration.COMMON.COFFEE_TREE_SAVANNAH_RARITY.get())
     );
-    public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_SPARSE = register(
-            "patch_coffee_tree_sparse", PATCH_COFFEE_TREE_DEFAULT.rarity(100)
-    );
-    public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_TIGHT = register(
-            "patch_coffee_tree_tight",
+    public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_JUNGLE = register(
+            "patch_coffee_tree_jungle",
             FeaturesRegistry.COFFEE_TREE.get()
-                    .configured(FeatureConfigs.COFFEE_TREE_PATCH_TIGHT_CONFIG)
+                    .configured(FeatureConfigs.COFFEE_TREE_PATCH_JUNGLE_CONFIG)
                     .decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE)
-                    .count(10)
-                    .rarity(20)
+                    .count(ModConfiguration.COMMON.COFFEE_TREE_JUNGLE_COUNT.get())
+                    .rarity(ModConfiguration.COMMON.COFFEE_TREE_JUNGLE_RARITY.get())
     );
     public static class FeatureConfigs {
         public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_DEFAULT_CONFIG = (
@@ -45,7 +44,7 @@ public class ConfiguredFeaturesRegistry {
                 .xSpread(10)
                 .zSpread(10)
                 .build();
-        public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_TIGHT_CONFIG = (
+        public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_JUNGLE_CONFIG = (
                 new DualBlockPileFeatureConfig.Builder(
                         new SimpleStateProvider(States.COFFEE_TREE_TRUNK),
                         new SimpleStateProvider(States.COFFEE_TREE_LEAVES),
