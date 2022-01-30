@@ -2,7 +2,6 @@ package com.TheWandererRaven.ravencoffee.blocks;
 
 import com.TheWandererRaven.ravencoffee.util.registries.BlocksRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
@@ -12,8 +11,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.UUID;
 
 public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
     public static final IntegerProperty AGE;

@@ -4,7 +4,6 @@ import com.TheWandererRaven.ravencoffee.containers.inventory.CoffeeGrinderResult
 import com.TheWandererRaven.ravencoffee.util.registries.ContainersRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -17,7 +16,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
 
 import java.util.Optional;
-import java.util.UUID;
 
 
 public class CoffeeGrinderContainer extends AbstractContainerMenu {

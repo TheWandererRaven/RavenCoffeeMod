@@ -1,10 +1,8 @@
 package com.TheWandererRaven.ravencoffee.blocks;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
 import com.TheWandererRaven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
@@ -31,7 +29,6 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.Iterator;
 import java.util.Random;
-import java.util.UUID;
 
 public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     public static final IntegerProperty AGE;

@@ -1,7 +1,6 @@
 package com.TheWandererRaven.ravencoffee.customClasses;
 
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.ArrayList;
 import java.util.List;
