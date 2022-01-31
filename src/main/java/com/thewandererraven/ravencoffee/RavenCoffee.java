@@ -7,21 +7,29 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.ModLoadingException;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.moddiscovery.ModFileInfo;
+import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
+import net.minecraftforge.forgespi.language.IModInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,7 +42,8 @@ public class RavenCoffee
     public static final String MOD_ID = "ravencoffee";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    public RavenCoffee() {
+    public RavenCoffee() throws Exception {
+        if(!isRavenBrewsPresent()) throw new Exception("Raven Brews Core not present!");
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::setup);
         MinecraftForge.EVENT_BUS.addListener(this::doBiomeStuff);
@@ -56,13 +65,24 @@ public class RavenCoffee
 
         BlocksRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ItemsRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+
         BrewsRegistry.BREWS.register(FMLJavaModLoadingContext.get().getModEventBus());
+
         FeaturesRegistry.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_SPEC);
 
         MinecraftForge.EVENT_BUS.register(this);
         LOGGER.info("RAVEN COFFEE FINISHED SETUP!");
+    }
+
+    private boolean isRavenBrewsPresent() {
+        try {
+            Class.forName("com.thewandererraven.ravenbrewscore.Brews");
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
     private void setup(final FMLCommonSetupEvent event) {

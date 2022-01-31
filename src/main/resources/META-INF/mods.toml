@@ -14,17 +14,21 @@ authors="TheWandererRaven"
 description='''
 I haven't finished this yet! Thanks for downloading tho.
 '''
-
 [[dependencies.raven_coffee]]
     modId="forge"
     mandatory=true
     versionRange="[34,)"
     ordering="NONE"
     side="BOTH"
-
 [[dependencies.raven_coffee]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.17.1]"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.raven_coffee]]
+    modId="ravenbrewscore"
+    mandatory=true
+    versionRange="[1.0.0]"
     ordering="NONE"
     side="BOTH"

@@ -1,8 +1,8 @@
 package com.thewandererraven.ravencoffee.util.registries;
 
+import com.thewandererraven.ravenbrewscore.Brews;
+import com.thewandererraven.ravenbrewscore.CupSizes;
 import com.thewandererraven.ravencoffee.RavenCoffee;
-import com.thewandererraven.ravencoffee.customClasses.Brews;
-import com.thewandererraven.ravencoffee.customClasses.CupSizes;
 import com.thewandererraven.ravencoffee.items.ChorusBrew;
 import com.thewandererraven.ravencoffee.items.CoffeeBrew;
 import net.minecraft.world.food.FoodProperties;

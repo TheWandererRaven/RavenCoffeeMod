@@ -1,6 +1,6 @@
 package com.thewandererraven.ravencoffee.items;
 
-import com.thewandererraven.ravencoffee.customClasses.Brew;
+import com.thewandererraven.ravenbrewscore.Brew;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

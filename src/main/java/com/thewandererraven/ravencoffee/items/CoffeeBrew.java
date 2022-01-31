@@ -1,7 +1,7 @@
 package com.thewandererraven.ravencoffee.items;
 
-import com.thewandererraven.ravencoffee.customClasses.Brew;
-import com.thewandererraven.ravencoffee.customClasses.BrewEffect;
+import com.thewandererraven.ravenbrewscore.Brew;
+import com.thewandererraven.ravenbrewscore.BrewEffect;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
