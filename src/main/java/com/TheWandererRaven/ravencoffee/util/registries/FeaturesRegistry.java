@@ -1,8 +1,8 @@
-package com.TheWandererRaven.ravencoffee.util.registries;
+package com.thewandererraven.ravencoffee.util.registries;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import com.TheWandererRaven.ravencoffee.gen.features.DefaultCoffeeTreesFeature;
-import com.TheWandererRaven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
+import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.gen.features.DefaultCoffeeTreesFeature;
+import com.thewandererraven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

@@ -1,4 +1,4 @@
-package com.TheWandererRaven.ravencoffee.blocks;
+package com.thewandererraven.ravencoffee.blocks;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.MagmaBlock;

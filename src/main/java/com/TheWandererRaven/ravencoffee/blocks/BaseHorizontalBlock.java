@@ -1,4 +1,4 @@
-package com.TheWandererRaven.ravencoffee.blocks;
+package com.thewandererraven.ravencoffee.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

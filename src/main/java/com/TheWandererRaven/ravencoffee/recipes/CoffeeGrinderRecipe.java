@@ -1,8 +1,8 @@
-package com.TheWandererRaven.ravencoffee.recipes;//package com.TheWandererRaven.ravencoffee.recipes;
+package com.thewandererraven.ravencoffee.recipes;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
-import com.TheWandererRaven.ravencoffee.util.registries.RecipesRegistry;
+import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.util.registries.RecipeTypesRegistry;
+import com.thewandererraven.ravencoffee.util.registries.RecipesRegistry;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;

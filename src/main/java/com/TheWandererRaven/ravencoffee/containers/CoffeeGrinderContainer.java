@@ -1,8 +1,8 @@
-package com.TheWandererRaven.ravencoffee.containers;
+package com.thewandererraven.ravencoffee.containers;
 
-import com.TheWandererRaven.ravencoffee.containers.inventory.CoffeeGrinderResultSlot;
-import com.TheWandererRaven.ravencoffee.util.registries.ContainersRegistry;
-import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
+import com.thewandererraven.ravencoffee.containers.inventory.CoffeeGrinderResultSlot;
+import com.thewandererraven.ravencoffee.util.registries.ContainersRegistry;
+import com.thewandererraven.ravencoffee.util.registries.RecipeTypesRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;

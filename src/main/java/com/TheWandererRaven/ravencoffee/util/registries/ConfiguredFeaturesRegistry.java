@@ -1,7 +1,7 @@
-package com.TheWandererRaven.ravencoffee.util.registries;
+package com.thewandererraven.ravencoffee.util.registries;
 
-import com.TheWandererRaven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
-import com.TheWandererRaven.ravencoffee.util.configuration.ModConfiguration;
+import com.thewandererraven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
+import com.thewandererraven.ravencoffee.util.configuration.ModConfiguration;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;

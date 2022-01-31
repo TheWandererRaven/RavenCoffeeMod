@@ -1,4 +1,4 @@
-package com.TheWandererRaven.ravencoffee.util.configuration;
+package com.thewandererraven.ravencoffee.util.configuration;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;

@@ -1,6 +1,6 @@
-package com.TheWandererRaven.ravencoffee.containers.screen;//package com.TheWandererRaven.ravencoffee.containers.screen;
+package com.thewandererraven.ravencoffee.containers.screen;
 
-import com.TheWandererRaven.ravencoffee.containers.CoffeeGrinderContainer;
+import com.thewandererraven.ravencoffee.containers.CoffeeGrinderContainer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

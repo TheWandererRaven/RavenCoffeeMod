@@ -1,7 +1,7 @@
-package com.TheWandererRaven.ravencoffee.util.registries;//package com.TheWandererRaven.ravencoffee.util.registries;
+package com.thewandererraven.ravencoffee.util.registries;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import com.TheWandererRaven.ravencoffee.recipes.CoffeeGrinderRecipe;
+import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.recipes.CoffeeGrinderRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

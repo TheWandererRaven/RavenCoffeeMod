@@ -1,4 +1,4 @@
-package com.TheWandererRaven.ravencoffee.customClasses;
+package com.thewandererraven.ravencoffee.customClasses;
 
 import net.minecraft.world.effect.MobEffect;
 

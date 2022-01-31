@@ -1,6 +1,6 @@
-package com.TheWandererRaven.ravencoffee.blocks;
+package com.thewandererraven.ravencoffee.blocks;
 
-import com.TheWandererRaven.ravencoffee.util.registries.BlocksRegistry;
+import com.thewandererraven.ravencoffee.util.registries.BlocksRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;

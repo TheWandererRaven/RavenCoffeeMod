@@ -1,6 +1,6 @@
-package com.TheWandererRaven.ravencoffee.blocks;
+package com.thewandererraven.ravencoffee.blocks;
 
-import com.TheWandererRaven.ravencoffee.util.registries.ItemsRegistry;
+import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

@@ -1,6 +1,6 @@
-package com.TheWandererRaven.ravencoffee.util.registries;//package com.TheWandererRaven.ravencoffee.util.registries;
+package com.thewandererraven.ravencoffee.util.registries;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.RavenCoffee;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;

@@ -1,6 +1,6 @@
-package com.TheWandererRaven.ravencoffee.items.tools;
+package com.thewandererraven.ravencoffee.items.tools;
 
-import com.TheWandererRaven.ravencoffee.util.registries.ItemsRegistry;
+import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 

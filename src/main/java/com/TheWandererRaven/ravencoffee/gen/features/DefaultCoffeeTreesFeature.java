@@ -1,7 +1,7 @@
-package com.TheWandererRaven.ravencoffee.gen.features;
+package com.thewandererraven.ravencoffee.gen.features;
 
-import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
-import com.TheWandererRaven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
+import com.thewandererraven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
+import com.thewandererraven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;

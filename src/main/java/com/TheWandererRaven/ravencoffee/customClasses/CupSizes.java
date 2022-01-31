@@ -1,4 +1,4 @@
-package com.TheWandererRaven.ravencoffee.customClasses;
+package com.thewandererraven.ravencoffee.customClasses;
 
 public class CupSizes {
     public static final double TINY = 0.25d;

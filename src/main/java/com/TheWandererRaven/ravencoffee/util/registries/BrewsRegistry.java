@@ -1,10 +1,10 @@
-package com.TheWandererRaven.ravencoffee.util.registries;
+package com.thewandererraven.ravencoffee.util.registries;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import com.TheWandererRaven.ravencoffee.customClasses.Brews;
-import com.TheWandererRaven.ravencoffee.customClasses.CupSizes;
-import com.TheWandererRaven.ravencoffee.items.ChorusBrew;
-import com.TheWandererRaven.ravencoffee.items.CoffeeBrew;
+import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.customClasses.Brews;
+import com.thewandererraven.ravencoffee.customClasses.CupSizes;
+import com.thewandererraven.ravencoffee.items.ChorusBrew;
+import com.thewandererraven.ravencoffee.items.CoffeeBrew;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fmllegacy.RegistryObject;

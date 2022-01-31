@@ -1,6 +1,6 @@
-package com.TheWandererRaven.ravencoffee.containers.inventory;
+package com.thewandererraven.ravencoffee.containers.inventory;
 
-import com.TheWandererRaven.ravencoffee.util.registries.RecipeTypesRegistry;
+import com.thewandererraven.ravencoffee.util.registries.RecipeTypesRegistry;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;

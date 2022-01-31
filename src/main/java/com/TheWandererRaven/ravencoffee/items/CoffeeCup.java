@@ -1,6 +1,6 @@
-package com.TheWandererRaven.ravencoffee.items;
+package com.thewandererraven.ravencoffee.items;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.RavenCoffee;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluids;

@@ -1,9 +1,9 @@
-package com.TheWandererRaven.ravencoffee.util.registries;
+package com.thewandererraven.ravencoffee.util.registries;
 
-import com.TheWandererRaven.ravencoffee.RavenCoffee;
-import com.TheWandererRaven.ravencoffee.items.ItemBase;
-import com.TheWandererRaven.ravencoffee.items.ItemThrowable;
-import com.TheWandererRaven.ravencoffee.items.tools.RavenCoffeeItemTier;
+import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.items.ItemBase;
+import com.thewandererraven.ravencoffee.items.ItemThrowable;
+import com.thewandererraven.ravencoffee.items.tools.RavenCoffeeItemTier;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.fmllegacy.RegistryObject;

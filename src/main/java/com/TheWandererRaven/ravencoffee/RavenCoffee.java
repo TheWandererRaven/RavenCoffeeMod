@@ -1,8 +1,8 @@
-package com.TheWandererRaven.ravencoffee;
+package com.thewandererraven.ravencoffee;
 
-import com.TheWandererRaven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
-import com.TheWandererRaven.ravencoffee.util.configuration.ModConfiguration;
-import com.TheWandererRaven.ravencoffee.util.registries.*;
+import com.thewandererraven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
+import com.thewandererraven.ravencoffee.util.configuration.ModConfiguration;
+import com.thewandererraven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;

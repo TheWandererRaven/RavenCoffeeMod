@@ -1,4 +1,4 @@
-package com.TheWandererRaven.ravencoffee.containers.inventory;
+package com.thewandererraven.ravencoffee.containers.inventory;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;

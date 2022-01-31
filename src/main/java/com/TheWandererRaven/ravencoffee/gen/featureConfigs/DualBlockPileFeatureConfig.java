@@ -1,4 +1,4 @@
-package com.TheWandererRaven.ravencoffee.gen.featureConfigs;
+package com.thewandererraven.ravencoffee.gen.featureConfigs;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
