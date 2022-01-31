@@ -4,12 +4,12 @@ license="All rights reserved"
 issueTrackerURL="https://github.com/TheWandererRaven/RavenCoffeeMod/issues"
 [[mods]]
 modId="ravencoffee"
-version="0.4.0-1.17.1-37.1.1"
+version="0.4.0"
 displayName="Raven Coffee Mod"
 updateJSONURL="https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
 displayURL="https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
-logoFile="examplemod.png"
-credits="Credits go for me, TheWandererRaven, cheers."
+logoFile="ravenCoffeeLogo.png"
+credits="Credits to me, TheWandererRaven, cheers."
 authors="TheWandererRaven"
 description='''
 I haven't finished this yet! Thanks for downloading tho.

@@ -93,59 +93,34 @@ public class RavenCoffee
         IDispenserBehaviourRegistry.registerBehaviours();
     }
 
-    public static final CreativeModeTab GENERAL_TAB = new CreativeModeTab("ravencoffee_general_Tab") {
+    public static final CreativeModeTab GENERAL_TAB = new CreativeModeTab("ravencoffee_general_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ItemsRegistry.COFFEE_BEANS_ROASTED.get());
         }
-
-        @Override
-        public Component getDisplayName() {
-            return Component.nullToEmpty("Raven Coffee General Items");
-        }
     };
-    public static final CreativeModeTab COFFEE_MUG_TAB = new CreativeModeTab("ravencoffee_mug_Tab") {
+    public static final CreativeModeTab COFFEE_MUG_TAB = new CreativeModeTab("ravencoffee_mug_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.COFFEE_MUG_BREW_AMERICAN.get());
         }
-
-        @Override
-        public Component getDisplayName() {
-            return Component.nullToEmpty("Coffee Mug Brews");
-        }
     };
-    public static final CreativeModeTab CUP_SMALL_TAB = new CreativeModeTab("ravencoffee_small_Tab") {
+    public static final CreativeModeTab CUP_SMALL_TAB = new CreativeModeTab("ravencoffee_small_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.CUP_SMALL_BREW_AMERICAN.get());
         }
-
-        @Override
-        public Component getDisplayName() {
-            return Component.nullToEmpty("Small Brews");
-        }
     };
-    public static final CreativeModeTab CUP_MEDIUM_TAB = new CreativeModeTab("ravencoffee_medium_Tab") {
+    public static final CreativeModeTab CUP_MEDIUM_TAB = new CreativeModeTab("ravencoffee_medium_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.CUP_MEDIUM_BREW_AMERICAN.get());
         }
-
-        @Override
-        public Component getDisplayName() {
-            return Component.nullToEmpty("Medium Brews");
-        }
     };
-    public static final CreativeModeTab CUP_LARGE_TAB = new CreativeModeTab("ravencoffee_large_Tab") {
+    public static final CreativeModeTab CUP_LARGE_TAB = new CreativeModeTab("ravencoffee_large_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(BrewsRegistry.CUP_LARGE_BREW_AMERICAN.get());
-        }
-
-        @Override
-        public Component getDisplayName() {
-            return Component.nullToEmpty("Large Brews");
         }
     };
 }
