@@ -44,7 +44,6 @@ What has been accomplished:
 Some ideas I have:
 |Priority|Feature                        |Description|
 |-----|---------------------------------|-|
-|`1`|*Config file*			|Implement a config file (mainly for the coffee tree generation)|
 |`1`|*Special Brews Effects*			|Create custom effects for special brews & Desserts|
 |`1`|*Brews Effects*			|Redefine & adjust the effects|
 |`2`|*Barista Guidebook*			|Create a Guide book for coffee related stuff|
