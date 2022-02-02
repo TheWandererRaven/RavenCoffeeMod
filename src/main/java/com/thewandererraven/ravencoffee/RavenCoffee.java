@@ -78,7 +78,7 @@ public class RavenCoffee
 
     private boolean isRavenBrewsPresent() {
         try {
-            Class.forName("com.thewandererraven.ravenbrewscore.Brews");
+            Class.forName("com.thewandererraven.ravenbrewscore.Brew");
             return true;
         } catch (Exception e){
             return false;
