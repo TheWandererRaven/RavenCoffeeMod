@@ -1,6 +1,6 @@
 package com.thewandererraven.ravencoffee.util.registries;
 
-import com.thewandererraven.ravenbrewscore.Brews;
+import com.thewandererraven.ravencoffee.items.Brews;
 import com.thewandererraven.ravenbrewscore.CupSizes;
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.items.ChorusBrew;
