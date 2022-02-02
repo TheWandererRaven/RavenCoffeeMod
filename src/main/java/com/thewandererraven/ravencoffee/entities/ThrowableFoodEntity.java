@@ -1,4 +1,4 @@
-package com.thewandererraven.ravencoffee.customClasses;
+package com.thewandererraven.ravencoffee.entities;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

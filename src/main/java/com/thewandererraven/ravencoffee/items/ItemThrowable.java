@@ -1,6 +1,6 @@
 package com.thewandererraven.ravencoffee.items;
 
-import com.thewandererraven.ravencoffee.customClasses.ThrowableFoodEntity;
+import com.thewandererraven.ravencoffee.entities.ThrowableFoodEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;

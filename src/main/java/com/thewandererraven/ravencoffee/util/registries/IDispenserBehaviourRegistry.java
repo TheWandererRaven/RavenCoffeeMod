@@ -1,6 +1,6 @@
 package com.thewandererraven.ravencoffee.util.registries;
 
-import com.thewandererraven.ravencoffee.customClasses.ThrowableFoodEntity;
+import com.thewandererraven.ravencoffee.entities.ThrowableFoodEntity;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.world.entity.projectile.Projectile;
