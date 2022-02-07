@@ -49,12 +49,12 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
     ).reduce((v1, v2) -> {return Shapes.join(v1, v2, BooleanOp.OR);})
             .orElse(Block.box(4.625, 10.5, 7.625, 5.375, 11.25, 8.375));
     public static final Map<Direction, VoxelShape> SHAPES = new HashMap<Direction, VoxelShape>();
-    public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final Component CONTAINER_NAME = new TranslatableComponent("container.coffee_grinder");
 
     public CoffeeGrinderBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(HORIZONTAL_FACING, Direction.NORTH));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH));
         runCalculation(SHAPE);
     }
 
@@ -78,33 +78,32 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
                 flag = true;
             }
         }
-
-        return this.defaultBlockState().setValue(HORIZONTAL_FACING, context.getNearestLookingDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos,
                         CollisionContext context) {
-        return SHAPES.get(state.getValue(HORIZONTAL_FACING));
+        return SHAPES.get(state.getValue(FACING));
     }
     //                       DIRECTIONAL
 
     @SuppressWarnings("deprecation")
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation(state.getValue(HORIZONTAL_FACING)));
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
     @Override
     public BlockState rotate(BlockState state, LevelAccessor world, BlockPos pos, Rotation direction) {
-        return state.setValue(HORIZONTAL_FACING, direction.rotate(state.getValue(HORIZONTAL_FACING)));
+        return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(HORIZONTAL_FACING);
+        builder.add(FACING);
     }
 
     protected static void calculateShapes(Direction to, VoxelShape shape) {
