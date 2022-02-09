@@ -10,26 +10,25 @@ For now I'll just make averything that I can, coffee ingot, coffee swort, coffe 
 
 if you have any other suggestions feels free to send me a message, post, anything you'd like (don't stalk me please). You can follow or dm me [@T_WandererRaven](https://twitter.com/T_WandererRaven) on twitter.
 # Install The mod
-To install the mod just copy the **"ravencoffee-x.x.x-x.x.jar"** file from the **"latest_builds"** folder and paste it on your **"mods"** folder inside your **".minecraft"** folder.
->I'm working with [Forge 34.1.0](http://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.16.3.html).
-# ChangeLog
+To install the mod just copy the **"ravencoffee-x.x.x-x.x.jar"** file from the [CurseForge](https://www.curseforge.com/minecraft/mc-mods/raven-coffee) page and paste it on your **"mods"** folder inside your **".minecraft"** folder.
+>Be wary of the versions, the minecraft and forge version will be specified on each file.
+# Changelog
 
-**Version:** *0.1*
-- Added Items **:**
-  - Coffee Cherries (no functionality)
-  - Coffee Beans (no functionality)
-  - Roasted Coffee Beans (no functionality)
-  - Coffee Ingot (no functionality)
-- Added Blocks **:**
-  - Roasted Coffe Block (no functionality)
-  - Magma Coffe Block (no functionality)
-- Added Crafting recipes for **:**
-  - Crafting - *Coffee Beans*
-  - Crafting - *Roasted Coffe Block*
-  - Crafting - *Magma Coffee Block*
-  - Smelting - *Coffee Beans* => *Roasted Coffee Beans*
-  - Smelting - *Magma Coffee Block* => *Coffee Ingot*
-  - Decrafting - *Roasted Coffee Block* => *Roasted Coffee Beans*
+**Version:** *0.4*
+- Enhanced Coffee Tree classes
+- Removed unnecessary files and classes
+- Fixed isseue where coffee trees would spawn in huge numbers in the jungle
+  - In my defense this was not happening when I tested it before, on the newer versions I saw the jungle had huuuuge patches of the trees, so I made some tweaks to the generation
+- Made some minor adjustments to Coffee Tool Tier
+- Added Configuration file
+  - Added configuration for Coffee Tree world generation
+- Updated languages
+  - Added creative tab names
+  - Added Chinese language
+  - Added Spanish language (All spanish translations are the same at the moment)
+- Added more info to the modfile
+- Added Raven Brews Core as a dependency
+  - Moved some code over there for future implementations
 
 ## Known bugs
 
@@ -40,22 +39,33 @@ If you happen to find something please let me know directly or report it on the 
 This is basically things I want to add to the mod. For the time being I don't knw the end goal of this, I'll add whatever I feel like complments this mod.
 I'm open to suggestions as well as feedback.
 
-So far whta I have planned is:
+What has been accomplished:
 |Ver. |Feature                        |Description|
 |-----|---------------------------------|-|
-|`0.2`|*Coffee Tree Sapling*		|Coffee tree sapling block (With sapling functionality)|
-|`0.2`|*Coffee Leaves*			|Coffee Leaves Block that drop coffee cherries|
-|`0.2`|*Coffee Tree*			|Ganeration of a Coffee tree from its sapling|
-|`0.2`|*Define Coffee Ingot process*	|Rework current process to make it a bit more complex, add a similar process as Netherite but for Iron tier|
-|`0.2`|*Coffee Tools*			|Basic Coffee Tools|
-|`0.3.0`|*Coffee Brewing*			|Multiple coffee brewings using already existing minecraft items|
-|`0.3.1`|*Coffee Food*			|Multiple food items (desserts, sandwitches, etc) to expand the food variety, moslty coffee-shop based|
-|`0.3.2`|*Brews Effects*			|Redefine & adjust the effects|
-|`0.3.3`|*Special Brews Effects*			|Create custom effects for special brews & Desserts|
-|`0.7?`|*Coffee Armor*			|Simple Coffee Armor|
-|`0.8?`|*Coffee Tree World Generation*	|Simple world generation (no specific biome yet specified)|
-|`0.9?`|*Raven Coffee*			|???|
-|`1.0`|*Full release*       |Most Stable Version|
+|`0.4`|*Coffee Tree Sapling*		|Coffee tree sapling block (With sapling functionality)|
+|`0.4`|*Coffee Leaves*			|Coffee Leaves Block that drop coffee cherries|
+|`0.4`|*Coffee Tree*			|Ganeration of a Coffee tree from its sapling|
+|`0.4`|*Coffee Tree World Generation*	|Simple world generation for savannah and jungle|
+|`0.4`|*Define Coffee Ingot process*	|Rework current process to make it a bit more complex, add a similar process as Netherite but for Iron tier|
+|`0.4`|*Coffee Tools*			|Basic Coffee Tools|
+|`0.4`|*Coffee Brewing p1*			|Multiple coffee brewings using already existing minecraft items|
+|`0.4`|*Coffee Food p1*			|Multiple food items (desserts, sandwitches, etc) to expand the food variety, moslty coffee-shop based|
+
+Some ideas I have:
+|Priority|Feature                        |Description|
+|-----|---------------------------------|-|
+|`1`|*Special Brews Effects*			|Create custom effects for special brews & Desserts|
+|`1`|*Brews Effects*			|Redefine & adjust the effects|
+|`2`|*Barista Guidebook*			|Create a Guide book for coffee related stuff|
+|`2`|*Coffee Tree better bonemeal*			|Enmhance bonemeanable capabilities to Coffee Tree so if the player bonemeals the trunk at full age the leaves grow|
+|`2`|*Coffee Cups are coockable*			|If Mojang implements the ceramic cooking system they showed on some previous minecon|
+|`3`|*Coffee Armor*			|Simple Coffee Armor|
+|`3`|*Coffee Shops*			|Buildings of abandoned or active coffee shops to be generated on the world|
+|`3`|*Coffee Barista*			|Npcs (villagers) who can trade you coffee|
+|`4`|*Coffee Thermos?*			|Make thermos that can carry different liquids (or just different brews?) and change cups so they can't stack(?)|
+|`5`|*Coffee Machine*			|Automatic coffee crafting? I have not a certain idea on what to do here, gotta define the brews effects before this|
+|`5`|*Coffee Vending Machines*			|Maybe something mysterious with these coffee machines...hmmm|
+|`6`|*Raven Coffee*			|???|
 
 
 # Brews
@@ -84,7 +94,7 @@ The following are the multiple brews included in the mod, their ingredients and 
 |**End Blend**|N/A|![END](https://user-images.githubusercontent.com/36650776/109730755-9ffaaa00-7b7f-11eb-88ad-143104977236.png)|![END](https://user-images.githubusercontent.com/36650776/109731038-23b49680-7b80-11eb-81db-e5cc096f155f.png)|2/1.2|
 
 # Food
-The following are the multiple brews included in the mod, their ingredients and effects.
+The following are the multiple foods included in the mod, their ingredients and effects.
 |Name|Recipe|Restored Hunger|Restored Saturation|
 |-|-|-|-|
 |**Ham Sandwich**|![HAM SANDWICH](https://user-images.githubusercontent.com/36650776/132444769-965584e2-2f19-4768-862b-69c2f1881bfb.png)|8 (4 hunger points)|7.2|
