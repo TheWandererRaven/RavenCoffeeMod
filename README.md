@@ -12,13 +12,23 @@ if you have any other suggestions feels free to send me a message, post, anythin
 # Install The mod
 To install the mod just copy the **"ravencoffee-x.x.x-x.x.jar"** file from the [CurseForge](https://www.curseforge.com/minecraft/mc-mods/raven-coffee) page and paste it on your **"mods"** folder inside your **".minecraft"** folder.
 >Be wary of the versions, the minecraft and forge version will be specified on each file.
-# Fixes
+# Changelog
 
 **Version:** *0.4*
 - Enhanced Coffee Tree classes
 - Removed unnecessary files and classes
 - Fixed isseue where coffee trees would spawn in huge numbers in the jungle
   - In my defense this was not happening when I tested it before, on the newer versiones I saw the jungle had huuuuge patches of the trees, so I made some tweaks to the generation
+- Made some minor adjustments to Coffee Tool Tier
+- Added Coonfiguration file
+  - Added configuration for Coffee Tree world generation
+- Updated languages
+  - Added creative tab names
+  - Added Chinese language
+  - Added Spanish language (All spanish translations are the same at the moment)
+- Added more info to the modfile
+- Added Raven Brews Core as a dependency
+  - Moved some code over there for future implementations
 
 ## Known bugs
 
