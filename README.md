@@ -18,9 +18,9 @@ To install the mod just copy the **"ravencoffee-x.x.x-x.x.jar"** file from the [
 - Enhanced Coffee Tree classes
 - Removed unnecessary files and classes
 - Fixed isseue where coffee trees would spawn in huge numbers in the jungle
-  - In my defense this was not happening when I tested it before, on the newer versiones I saw the jungle had huuuuge patches of the trees, so I made some tweaks to the generation
+  - In my defense this was not happening when I tested it before, on the newer versions I saw the jungle had huuuuge patches of the trees, so I made some tweaks to the generation
 - Made some minor adjustments to Coffee Tool Tier
-- Added Coonfiguration file
+- Added Configuration file
   - Added configuration for Coffee Tree world generation
 - Updated languages
   - Added creative tab names
