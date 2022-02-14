@@ -5,21 +5,34 @@ import com.thewandererraven.ravencoffee.util.configuration.ModConfiguration;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 public class PlacedFeaturesRegistry {
     public static final PlacedFeature PATCH_COFFEE_TREE_SAVANNAH = register(
             "patch_coffee_tree_savannah",
-            ConfiguredFeatures.PATCH_COFFEE_TREE_SAVANNAH_CONFIGURED.placed()
+            ConfiguredFeatures.PATCH_COFFEE_TREE_SAVANNAH_CONFIGURED.placed(
+                    RarityFilter.onAverageOnceEvery(ModConfiguration.COMMON.COFFEE_TREE_SAVANNAH_RARITY.get()),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                    BiomeFilter.biome()
+            )
     );
     public static final PlacedFeature PATCH_COFFEE_TREE_JUNGLE = register(
             "patch_coffee_tree_jungle",
-            ConfiguredFeatures.PATCH_COFFEE_TREE_JUNGLE_CONFIGURED.placed()
+            ConfiguredFeatures.PATCH_COFFEE_TREE_JUNGLE_CONFIGURED.placed(
+                    RarityFilter.onAverageOnceEvery(ModConfiguration.COMMON.COFFEE_TREE_JUNGLE_RARITY.get()),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                    BiomeFilter.biome()
+            )
     );
     public static class ConfiguredFeatures {
         public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_SAVANNAH_CONFIGURED =
