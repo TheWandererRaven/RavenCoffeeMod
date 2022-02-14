@@ -6,9 +6,9 @@ import com.thewandererraven.ravencoffee.items.ItemThrowable;
 import com.thewandererraven.ravencoffee.items.tools.RavenCoffeeItemTier;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ItemsRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(
