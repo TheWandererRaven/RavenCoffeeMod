@@ -17,7 +17,7 @@ I haven't finished this yet! Thanks for downloading tho.
 [[dependencies.raven_coffee]]
     modId="forge"
     mandatory=true
-    versionRange="[34,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.raven_coffee]]
