@@ -1,8 +1,8 @@
 package com.thewandererraven.ravencoffee.containers;
 
 import com.thewandererraven.ravencoffee.containers.inventory.CoffeeGrinderResultSlot;
+import com.thewandererraven.ravencoffee.recipes.CoffeeGrinderRecipe;
 import com.thewandererraven.ravencoffee.util.registries.ContainersRegistry;
-import com.thewandererraven.ravencoffee.util.registries.RecipeTypesRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,7 +11,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
 
@@ -225,22 +224,22 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
 
     // ########################################### RECIPES #############################################################
     public static ItemStack getGrindingResultForItems(Level world, CraftingContainer craftingInventory) {
-        Optional<CraftingRecipe> matchingRecipe = getMatchingRecipeForInput(world, craftingInventory);
+        Optional<CoffeeGrinderRecipe> matchingRecipe = getMatchingRecipeForInput(world, craftingInventory);
         // beware! You must deep copy otherwise you will alter the recipe itself
         return matchingRecipe.map(recipe -> recipe.getResultItem().copy()).orElse(ItemStack.EMPTY);
     }
     // gets the recipe which matches the given input, or Missing if none.
-    public static Optional<CraftingRecipe> getMatchingRecipeForInput(Level world, CraftingContainer craftingInventory) {
-        return world.getRecipeManager().getRecipeFor(RecipeTypesRegistry.COFFEE_GRINDING, craftingInventory, world);
+    public static Optional<CoffeeGrinderRecipe> getMatchingRecipeForInput(Level world, CraftingContainer craftingInventory) {
+        return world.getRecipeManager().getRecipeFor(CoffeeGrinderRecipe.Type.INSTANCE, craftingInventory, world);
     }
 
     public void updateCraftingResult(AbstractContainerMenu containerMenu, Level world, Player player, CraftingContainer inventory, ResultContainer inventoryResult) {
         if (!world.isClientSide) {
             ServerPlayer serverplayer = (ServerPlayer)player;
             ItemStack itemstack = ItemStack.EMPTY;
-            Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeTypesRegistry.COFFEE_GRINDING, inventory, world);
+            Optional<CoffeeGrinderRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(CoffeeGrinderRecipe.Type.INSTANCE, inventory, world);
             if (optional.isPresent()) {
-                CraftingRecipe craftingrecipe = optional.get();
+                CoffeeGrinderRecipe craftingrecipe = optional.get();
                 if (inventoryResult.setRecipeUsed(world, serverplayer, craftingrecipe)) {
                     itemstack = craftingrecipe.assemble(inventory);
                 }

@@ -1,8 +1,6 @@
 package com.thewandererraven.ravencoffee.recipes;
 
 import com.thewandererraven.ravencoffee.RavenCoffee;
-import com.thewandererraven.ravencoffee.util.registries.RecipeTypesRegistry;
-import com.thewandererraven.ravencoffee.util.registries.RecipesRegistry;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -98,15 +96,22 @@ public class CoffeeGrinderRecipe implements CraftingRecipe {
 
     @Override
     public RecipeType<?> getType() {
-        return RecipeTypesRegistry.COFFEE_GRINDING;
+        return Type.INSTANCE;
+    }
+
+    public static class Type implements RecipeType<CoffeeGrinderRecipe> {
+        private Type() {}
+        public static final Type INSTANCE = new Type();
+        public static final String ID = "coffee_grinding";
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return RecipesRegistry.COFFEE_GRINDER_SERIALIZER.get();
+        return Serializer.INSTANCE;
     }
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<CoffeeGrinderRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation(RavenCoffee.MOD_ID, "coffee_grinding");
+        public static final Serializer INSTANCE = new Serializer();
+        public static final ResourceLocation ID = new ResourceLocation(RavenCoffee.MOD_ID, Type.ID);
 
         @Override
         public CoffeeGrinderRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
