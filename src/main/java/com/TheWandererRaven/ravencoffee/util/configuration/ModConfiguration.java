@@ -7,18 +7,18 @@ public class ModConfiguration {
     public static class Common {
         private static final boolean coffeeTreeSavannahEnabled = true;
         private static final int coffeeTreeSavannahCount = 5;
-        private static final int coffeeTreeSavannahRarity = 100;
+        private static final int coffeeTreeSavannahRarity = 30;
         private static final boolean coffeeTreeJungleEnabledGen = true;
         private static final int coffeeTreeJungleCount = 10;
-        private static final int coffeeTreeJungleRarity = 20;
+        private static final int coffeeTreeJungleRarity = 25;
 
         public final ForgeConfigSpec.ConfigValue<Boolean> COFFEE_TREE_SAVANNAH_ENABLED;
         public final ForgeConfigSpec.ConfigValue<Integer> COFFEE_TREE_SAVANNAH_COUNT;
-        public final ForgeConfigSpec.ConfigValue<Integer> COFFEE_TREE_SAVANNAH_RARITY;
+        public final ForgeConfigSpec.ConfigValue<Integer> COFFEE_TREE_SAVANNAH_PLACEMENT_TRIES;
 
         public final ForgeConfigSpec.ConfigValue<Boolean> COFFEE_TREE_JUNGLE_ENABLED;
         public final ForgeConfigSpec.ConfigValue<Integer> COFFEE_TREE_JUNGLE_COUNT;
-        public final ForgeConfigSpec.ConfigValue<Integer> COFFEE_TREE_JUNGLE_RARITY;
+        public final ForgeConfigSpec.ConfigValue<Integer> COFFEE_TREE_JUNGLE_PLACEMENT_TRIES;
 
 
         public Common(ForgeConfigSpec.Builder builder)
@@ -29,18 +29,18 @@ public class ModConfiguration {
             builder.push("savannah");
             this.COFFEE_TREE_SAVANNAH_ENABLED = builder.comment("Generation enabled for this biome")
                     .define("enabled", coffeeTreeSavannahEnabled);
-            this.COFFEE_TREE_SAVANNAH_COUNT = builder.comment("Count of trees pero trees patch")
-                    .define("CoffeeTreeCountSav", coffeeTreeSavannahCount);
-            this.COFFEE_TREE_SAVANNAH_RARITY = builder.comment("The bigger the number the more likely it is to spawn.")
-                    .define("CoffeeTreeRaritySav", coffeeTreeSavannahRarity);
+            this.COFFEE_TREE_SAVANNAH_COUNT = builder.comment("Count of trees patch")
+                    .define("count", coffeeTreeSavannahCount);
+            this.COFFEE_TREE_SAVANNAH_PLACEMENT_TRIES = builder.comment("The bigger the number the more likely it is to appear in the overworld. World gen tries more times to find a good spot to spawn the tree.")
+                    .define("PlacementTries", coffeeTreeSavannahRarity);
             builder.pop();
             builder.push("jungle");
             this.COFFEE_TREE_JUNGLE_ENABLED = builder.comment("Generation enabled for this biome")
                     .define("enabled", coffeeTreeJungleEnabledGen);
-            this.COFFEE_TREE_JUNGLE_COUNT = builder.comment("Count of trees pero trees patch")
+            this.COFFEE_TREE_JUNGLE_COUNT = builder.comment("Count of trees patch")
                     .define("count", coffeeTreeJungleCount);
-            this.COFFEE_TREE_JUNGLE_RARITY = builder.comment("The bigger the number the more likely it is to spawn. More common for Jungle since jungle spawns a lot of plants")
-                    .define("rarity", coffeeTreeJungleRarity);
+            this.COFFEE_TREE_JUNGLE_PLACEMENT_TRIES = builder.comment("The bigger the number the more likely it is to appear in the overworld. World gen tries more times to find a good spot to spawn the tree.")
+                    .define("PlacementTries", coffeeTreeJungleRarity);
             builder.pop(2);
         }
     }

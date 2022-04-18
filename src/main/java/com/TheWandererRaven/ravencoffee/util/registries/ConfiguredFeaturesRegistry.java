@@ -41,7 +41,7 @@ public class ConfiguredFeaturesRegistry {
                         new SimpleBlockStateProvider(States.COFFEE_TREE_LEAVES),
                         SimpleBlockPlacer.PLACER
                 ))
-                .tries(25)
+                .tries(ModConfiguration.COMMON.COFFEE_TREE_SAVANNAH_PLACEMENT_TRIES.get())
                 .whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock()))
                 .func_227317_b_()
                 .xSpread(10)
@@ -53,7 +53,7 @@ public class ConfiguredFeaturesRegistry {
                         new SimpleBlockStateProvider(States.COFFEE_TREE_LEAVES),
                         SimpleBlockPlacer.PLACER
                 ))
-                .tries(25)
+                .tries(ModConfiguration.COMMON.COFFEE_TREE_JUNGLE_PLACEMENT_TRIES.get())
                 .whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock()))
                 .func_227317_b_()
                 .xSpread(15)

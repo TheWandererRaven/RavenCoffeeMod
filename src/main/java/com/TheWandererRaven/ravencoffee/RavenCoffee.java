@@ -1,6 +1,7 @@
 package com.TheWandererRaven.ravencoffee;
 
 import com.TheWandererRaven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
+import com.TheWandererRaven.ravencoffee.util.configuration.ModConfiguration;
 import com.TheWandererRaven.ravencoffee.util.registries.FeaturesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.ConfiguredFeaturesRegistry;
 import com.TheWandererRaven.ravencoffee.util.registries.*;
@@ -15,7 +16,9 @@ import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -40,6 +43,8 @@ public class RavenCoffee
         // Register the processIMC method for modloading
         //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_SPEC);
+
         MinecraftForge.EVENT_BUS.addListener(this::doBiomeStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::postInit);
