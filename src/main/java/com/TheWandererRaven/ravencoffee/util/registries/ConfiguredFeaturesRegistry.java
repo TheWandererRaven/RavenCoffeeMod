@@ -3,6 +3,7 @@ package com.TheWandererRaven.ravencoffee.util.registries;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeLeavesBlock;
 import com.TheWandererRaven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
 import com.TheWandererRaven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
+import com.TheWandererRaven.ravencoffee.util.configuration.ModConfiguration;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -21,7 +22,7 @@ public class ConfiguredFeaturesRegistry {
             FeaturesRegistry.COFFEE_TREE.get()
                     .withConfiguration(Configs.COFFEE_TREE_PATCH_DEFAULT_CONFIG)
                     .withPlacement(Features.Placements.PATCH_PLACEMENT)
-                    .func_242731_b(5)
+                    .func_242731_b(ModConfiguration.COMMON.COFFEE_TREE_SAVANNAH_COUNT.get())
     );
     public static final ConfiguredFeature<?, ?> PATCH_COFFEE_TREE_SPARSE = register(
             "patch_coffee_tree_sparse", PATCH_COFFEE_TREE_DEFAULT.chance(6)
@@ -31,7 +32,7 @@ public class ConfiguredFeaturesRegistry {
             FeaturesRegistry.COFFEE_TREE.get()
                     .withConfiguration(Configs.COFFEE_TREE_PATCH_TIGHT_CONFIG)
                     .withPlacement(Features.Placements.PATCH_PLACEMENT)
-                    .func_242731_b(20)
+                    .func_242731_b(ModConfiguration.COMMON.COFFEE_TREE_JUNGLE_COUNT.get())
     );
     public static class Configs {
         public static final DualBlockPileFeatureConfig COFFEE_TREE_PATCH_DEFAULT_CONFIG = (
@@ -40,7 +41,7 @@ public class ConfiguredFeaturesRegistry {
                         new SimpleBlockStateProvider(States.COFFEE_TREE_LEAVES),
                         SimpleBlockPlacer.PLACER
                 ))
-                .tries(128)
+                .tries(25)
                 .whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock()))
                 .func_227317_b_()
                 .xSpread(10)
@@ -52,11 +53,11 @@ public class ConfiguredFeaturesRegistry {
                         new SimpleBlockStateProvider(States.COFFEE_TREE_LEAVES),
                         SimpleBlockPlacer.PLACER
                 ))
-                .tries(200)
+                .tries(25)
                 .whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock()))
                 .func_227317_b_()
-                .xSpread(6)
-                .zSpread(6)
+                .xSpread(15)
+                .zSpread(15)
                 .build();
     }
     public static class Placements {
