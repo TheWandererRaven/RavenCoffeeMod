@@ -4,9 +4,9 @@ import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.gen.features.DefaultCoffeeTreesFeature;
 import com.thewandererraven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public abstract class FeaturesRegistry {
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, RavenCoffee.MOD_ID);

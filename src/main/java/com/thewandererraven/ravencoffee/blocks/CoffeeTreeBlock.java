@@ -212,7 +212,7 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     @Override
     public BlockState updateShape(BlockState p_51157_, Direction p_51158_, BlockState p_51159_, LevelAccessor p_51160_, BlockPos p_51161_, BlockPos p_51162_) {
         if (!p_51157_.canSurvive(p_51160_, p_51161_)) {
-            p_51160_.getBlockTicks().scheduleTick(p_51161_, this, 1);
+            p_51160_.scheduleTick(p_51161_, this, 1);
         }
 
         return super.updateShape(p_51157_, p_51158_, p_51159_, p_51160_, p_51161_, p_51162_);

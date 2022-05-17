@@ -6,8 +6,8 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.blockplacers.BlockPlacer;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 import java.util.List;
@@ -20,8 +20,6 @@ public class DualBlockPileFeatureConfig implements FeatureConfiguration {
             return p_236599_0_.trunkStateProvider;
         }), BlockStateProvider.CODEC.fieldOf("leaves_state_provider").forGetter((p_236599_0_) -> {
             return p_236599_0_.leavesStateProvider;
-        }), BlockPlacer.CODEC.fieldOf("random_spread_foliage_placer").forGetter((p_236598_0_) -> {
-            return p_236598_0_.foliagePlacer;
         }), BlockState.CODEC.listOf().fieldOf("whitelist").forGetter((p_236597_0_) -> {
             return p_236597_0_.whitelist.stream().map(Block::defaultBlockState).collect(Collectors.toList());
         }), BlockState.CODEC.listOf().fieldOf("blacklist").forGetter((p_236596_0_) -> {
@@ -44,7 +42,6 @@ public class DualBlockPileFeatureConfig implements FeatureConfiguration {
     });
     public final BlockStateProvider trunkStateProvider;
     public final BlockStateProvider leavesStateProvider;
-    public final BlockPlacer foliagePlacer;
     public final Set<Block> whitelist;
     public final Set<BlockState> blacklist;
     public final int tryCount;
@@ -55,14 +52,13 @@ public class DualBlockPileFeatureConfig implements FeatureConfiguration {
     public final boolean field_227298_k_;
     public final boolean requiresWater;
 
-    private DualBlockPileFeatureConfig(BlockStateProvider trunkStateProvider, BlockStateProvider leavesStateProvider, BlockPlacer p_i232014_2_, List<BlockState> p_i232014_3_, List<BlockState> p_i232014_4_, int p_i232014_5_, int p_i232014_6_, int p_i232014_7_, int p_i232014_8_, boolean p_i232014_9_, boolean p_i232014_10_, boolean p_i232014_11_) {
-        this(trunkStateProvider, leavesStateProvider, p_i232014_2_, p_i232014_3_.stream().map(BlockState::getBlock).collect(Collectors.toSet()), ImmutableSet.copyOf(p_i232014_4_), p_i232014_5_, p_i232014_6_, p_i232014_7_, p_i232014_8_, p_i232014_9_, p_i232014_10_, p_i232014_11_);
+    private DualBlockPileFeatureConfig(BlockStateProvider trunkStateProvider, BlockStateProvider leavesStateProvider, List<BlockState> p_i232014_3_, List<BlockState> p_i232014_4_, int p_i232014_5_, int p_i232014_6_, int p_i232014_7_, int p_i232014_8_, boolean p_i232014_9_, boolean p_i232014_10_, boolean p_i232014_11_) {
+        this(trunkStateProvider, leavesStateProvider, p_i232014_3_.stream().map(BlockState::getBlock).collect(Collectors.toSet()), ImmutableSet.copyOf(p_i232014_4_), p_i232014_5_, p_i232014_6_, p_i232014_7_, p_i232014_8_, p_i232014_9_, p_i232014_10_, p_i232014_11_);
     }
 
-    private DualBlockPileFeatureConfig(BlockStateProvider trunkStateProvider, BlockStateProvider leavesStateProvider, BlockPlacer blockPlacer, Set<Block> whitelist, Set<BlockState> p_i225836_4_, int p_i225836_5_, int p_i225836_6_, int p_i225836_7_, int p_i225836_8_, boolean p_i225836_9_, boolean p_i225836_10_, boolean p_i225836_11_) {
+    private DualBlockPileFeatureConfig(BlockStateProvider trunkStateProvider, BlockStateProvider leavesStateProvider, Set<Block> whitelist, Set<BlockState> p_i225836_4_, int p_i225836_5_, int p_i225836_6_, int p_i225836_7_, int p_i225836_8_, boolean p_i225836_9_, boolean p_i225836_10_, boolean p_i225836_11_) {
         this.trunkStateProvider = trunkStateProvider;
         this.leavesStateProvider = leavesStateProvider;
-        this.foliagePlacer = blockPlacer;
         this.whitelist = whitelist;
         this.blacklist = p_i225836_4_;
         this.tryCount = p_i225836_5_;
@@ -77,7 +73,6 @@ public class DualBlockPileFeatureConfig implements FeatureConfiguration {
     public static class Builder {
         private final BlockStateProvider trunkStateProvider;
         private final BlockStateProvider leavesStateProvider;
-        private final BlockPlacer foliagePlacer;
         private Set<Block> whitelist = ImmutableSet.of();
         private Set<BlockState> blacklist = ImmutableSet.of();
         private int tryCount = 64;
@@ -88,10 +83,9 @@ public class DualBlockPileFeatureConfig implements FeatureConfiguration {
         private boolean field_227312_j_ = true;
         private boolean requiresWater = false;
 
-        public Builder(BlockStateProvider trunkStateProvider, BlockStateProvider leavesStateProvider, BlockPlacer blockPlacer) {
+        public Builder(BlockStateProvider trunkStateProvider, BlockStateProvider leavesStateProvider) {
             this.trunkStateProvider = trunkStateProvider;
             this.leavesStateProvider = leavesStateProvider;
-            this.foliagePlacer = blockPlacer;
         }
 
         public DualBlockPileFeatureConfig.Builder whitelist(Set<Block> p_227316_1_) {
@@ -140,7 +134,7 @@ public class DualBlockPileFeatureConfig implements FeatureConfiguration {
         }
 
         public DualBlockPileFeatureConfig build() {
-            return new DualBlockPileFeatureConfig(this.trunkStateProvider, this.leavesStateProvider, this.foliagePlacer, this.whitelist, this.blacklist, this.tryCount, this.xSpread, this.ySpread, this.zSpread, this.isReplaceable, this.field_227312_j_, this.requiresWater);
+            return new DualBlockPileFeatureConfig(this.trunkStateProvider, this.leavesStateProvider, this.whitelist, this.blacklist, this.tryCount, this.xSpread, this.ySpread, this.zSpread, this.isReplaceable, this.field_227312_j_, this.requiresWater);
         }
     }
 }
