@@ -277,4 +277,9 @@ public class RavenCoffeeItems {
             "coffee_grinder_block",
             () -> new BlockItem(RavenCoffeeBlocks.COFFEE_GRINDER.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
     );
+
+    public static final RegistryObject<Item> COFFEE_MACHINE_ITEM = ITEMS.register(
+            "coffee_machine_block",
+            () -> new BlockItem(BlocksRegistry.COFFEE_MACHINE_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
+    );
 }

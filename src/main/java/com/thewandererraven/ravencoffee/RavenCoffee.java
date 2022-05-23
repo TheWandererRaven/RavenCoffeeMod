@@ -7,6 +7,8 @@ import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipeTypes;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipes;
+import com.thewandererraven.ravencoffee.recipes.CoffeeGrinderRecipe;
+import com.thewandererraven.ravencoffee.containers.screen.CoffeeMachineScreen;
 import com.thewandererraven.ravencoffee.util.configuration.ModConfiguration;
 import com.thewandererraven.ravencoffee.util.registries.*;
 import com.thewandererraven.ravencoffee.world.features.RavenCoffeeConfiguredFeatures;
@@ -15,8 +17,11 @@ import com.thewandererraven.ravencoffee.world.features.RavenCoffeePlacedFeatures
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -97,6 +102,7 @@ public class RavenCoffee
         //ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
         //ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
         MenuScreens.register(RavenCoffeeMenuTypes.COFFEE_GRINDER_CONTAINER.get(), CoffeeGrinderContainerScreen::new);
+        MenuScreens.register(MenusRegistry.COFFEE_MACHINE_MENU.get(), CoffeeMachineScreen::new);
     }
 
     //@SubscribeEvent

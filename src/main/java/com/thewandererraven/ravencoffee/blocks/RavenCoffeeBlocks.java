@@ -43,4 +43,8 @@ public class RavenCoffeeBlocks {
                     .sound(SoundType.WOOD)
             )
     );
+    public static final RegistryObject<Block> COFFEE_MACHINE_BLOCK = BLOCKS.register(
+            "coffee_machine_block",
+            CoffeeMachineBlock::new
+    );
 }
