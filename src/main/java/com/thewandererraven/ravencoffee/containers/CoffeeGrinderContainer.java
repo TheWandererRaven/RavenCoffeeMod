@@ -1,5 +1,6 @@
 package com.thewandererraven.ravencoffee.containers;
 
+import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.containers.inventory.CoffeeGrinderResultSlot;
 import com.thewandererraven.ravencoffee.recipes.CoffeeGrinderRecipe;
 import com.thewandererraven.ravencoffee.util.registries.ContainersRegistry;
@@ -7,6 +8,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -223,6 +225,7 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
     }
 
     // ########################################### RECIPES #############################################################
+    /*
     public static ItemStack getGrindingResultForItems(Level world, CraftingContainer craftingInventory) {
         Optional<CoffeeGrinderRecipe> matchingRecipe = getMatchingRecipeForInput(world, craftingInventory);
         // beware! You must deep copy otherwise you will alter the recipe itself
@@ -232,6 +235,8 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
     public static Optional<CoffeeGrinderRecipe> getMatchingRecipeForInput(Level world, CraftingContainer craftingInventory) {
         return world.getRecipeManager().getRecipeFor(CoffeeGrinderRecipe.Type.INSTANCE, craftingInventory, world);
     }
+
+     */
 
     public void updateCraftingResult(AbstractContainerMenu containerMenu, Level world, Player player, CraftingContainer inventory, ResultContainer inventoryResult) {
         if (!world.isClientSide) {
