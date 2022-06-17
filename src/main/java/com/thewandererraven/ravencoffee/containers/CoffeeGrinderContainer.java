@@ -235,7 +235,6 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
     public static Optional<CoffeeGrinderRecipe> getMatchingRecipeForInput(Level world, CraftingContainer craftingInventory) {
         return world.getRecipeManager().getRecipeFor(CoffeeGrinderRecipe.Type.INSTANCE, craftingInventory, world);
     }
-
      */
 
     public void updateCraftingResult(AbstractContainerMenu containerMenu, Level world, Player player, CraftingContainer inventory, ResultContainer inventoryResult) {
