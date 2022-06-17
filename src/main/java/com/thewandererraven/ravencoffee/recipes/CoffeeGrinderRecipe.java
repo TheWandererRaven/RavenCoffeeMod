@@ -60,7 +60,7 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return null;
+        return Serializer.INSTANCE;
     }
 
     @Override
@@ -71,12 +71,12 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
     public static class Type implements RecipeType<CoffeeGrinderRecipe> {
         private Type() { }
         public static final CoffeeGrinderRecipe.Type INSTANCE = new CoffeeGrinderRecipe.Type();
-        public static final String ID = "coffee_grinding";
+        public static final String ID = "ravencoffee:coffee_grinding";
     }
 
     public static class Serializer implements RecipeSerializer<CoffeeGrinderRecipe> {
         public static final CoffeeGrinderRecipe.Serializer INSTANCE = new CoffeeGrinderRecipe.Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(RavenCoffee.MOD_ID, CoffeeGrinderRecipe.Type.ID);
+        public static final ResourceLocation ID = new ResourceLocation(RavenCoffee.MOD_ID, "coffee_grinding");
 
         @Override
         public CoffeeGrinderRecipe fromJson(ResourceLocation id, JsonObject json) {
