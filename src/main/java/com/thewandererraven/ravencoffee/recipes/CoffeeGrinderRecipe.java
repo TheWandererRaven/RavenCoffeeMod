@@ -19,13 +19,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
     private final ResourceLocation id;
-    private final String groupIn;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
 
-    public CoffeeGrinderRecipe(ResourceLocation id, String groupIn, ItemStack output, NonNullList<Ingredient> recipeItems) {
+    public CoffeeGrinderRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> recipeItems) {
         this.id = id;
-        this.groupIn = groupIn;
         this.output = output;
         this.recipeItems = recipeItems;
     }
@@ -80,7 +78,6 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
 
         @Override
         public CoffeeGrinderRecipe fromJson(ResourceLocation id, JsonObject json) {
-            String s = GsonHelper.getAsString(json, "group", "");
             NonNullList<Ingredient> nonnulllist = readIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (nonnulllist.isEmpty()) {
                 throw new JsonParseException("No ingredients for coffee grinder recipe");
@@ -88,7 +85,7 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
                 throw new JsonParseException("Too many ingredients for coffee grinder recipe the max is 2");
             } else {
                 ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-                return new CoffeeGrinderRecipe(id, s, itemstack, nonnulllist);
+                return new CoffeeGrinderRecipe(id, itemstack, nonnulllist);
             }
         }
 
@@ -115,7 +112,7 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
             }
 
             ItemStack output = buffer.readItem();
-            return new CoffeeGrinderRecipe(id, buffer.readUtf(32767), output, inputs);
+            return new CoffeeGrinderRecipe(id, output, inputs);
         }
 
         @Override
