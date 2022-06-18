@@ -28,15 +28,18 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
 
     @Override
     public boolean matches(CraftingContainer playerContainer, Level playerLevel) {
-        ItemStack craftingFirstItem = playerContainer.getItem(0);
-        ItemStack craftingSecondItem = playerContainer.getItem(1);
-        return (recipeItems.get(0).test(craftingFirstItem) && recipeItems.get(1).test(craftingSecondItem)) ||
-                (recipeItems.get(0).test(craftingSecondItem) && recipeItems.get(1).test(craftingFirstItem));
+        if(!playerLevel.isClientSide()) {
+            ItemStack craftingFirstItem = playerContainer.getItem(0);
+            ItemStack craftingSecondItem = playerContainer.getItem(1);
+            return (recipeItems.get(0).test(craftingFirstItem) && recipeItems.get(1).test(craftingSecondItem)) ||
+                    (recipeItems.get(0).test(craftingSecondItem) && recipeItems.get(1).test(craftingFirstItem));
+        }
+        return false;
     }
 
     @Override
     public ItemStack assemble(CraftingContainer p_44001_) {
-        return output;
+        return output.copy();
     }
 
     @Override
