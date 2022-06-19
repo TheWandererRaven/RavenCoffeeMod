@@ -6,8 +6,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class CoffeeMachineInputSlot extends SlotItemHandler {
-    public CoffeeMachineInputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+public class CoffeePowderInputSlot extends SlotItemHandler {
+    public CoffeePowderInputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
         super(itemHandler, index, xPosition, yPosition);
     }
 

@@ -1,7 +1,8 @@
 package com.thewandererraven.ravencoffee.containers;
 
 import com.thewandererraven.ravencoffee.blocks.entities.CoffeeMachineBlockEntity;
-import com.thewandererraven.ravencoffee.containers.inventory.CoffeeMachineInputSlot;
+import com.thewandererraven.ravencoffee.containers.inventory.CoffeeCupInputSlot;
+import com.thewandererraven.ravencoffee.containers.inventory.CoffeePowderInputSlot;
 import com.thewandererraven.ravencoffee.containers.inventory.CoffeeMachineResultSlot;
 import com.thewandererraven.ravencoffee.util.registries.BlocksRegistry;
 import com.thewandererraven.ravencoffee.util.registries.MenusRegistry;
@@ -24,17 +25,18 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
 
-    private static final int INPUT_SLOT_COUNT = 1;
+    private static final int INPUT_SLOT_COUNT = 2;
     private static final int OUTPUT_SLOT_COUNT = 1;
+    private static final int COFFEE_MACHINE_SLOT_CONT = INPUT_SLOT_COUNT + OUTPUT_SLOT_COUNT;
 
     private static final int PLAYER_INVENTORY_SLOTS_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
     private static final int VANILLA_SLOTS_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOTS_COUNT;
-    private static final int COFFEE_GRINDER_SLOTS_COUNT = INPUT_SLOT_COUNT + OUTPUT_SLOT_COUNT;
 
 
     private static final int OUTPUT_FIRST_SLOT_INDEX = 0;
-    private static final int INPUT_FIRST_SLOT_INDEX = OUTPUT_FIRST_SLOT_INDEX + OUTPUT_SLOT_COUNT;
-    private static final int VANILLA_FIRST_SLOT_INDEX = INPUT_FIRST_SLOT_INDEX + INPUT_SLOT_COUNT;
+    private static final int INPUT_POWDER_SLOT_INDEX = OUTPUT_FIRST_SLOT_INDEX + OUTPUT_SLOT_COUNT;
+    private static final int INPUT_CUPS_SLOT_INDEX = INPUT_POWDER_SLOT_INDEX + 1;
+    private static final int VANILLA_FIRST_SLOT_INDEX = INPUT_POWDER_SLOT_INDEX + INPUT_SLOT_COUNT;
     private static final int PLAYER_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX;
     private static final int HOTBAR_FIRST_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT;
 
@@ -45,12 +47,14 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     public static final int PLAYER_INVENTORY_XPOS = 8;
     public static final int PLAYER_INVENTORY_YPOS = 84;
 
-    public static final int OUTPUT_SLOT_POS_X = 106;
-    public static final int OUTPUT_SLOT_POS_Y = 35;
+    public static final int CUP_OUTPUT_SLOT_POS_X = 80;
+    public static final int CUP_OUTPUT_SLOT_POS_Y = 49;
 
-    public static final int INPUT_SLOT_POS_X = 53;
-    public static final int INPUT_SLOT_Y_SPACING = 19;
-    public static final int INPUT_SLOT_POS_Y = 35;
+    public static final int CUP_INPUT_SLOT_POS_X = 53;
+    public static final int CUP_INPUT_SLOT_POS_Y = 49;
+
+    public static final int POWDER_INPUT_SLOT_POS_X = 80;
+    public static final int POWDER_INPUT_SLOT_POS_Y = 17;
 
     public static final int SLOT_X_SPACING = 18;
     public static final int SLOT_Y_SPACING = 18;
@@ -61,17 +65,17 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
 
     public CoffeeMachineMenu(int containerId, Inventory inventory, BlockEntity blockEntity) {
         super(MenusRegistry.COFFEE_MACHINE_MENU.get(), containerId);
-        checkContainerSize(inventory, 2);
+        checkContainerSize(inventory, COFFEE_MACHINE_SLOT_CONT);
         this.blockEntity = ((CoffeeMachineBlockEntity) blockEntity);
         this.level = inventory.player.level;
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            // Add the tile output containers to the gui
-            addSlot(new CoffeeMachineResultSlot(handler, OUTPUT_SLOT_COUNT, OUTPUT_SLOT_POS_X,  OUTPUT_SLOT_POS_Y));
-            // Add the tile input containers to the gui
-            for (int x = 0; x < INPUT_SLOT_COUNT; x++) {
-                addSlot(new CoffeeMachineInputSlot(handler, x, INPUT_SLOT_POS_X,  INPUT_SLOT_POS_Y + INPUT_SLOT_Y_SPACING * x));
-            }
+            // ADD THE CUP OUTPUT SLOT
+            addSlot(new CoffeeMachineResultSlot(handler, OUTPUT_FIRST_SLOT_INDEX, CUP_OUTPUT_SLOT_POS_X,  CUP_OUTPUT_SLOT_POS_Y));
+            // ADD POWDER INPUT SLOT
+            addSlot(new CoffeePowderInputSlot(handler, INPUT_POWDER_SLOT_INDEX, POWDER_INPUT_SLOT_POS_X,  POWDER_INPUT_SLOT_POS_Y));
+            // ADD THE CUP INPUT SLOT
+            addSlot(new CoffeeCupInputSlot(handler, INPUT_CUPS_SLOT_INDEX, CUP_INPUT_SLOT_POS_X,  CUP_INPUT_SLOT_POS_Y));
         });
 
         // Add the rest of the players inventory to the gui
@@ -88,12 +92,23 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
         for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
             addSlot(new Slot(inventory, x, PLAYER_HOTBAR_XPOS + SLOT_X_SPACING * x, PLAYER_HOTBAR_YPOS));
         }
-
     }
 
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, BlocksRegistry.COFFEE_MACHINE_BLOCK.get());
+    }
+
+    public boolean isCupsSlotEmpty() {
+        return !this.slots.get(INPUT_CUPS_SLOT_INDEX).hasItem();
+    }
+
+    public boolean isOutputSlotEmpty() {
+        return !this.slots.get(OUTPUT_FIRST_SLOT_INDEX).hasItem();
+    }
+
+    public float getBrewingProgress() {
+        return 0.5f;
     }
 
     // This is where you specify what happens when a player shift clicks a slot in the gui
@@ -135,7 +150,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
             // If selected item is in vanilla slots...
             else if (index >= VANILLA_FIRST_SLOT_INDEX && index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT) {
                 // ...move to input slots...
-                if (!this.moveItemStackTo(itemstack1, INPUT_FIRST_SLOT_INDEX, INPUT_FIRST_SLOT_INDEX + INPUT_SLOT_COUNT, false))
+                if (!this.moveItemStackTo(itemstack1, INPUT_POWDER_SLOT_INDEX, INPUT_POWDER_SLOT_INDEX + INPUT_SLOT_COUNT, false))
                     // ...if input slots are full, and if selected slot is from player inventory...
                     if (index < PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT) {
                         // ...move to hotbar...

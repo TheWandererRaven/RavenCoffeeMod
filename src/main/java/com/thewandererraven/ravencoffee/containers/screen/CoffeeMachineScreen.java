@@ -14,6 +14,15 @@ public class CoffeeMachineScreen extends AbstractContainerScreen<CoffeeMachineMe
     private static final ResourceLocation TEXTURE = new ResourceLocation(
             RavenCoffee.MOD_ID, "textures/gui/menus/coffee_machine.png");
 
+    private static final int PROGRESS_INDICATOR_X = 102;
+    private static final int PROGRESS_INDICATOR_Y = 16;
+
+    private static final int ProgressIndicatorWidth = 9;
+    private static final int ProgressIndicatorHeight = 28;
+
+    private static final int EmptyCupSlotWidth = 16;
+    private static final int EmptyCupSlotHeight = 16;
+
     public CoffeeMachineScreen(CoffeeMachineMenu coffeeMachineMenu, Inventory inventory, Component component) {
         super(coffeeMachineMenu, inventory, component);
     }
@@ -26,6 +35,19 @@ public class CoffeeMachineScreen extends AbstractContainerScreen<CoffeeMachineMe
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         this.blit(poseStack, x, y, 0, 0, imageWidth, imageHeight);
+        float progress = this.getMenu().getBrewingProgress(); // From 0 to 1
+        if(progress > 0f)
+            this.blit(poseStack, x + PROGRESS_INDICATOR_X, y + PROGRESS_INDICATOR_Y,
+                    imageWidth, 0,
+                    ProgressIndicatorWidth, Math.round(ProgressIndicatorHeight * progress));
+        if(this.getMenu().isCupsSlotEmpty())
+            this.blit(poseStack, x + CoffeeMachineMenu.CUP_INPUT_SLOT_POS_X, y + CoffeeMachineMenu.CUP_INPUT_SLOT_POS_Y,
+                    imageWidth + ProgressIndicatorWidth, 0,
+                    EmptyCupSlotWidth, EmptyCupSlotHeight);
+        if(this.getMenu().isOutputSlotEmpty())
+            this.blit(poseStack, x + CoffeeMachineMenu.CUP_OUTPUT_SLOT_POS_X, y + CoffeeMachineMenu.CUP_OUTPUT_SLOT_POS_Y,
+                    imageWidth + ProgressIndicatorWidth + EmptyCupSlotWidth, 0,
+                    EmptyCupSlotWidth, EmptyCupSlotHeight);
     }
 
     @Override
