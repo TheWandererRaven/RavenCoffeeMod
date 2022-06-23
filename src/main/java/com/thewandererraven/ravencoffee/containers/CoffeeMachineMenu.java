@@ -108,7 +108,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     }
 
     public float getBrewingProgress() {
-        return 0.5f;
+        return this.blockEntity.getCurrentProgressPercentage();
     }
 
     // This is where you specify what happens when a player shift clicks a slot in the gui
