@@ -1,11 +1,13 @@
 package com.thewandererraven.ravencoffee;
 
 import com.thewandererraven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
+import com.thewandererraven.ravencoffee.recipes.CoffeeGrinderRecipe;
 import com.thewandererraven.ravencoffee.util.configuration.ModConfiguration;
 import com.thewandererraven.ravencoffee.util.registries.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.Registry;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -45,6 +47,7 @@ public class RavenCoffee
         eventBus.addListener(this::setupClient);
         eventBus.addListener(this::postInit);
         eventBus.addListener(this::registerEntityRenderers);
+        MinecraftForge.EVENT_BUS.addGenericListener(RecipeSerializer.class, this::registerRecipeTypes);
         
         RecipesRegistry.RECIPE_SERIALIZERS.register(eventBus);
         ContainersRegistry.CONTAINERS.register(eventBus);
@@ -93,6 +96,10 @@ public class RavenCoffee
         // pre 1.17.1
         //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
         //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
+    }
+
+    public void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
+        Registry.register(Registry.RECIPE_TYPE, CoffeeGrinderRecipe.Type.ID, CoffeeGrinderRecipe.Type.INSTANCE);
     }
 
     private void postInit(FMLLoadCompleteEvent event) {

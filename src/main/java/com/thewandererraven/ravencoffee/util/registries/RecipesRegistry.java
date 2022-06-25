@@ -12,6 +12,6 @@ public class RecipesRegistry {
 
     public static final RegistryObject<RecipeSerializer<?>> COFFEE_GRINDER_SERIALIZER = RECIPE_SERIALIZERS.register(
             "coffee_grinding",
-            CoffeeGrinderRecipe.Serializer::new
+            () -> CoffeeGrinderRecipe.Serializer.INSTANCE
     );
 }
