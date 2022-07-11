@@ -2,14 +2,20 @@ package com.thewandererraven.ravencoffee.blocks.entities;
 
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.containers.CoffeeMachineMenu;
+import com.thewandererraven.ravencoffee.containers.inventory.CoffeeCupInputSlot;
+import com.thewandererraven.ravencoffee.util.ModTags;
 import com.thewandererraven.ravencoffee.util.registries.BlockEntitiesRegistry;
 import com.thewandererraven.ravencoffee.util.registries.BrewsRegistry;
 import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
+import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -98,17 +104,30 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, CoffeeMachineBlockEntity blockEntity) {
-        if(hasRecipe(blockEntity) && hasNotReachedStackLimit(blockEntity)) {
+        if(blockEntity.hasRecipe() && blockEntity.hasNotReachedStackLimit() && CoffeeCupInputSlot.isCup(blockEntity.itemHandler.getStackInSlot(2))) {
             if(blockEntity.isBrewingProcessComplete())
                 craftItem(blockEntity);
             else
                 blockEntity.tickCurrentProgress();
+        } else if(blockEntity.currentProgress > 0) {
+            blockEntity.decreaseCurrentProgress();
         }
     }
 
     public void tickCurrentProgress() {
-        RavenCoffee.LOGGER.debug(this.currentProgress);
         this.currentProgress += 1;
+    }
+
+    public void decreaseCurrentProgress() {
+        this.currentProgress -= 1;
+    }
+
+    private boolean canBrew() {
+        return this.hasRecipe() && this.hasNotReachedStackLimit() && CoffeeCupInputSlot.isCup(this.itemHandler.getStackInSlot(2));
+    }
+
+    public boolean isBrewing() {
+        return this.currentProgress > 0 || this.canBrew();
     }
 
     public void resetProgress() {
@@ -137,11 +156,11 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
         blockEntity.resetProgress();
     }
 
-    private static boolean hasRecipe(CoffeeMachineBlockEntity blockEntity) {
-        return blockEntity.itemHandler.getStackInSlot(1).getItem() == ItemsRegistry.COFFEE_BEANS_ROASTED_GROUND.get();
+    private boolean hasRecipe() {
+        return this.itemHandler.getStackInSlot(1).getItem() == ItemsRegistry.COFFEE_BEANS_ROASTED_GROUND.get();
     }
 
-    private static boolean hasNotReachedStackLimit(CoffeeMachineBlockEntity blockEntity) {
-        return blockEntity.itemHandler.getStackInSlot(0).getCount() < blockEntity.itemHandler.getStackInSlot(1).getMaxStackSize();
+    private boolean hasNotReachedStackLimit() {
+        return this.itemHandler.getStackInSlot(0).getCount() < this.itemHandler.getStackInSlot(1).getMaxStackSize();
     }
 }

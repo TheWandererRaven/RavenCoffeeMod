@@ -2,6 +2,7 @@ package com.thewandererraven.ravencoffee.containers.inventory;
 
 import com.mojang.datafixers.util.Pair;
 import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.util.ModTags;
 import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -29,6 +30,12 @@ public class CoffeeCupInputSlot extends SlotItemHandler {
 
     @Override
     public boolean mayPlace(@NotNull ItemStack stack) {
-        return Cups.contains(stack.getItem());
+        //return Cups.contains(stack.getItem());
+        return isCup(stack);
+    }
+
+    public static boolean isCup(ItemStack item) {
+        //return Registry.ITEM.getHolderOrThrow(Registry.ITEM.getResourceKey(item.getItem()).get()).is(ModTags.Items.CUPS);
+        return item.is(ModTags.Items.CUPS);
     }
 }
