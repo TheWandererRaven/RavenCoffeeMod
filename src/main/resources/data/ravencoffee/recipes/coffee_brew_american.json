@@ -1,0 +1,12 @@
+{
+  "type": "ravencoffee:coffee_brewing",
+  "ingredients": [
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    }
+  ],
+  "result": {
+    "brewtype": "brew_american",
+    "cookingtime": 1
+  }
+}

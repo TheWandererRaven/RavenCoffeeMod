@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public class CoffeeCupInputSlot extends SlotItemHandler {
+public class BrewCupInputSlot extends SlotItemHandler {
     public ArrayList<Item> Cups = new ArrayList<Item>(Arrays.asList(
             ItemsRegistry.COFFEE_MUG.get(),
             ItemsRegistry.CUP_SMALL.get(),
@@ -24,7 +24,7 @@ public class CoffeeCupInputSlot extends SlotItemHandler {
             ItemsRegistry.CUP_LARGE.get()
     ));
 
-    public CoffeeCupInputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+    public BrewCupInputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
         super(itemHandler, index, xPosition, yPosition);
     }
 

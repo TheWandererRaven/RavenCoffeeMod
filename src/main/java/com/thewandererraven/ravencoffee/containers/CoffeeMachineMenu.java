@@ -1,17 +1,15 @@
 package com.thewandererraven.ravencoffee.containers;
 
 import com.thewandererraven.ravencoffee.blocks.entities.CoffeeMachineBlockEntity;
-import com.thewandererraven.ravencoffee.containers.inventory.CoffeeCupInputSlot;
-import com.thewandererraven.ravencoffee.containers.inventory.CoffeePowderInputSlot;
+import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
+import com.thewandererraven.ravencoffee.containers.inventory.BrewIngredientInputSlot;
 import com.thewandererraven.ravencoffee.containers.inventory.CoffeeMachineResultSlot;
 import com.thewandererraven.ravencoffee.util.registries.BlocksRegistry;
 import com.thewandererraven.ravencoffee.util.registries.MenusRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -25,18 +23,14 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
 
-    private static final int INPUT_SLOT_COUNT = 2;
-    private static final int OUTPUT_SLOT_COUNT = 1;
-    private static final int COFFEE_MACHINE_SLOT_CONT = INPUT_SLOT_COUNT + OUTPUT_SLOT_COUNT;
+    private static final int COFFEE_MACHINE_SLOT_CONT = CoffeeMachineBlockEntity.OUTPUT_SLOT_COUNT + CoffeeMachineBlockEntity.CUPS_SLOT_COUNT + CoffeeMachineBlockEntity.INGREDIENTS_SLOT_COUNT;
 
     private static final int PLAYER_INVENTORY_SLOTS_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
     private static final int VANILLA_SLOTS_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOTS_COUNT;
 
 
-    private static final int OUTPUT_FIRST_SLOT_INDEX = 0;
-    private static final int INPUT_POWDER_SLOT_INDEX = OUTPUT_FIRST_SLOT_INDEX + OUTPUT_SLOT_COUNT;
-    private static final int INPUT_CUPS_SLOT_INDEX = INPUT_POWDER_SLOT_INDEX + 1;
-    private static final int VANILLA_FIRST_SLOT_INDEX = INPUT_POWDER_SLOT_INDEX + INPUT_SLOT_COUNT;
+
+    private static final int VANILLA_FIRST_SLOT_INDEX = CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX + CoffeeMachineBlockEntity.INGREDIENTS_SLOT_COUNT;
     private static final int PLAYER_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX;
     private static final int HOTBAR_FIRST_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT;
 
@@ -50,11 +44,11 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     public static final int CUP_OUTPUT_SLOT_POS_X = 80;
     public static final int CUP_OUTPUT_SLOT_POS_Y = 49;
 
-    public static final int CUP_INPUT_SLOT_POS_X = 53;
-    public static final int CUP_INPUT_SLOT_POS_Y = 49;
+    public static final int CUPS_SLOT_POS_X = 53;
+    public static final int CUPS_SLOT_POS_Y = 49;
 
-    public static final int POWDER_INPUT_SLOT_POS_X = 80;
-    public static final int POWDER_INPUT_SLOT_POS_Y = 17;
+    public static final int INGREDIENTS_SLOT_POS_X = 80;
+    public static final int INGREDIENTS_SLOT_POS_Y = 17;
 
     public static final int SLOT_X_SPACING = 18;
     public static final int SLOT_Y_SPACING = 18;
@@ -71,11 +65,11 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             // ADD THE CUP OUTPUT SLOT
-            addSlot(new CoffeeMachineResultSlot(handler, OUTPUT_FIRST_SLOT_INDEX, CUP_OUTPUT_SLOT_POS_X,  CUP_OUTPUT_SLOT_POS_Y));
-            // ADD POWDER INPUT SLOT
-            addSlot(new CoffeePowderInputSlot(handler, INPUT_POWDER_SLOT_INDEX, POWDER_INPUT_SLOT_POS_X,  POWDER_INPUT_SLOT_POS_Y));
-            // ADD THE CUP INPUT SLOT
-            addSlot(new CoffeeCupInputSlot(handler, INPUT_CUPS_SLOT_INDEX, CUP_INPUT_SLOT_POS_X,  CUP_INPUT_SLOT_POS_Y));
+            addSlot(new CoffeeMachineResultSlot(handler, CoffeeMachineBlockEntity.OUTPUT_FIRST_SLOT_INDEX, CUP_OUTPUT_SLOT_POS_X,  CUP_OUTPUT_SLOT_POS_Y));
+            // ADD CUPS SLOT
+            addSlot(new BrewCupInputSlot(handler, CoffeeMachineBlockEntity.CUPS_FIRST_SLOT_INDEX, CUPS_SLOT_POS_X,  CUPS_SLOT_POS_Y));
+            // ADD THE INGREDIENTS SLOT
+            addSlot(new BrewIngredientInputSlot(handler, CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX, INGREDIENTS_SLOT_POS_X,  INGREDIENTS_SLOT_POS_Y));
         });
 
         // Add the rest of the players inventory to the gui
@@ -100,11 +94,11 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     }
 
     public boolean isCupsSlotEmpty() {
-        return !this.slots.get(INPUT_CUPS_SLOT_INDEX).hasItem();
+        return !this.slots.get(CoffeeMachineBlockEntity.CUPS_FIRST_SLOT_INDEX).hasItem();
     }
 
     public boolean isOutputSlotEmpty() {
-        return !this.slots.get(OUTPUT_FIRST_SLOT_INDEX).hasItem();
+        return !this.slots.get(CoffeeMachineBlockEntity.OUTPUT_FIRST_SLOT_INDEX).hasItem();
     }
 
     public float getBrewingProgress() {
@@ -131,7 +125,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
             // If selected item is in output...
-            if (index == OUTPUT_FIRST_SLOT_INDEX) {
+            if (index == CoffeeMachineBlockEntity.OUTPUT_FIRST_SLOT_INDEX) {
                 /*this.worldPosCallable.execute((p_217067_2_, p_217067_3_) -> {
                     itemstack1.getItem().onCraftedBy(itemstack1, p_217067_2_, playerIn);
                 });*/
@@ -150,7 +144,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
             // If selected item is in vanilla slots...
             else if (index >= VANILLA_FIRST_SLOT_INDEX && index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT) {
                 // ...move to input slots...
-                if (!this.moveItemStackTo(itemstack1, INPUT_POWDER_SLOT_INDEX, INPUT_POWDER_SLOT_INDEX + INPUT_SLOT_COUNT, false))
+                if (!this.moveItemStackTo(itemstack1, CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX, CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX + CoffeeMachineBlockEntity.INGREDIENTS_SLOT_COUNT, false))
                     // ...if input slots are full, and if selected slot is from player inventory...
                     if (index < PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT) {
                         // ...move to hotbar...
@@ -180,7 +174,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
             //ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
             ItemStack itemstack2 = slot.getItem();
             slot.onTake(playerIn, itemstack1);
-            if (index == OUTPUT_FIRST_SLOT_INDEX)
+            if (index == CoffeeMachineBlockEntity.OUTPUT_FIRST_SLOT_INDEX)
                 playerIn.drop(itemstack2, false);
         }
 

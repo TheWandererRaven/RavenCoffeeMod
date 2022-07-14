@@ -3,6 +3,7 @@ package com.thewandererraven.ravencoffee;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.containers.RavenCoffeeMenuTypes;
 import com.thewandererraven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
+import com.thewandererraven.ravencoffee.recipes.CoffeeBrewRecipe;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipeTypes;
@@ -112,6 +113,11 @@ public class RavenCoffee
         // pre 1.17.1
         //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
         //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
+    }
+
+    public void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
+        Registry.register(Registry.RECIPE_TYPE, CoffeeGrinderRecipe.Type.ID, CoffeeGrinderRecipe.Type.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, CoffeeBrewRecipe.Type.ID, CoffeeBrewRecipe.Type.INSTANCE);
     }
 
     private void postInit(FMLLoadCompleteEvent event) {

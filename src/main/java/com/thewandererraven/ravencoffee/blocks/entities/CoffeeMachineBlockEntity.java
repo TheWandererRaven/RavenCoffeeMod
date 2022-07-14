@@ -2,20 +2,16 @@ package com.thewandererraven.ravencoffee.blocks.entities;
 
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.containers.CoffeeMachineMenu;
-import com.thewandererraven.ravencoffee.containers.inventory.CoffeeCupInputSlot;
-import com.thewandererraven.ravencoffee.util.ModTags;
+import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
+import com.thewandererraven.ravencoffee.recipes.CoffeeBrewRecipe;
 import com.thewandererraven.ravencoffee.util.registries.BlockEntitiesRegistry;
 import com.thewandererraven.ravencoffee.util.registries.BrewsRegistry;
 import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
-import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -33,7 +29,16 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvider {
+    public static final int OUTPUT_SLOT_COUNT = 1;
+    public static final int CUPS_SLOT_COUNT = 1;
+    public static final int INGREDIENTS_SLOT_COUNT = 1;
+    public static final int OUTPUT_FIRST_SLOT_INDEX = 0;
+    public static final int CUPS_FIRST_SLOT_INDEX = OUTPUT_FIRST_SLOT_INDEX + OUTPUT_SLOT_COUNT;
+    public static final int INGREDIENTS_FIRST_SLOT_INDEX = CUPS_FIRST_SLOT_INDEX + CUPS_SLOT_COUNT;
+
     private int completeProgress = 60;
     private int currentProgress = 0;
     private final ItemStackHandler itemHandler = new ItemStackHandler(3){
@@ -104,7 +109,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, CoffeeMachineBlockEntity blockEntity) {
-        if(blockEntity.hasRecipe() && blockEntity.hasNotReachedStackLimit() && CoffeeCupInputSlot.isCup(blockEntity.itemHandler.getStackInSlot(2))) {
+        if(blockEntity.hasRecipe() && blockEntity.hasNotReachedStackLimit() && BrewCupInputSlot.isCup(blockEntity.itemHandler.getStackInSlot(1))) {
             if(blockEntity.isBrewingProcessComplete())
                 craftItem(blockEntity);
             else
@@ -123,7 +128,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private boolean canBrew() {
-        return this.hasRecipe() && this.hasNotReachedStackLimit() && CoffeeCupInputSlot.isCup(this.itemHandler.getStackInSlot(2));
+        return this.hasRecipe() && this.hasNotReachedStackLimit() && BrewCupInputSlot.isCup(this.itemHandler.getStackInSlot(2));
     }
 
     public boolean isBrewing() {
@@ -143,21 +148,38 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
         return (float) this.currentProgress / this.completeProgress;
     }
 
-    private static void craftItem(CoffeeMachineBlockEntity blockEntity) {
-        blockEntity.itemHandler.extractItem(1, 1, false);
-        blockEntity.itemHandler.extractItem(2, 1, false);
+    private static SimpleContainer getIngredientsInventory(CoffeeMachineBlockEntity blockEntity) {
+        SimpleContainer inventory = new SimpleContainer(blockEntity.itemHandler.getSlots() - INGREDIENTS_FIRST_SLOT_INDEX);
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            inventory.setItem(i, blockEntity.itemHandler.getStackInSlot(i + INGREDIENTS_FIRST_SLOT_INDEX));
+        }
+        return inventory;
+    }
 
-        blockEntity.itemHandler.setStackInSlot(0,
+    private static void craftItem(CoffeeMachineBlockEntity blockEntity) {
+        Optional<CoffeeBrewRecipe> match = blockEntity.level.getRecipeManager().getRecipeFor(
+                CoffeeBrewRecipe.Type.INSTANCE,
+                getIngredientsInventory(blockEntity),
+                blockEntity.level
+        );
+        RavenCoffee.LOGGER.debug("#########################################");
+        RavenCoffee.LOGGER.debug(match.isPresent() ? "MATCHES!" : "DOESNT MATCH");
+
+
+        blockEntity.itemHandler.extractItem(CUPS_FIRST_SLOT_INDEX, 1, false);
+        blockEntity.itemHandler.extractItem(INGREDIENTS_FIRST_SLOT_INDEX, 1, false);
+
+        blockEntity.itemHandler.setStackInSlot(OUTPUT_FIRST_SLOT_INDEX,
                 new ItemStack(
                         BrewsRegistry.COFFEE_MUG_BREW_AMERICAN.get(),
-                        blockEntity.itemHandler.getStackInSlot(0).getCount() + 1
+                        blockEntity.itemHandler.getStackInSlot(OUTPUT_FIRST_SLOT_INDEX).getCount() + 1
                 )
         );
         blockEntity.resetProgress();
     }
 
     private boolean hasRecipe() {
-        return this.itemHandler.getStackInSlot(1).getItem() == ItemsRegistry.COFFEE_BEANS_ROASTED_GROUND.get();
+        return this.itemHandler.getStackInSlot(2).getItem() == ItemsRegistry.COFFEE_BEANS_ROASTED_GROUND.get();
     }
 
     private boolean hasNotReachedStackLimit() {

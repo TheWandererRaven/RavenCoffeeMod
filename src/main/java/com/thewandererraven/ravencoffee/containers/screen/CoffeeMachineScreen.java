@@ -41,7 +41,7 @@ public class CoffeeMachineScreen extends AbstractContainerScreen<CoffeeMachineMe
                     imageWidth, 0,
                     ProgressIndicatorWidth, Math.round(ProgressIndicatorHeight * progress));
         if(this.getMenu().isCupsSlotEmpty())
-            this.blit(poseStack, x + CoffeeMachineMenu.CUP_INPUT_SLOT_POS_X, y + CoffeeMachineMenu.CUP_INPUT_SLOT_POS_Y,
+            this.blit(poseStack, x + CoffeeMachineMenu.CUPS_SLOT_POS_X, y + CoffeeMachineMenu.CUPS_SLOT_POS_Y,
                     imageWidth + ProgressIndicatorWidth, 0,
                     EmptyCupSlotWidth, EmptyCupSlotHeight);
         if(this.getMenu().isOutputSlotEmpty())
