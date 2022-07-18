@@ -16,6 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
@@ -33,6 +34,25 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
+    public ItemStack assemble(SimpleContainer inventory) {
+        return null;
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int p_43999_, int p_44000_) {
+        return true;
+    }
+
+    @Override
+    public @NotNull ResourceLocation getId() {
+        return id;
+    }
+
+    public int getCookingTime() {
+        return this.cookingTime;
+    }
+
+    @Override
     public boolean matches(SimpleContainer playerContainer, Level playerLevel) {
         if(!playerLevel.isClientSide()) {
             ItemStack craftingFirstItem = playerContainer.getItem(0);
@@ -46,19 +66,11 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
         return false;
     }
 
-    @Override
-    public ItemStack assemble(SimpleContainer p_44001_) {
-        return null;
-    }
-
-    @Override
-    public boolean canCraftInDimensions(int p_43999_, int p_44000_) {
-        return true;
-    }
-
+    // ================================================ OUTPUT ================================================
     private Item getBrew(Item cup) {
+        String BrewId = RavenCoffee.MOD_ID + ":" + cup + "_" + this.brewType;
         return BrewsRegistry.BREWS.getEntries().stream().filter(itemRegistryObject ->
-            itemRegistryObject.getId().toString().equals(cup.toString())
+                itemRegistryObject.getId().toString().equals(BrewId)
         ).findFirst().orElse(BrewsRegistry.COFFEE_MUG_BREW_AMERICAN).get();
     }
 
@@ -67,11 +79,14 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
         return new ItemStack(ItemsRegistry.COFFEE_MUG.get());
     }
 
-    @Override
-    public ResourceLocation getId() {
-        return id;
+    public ItemStack getResultItem(Item cup, int count) {
+        return new ItemStack(
+                getBrew(cup),
+                count
+        );
     }
 
+    // ================================================ CLASSES ================================================
     @Override
     public RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;

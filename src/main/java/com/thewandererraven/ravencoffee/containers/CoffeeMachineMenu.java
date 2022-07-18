@@ -1,5 +1,6 @@
 package com.thewandererraven.ravencoffee.containers;
 
+import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.entities.CoffeeMachineBlockEntity;
 import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
 import com.thewandererraven.ravencoffee.containers.inventory.BrewIngredientInputSlot;
@@ -18,6 +19,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 public class CoffeeMachineMenu extends AbstractContainerMenu {
     private final CoffeeMachineBlockEntity blockEntity;
     private final Level level;
+    private final ContainerData data;
 
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -54,14 +56,15 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     public static final int SLOT_Y_SPACING = 18;
 
     public CoffeeMachineMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerId, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()));
+        this(containerId, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public CoffeeMachineMenu(int containerId, Inventory inventory, BlockEntity blockEntity) {
+    public CoffeeMachineMenu(int containerId, Inventory inventory, BlockEntity blockEntity, ContainerData data) {
         super(MenusRegistry.COFFEE_MACHINE_MENU.get(), containerId);
         checkContainerSize(inventory, COFFEE_MACHINE_SLOT_CONT);
         this.blockEntity = ((CoffeeMachineBlockEntity) blockEntity);
         this.level = inventory.player.level;
+        this.data = data;
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             // ADD THE CUP OUTPUT SLOT
@@ -86,6 +89,8 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
         for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
             addSlot(new Slot(inventory, x, PLAYER_HOTBAR_XPOS + SLOT_X_SPACING * x, PLAYER_HOTBAR_YPOS));
         }
+
+        addDataSlots(data);
     }
 
     @Override
@@ -102,7 +107,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     }
 
     public float getBrewingProgress() {
-        return this.blockEntity.getCurrentProgressPercentage();
+        return (float) this.data.get(0) / this.data.get(1);
     }
 
     // This is where you specify what happens when a player shift clicks a slot in the gui
