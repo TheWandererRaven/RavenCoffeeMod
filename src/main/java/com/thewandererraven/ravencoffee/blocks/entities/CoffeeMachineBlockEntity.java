@@ -1,11 +1,10 @@
 package com.thewandererraven.ravencoffee.blocks.entities;
 
-import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.containers.CoffeeMachineMenu;
 import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
+import com.thewandererraven.ravencoffee.recipes.BrewSizedIngredient;
 import com.thewandererraven.ravencoffee.recipes.CoffeeBrewRecipe;
 import com.thewandererraven.ravencoffee.util.registries.BlockEntitiesRegistry;
-import com.thewandererraven.ravencoffee.util.registries.BrewsRegistry;
 import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -86,9 +85,15 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
         return this.itemHandler.getStackInSlot(0).getCount() < this.itemHandler.getStackInSlot(1).getMaxStackSize();
     }
 
-    private static void craftItem(CoffeeMachineBlockEntity blockEntity, ItemStack output) {
+    private static void craftItem(CoffeeMachineBlockEntity blockEntity, ItemStack cup, ItemStack output) {
+
+        for(int i = INGREDIENTS_FIRST_SLOT_INDEX; i < INGREDIENTS_FIRST_SLOT_INDEX + INGREDIENTS_SLOT_COUNT; i++) {
+            BrewSizedIngredient ingredient = blockEntity.currentRecipe.getMatchingIngredient(blockEntity.itemHandler.getStackInSlot(i));
+            if(ingredient != null)
+                blockEntity.itemHandler.extractItem(i, ingredient.getCountBySize(BrewCupInputSlot.getCupSize(cup)), false);
+        }
+        //blockEntity.itemHandler.extractItem(INGREDIENTS_FIRST_SLOT_INDEX, 1, false);
         blockEntity.itemHandler.extractItem(CUPS_FIRST_SLOT_INDEX, 1, false);
-        blockEntity.itemHandler.extractItem(INGREDIENTS_FIRST_SLOT_INDEX, 1, false);
 
         blockEntity.itemHandler.setStackInSlot(OUTPUT_FIRST_SLOT_INDEX, output);
         blockEntity.resetProgress();
@@ -115,9 +120,10 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
 
     public static void tick(Level level, BlockPos pos, BlockState state, CoffeeMachineBlockEntity blockEntity) {
         if(!level.isClientSide()) {
+            SimpleContainer ingredientsInventory = getIngredientsInventory(blockEntity);
             // Check if the recipe still matches the ingredients
             if (blockEntity.currentRecipe != null)
-                if (!blockEntity.currentRecipe.matches(getIngredientsInventory(blockEntity), level))
+                if (!blockEntity.currentRecipe.matches(ingredientsInventory, getCup(blockEntity), level))
                     blockEntity.resetCurrentRecipe();
 
             // Check if the block can still process an output
@@ -126,19 +132,20 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
                     BrewCupInputSlot.isCup(blockEntity.itemHandler.getStackInSlot(CUPS_FIRST_SLOT_INDEX)) &&
                     !blockEntity.itemHandler.getStackInSlot(INGREDIENTS_FIRST_SLOT_INDEX).isEmpty()
             ) {
+                ItemStack cup = getCup(blockEntity);
                 // Check if current recipe is not empty, if it is, search for the recipe given the ingredient
-                if (blockEntity.currentRecipe == null) findRecipe(blockEntity).ifPresent(blockEntity::setCurrentRecipe);
+                if (blockEntity.currentRecipe == null) findRecipe(cup, ingredientsInventory, level).ifPresent(blockEntity::setCurrentRecipe);
                 // Check if there's a recipe
                 if (blockEntity.currentRecipe != null) {
                     ItemStack output = blockEntity.currentRecipe.getResultItem(
-                            blockEntity.itemHandler.getStackInSlot(CUPS_FIRST_SLOT_INDEX).getItem(),
+                            cup.getItem(),
                             blockEntity.itemHandler.getStackInSlot(OUTPUT_FIRST_SLOT_INDEX).getCount() + 1
                     );
                     Item outputCurrent = blockEntity.itemHandler.getStackInSlot(OUTPUT_FIRST_SLOT_INDEX).getItem();
                     // Check if the output is empty or the same as the result item
                     if (outputCurrent.equals(output.getItem()) || outputCurrent.equals(Items.AIR)) {
                         // If the process is complete craft the output item, if not, increase the progress
-                        if (blockEntity.isBrewingProcessComplete()) craftItem(blockEntity, output);
+                        if (blockEntity.isBrewingProcessComplete()) craftItem(blockEntity, cup, output);
                         else blockEntity.tickCurrentProgress();
                         // If this point is reached, then this method has done everything it needs to do i.e. generating
                         // an output or increasing the progress
@@ -226,12 +233,15 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
         return this.itemHandler.getStackInSlot(2).getItem() == ItemsRegistry.COFFEE_BEANS_ROASTED_GROUND.get();
     }
 
-    private static Optional<CoffeeBrewRecipe> findRecipe(CoffeeMachineBlockEntity blockEntity) {
-        return blockEntity.level.getRecipeManager().getRecipeFor(
-                CoffeeBrewRecipe.Type.INSTANCE,
-                getIngredientsInventory(blockEntity),
-                blockEntity.level
-        );
+    private static Optional<CoffeeBrewRecipe> findRecipe(ItemStack cup, SimpleContainer inventory, Level level) {
+        CoffeeBrewRecipe foundRecipe = null;
+        for(CoffeeBrewRecipe recipe : level.getRecipeManager().getAllRecipesFor(CoffeeBrewRecipe.Type.INSTANCE)) {
+            if (recipe.matches(inventory, cup, level)) {
+                foundRecipe = recipe;
+                break;
+            }
+        }
+        return foundRecipe != null ? Optional.of(foundRecipe) : Optional.empty();
     }
 
     private void setCurrentRecipe(CoffeeBrewRecipe recipe) {
@@ -250,5 +260,9 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
             inventory.setItem(i, blockEntity.itemHandler.getStackInSlot(i + INGREDIENTS_FIRST_SLOT_INDEX));
         }
         return inventory;
+    }
+
+    private static ItemStack getCup(CoffeeMachineBlockEntity blockEntity) {
+        return blockEntity.itemHandler.getStackInSlot(CUPS_FIRST_SLOT_INDEX);
     }
 }

@@ -1,8 +1,9 @@
 {
   "type": "ravencoffee:coffee_brewing",
-  "ingredients": [
+  "brewingredients": [
     {
-      "item": "ravencoffee:coffee_beans_roasted_ground"
+      "item": "ravencoffee:coffee_beans_roasted_ground",
+      "ingredientspersize": [1, 2, 3]
     }
   ],
   "result": {

@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
 import com.thewandererraven.ravencoffee.util.registries.BrewsRegistry;
 import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.core.NonNullList;
@@ -11,7 +12,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -22,11 +22,11 @@ import org.jetbrains.annotations.Nullable;
 public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
     public static String TypeName = "coffee_brewing";
     private final ResourceLocation id;
-    private final NonNullList<Ingredient> recipeItems;
+    private final NonNullList<BrewSizedIngredient> recipeItems;
     private final String brewType;
     private final int cookingTime;
 
-    public CoffeeBrewRecipe(ResourceLocation id, String brewType, int cookingTime, NonNullList<Ingredient> recipeItems) {
+    public CoffeeBrewRecipe(ResourceLocation id, String brewType, int cookingTime, NonNullList<BrewSizedIngredient> recipeItems) {
         this.id = id;
         this.recipeItems = recipeItems;
         this.brewType = brewType;
@@ -53,17 +53,34 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public boolean matches(SimpleContainer playerContainer, Level playerLevel) {
-        if(!playerLevel.isClientSide()) {
-            ItemStack craftingFirstItem = playerContainer.getItem(0);
-            /*
-            ItemStack craftingSecondItem = playerContainer.getItem(1);
-            return (recipeItems.get(0).test(craftingFirstItem) && recipeItems.get(1).test(craftingSecondItem)) ||
-                    (recipeItems.get(0).test(craftingSecondItem) && recipeItems.get(1).test(craftingFirstItem));
-             */
-            return recipeItems.get(0).test(craftingFirstItem);
-        }
+    public boolean matches(SimpleContainer p_44002_, Level p_44003_) {
         return false;
+    }
+
+    public boolean matches(SimpleContainer playerContainer, ItemStack cup, Level playerLevel) {
+        boolean matchesRecipe = false;
+        if(!playerLevel.isClientSide()) {
+            matchesRecipe = true;
+            // Go through all recipe ingredients and compare...
+            for(int i = 0; i < recipeItems.size(); i++) {
+                // ...If the ingredient is not the same...
+                if(!(recipeItems.get(i).getIngredient().test(playerContainer.getItem(i)) &&
+                        // ...Or if the amount on the stack matches is lesser than the needed for the cup size
+                        recipeItems.get(i).getCountBySize(BrewCupInputSlot.getCupSize(cup)) <= playerContainer.getItem(i).getCount())) {
+                    matchesRecipe = false;
+                    break;
+                }
+            }
+        }
+        return matchesRecipe;
+    }
+
+    public BrewSizedIngredient getMatchingIngredient(ItemStack item) {
+        for(BrewSizedIngredient sizedIngredient : this.recipeItems) {
+            if (sizedIngredient.getIngredient().test(item))
+                return sizedIngredient;
+        }
+        return null;
     }
 
     // ================================================ OUTPUT ================================================
@@ -109,36 +126,40 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public CoffeeBrewRecipe fromJson(ResourceLocation id, JsonObject json) {
-            NonNullList<Ingredient> nonnulllist = readIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
-            if (nonnulllist.isEmpty()) {
+            NonNullList<BrewSizedIngredient> brewSizedIngredients = readBrewIngredients(GsonHelper.getAsJsonArray(json, "brewingredients"));
+            if (brewSizedIngredients.isEmpty()) {
                 throw new JsonParseException("No ingredients for coffee brew recipe");
             } else {
                 JsonObject result = GsonHelper.getAsJsonObject(json, "result");
                 String brewType = result.get("brewtype").getAsString();
                 int cookingTime = result.get("cookingtime").getAsInt();
-                return new CoffeeBrewRecipe(id, brewType, cookingTime, nonnulllist);
+                return new CoffeeBrewRecipe(id, brewType, cookingTime, brewSizedIngredients);
             }
         }
 
-        private static NonNullList<Ingredient> readIngredients(JsonArray ingredientArray) {
-            NonNullList<Ingredient> nonnulllist = NonNullList.create();
+        private static NonNullList<BrewSizedIngredient> readBrewIngredients(JsonArray ingredientArray) {
+            NonNullList<BrewSizedIngredient> nonnulllist = NonNullList.create();
 
             for(int i = 0; i < ingredientArray.size(); ++i) {
-                Ingredient ingredient = Ingredient.fromJson(ingredientArray.get(i));
-                if (!ingredient.isEmpty()) {
-                    nonnulllist.add(ingredient);
+                JsonArray ingredientspersizeJSON = ingredientArray.get(i).getAsJsonObject().get("ingredientspersize").getAsJsonArray();
+                int[] ingredientsPerSize = new int[ingredientspersizeJSON.size()];
+                for(int j = 0; j < ingredientspersizeJSON.size(); j++)
+                    ingredientsPerSize[j] = ingredientspersizeJSON.get(j).getAsInt();
+
+                BrewSizedIngredient sizedIngredient = new BrewSizedIngredient(Ingredient.fromJson(ingredientArray.get(i)), ingredientsPerSize);
+                if (!sizedIngredient.isEmpty()) {
+                    nonnulllist.add(sizedIngredient);
                 }
             }
-
             return nonnulllist;
         }
 
         @Nullable
         @Override
         public CoffeeBrewRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buffer.readInt(), Ingredient.EMPTY);
+            NonNullList<BrewSizedIngredient> inputs = NonNullList.withSize(buffer.readInt(), BrewSizedIngredient.EMPTY);
             for(int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buffer));
+                inputs.set(i, new BrewSizedIngredient(Ingredient.fromNetwork(buffer), getSizesFromNetwork(buffer)));
             }
 
             String brewType = buffer.readUtf();
@@ -146,11 +167,22 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
             return new CoffeeBrewRecipe(id, brewType, cookingTime, inputs);
         }
 
+        public int[] getSizesFromNetwork(FriendlyByteBuf buffer) {
+            int[] array = new int[BrewSizedIngredient.cupSizesCount];
+            for (int i = 0; i < array.length; i++) {
+                array[i] = buffer.readInt();
+            }
+            return array;
+        }
+
         @Override
         public void toNetwork(FriendlyByteBuf buffer, CoffeeBrewRecipe recipe) {
             buffer.writeInt(recipe.getIngredients().size());
-            for (Ingredient ingredient : recipe.getIngredients()) {
-                ingredient.toNetwork(buffer);
+            for (BrewSizedIngredient sizedIngredient : recipe.recipeItems) {
+                sizedIngredient.getIngredient().toNetwork(buffer);
+                for(int i = 0; i < BrewSizedIngredient.cupSizesCount; i++) {
+                    buffer.writeInt(sizedIngredient.getCountBySize(i));
+                }
             }
             buffer.writeUtf(recipe.brewType);
             buffer.writeInt(recipe.cookingTime);
