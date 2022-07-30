@@ -1,12 +1,13 @@
 package com.thewandererraven.ravencoffee.util.registries;
 
 import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.recipes.CoffeeGrinderRecipe;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 
 public interface RecipeTypesRegistry {
-    RecipeType<CraftingRecipe> COFFEE_GRINDING = register("coffee_grinding");
+    RecipeType<CraftingRecipe> COFFEE_GRINDING = register(CoffeeGrinderRecipe.Type.ID);
 
     /**
      * Registers a new recipe type, prefixing with the mod ID
