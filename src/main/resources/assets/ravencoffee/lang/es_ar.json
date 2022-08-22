@@ -33,11 +33,11 @@
 
   "item.ravencoffee.cup_small_unfired": "Vaso pequeño sin cocer",
   "item.ravencoffee.cup_small": "Vaso pequeño",
-  "item.ravencoffee.cup_small_brew_espresso": "Espresso",
+  "item.ravencoffee.cup_small_brew_basic": "Espresso",
 
   "item.ravencoffee.cup_medium_unfired": "Vaso sin cocer",
   "item.ravencoffee.cup_medium": "Vaso",
-  "item.ravencoffee.cup_medium_brew_american": "Americano",
+  "item.ravencoffee.cup_medium_brew_basic": "Café",
   "item.ravencoffee.cup_medium_brew_apple": "Café con manzana",
   "item.ravencoffee.cup_medium_brew_berry": "Café con bayas",
   "item.ravencoffee.cup_medium_brew_chocolate": "Chocolate",
@@ -59,7 +59,7 @@
 
   "item.ravencoffee.cup_large_unfired": "Vaso grande sin cocer",
   "item.ravencoffee.cup_large": "Vaso grande",
-  "item.ravencoffee.cup_large_brew_american": "Americano grande",
+  "item.ravencoffee.cup_large_brew_basic": "Café grande",
   "item.ravencoffee.cup_large_brew_apple": "Café grande con manzana",
   "item.ravencoffee.cup_large_brew_berry": "Café grande con bayas",
   "item.ravencoffee.cup_large_brew_chocolate": "Chocolate grande",
@@ -80,8 +80,8 @@
   "item.ravencoffee.cup_large_brew_pumpkinspicelatte_with_pumpkin": "Venti pumpkin dpice latte (con calabaza)",
 
   "item.ravencoffee.coffee_mug": "Taza para café",
-  "item.ravencoffee.coffee_mug_brew_american": "Americano",
-  "item.ravencoffee.coffee_mug_brew_american.description": "Smell the fragrance of<br>dark coffee",
+  "item.ravencoffee.coffee_mug_brew_basic": "Café",
+  "item.ravencoffee.coffee_mug_brew_basic.description": "Huele la fragancia del<br>café oscuro",
   "item.ravencoffee.coffee_mug_brew_apple": "Café con manzana",
   "item.ravencoffee.coffee_mug_brew_berry": "Café con bayas",
   "item.ravencoffee.coffee_mug_brew_chocolate": "Chocolate",

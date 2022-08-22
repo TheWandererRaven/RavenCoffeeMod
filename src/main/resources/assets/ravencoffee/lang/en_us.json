@@ -33,11 +33,11 @@
 
   "item.ravencoffee.cup_small_unfired": "Small Unfired Cup",
   "item.ravencoffee.cup_small": "Small Cup",
-  "item.ravencoffee.cup_small_brew_espresso": "Espresso",
+  "item.ravencoffee.cup_small_brew_basic": "Espresso",
 
   "item.ravencoffee.cup_medium_unfired": "Unfired Cup",
   "item.ravencoffee.cup_medium": "Cup",
-  "item.ravencoffee.cup_medium_brew_american": "Americano",
+  "item.ravencoffee.cup_medium_brew_basic": "Coffee",
   "item.ravencoffee.cup_medium_brew_apple": "Apple Coffee",
   "item.ravencoffee.cup_medium_brew_berry": "Berry Coffee",
   "item.ravencoffee.cup_medium_brew_chocolate": "Chocolate",
@@ -59,7 +59,7 @@
 
   "item.ravencoffee.cup_large_unfired": "Large Unfired Cup",
   "item.ravencoffee.cup_large": "Large Cup",
-  "item.ravencoffee.cup_large_brew_american": "Large Americano",
+  "item.ravencoffee.cup_large_brew_basic": "Large Coffee",
   "item.ravencoffee.cup_large_brew_apple": "Large Apple Coffee",
   "item.ravencoffee.cup_large_brew_berry": "Large Berry Coffee",
   "item.ravencoffee.cup_large_brew_chocolate": "Large Chocolate",
@@ -80,8 +80,8 @@
   "item.ravencoffee.cup_large_brew_pumpkinspicelatte_with_pumpkin": "Venti Pumpkin Spice Latte (With Pumpkin)",
 
   "item.ravencoffee.coffee_mug": "Coffee Mug",
-  "item.ravencoffee.coffee_mug_brew_american": "Americano",
-  "item.ravencoffee.coffee_mug_brew_american.description": "Smell the fragrance of<br>dark coffee",
+  "item.ravencoffee.coffee_mug_brew_basic": "Coffee",
+  "item.ravencoffee.coffee_mug_brew_basic.description": "Smell the fragrance of<br>dark coffee",
   "item.ravencoffee.coffee_mug_brew_apple": "Apple Coffee",
   "item.ravencoffee.coffee_mug_brew_berry": "Berry Coffee",
   "item.ravencoffee.coffee_mug_brew_chocolate": "Chocolate",
