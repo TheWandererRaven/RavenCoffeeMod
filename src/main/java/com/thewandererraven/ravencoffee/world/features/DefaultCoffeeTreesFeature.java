@@ -1,15 +1,13 @@
-package com.thewandererraven.ravencoffee.gen.features;
+package com.thewandererraven.ravencoffee.world.features;
 
 import com.thewandererraven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
-import com.thewandererraven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
+import com.thewandererraven.ravencoffee.world.features.configs.DualBlockPileFeatureConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
-
-import java.util.*;
 
 public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPileFeatureConfig> {
     public DefaultCoffeeTreesFeature(Codec<DualBlockPileFeatureConfig> p_i231922_1_) {

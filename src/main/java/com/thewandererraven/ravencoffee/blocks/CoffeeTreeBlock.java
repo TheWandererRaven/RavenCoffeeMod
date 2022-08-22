@@ -1,6 +1,6 @@
 package com.thewandererraven.ravencoffee.blocks;
 
-import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -29,7 +29,6 @@ import net.minecraftforge.common.PlantType;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.Iterator;
-import java.util.Random;
 
 public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     public static final IntegerProperty AGE;
@@ -81,7 +80,7 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ItemsRegistry.COFFEE_CHERRIES.get();
+        return RavenCoffeeItems.COFFEE_CHERRIES.get();
     }
 
     @Override

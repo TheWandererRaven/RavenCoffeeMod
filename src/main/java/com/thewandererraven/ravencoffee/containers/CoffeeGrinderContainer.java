@@ -1,14 +1,11 @@
 package com.thewandererraven.ravencoffee.containers;
 
-import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.containers.inventory.CoffeeGrinderResultSlot;
 import com.thewandererraven.ravencoffee.recipes.CoffeeGrinderRecipe;
-import com.thewandererraven.ravencoffee.util.registries.ContainersRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -88,9 +85,9 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
     }
 
     public CoffeeGrinderContainer(int windowID, Inventory playerInventory, ContainerLevelAccess worldPosCallable) {
-        super(ContainersRegistry.COFFEE_GRINDER_CONTAINER.get(), windowID);
+        super(RavenCoffeeMenuTypes.COFFEE_GRINDER_CONTAINER.get(), windowID);
         this.worldPosCallable = worldPosCallable;
-        if (ContainersRegistry.COFFEE_GRINDER_CONTAINER == null)
+        if (RavenCoffeeMenuTypes.COFFEE_GRINDER_CONTAINER == null)
             throw new IllegalStateException("Must initialise containerBasicContainerType before constructing a ContainerBasic!");
 
         this.player = playerInventory.player;

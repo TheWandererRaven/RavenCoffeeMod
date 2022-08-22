@@ -1,10 +1,17 @@
 package com.thewandererraven.ravencoffee;
 
+import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
+import com.thewandererraven.ravencoffee.containers.RavenCoffeeMenuTypes;
 import com.thewandererraven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
+import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipeTypes;
+import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipes;
 import com.thewandererraven.ravencoffee.util.configuration.ModConfiguration;
 import com.thewandererraven.ravencoffee.util.registries.*;
-import com.thewandererraven.ravencoffee.world.features.ConfiguredFeatures;
-import com.thewandererraven.ravencoffee.world.features.PlacedFeatures;
+import com.thewandererraven.ravencoffee.world.features.RavenCoffeeConfiguredFeatures;
+import com.thewandererraven.ravencoffee.world.features.RavenCoffeeFeatures;
+import com.thewandererraven.ravencoffee.world.features.RavenCoffeePlacedFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -41,18 +48,18 @@ public class RavenCoffee
         eventBus.addListener(this::postInit);
         eventBus.addListener(this::registerEntityRenderers);
 
-        RecipeTypesRegistry.RECIPE_TYPES.register(eventBus);
-        RecipesRegistry.RECIPE_SERIALIZERS.register(eventBus);
-        ContainersRegistry.CONTAINERS.register(eventBus);
+        RavenCoffeeRecipeTypes.RECIPE_TYPES.register(eventBus);
+        RavenCoffeeRecipes.RECIPE_SERIALIZERS.register(eventBus);
+        RavenCoffeeMenuTypes.CONTAINERS.register(eventBus);
         TileEntityTypeRegistry.TILE_ENTITY_TYPES.register(eventBus);
-        BlocksRegistry.BLOCKS.register(eventBus);
-        ItemsRegistry.ITEMS.register(eventBus);
-        BrewsRegistry.BREWS.register(eventBus);
-        FeaturesRegistry.FEATURES.register(eventBus);
+        RavenCoffeeBlocks.BLOCKS.register(eventBus);
+        RavenCoffeeItems.ITEMS.register(eventBus);
+        RavenCoffeeBrewItems.BREWS.register(eventBus);
+        RavenCoffeeFeatures.FEATURES.register(eventBus);
         //ConfiguredFeaturesRegistry.CONFIGURED_FEATURES.register(eventBus);
         //PlacedFeaturesRegistry.PLACED_FEATURES.register(eventBus);
-        ConfiguredFeatures.CONFIGURED_FEATURES.register(eventBus);
-        PlacedFeatures.PLACED_FEATURES.register(eventBus);
+        RavenCoffeeConfiguredFeatures.CONFIGURED_FEATURES.register(eventBus);
+        RavenCoffeePlacedFeatures.PLACED_FEATURES.register(eventBus);
         //ConfiguredFeaturesRegistry.register();
         //PlacedFeaturesRegistry.register();
 
@@ -89,7 +96,7 @@ public class RavenCoffee
     private void setupClient(final FMLClientSetupEvent event) {
         //ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
         //ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
-        MenuScreens.register(ContainersRegistry.COFFEE_GRINDER_CONTAINER.get(), CoffeeGrinderContainerScreen::new);
+        MenuScreens.register(RavenCoffeeMenuTypes.COFFEE_GRINDER_CONTAINER.get(), CoffeeGrinderContainerScreen::new);
     }
 
     //@SubscribeEvent
@@ -107,31 +114,31 @@ public class RavenCoffee
     public static final CreativeModeTab GENERAL_TAB = new CreativeModeTab("ravencoffee_general_tab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ItemsRegistry.COFFEE_BEANS_ROASTED.get());
+            return new ItemStack(RavenCoffeeItems.COFFEE_BEANS_ROASTED.get());
         }
     };
     public static final CreativeModeTab COFFEE_MUG_TAB = new CreativeModeTab("ravencoffee_mug_tab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(BrewsRegistry.COFFEE_MUG_BREW_AMERICAN.get());
+            return new ItemStack(RavenCoffeeBrewItems.COFFEE_MUG_BREW_BASIC.get());
         }
     };
     public static final CreativeModeTab CUP_SMALL_TAB = new CreativeModeTab("ravencoffee_small_tab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(BrewsRegistry.CUP_SMALL_BREW_AMERICAN.get());
+            return new ItemStack(RavenCoffeeBrewItems.CUP_SMALL_BREW_BASIC.get());
         }
     };
     public static final CreativeModeTab CUP_MEDIUM_TAB = new CreativeModeTab("ravencoffee_medium_tab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(BrewsRegistry.CUP_MEDIUM_BREW_AMERICAN.get());
+            return new ItemStack(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_BASIC.get());
         }
     };
     public static final CreativeModeTab CUP_LARGE_TAB = new CreativeModeTab("ravencoffee_large_tab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(BrewsRegistry.CUP_LARGE_BREW_AMERICAN.get());
+            return new ItemStack(RavenCoffeeBrewItems.CUP_LARGE_BREW_BASIC.get());
         }
     };
 }

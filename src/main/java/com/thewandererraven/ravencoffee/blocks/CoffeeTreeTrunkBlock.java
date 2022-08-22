@@ -1,11 +1,9 @@
 package com.thewandererraven.ravencoffee.blocks;
 
-import com.thewandererraven.ravencoffee.util.registries.BlocksRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -24,7 +22,7 @@ public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState p_200014_1_, BlockGetter p_200014_2_, BlockPos p_200014_3_) {
-        return p_200014_1_.is(Blocks.GRASS_BLOCK) || p_200014_1_.is(Blocks.DIRT);
+        return p_200014_1_.is(net.minecraft.world.level.block.Blocks.GRASS_BLOCK) || p_200014_1_.is(net.minecraft.world.level.block.Blocks.DIRT);
     }
 
     public Block getLeavesBlock() {
@@ -57,7 +55,7 @@ public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
     }
         
     static {
-        LEAVES_BLOCK = BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get();
+        LEAVES_BLOCK = RavenCoffeeBlocks.COFFEE_TREE_LEAVES_BLOCK.get();
         AGE = BlockStateProperties.AGE_3;
         SHAPE_BY_AGE = new VoxelShape[]{
                 Block.box(

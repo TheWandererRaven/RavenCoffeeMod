@@ -10,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
-public class PlacedFeatures {
+public class RavenCoffeePlacedFeatures {
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(
             Registry.PLACED_FEATURE_REGISTRY, RavenCoffee.MOD_ID
     );
@@ -18,7 +18,7 @@ public class PlacedFeatures {
     public static final RegistryObject<PlacedFeature> COFFEE_TREE_JUNGLE = PLACED_FEATURES.register(
             "coffee_tree_jungle_placed_feature",
             () -> new PlacedFeature(
-                    ConfiguredFeatures.COFFEE_TREE.getHolder().get(),
+                    RavenCoffeeConfiguredFeatures.COFFEE_TREE.getHolder().get(),
                     List.of(
                             CountPlacement.of(10),
                             RarityFilter.onAverageOnceEvery(ModConfiguration.COMMON.COFFEE_TREE_JUNGLE_RARITY.getDefault()),
@@ -32,7 +32,7 @@ public class PlacedFeatures {
     public static final RegistryObject<PlacedFeature> COFFEE_TREE_SAVANNA = PLACED_FEATURES.register(
             "coffee_tree_savanna_placed_feature",
             () -> new PlacedFeature(
-                    ConfiguredFeatures.COFFEE_TREE.getHolder().get(),
+                    RavenCoffeeConfiguredFeatures.COFFEE_TREE.getHolder().get(),
                     List.of(
                             CountPlacement.of(10),
                             RarityFilter.onAverageOnceEvery(ModConfiguration.COMMON.COFFEE_TREE_SAVANNA_RARITY.getDefault()),

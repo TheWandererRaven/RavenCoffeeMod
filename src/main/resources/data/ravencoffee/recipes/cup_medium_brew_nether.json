@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "ravencoffee:cup_medium_brew_american"
+      "item": "ravencoffee:cup_medium_brew_basic"
     },
     {
       "item": "minecraft:nether_wart"

@@ -1,4 +1,4 @@
-package com.thewandererraven.ravencoffee.gen.features;
+package com.thewandererraven.ravencoffee.world.features;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;

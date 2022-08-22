@@ -1,6 +1,7 @@
 package com.thewandererraven.ravencoffee.util.registries;
 
 import com.thewandererraven.ravencoffee.entities.ThrowableFoodEntity;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -10,7 +11,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 
 public interface IDispenserBehaviourRegistry {
     static void registerBehaviours() {
-        DispenserBlock.registerBehavior(ItemsRegistry.MUFFIN::get, new AbstractProjectileDispenseBehavior() {
+        DispenserBlock.registerBehavior(RavenCoffeeItems.MUFFIN::get, new AbstractProjectileDispenseBehavior() {
             @Override
             protected Projectile getProjectile(Level world, Position iPosition, ItemStack itemStack) {
                 ThrowableFoodEntity foodEntity = new ThrowableFoodEntity(world, iPosition.x(), iPosition.y(), iPosition.z());
