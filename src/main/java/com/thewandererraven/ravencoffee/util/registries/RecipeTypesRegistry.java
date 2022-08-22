@@ -4,18 +4,15 @@ import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.recipes.CoffeeGrinderRecipe;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public interface RecipeTypesRegistry {
-    RecipeType<CraftingRecipe> COFFEE_GRINDING = register(CoffeeGrinderRecipe.Type.ID);
+    public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, RavenCoffee.MOD_ID);
 
-    /**
-     * Registers a new recipe type, prefixing with the mod ID
-     * @param name  Recipe type name
-     * @param <T>   Recipe type
-     * @return  Registered recipe type
-     */
-    static <T extends Recipe<?>> RecipeType<T> register(String name) {
-        return RecipeType.register(RavenCoffee.MOD_ID + ":" + name);
-    }
+    RegistryObject<RecipeType<?>> COFFEE_GRINDING = RECIPE_TYPES.register(CoffeeGrinderRecipe.Type.ID, () -> CoffeeGrinderRecipe.Type.INSTANCE);
+
 }

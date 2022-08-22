@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": ["minecraft:jungle", "minecraft:sparse_jungle"],
+  "features": "ravencoffee:coffee_tree_jungle_placed_feature",
+  "step": "vegetal_decoration"
+}

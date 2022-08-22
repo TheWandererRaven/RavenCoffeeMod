@@ -4,6 +4,7 @@ import com.thewandererraven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
 import com.thewandererraven.ravencoffee.gen.featureConfigs.DualBlockPileFeatureConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -35,14 +36,14 @@ public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPil
         return config.tryCount;
     }
 
-    public BlockPos getNearbyPos(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
+    public BlockPos getNearbyPos(RandomSource rand, BlockPos pos, DualBlockPileFeatureConfig config) {
         return pos.offset(rand.nextInt(config.xSpread) - rand.nextInt(config.xSpread), rand.nextInt(config.ySpread) - rand.nextInt(config.ySpread), rand.nextInt(config.zSpread) - rand.nextInt(config.zSpread));
     }
 
-    public BlockState getTrunkToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
+    public BlockState getTrunkToPlace(RandomSource rand, BlockPos pos, DualBlockPileFeatureConfig config) {
         return config.trunkStateProvider.getState(rand, pos).setValue(CoffeeTreeTrunkBlock.AGE, 3);
     }
-    public BlockState getLeavesToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
+    public BlockState getLeavesToPlace(RandomSource rand, BlockPos pos, DualBlockPileFeatureConfig config) {
         return config.leavesStateProvider.getState(rand, pos).setValue(CoffeeTreeTrunkBlock.AGE, rand.nextInt(4));
     }
 }

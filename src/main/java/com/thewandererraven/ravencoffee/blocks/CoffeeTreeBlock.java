@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.monster.Ravager;
 import net.minecraft.world.item.ItemStack;
@@ -107,7 +108,7 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     // ##################################### TICKS #####################################
 
     @Override
-    public void tick(BlockState p_51138_, ServerLevel p_51139_, BlockPos p_51140_, Random p_51141_) {
+    public void tick(BlockState p_51138_, ServerLevel p_51139_, BlockPos p_51140_, RandomSource p_51141_) {
         if (!p_51139_.isAreaLoaded(p_51140_, 1)) return;
         if (!p_51138_.canSurvive(p_51139_, p_51140_)) {
             p_51139_.destroyBlock(p_51140_, true);
@@ -126,7 +127,7 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     }
 
     @Override
-    public void randomTick(BlockState blockState, ServerLevel server, BlockPos blockPos, Random rand) {
+    public void randomTick(BlockState blockState, ServerLevel server, BlockPos blockPos, RandomSource rand) {
         if (server.isAreaLoaded(blockPos, 1))
             if(isAboveBlockAcceptable(server, blockPos))
                 if (server.getRawBrightness(blockPos, 0) >= 9 || server.canSeeSky(blockPos)) {
@@ -151,12 +152,12 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isBonemealSuccess(Level p_180670_1_, Random p_180670_2_, BlockPos p_180670_3_, BlockState p_180670_4_) {
+    public boolean isBonemealSuccess(Level p_180670_1_, RandomSource p_180670_2_, BlockPos p_180670_3_, BlockState p_180670_4_) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel server, Random rand, BlockPos blockPos, BlockState blockState) {
+    public void performBonemeal(ServerLevel server, RandomSource rand, BlockPos blockPos, BlockState blockState) {
         this.growCrops(server, blockPos, blockState);
     }
 
