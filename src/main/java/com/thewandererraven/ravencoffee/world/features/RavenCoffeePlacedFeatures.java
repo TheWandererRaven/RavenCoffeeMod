@@ -21,7 +21,7 @@ public class RavenCoffeePlacedFeatures {
                     RavenCoffeeConfiguredFeatures.COFFEE_TREE.getHolder().get(),
                     List.of(
                             CountPlacement.of(10),
-                            RarityFilter.onAverageOnceEvery(ModConfiguration.COMMON.COFFEE_TREE_JUNGLE_RARITY.getDefault()),
+                            RarityFilter.onAverageOnceEvery(90),
                             InSquarePlacement.spread(),
                             PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                             BiomeFilter.biome()
@@ -35,7 +35,7 @@ public class RavenCoffeePlacedFeatures {
                     RavenCoffeeConfiguredFeatures.COFFEE_TREE.getHolder().get(),
                     List.of(
                             CountPlacement.of(10),
-                            RarityFilter.onAverageOnceEvery(ModConfiguration.COMMON.COFFEE_TREE_SAVANNA_RARITY.getDefault()),
+                            RarityFilter.onAverageOnceEvery(200),
                             InSquarePlacement.spread(),
                             PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                             BiomeFilter.biome()
