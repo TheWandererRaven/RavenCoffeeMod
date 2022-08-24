@@ -1,7 +1,8 @@
-package com.thewandererraven.ravencoffee.gen.features;
+package com.thewandererraven.ravencoffee.world.features;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,7 +21,7 @@ public abstract class CoffeeTreeFeature<U extends FeatureConfiguration> extends 
     public boolean place(FeaturePlaceContext<U> context) {
         WorldGenLevel reader = context.level();
         //ChunkGenerator generator = context.chunkGenerator();
-        Random rand = context.random();
+        RandomSource rand = context.random();
         BlockPos pos = context.origin();
         U config = context.config();
         BlockState blockstate_trunk = this.getTrunkToPlace(rand, pos, config);
@@ -46,8 +47,8 @@ public abstract class CoffeeTreeFeature<U extends FeatureConfiguration> extends 
 
     public abstract int getFlowerCount(U config);
 
-    public abstract BlockPos getNearbyPos(Random rand, BlockPos pos, U config);
+    public abstract BlockPos getNearbyPos(RandomSource rand, BlockPos pos, U config);
 
-    public abstract BlockState getTrunkToPlace(Random rand, BlockPos pos, U config);
-    public abstract BlockState getLeavesToPlace(Random rand, BlockPos pos, U config);
+    public abstract BlockState getTrunkToPlace(RandomSource rand, BlockPos pos, U config);
+    public abstract BlockState getLeavesToPlace(RandomSource rand, BlockPos pos, U config);
 }

@@ -4,7 +4,6 @@ import com.thewandererraven.ravenbrewscore.Brew;
 import com.thewandererraven.ravenbrewscore.BrewEffect;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -96,7 +95,7 @@ public class CoffeeBrew extends Item {
             }
         }
 
-        level.gameEvent(entity, GameEvent.DRINKING_FINISH, entity.eyeBlockPosition());
+        level.gameEvent(entity, GameEvent.DRINK, entity.getEyePosition());
         return stack;
     }
 
@@ -121,7 +120,7 @@ public class CoffeeBrew extends Item {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(@Nonnull ItemStack p_77624_1_, @Nullable Level p_77624_2_, @Nonnull List<Component> p_77624_3_, @Nonnull TooltipFlag p_77624_4_) {
         String descriptionKey = this.getDescriptionId().concat(".description");
-        String completeDescription = (new TranslatableComponent(descriptionKey)).getString();
+        String completeDescription = (Component.translatable(descriptionKey)).getString();
         if(!completeDescription.equals(descriptionKey))
             for(String line: completeDescription.split("<br>")) {
                 p_77624_3_.add(Component.nullToEmpty(String.format(

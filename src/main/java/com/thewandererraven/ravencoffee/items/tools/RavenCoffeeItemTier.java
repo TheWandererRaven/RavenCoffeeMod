@@ -1,6 +1,6 @@
 package com.thewandererraven.ravencoffee.items.tools;
 
-import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 public enum RavenCoffeeItemTier implements Tier {
     // Material Tier / Durability / Efficiency / Base damage / enchantability / Repair material
     COFFEE(2, 500, 8.0f, 0.0f, 18, () -> {
-        return Ingredient.of(ItemsRegistry.COFFEE_INGOT.get());
+        return Ingredient.of(RavenCoffeeItems.COFFEE_INGOT.get());
     });
 
     private final int harvestLevel;

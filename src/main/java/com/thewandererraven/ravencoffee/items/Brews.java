@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffects;
 
 public class Brews {
     // duration => x = seconds * 20
-    public static final Brew AMERICAN = new Brew()
+    public static final Brew BASIC = new Brew()
             .addEffect(MobEffects.DIG_SPEED,3600, 1.0d)
             .addEffect(MobEffects.MOVEMENT_SPEED, 1800, 0.3d);
     public static final Brew ESPRESSO = new Brew()

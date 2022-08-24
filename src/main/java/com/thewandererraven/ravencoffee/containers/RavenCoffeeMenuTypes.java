@@ -1,4 +1,4 @@
-package com.thewandererraven.ravencoffee.util.registries;
+package com.thewandererraven.ravencoffee.containers;
 
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.containers.CoffeeGrinderContainer;
@@ -8,8 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ContainersRegistry {
-    public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, RavenCoffee.MOD_ID);
+public class RavenCoffeeMenuTypes {
+    public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, RavenCoffee.MOD_ID);
     public static final RegistryObject<MenuType<CoffeeGrinderContainer>> COFFEE_GRINDER_CONTAINER = CONTAINERS.register(
             "coffee_grinder",
             () -> IForgeMenuType.create(CoffeeGrinderContainer::createContainerClientSide)

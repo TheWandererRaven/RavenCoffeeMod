@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,7 +21,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -50,7 +48,7 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
             .orElse(Block.box(4.625, 10.5, 7.625, 5.375, 11.25, 8.375));
     public static final Map<Direction, VoxelShape> SHAPES = new HashMap<Direction, VoxelShape>();
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    private static final Component CONTAINER_NAME = new TranslatableComponent("container.coffee_grinder");
+    private static final Component CONTAINER_NAME = Component.translatable("container.coffee_grinder");
 
     public CoffeeGrinderBlock(Properties properties) {
         super(properties);
@@ -144,7 +142,7 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
         MenuProvider namedContainerProvider = this.getMenuProvider(state, worldIn, pos);
         if (namedContainerProvider != null) {
             if (!(player instanceof ServerPlayer serverPlayerEntity)) return InteractionResult.FAIL;  // should always be true, but just in case...
-            NetworkHooks.openGui(serverPlayerEntity, namedContainerProvider, (packetBuffer)->{});
+            NetworkHooks.openScreen(serverPlayerEntity, namedContainerProvider, (packetBuffer)->{});
             // (packetBuffer)->{} is just a do-nothing because we have no extra data to send
         }
         return InteractionResult.SUCCESS;
@@ -154,7 +152,7 @@ public class CoffeeGrinderBlock extends BaseEntityBlock {
     public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
         return new SimpleMenuProvider((id, inventory, player) -> {
             return new CoffeeGrinderContainer(id, inventory, ContainerLevelAccess.create(worldIn, pos));
-        }, new TranslatableComponent("container.ravencoffee.coffee_grinder_registry_name"));
+        }, Component.translatable("container.ravencoffee.coffee_grinder_registry_name"));
     }
 
 //    @Nullable

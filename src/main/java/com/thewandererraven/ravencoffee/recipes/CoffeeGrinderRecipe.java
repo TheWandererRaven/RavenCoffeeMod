@@ -125,22 +125,6 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
             buffer.writeItemStack(recipe.getResultItem(), false);
         }
 
-        @Override
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
-
-        @Nullable
-        @Override
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        @Override
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return CoffeeGrinderRecipe.Serializer.castClass(RecipeSerializer.class);
-        }
-
         private static <G> Class<G> castClass(Class<?> cls) {
             return (Class<G>)cls;
         }

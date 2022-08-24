@@ -33,11 +33,11 @@
 
   "item.ravencoffee.cup_small_unfired": "\u672a\u70e7\u70bc\u7684\u5c0f\u676f\u5b50",
   "item.ravencoffee.cup_small": "\u5c0f\u676f\u5b50",
-  "item.ravencoffee.cup_small_brew_espresso": "\u6d53\u7f29\u5496\u5561",
+  "item.ravencoffee.cup_small_brew_basic": "\u6d53\u7f29\u5496\u5561",
 
   "item.ravencoffee.cup_medium_unfired": "\u672a\u70e7\u70bc\u7684\u676f\u5b50",
   "item.ravencoffee.cup_medium": "\u676f\u5b50",
-  "item.ravencoffee.cup_medium_brew_american": "\u7f8e\u5f0f\u5496\u5561",
+  "item.ravencoffee.cup_medium_brew_basic": "\u7f8e\u5f0f\u5496\u5561",
   "item.ravencoffee.cup_medium_brew_apple": "\u82f9\u679c\u5496\u5561",
   "item.ravencoffee.cup_medium_brew_berry": "\u6d46\u679c\u5496\u5561",
   "item.ravencoffee.cup_medium_brew_chocolate": "\u5de7\u514b\u529b",
@@ -59,7 +59,7 @@
 
   "item.ravencoffee.cup_large_unfired": "\u672a\u70e7\u70bc\u7684\u5927\u676f\u5b50",
   "item.ravencoffee.cup_large": "\u5927\u676f\u5b50",
-  "item.ravencoffee.cup_large_brew_american": "\u5927\u676f\u7f8e\u5f0f\u5496\u5561",
+  "item.ravencoffee.cup_large_brew_basic": "\u5927\u676f\u7f8e\u5f0f\u5496\u5561",
   "item.ravencoffee.cup_large_brew_apple": "\u5927\u676f\u82f9\u679c\u5496\u5561",
   "item.ravencoffee.cup_large_brew_berry": "\u5927\u676f\u6d46\u679c\u5496\u5561",
   "item.ravencoffee.cup_large_brew_chocolate": "\u5927\u676f\u5de7\u514b\u529b",
@@ -80,8 +80,8 @@
   "item.ravencoffee.cup_large_brew_pumpkinspicelatte_with_pumpkin": "\u5927\u676f\u5357\u74dc\u5473\u62ff\u94c1\u0028\u52a0\u5165\u5357\u74dc\u0029",
 
   "item.ravencoffee.coffee_mug": "\u5496\u5561\u676f",
-  "item.ravencoffee.coffee_mug_brew_american": "\u7f8e\u5f0f\u5496\u5561",
-  "item.ravencoffee.coffee_mug_brew_american.description": "\u95fb\u4e00\u95fb<br>\u9ed1\u6697\u5496\u5561\u7684\u9999\u5473",
+  "item.ravencoffee.coffee_mug_brew_basic": "\u7f8e\u5f0f\u5496\u5561",
+  "item.ravencoffee.coffee_mug_brew_basic.description": "\u95fb\u4e00\u95fb<br>\u9ed1\u6697\u5496\u5561\u7684\u9999\u5473",
   "item.ravencoffee.coffee_mug_brew_apple": "\u82f9\u679c\u5496\u5561",
   "item.ravencoffee.coffee_mug_brew_berry": "\u6d46\u679c\u5496\u5561",
   "item.ravencoffee.coffee_mug_brew_chocolate": "\u5de7\u514b\u529b",

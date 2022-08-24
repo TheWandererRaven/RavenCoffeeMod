@@ -1,6 +1,5 @@
 package com.thewandererraven.ravencoffee.blocks;
 
-import com.thewandererraven.ravencoffee.util.registries.BlocksRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +20,7 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState p_200014_1_, BlockGetter p_200014_2_, BlockPos p_200014_3_) {
-        return p_200014_1_.is(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get());
+        return p_200014_1_.is(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK.get());
     }
 
     @Override
