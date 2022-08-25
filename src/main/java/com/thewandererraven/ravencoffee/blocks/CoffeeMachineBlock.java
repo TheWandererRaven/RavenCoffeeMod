@@ -1,7 +1,7 @@
 package com.thewandererraven.ravencoffee.blocks;
 
 import com.thewandererraven.ravencoffee.blocks.entities.CoffeeMachineBlockEntity;
-import com.thewandererraven.ravencoffee.util.registries.BlockEntitiesRegistry;
+import com.thewandererraven.ravencoffee.blocks.entities.RavenCoffeeBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -93,7 +93,7 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
         if(!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
             if(entity instanceof CoffeeMachineBlockEntity) {
-                NetworkHooks.openGui(((ServerPlayer) player), (CoffeeMachineBlockEntity)entity, pos);
+                NetworkHooks.openScreen(((ServerPlayer) player), (CoffeeMachineBlockEntity)entity, pos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -104,7 +104,7 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, BlockEntitiesRegistry.COFFEE_MACHINE_BLOCK_ENTITY.get(), CoffeeMachineBlockEntity::tick);
+        return createTickerHelper(blockEntityType, RavenCoffeeBlockEntities.COFFEE_MACHINE_BLOCK_ENTITY.get(), CoffeeMachineBlockEntity::tick);
     }
 
     @Override

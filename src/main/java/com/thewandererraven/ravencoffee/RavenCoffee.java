@@ -1,6 +1,7 @@
 package com.thewandererraven.ravencoffee;
 
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
+import com.thewandererraven.ravencoffee.blocks.entities.RavenCoffeeBlockEntities;
 import com.thewandererraven.ravencoffee.containers.RavenCoffeeMenuTypes;
 import com.thewandererraven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
 import com.thewandererraven.ravencoffee.recipes.CoffeeBrewRecipe;
@@ -19,12 +20,8 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -58,9 +55,9 @@ public class RavenCoffee
 
         RavenCoffeeRecipeTypes.RECIPE_TYPES.register(eventBus);
         RavenCoffeeRecipes.RECIPE_SERIALIZERS.register(eventBus);
-        RavenCoffeeMenuTypes.CONTAINERS.register(eventBus);
-        TileEntityTypeRegistry.TILE_ENTITY_TYPES.register(eventBus);
+        RavenCoffeeMenuTypes.MENUS.register(eventBus);
         RavenCoffeeBlocks.BLOCKS.register(eventBus);
+        RavenCoffeeBlockEntities.BLOCK_ENTITIES.register(eventBus);
         RavenCoffeeItems.ITEMS.register(eventBus);
         RavenCoffeeBrewItems.BREWS.register(eventBus);
         RavenCoffeeFeatures.FEATURES.register(eventBus);
@@ -104,8 +101,8 @@ public class RavenCoffee
     private void setupClient(final FMLClientSetupEvent event) {
         //ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
         //ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
-        MenuScreens.register(RavenCoffeeMenuTypes.COFFEE_GRINDER_CONTAINER.get(), CoffeeGrinderContainerScreen::new);
-        MenuScreens.register(MenusRegistry.COFFEE_MACHINE_MENU.get(), CoffeeMachineScreen::new);
+        MenuScreens.register(RavenCoffeeMenuTypes.COFFEE_GRINDER_MENU.get(), CoffeeGrinderContainerScreen::new);
+        MenuScreens.register(RavenCoffeeMenuTypes.COFFEE_MACHINE_MENU.get(), CoffeeMachineScreen::new);
     }
 
     //@SubscribeEvent
@@ -114,11 +111,12 @@ public class RavenCoffee
         //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
         //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
     }
-
+    /*
     public void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
         Registry.register(Registry.RECIPE_TYPE, CoffeeGrinderRecipe.Type.ID, CoffeeGrinderRecipe.Type.INSTANCE);
         Registry.register(Registry.RECIPE_TYPE, CoffeeBrewRecipe.Type.ID, CoffeeBrewRecipe.Type.INSTANCE);
     }
+     */
 
     private void postInit(FMLLoadCompleteEvent event) {
         // Register new behaviour for dispensing certain items

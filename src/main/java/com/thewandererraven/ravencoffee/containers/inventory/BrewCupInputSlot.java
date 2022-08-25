@@ -1,7 +1,7 @@
 package com.thewandererraven.ravencoffee.containers.inventory;
 
+import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.util.ModTags;
-import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
@@ -13,10 +13,10 @@ import java.util.Arrays;
 
 public class BrewCupInputSlot extends SlotItemHandler {
     public ArrayList<Item> Cups = new ArrayList<Item>(Arrays.asList(
-            ItemsRegistry.COFFEE_MUG.get(),
-            ItemsRegistry.CUP_SMALL.get(),
-            ItemsRegistry.CUP_MEDIUM.get(),
-            ItemsRegistry.CUP_LARGE.get()
+            RavenCoffeeItems.COFFEE_MUG.get(),
+            RavenCoffeeItems.CUP_SMALL.get(),
+            RavenCoffeeItems.CUP_MEDIUM.get(),
+            RavenCoffeeItems.CUP_LARGE.get()
     ));
 
     public BrewCupInputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {

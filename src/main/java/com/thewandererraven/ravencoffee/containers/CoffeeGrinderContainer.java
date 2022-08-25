@@ -85,9 +85,9 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
     }
 
     public CoffeeGrinderContainer(int windowID, Inventory playerInventory, ContainerLevelAccess worldPosCallable) {
-        super(RavenCoffeeMenuTypes.COFFEE_GRINDER_CONTAINER.get(), windowID);
+        super(RavenCoffeeMenuTypes.COFFEE_GRINDER_MENU.get(), windowID);
         this.worldPosCallable = worldPosCallable;
-        if (RavenCoffeeMenuTypes.COFFEE_GRINDER_CONTAINER == null)
+        if (RavenCoffeeMenuTypes.COFFEE_GRINDER_MENU == null)
             throw new IllegalStateException("Must initialise containerBasicContainerType before constructing a ContainerBasic!");
 
         this.player = playerInventory.player;

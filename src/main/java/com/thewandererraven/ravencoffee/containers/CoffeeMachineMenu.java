@@ -1,12 +1,10 @@
 package com.thewandererraven.ravencoffee.containers;
 
-import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.blocks.entities.CoffeeMachineBlockEntity;
 import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
 import com.thewandererraven.ravencoffee.containers.inventory.BrewIngredientInputSlot;
 import com.thewandererraven.ravencoffee.containers.inventory.CoffeeMachineResultSlot;
-import com.thewandererraven.ravencoffee.util.registries.BlocksRegistry;
-import com.thewandererraven.ravencoffee.util.registries.MenusRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -60,7 +58,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     }
 
     public CoffeeMachineMenu(int containerId, Inventory inventory, BlockEntity blockEntity, ContainerData data) {
-        super(MenusRegistry.COFFEE_MACHINE_MENU.get(), containerId);
+        super(RavenCoffeeMenuTypes.COFFEE_MACHINE_MENU.get(), containerId);
         checkContainerSize(inventory, COFFEE_MACHINE_SLOT_CONT);
         this.blockEntity = ((CoffeeMachineBlockEntity) blockEntity);
         this.level = inventory.player.level;
@@ -95,7 +93,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, BlocksRegistry.COFFEE_MACHINE_BLOCK.get());
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, RavenCoffeeBlocks.COFFEE_MACHINE_BLOCK.get());
     }
 
     public boolean isCupsSlotEmpty() {

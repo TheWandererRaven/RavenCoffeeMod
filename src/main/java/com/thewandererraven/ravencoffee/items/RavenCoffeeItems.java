@@ -280,6 +280,6 @@ public class RavenCoffeeItems {
 
     public static final RegistryObject<Item> COFFEE_MACHINE_ITEM = ITEMS.register(
             "coffee_machine_block",
-            () -> new BlockItem(BlocksRegistry.COFFEE_MACHINE_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
+            () -> new BlockItem(RavenCoffeeBlocks.COFFEE_MACHINE_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
     );
 }

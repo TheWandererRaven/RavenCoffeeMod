@@ -5,8 +5,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
-import com.thewandererraven.ravencoffee.util.registries.BrewsRegistry;
-import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -86,14 +86,15 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
     // ================================================ OUTPUT ================================================
     private Item getBrew(Item cup) {
         String BrewId = RavenCoffee.MOD_ID + ":" + cup + "_" + this.brewType;
-        return BrewsRegistry.BREWS.getEntries().stream().filter(itemRegistryObject ->
+        RavenCoffee.LOGGER.debug(BrewId);
+        return RavenCoffeeBrewItems.BREWS.getEntries().stream().filter(itemRegistryObject ->
                 itemRegistryObject.getId().toString().equals(BrewId)
-        ).findFirst().orElse(BrewsRegistry.COFFEE_MUG_BREW_AMERICAN).get();
+        ).findFirst().orElse(RavenCoffeeBrewItems.COFFEE_MUG_BREW_BASIC).get();
     }
 
     @Override
     public ItemStack getResultItem() {
-        return new ItemStack(ItemsRegistry.COFFEE_MUG.get());
+        return new ItemStack(RavenCoffeeItems.COFFEE_MUG.get());
     }
 
     public ItemStack getResultItem(Item cup, int count) {
@@ -186,22 +187,6 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
             }
             buffer.writeUtf(recipe.brewType);
             buffer.writeInt(recipe.cookingTime);
-        }
-
-        @Override
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
-
-        @Nullable
-        @Override
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        @Override
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return CoffeeBrewRecipe.Serializer.castClass(RecipeSerializer.class);
         }
 
         private static <G> Class<G> castClass(Class<?> cls) {

@@ -2,15 +2,13 @@ package com.thewandererraven.ravencoffee.blocks.entities;
 
 import com.thewandererraven.ravencoffee.containers.CoffeeMachineMenu;
 import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.recipes.BrewSizedIngredient;
 import com.thewandererraven.ravencoffee.recipes.CoffeeBrewRecipe;
-import com.thewandererraven.ravencoffee.util.registries.BlockEntitiesRegistry;
-import com.thewandererraven.ravencoffee.util.registries.ItemsRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -56,7 +54,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     private LazyOptional<ItemStackHandler> lazyItemHandler = LazyOptional.empty();
 
     public CoffeeMachineBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
-        super(BlockEntitiesRegistry.COFFEE_MACHINE_BLOCK_ENTITY.get(), p_155229_, p_155230_);
+        super(RavenCoffeeBlockEntities.COFFEE_MACHINE_BLOCK_ENTITY.get(), p_155229_, p_155230_);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
@@ -162,7 +160,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     // ================================================= DISPLAY =================================================
     @Override
     public @NotNull Component getDisplayName() {
-        return new TextComponent("Coffee Machine");
+        return Component.translatable("Coffee Machine");
     }
 
     @Nullable
@@ -230,7 +228,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     // ================================================= RECIPES =================================================
 
     private boolean hasRecipe() {
-        return this.itemHandler.getStackInSlot(2).getItem() == ItemsRegistry.COFFEE_BEANS_ROASTED_GROUND.get();
+        return this.itemHandler.getStackInSlot(2).getItem() == RavenCoffeeItems.COFFEE_BEANS_ROASTED_GROUND.get();
     }
 
     private static Optional<CoffeeBrewRecipe> findRecipe(ItemStack cup, SimpleContainer inventory, Level level) {
