@@ -1,7 +1,6 @@
 package com.thewandererraven.ravencoffee.blocks;
 
 import com.thewandererraven.ravencoffee.RavenCoffee;
-import com.thewandererraven.ravencoffee.blocks.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -17,9 +16,9 @@ public class RavenCoffeeBlocks {
             "coffee_beans_roasted_block",
             CoffeeBeansRoastedBlock::new
     );
-    public static final RegistryObject<Block> COFFEE_BEANS_ROASTED_MAGMA_BLOCK = BLOCKS.register(
-            "coffee_beans_roasted_magma_block",
-            CoffeeBeansRoastedMagmaBlock::new
+    public static final RegistryObject<Block> COFFEE_BEANS_MAGMA_BLOCK = BLOCKS.register(
+            "coffee_beans_magma_block",
+            CoffeeBeansMagmaBlock::new
     );
     public static final RegistryObject<Block> COFFEE_TREE_LEAVES_BLOCK = BLOCKS.register(
             "coffee_tree_leaves_block",

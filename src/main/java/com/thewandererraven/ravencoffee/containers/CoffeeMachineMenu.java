@@ -12,6 +12,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 public class CoffeeMachineMenu extends AbstractContainerMenu {
@@ -64,7 +65,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
         this.level = inventory.player.level;
         this.data = data;
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             // ADD THE CUP OUTPUT SLOT
             addSlot(new CoffeeMachineResultSlot(handler, CoffeeMachineBlockEntity.OUTPUT_FIRST_SLOT_INDEX, CUP_OUTPUT_SLOT_POS_X,  CUP_OUTPUT_SLOT_POS_Y));
             // ADD CUPS SLOT

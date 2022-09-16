@@ -7,14 +7,14 @@
   ],
   "key": {
     "x": {
-      "item": "ravencoffee:coffee_beans_roasted"
+      "item": "ravencoffee:coffee_beans_roasted_magma"
     },
     "y": {
-      "item": "minecraft:magma_cream"
+      "item": "minecraft:slime_ball"
     }
   },
   "result": {
-    "item": "ravencoffee:coffee_beans_roasted_magma_block",
+    "item": "ravencoffee:coffee_beans_magma_block",
     "count": 1
   }
 }
