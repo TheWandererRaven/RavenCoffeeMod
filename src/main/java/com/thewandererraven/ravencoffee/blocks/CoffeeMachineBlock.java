@@ -36,6 +36,15 @@ import java.util.stream.Stream;
 
 public class CoffeeMachineBlock extends BaseEntityBlock {
     private static final VoxelShape SHAPE = Stream.of(
+            Block.box(1, 0, 1, 15, 1, 5),
+            Block.box(1, 0, 5, 15, 11, 15),
+            Block.box(1, 8, 4, 11, 11, 5),
+            Block.box(3, 7, 3, 4, 10, 4),
+            Block.box(6, 11, 7, 10, 12, 11),
+            Block.box(6, 15, 7, 10, 16, 11),
+            Block.box(5, 12, 6, 11, 15, 12)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+            /*Stream.of(
             Block.box(1, 0, 1, 15, 1, 15),
             Block.box(1, 1, 6, 15, 5, 15),
             Block.box(1, 5, 6, 15, 12, 13),
@@ -53,7 +62,7 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
             Block.box(6, 13, 4, 7, 15, 7),
             Block.box(2, 13, 4, 3, 15, 7),
             Block.box(3, 15, 4, 6, 16, 7)
-            ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+            ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();*/
     public static final Map<Direction, VoxelShape> SHAPES = new HashMap<Direction, VoxelShape>();
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 

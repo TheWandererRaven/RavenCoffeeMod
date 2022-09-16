@@ -12,6 +12,7 @@ public class ModTags {
         public static final TagKey<Item> CUPS_SMALL = tag("cups_small");
         public static final TagKey<Item> CUPS_MEDIUM = tag("cups_medium");
         public static final TagKey<Item> CUPS_LARGE = tag("cups_large");
+        public static final TagKey<Item> BREW_INGREDIENTS = tag("brew_ingredients");
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(RavenCoffee.MOD_ID, name));
         }

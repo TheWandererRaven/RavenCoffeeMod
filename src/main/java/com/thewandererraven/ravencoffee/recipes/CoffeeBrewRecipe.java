@@ -22,12 +22,14 @@ import org.jetbrains.annotations.Nullable;
 public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
     public static String TypeName = "coffee_brewing";
     private final ResourceLocation id;
+    private final boolean[] acceptedCupSizes;
     private final NonNullList<BrewSizedIngredient> recipeItems;
     private final String brewType;
     private final int cookingTime;
 
-    public CoffeeBrewRecipe(ResourceLocation id, String brewType, int cookingTime, NonNullList<BrewSizedIngredient> recipeItems) {
+    public CoffeeBrewRecipe(ResourceLocation id, String brewType, int cookingTime, boolean[] acceptedCupSizes, NonNullList<BrewSizedIngredient> recipeItems) {
         this.id = id;
+        this.acceptedCupSizes = acceptedCupSizes;
         this.recipeItems = recipeItems;
         this.brewType = brewType;
         this.cookingTime = cookingTime;
@@ -60,19 +62,32 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
     public boolean matches(SimpleContainer playerContainer, ItemStack cup, Level playerLevel) {
         boolean matchesRecipe = false;
         if(!playerLevel.isClientSide()) {
-            matchesRecipe = true;
-            // Go through all recipe ingredients and compare...
-            for(int i = 0; i < recipeItems.size(); i++) {
-                // ...If the ingredient is not the same...
-                if(!(recipeItems.get(i).getIngredient().test(playerContainer.getItem(i)) &&
-                        // ...Or if the amount on the stack matches is lesser than the needed for the cup size
-                        recipeItems.get(i).getCountBySize(BrewCupInputSlot.getCupSize(cup)) <= playerContainer.getItem(i).getCount())) {
-                    matchesRecipe = false;
-                    break;
+            if(isCupSizeForBrew(BrewCupInputSlot.getCupSize(cup))) {
+                matchesRecipe = true;
+                // Go through all recipe ingredients and compare...
+                for (int i = 0; i < recipeItems.size(); i++) {
+                    // ...If the ingredient is not the same...
+                    if (!(recipeItems.get(i).getIngredient().test(playerContainer.getItem(i)) &&
+                            // ...Or if the amount on the stack matches is lesser than the needed for the cup size
+                            recipeItems.get(i).getCountBySize(BrewCupInputSlot.getCupSize(cup)) <= playerContainer.getItem(i).getCount())) {
+                        matchesRecipe = false;
+                        break;
+                    }
                 }
             }
         }
+        RavenCoffee.LOGGER.debug(matchesRecipe);
         return matchesRecipe;
+    }
+
+    public boolean isCupSizeForBrew(BrewCupInputSlot.CupSizes sizeIndex) {
+        if(sizeIndex == null) return false;
+        return isCupSizeForBrew(sizeIndex.ordinal());
+    }
+
+    public boolean isCupSizeForBrew(int sizeIndex) {
+        if(sizeIndex >= acceptedCupSizes.length) return false;
+        return acceptedCupSizes[sizeIndex];
     }
 
     public BrewSizedIngredient getMatchingIngredient(ItemStack item) {
@@ -86,7 +101,6 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
     // ================================================ OUTPUT ================================================
     private Item getBrew(Item cup) {
         String BrewId = RavenCoffee.MOD_ID + ":" + cup + "_" + this.brewType;
-        RavenCoffee.LOGGER.debug(BrewId);
         return RavenCoffeeBrewItems.BREWS.getEntries().stream().filter(itemRegistryObject ->
                 itemRegistryObject.getId().toString().equals(BrewId)
         ).findFirst().orElse(RavenCoffeeBrewItems.COFFEE_MUG_BREW_BASIC).get();
@@ -128,14 +142,21 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
         @Override
         public CoffeeBrewRecipe fromJson(ResourceLocation id, JsonObject json) {
             NonNullList<BrewSizedIngredient> brewSizedIngredients = readBrewIngredients(GsonHelper.getAsJsonArray(json, "brewingredients"));
-            if (brewSizedIngredients.isEmpty()) {
+            if (brewSizedIngredients.isEmpty())
                 throw new JsonParseException("No ingredients for coffee brew recipe");
-            } else {
-                JsonObject result = GsonHelper.getAsJsonObject(json, "result");
-                String brewType = result.get("brewtype").getAsString();
-                int cookingTime = result.get("cookingtime").getAsInt();
-                return new CoffeeBrewRecipe(id, brewType, cookingTime, brewSizedIngredients);
+            boolean[] acceptedCupSizes = readBrewAcceptedSizes(GsonHelper.getAsJsonArray(json, "forCupSizes"));
+            JsonObject result = GsonHelper.getAsJsonObject(json, "result");
+            String brewType = result.get("brewtype").getAsString();
+            int cookingTime = result.get("cookingtime").getAsInt();
+            return new CoffeeBrewRecipe(id, brewType, cookingTime, acceptedCupSizes, brewSizedIngredients);
+        }
+
+        private static boolean[] readBrewAcceptedSizes(JsonArray acceptedCupsArray) {
+            boolean[] acceptedCups = new boolean[acceptedCupsArray.size()];
+            for(int i = 0; i < acceptedCupsArray.size(); ++i) {
+                acceptedCups[i] = acceptedCupsArray.get(i).getAsBoolean();
             }
+            return acceptedCups;
         }
 
         private static NonNullList<BrewSizedIngredient> readBrewIngredients(JsonArray ingredientArray) {
@@ -162,10 +183,13 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
             for(int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, new BrewSizedIngredient(Ingredient.fromNetwork(buffer), getSizesFromNetwork(buffer)));
             }
-
+            boolean[] acceptedCupSizes = new boolean[buffer.readInt()];
+            for(int i = 0; i < acceptedCupSizes.length; i++) {
+                acceptedCupSizes[i] = buffer.readBoolean();
+            }
             String brewType = buffer.readUtf();
             int cookingTime = buffer.readInt();
-            return new CoffeeBrewRecipe(id, brewType, cookingTime, inputs);
+            return new CoffeeBrewRecipe(id, brewType, cookingTime, acceptedCupSizes, inputs);
         }
 
         public int[] getSizesFromNetwork(FriendlyByteBuf buffer) {
@@ -184,6 +208,10 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
                 for(int i = 0; i < BrewSizedIngredient.cupSizesCount; i++) {
                     buffer.writeInt(sizedIngredient.getCountBySize(i));
                 }
+            }
+            buffer.writeInt(recipe.acceptedCupSizes.length);
+            for (boolean acceptedCupSize : recipe.acceptedCupSizes) {
+                buffer.writeBoolean(acceptedCupSize);
             }
             buffer.writeUtf(recipe.brewType);
             buffer.writeInt(recipe.cookingTime);

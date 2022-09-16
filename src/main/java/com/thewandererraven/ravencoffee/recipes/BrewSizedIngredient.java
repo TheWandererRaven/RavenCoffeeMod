@@ -48,7 +48,7 @@ public class BrewSizedIngredient {
     }
 
     public boolean isEmpty() {
-        return this.ingredient.isEmpty() || isSizeListEmpty();
+        return this.ingredient.isEmpty();// || isSizeListEmpty();
     }
 
 }
