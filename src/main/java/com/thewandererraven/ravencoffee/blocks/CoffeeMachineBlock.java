@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
@@ -35,14 +36,19 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class CoffeeMachineBlock extends BaseEntityBlock {
+    public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+    public static final BooleanProperty HAS_INPUT_CUP = BooleanProperty.create("has_input_cup");
+    public static final BooleanProperty HAS_COFFEE = BooleanProperty.create("has_coffee");
+    public static final BooleanProperty HAS_OUTPUT = BooleanProperty.create("has_output");
+
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final VoxelShape SHAPE = Stream.of(
-            Block.box(1, 0, 1, 15, 1, 5),
             Block.box(1, 0, 5, 15, 11, 15),
+            Block.box(1, 0, 1, 15, 1, 5),
             Block.box(1, 8, 4, 11, 11, 5),
             Block.box(3, 7, 3, 4, 10, 4),
-            Block.box(6, 11, 7, 10, 12, 11),
-            Block.box(6, 15, 7, 10, 16, 11),
-            Block.box(5, 12, 6, 11, 15, 12)
+            Block.box(2, 12, 6, 8, 15, 12),
+            Block.box(3, 11, 7, 7, 16, 11)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
             /*Stream.of(
             Block.box(1, 0, 1, 15, 1, 15),
@@ -64,14 +70,19 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
             Block.box(3, 15, 4, 6, 16, 7)
             ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();*/
     public static final Map<Direction, VoxelShape> SHAPES = new HashMap<Direction, VoxelShape>();
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public CoffeeMachineBlock() {
         super(Properties.of(Material.METAL)
                 .strength(2.0f, 2.0f)
                 .sound(SoundType.METAL)
         );
-        this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.getStateDefinition().any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(ACTIVE, false)
+                .setValue(HAS_OUTPUT, false)
+                .setValue(HAS_INPUT_CUP, false)
+                .setValue(HAS_COFFEE, false)
+        );
         runCalculation(SHAPE);
     }
 
@@ -131,7 +142,7 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
                 flag = true;
             }
         }
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());//.setValue(ACTIVE, true);
     }
 
     @SuppressWarnings("deprecation")
@@ -155,6 +166,10 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
+        builder.add(ACTIVE);
+        builder.add(HAS_INPUT_CUP);
+        builder.add(HAS_COFFEE);
+        builder.add(HAS_OUTPUT);
         builder.add(FACING);
     }
 

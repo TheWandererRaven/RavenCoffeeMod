@@ -76,7 +76,6 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
                 }
             }
         }
-        RavenCoffee.LOGGER.debug(matchesRecipe);
         return matchesRecipe;
     }
 

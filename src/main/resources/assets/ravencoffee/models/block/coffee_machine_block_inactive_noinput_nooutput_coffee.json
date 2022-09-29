@@ -1,16 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"texture_size": [32, 32],
-	"render_type": "translucent",
-	"textures": {
-		"0": "ravencoffee:blocks/coffee_machine_block_base",
-		"1": "ravencoffee:blocks/coffee_machine_block_coffee",
-		"2": "ravencoffee:blocks/coffee_mug_empty",
-		"3": "ravencoffee:blocks/coffee_machine_block_panel_off",
-		"4": "ravencoffee:blocks/coffee_machine_block_water",
-		"5": "ravencoffee:blocks/coffee_mug_coffee",
-		"particle": "ravencoffee:blocks/coffee_mug_coffee"
-	},
+	"parent": "ravencoffee:block/coffee_machine_block",
 	"elements": [
 		{
 			"name": "base",
@@ -189,36 +178,20 @@
 			"faces": {
 				"south": {"uv": [1.5, 10.5, 7.5, 13.5], "texture": "#0"}
 			}
+		},
+		{
+			"name": "coffeeholder_contents",
+			"from": [3, 12, 7],
+			"to": [7, 15, 11],
+			"faces": {
+				"north": {"uv": [0, 4, 4, 7], "texture": "#1"},
+				"east": {"uv": [12, 4, 16, 7], "texture": "#1"},
+				"south": {"uv": [8, 4, 12, 7], "texture": "#1"},
+				"west": {"uv": [4, 4, 8, 7], "texture": "#1"},
+				"up": {"uv": [0, 0, 4, 4], "texture": "#1"}
+			}
 		}
 	],
-	"display": {
-		"thirdperson_righthand": {
-			"translation": [0, 0, -3.5],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"thirdperson_lefthand": {
-			"translation": [0, 0, -3.5],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"firstperson_righthand": {
-			"translation": [2.5, 0, -1.5]
-		},
-		"firstperson_lefthand": {
-			"translation": [2.5, 0, -1.5]
-		},
-		"ground": {
-			"translation": [0, 3, 0],
-			"scale": [0.3, 0.3, 0.3]
-		},
-		"gui": {
-			"rotation": [30, -135, 0],
-			"translation": [0, 0.75, 0],
-			"scale": [0.7, 0.7, 0.7]
-		},
-		"fixed": {
-			"translation": [0, 0, -7]
-		}
-	},
 	"groups": [
 		{
 			"name": "Machine",

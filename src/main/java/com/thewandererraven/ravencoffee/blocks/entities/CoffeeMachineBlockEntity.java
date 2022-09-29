@@ -1,5 +1,7 @@
 package com.thewandererraven.ravencoffee.blocks.entities;
 
+import com.thewandererraven.ravencoffee.RavenCoffee;
+import com.thewandererraven.ravencoffee.blocks.CoffeeMachineBlock;
 import com.thewandererraven.ravencoffee.containers.CoffeeMachineMenu;
 import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
@@ -122,16 +124,29 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
             SimpleContainer ingredientsInventory = getIngredientsInventory(blockEntity);
             // Check if the recipe still matches the ingredients
             if (blockEntity.currentRecipe != null)
-                if (!blockEntity.currentRecipe.matches(ingredientsInventory, getCup(blockEntity), level))
+                if (!blockEntity.currentRecipe.matches(ingredientsInventory, getCup(blockEntity), level)) {
                     blockEntity.resetCurrentRecipe();
+                    if (state.getValue(CoffeeMachineBlock.ACTIVE)) level.setBlock(pos, state.setValue(CoffeeMachineBlock.ACTIVE, false), 3);
+                }
 
+            Item outputCurrent = blockEntity.itemHandler.getStackInSlot(OUTPUT_FIRST_SLOT_INDEX).getItem();
+            ItemStack cup = getCup(blockEntity);
+            Item inputCurrent = blockEntity.itemHandler.getStackInSlot(INGREDIENTS_FIRST_SLOT_INDEX).getItem();
+
+            if (!state.getValue(CoffeeMachineBlock.HAS_INPUT_CUP) && !cup.getItem().equals(Items.AIR))
+                level.setBlock(pos, state.setValue(CoffeeMachineBlock.HAS_INPUT_CUP, true), 3);
+            if (state.getValue(CoffeeMachineBlock.HAS_INPUT_CUP) && cup.getItem().equals(Items.AIR))
+                level.setBlock(pos, state.setValue(CoffeeMachineBlock.HAS_INPUT_CUP, false), 3);
+            if (!state.getValue(CoffeeMachineBlock.HAS_COFFEE) && !inputCurrent.equals(Items.AIR))
+                level.setBlock(pos, state.setValue(CoffeeMachineBlock.HAS_COFFEE, true), 3);
+            if (state.getValue(CoffeeMachineBlock.HAS_COFFEE) && inputCurrent.equals(Items.AIR))
+                level.setBlock(pos, state.setValue(CoffeeMachineBlock.HAS_COFFEE, false), 3);
             // Check if the block can still process an output
             // Verify output stack has not reached limit, item in cup slot is cup and item in ingredient is not empty
             if (blockEntity.hasNotReachedStackLimit() &&
                     BrewCupInputSlot.isCup(blockEntity.itemHandler.getStackInSlot(CUPS_FIRST_SLOT_INDEX)) &&
                     !blockEntity.itemHandler.getStackInSlot(INGREDIENTS_FIRST_SLOT_INDEX).isEmpty()
             ) {
-                ItemStack cup = getCup(blockEntity);
                 // Check if current recipe is not empty, if it is, search for the recipe given the ingredient
                 if (blockEntity.currentRecipe == null) findRecipe(cup, ingredientsInventory, level).ifPresent(blockEntity::setCurrentRecipe);
                 // Check if there's a recipe
@@ -140,12 +155,15 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
                             cup.getItem(),
                             blockEntity.itemHandler.getStackInSlot(OUTPUT_FIRST_SLOT_INDEX).getCount() + 1
                     );
-                    Item outputCurrent = blockEntity.itemHandler.getStackInSlot(OUTPUT_FIRST_SLOT_INDEX).getItem();
                     // Check if the output is empty or the same as the result item
                     if (outputCurrent.equals(output.getItem()) || outputCurrent.equals(Items.AIR)) {
                         // If the process is complete craft the output item, if not, increase the progress
                         if (blockEntity.isBrewingProcessComplete()) craftItem(blockEntity, cup, output);
                         else blockEntity.tickCurrentProgress();
+                        if (!state.getValue(CoffeeMachineBlock.ACTIVE))
+                            level.setBlock(pos, state.setValue(CoffeeMachineBlock.ACTIVE, true), 3);
+                        if (!state.getValue(CoffeeMachineBlock.HAS_OUTPUT))
+                            level.setBlock(pos, state.setValue(CoffeeMachineBlock.HAS_OUTPUT, true), 3);
                         // If this point is reached, then this method has done everything it needs to do i.e. generating
                         // an output or increasing the progress
                         return;
@@ -155,6 +173,12 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
             // If none of the filters pass, in other words, if the conditions for brewing/crafting are not met,
             // reset the progress
             if (blockEntity.currentProgress > 0) blockEntity.resetProgress();
+            if (state.getValue(CoffeeMachineBlock.ACTIVE)) level.setBlock(pos, state.setValue(CoffeeMachineBlock.ACTIVE, false), 3);
+
+            if (!state.getValue(CoffeeMachineBlock.HAS_OUTPUT) && !outputCurrent.equals(Items.AIR))
+                level.setBlock(pos, state.setValue(CoffeeMachineBlock.HAS_OUTPUT, true), 3);
+            if (state.getValue(CoffeeMachineBlock.HAS_OUTPUT) && outputCurrent.equals(Items.AIR))
+                level.setBlock(pos, state.setValue(CoffeeMachineBlock.HAS_OUTPUT, false), 3);
         }
     }
 
