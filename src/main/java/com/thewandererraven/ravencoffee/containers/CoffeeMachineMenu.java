@@ -149,16 +149,18 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
             else if (index >= VANILLA_FIRST_SLOT_INDEX && index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT) {
                 // ...move to input slots...
                 if (!this.moveItemStackTo(itemstack1, CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX, CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX + CoffeeMachineBlockEntity.INGREDIENTS_SLOT_COUNT, false))
-                    // ...if input slots are full, and if selected slot is from player inventory...
-                    if (index < PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT) {
-                        // ...move to hotbar...
-                        if (!this.moveItemStackTo(itemstack1, HOTBAR_FIRST_SLOT_INDEX, HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT, false)) {
-                            return ItemStack.EMPTY;
+                    // ...if ingredients slots are full, try with cups slot
+                    if (!this.moveItemStackTo(itemstack1, CoffeeMachineBlockEntity.CUPS_FIRST_SLOT_INDEX, CoffeeMachineBlockEntity.CUPS_FIRST_SLOT_INDEX + CoffeeMachineBlockEntity.CUPS_SLOT_COUNT, false))
+                        // ...if input slots are full, and if selected slot is from player inventory...
+                        if (index < PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT) {
+                            // ...move to hotbar...
+                            if (!this.moveItemStackTo(itemstack1, HOTBAR_FIRST_SLOT_INDEX, HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT, false)) {
+                                return ItemStack.EMPTY;
+                            }
                         }
-                    }
-                    // ...otherwise, selected slot is from hotbar so, move to inventory
-                    else if (!this.moveItemStackTo(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT, false))
-                        return ItemStack.EMPTY;
+                        // ...otherwise, selected slot is from hotbar so, move to inventory
+                        else if (!this.moveItemStackTo(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT, false))
+                            return ItemStack.EMPTY;
             }
             // If selected item is in input slots...
             // ...move to Player vanilla slots (first to player inventory, then to hotbar)
