@@ -185,7 +185,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     // ================================================= DISPLAY =================================================
     @Override
     public @NotNull Component getDisplayName() {
-        return Component.translatable("Coffee Machine");
+        return Component.translatable(String.format("container.%s.coffee_machine", RavenCoffee.MOD_ID));
     }
 
     @Nullable
