@@ -1,5 +1,6 @@
 package com.thewandererraven.ravencoffee.blocks;
 
+import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.entities.CoffeeMachineBlockEntity;
 import com.thewandererraven.ravencoffee.blocks.entities.RavenCoffeeBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -9,6 +10,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.HopperMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -18,6 +21,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -37,6 +41,7 @@ import java.util.stream.Stream;
 
 public class CoffeeMachineBlock extends BaseEntityBlock {
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+    public static final BooleanProperty ENABLED = BooleanProperty.create("enabled");
     public static final BooleanProperty HAS_INPUT_CUP = BooleanProperty.create("has_input_cup");
     public static final BooleanProperty HAS_COFFEE = BooleanProperty.create("has_coffee");
     public static final BooleanProperty HAS_OUTPUT = BooleanProperty.create("has_output");
@@ -78,6 +83,7 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
         );
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
+                .setValue(ENABLED, true)
                 .setValue(ACTIVE, false)
                 .setValue(HAS_OUTPUT, false)
                 .setValue(HAS_INPUT_CUP, false)
@@ -145,6 +151,23 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());//.setValue(ACTIVE, true);
     }
 
+    public void onPlace(BlockState selfState, Level level, BlockPos blockPos, BlockState neighborState, boolean p_54114_) {
+        if (!neighborState.is(selfState.getBlock())) {
+            this.checkPoweredState(level, blockPos, selfState);
+        }
+    }
+
+    public void neighborChanged(BlockState selfState, Level level, BlockPos selfPos, Block block, BlockPos neighborPos, boolean p_54083_) {
+        this.checkPoweredState(level, selfPos, selfState);
+    }
+
+    private void checkPoweredState(Level level, BlockPos pos, BlockState blockState) {
+        boolean flag = !level.hasNeighborSignal(pos);
+        if (flag != blockState.getValue(ENABLED)) {
+            level.setBlock(pos, blockState.setValue(ENABLED, Boolean.valueOf(flag)), 4);
+        }
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos,
@@ -167,6 +190,7 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(ACTIVE);
+        builder.add(ENABLED);
         builder.add(HAS_INPUT_CUP);
         builder.add(HAS_COFFEE);
         builder.add(HAS_OUTPUT);

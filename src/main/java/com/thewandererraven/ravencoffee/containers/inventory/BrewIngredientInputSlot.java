@@ -14,6 +14,10 @@ public class BrewIngredientInputSlot extends SlotItemHandler {
 
     @Override
     public boolean mayPlace(@NotNull ItemStack stack) {
+        return isBrewIngredient(stack);
+    }
+
+    public static boolean isBrewIngredient(@NotNull ItemStack stack){
         return stack.is(ModTags.Items.BREW_INGREDIENTS);
     }
 }
