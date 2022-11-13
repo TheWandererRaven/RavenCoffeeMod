@@ -11,9 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Containers;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -24,17 +22,15 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvider {
+public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
     public static final int OUTPUT_SLOT_COUNT = 1;
     public static final int CUPS_SLOT_COUNT = 1;
     public static final int INGREDIENTS_SLOT_COUNT = 1;
@@ -107,16 +103,6 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
         }
 
         Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
-    @NotNull
-    @Override
-    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if(cap == ForgeCapabilities.ITEM_HANDLER) {
-            return lazyItemHandler.cast();
-        }
-
-        return super.getCapability(cap, side);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, CoffeeMachineBlockEntity blockEntity) {
@@ -241,12 +227,6 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     }
 
     @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        lazyItemHandler.invalidate();
-    }
-
-    @Override
     protected void saveAdditional(CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("coffee_machine.currentProgress", currentProgress);
@@ -297,5 +277,101 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
 
     private static ItemStack getCup(CoffeeMachineBlockEntity blockEntity) {
         return blockEntity.itemHandler.getStackInSlot(CUPS_FIRST_SLOT_INDEX);
+    }
+
+    // =============================================== WORLDLY CONTAINER ===============================================
+
+    @Override
+    public int[] getSlotsForFace(Direction direction) {
+        if(direction == Direction.DOWN) return new int[] {0};
+        else if(direction == Direction.UP) return new int[] {2};
+        else return new int[] {1};
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int p_19235_, ItemStack p_19236_, @Nullable Direction p_19237_) {
+        return true;
+    }
+
+    @Override
+    public boolean canTakeItemThroughFace(int p_19239_, ItemStack p_19240_, Direction p_19241_) {
+        return true;
+    }
+
+    @Override
+    public int getContainerSize() {
+        return 3;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        for(int i = 0; i < this.itemHandler.getSlots(); i++) {
+            if(this.itemHandler.getStackInSlot(i).isEmpty())
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    public ItemStack getItem(int slot) {
+        return this.itemHandler.getStackInSlot(slot);
+    }
+
+    @Override
+    public ItemStack removeItem(int slot, int count) {
+        return this.itemHandler.extractItem(slot, count, false);
+    }
+
+    @Override
+    public ItemStack removeItemNoUpdate(int slot) {
+        return this.itemHandler.extractItem(slot, this.itemHandler.getStackInSlot(slot).getCount(), false);
+    }
+
+    @Override
+    public void setItem(int slot, ItemStack itemStack) {
+        this.itemHandler.setStackInSlot(slot, itemStack);
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return true;
+    }
+
+    @Override
+    public void clearContent() {
+        for(int i = 0; i < this.itemHandler.getSlots(); i++) {
+            this.itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+        }
+    }
+
+    net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
+            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+
+    @Override
+    public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @javax.annotation.Nullable Direction facing) {
+        if (!this.remove && capability == ForgeCapabilities.ITEM_HANDLER) {
+            if(facing == null)
+                return lazyItemHandler.cast();
+            else if (facing == Direction.UP)
+                return handlers[0].cast();
+            else if (facing == Direction.DOWN)
+                return handlers[1].cast();
+            else
+                return handlers[2].cast();
+        }
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        lazyItemHandler.invalidate();
+        for (LazyOptional<? extends net.minecraftforge.items.IItemHandler> handler : handlers) handler.invalidate();
+    }
+
+    @Override
+    public void reviveCaps() {
+        super.reviveCaps();
+        this.handlers = net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
     }
 }
