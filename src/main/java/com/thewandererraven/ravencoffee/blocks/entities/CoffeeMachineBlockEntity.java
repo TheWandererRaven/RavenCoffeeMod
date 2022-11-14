@@ -4,6 +4,7 @@ import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.CoffeeMachineBlock;
 import com.thewandererraven.ravencoffee.containers.CoffeeMachineMenu;
 import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
+import com.thewandererraven.ravencoffee.containers.inventory.BrewIngredientInputSlot;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.recipes.BrewSizedIngredient;
 import com.thewandererraven.ravencoffee.recipes.CoffeeBrewRecipe;
@@ -34,9 +35,15 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     public static final int OUTPUT_SLOT_COUNT = 1;
     public static final int CUPS_SLOT_COUNT = 1;
     public static final int INGREDIENTS_SLOT_COUNT = 1;
+
     public static final int OUTPUT_FIRST_SLOT_INDEX = 0;
     public static final int CUPS_FIRST_SLOT_INDEX = OUTPUT_FIRST_SLOT_INDEX + OUTPUT_SLOT_COUNT;
     public static final int INGREDIENTS_FIRST_SLOT_INDEX = CUPS_FIRST_SLOT_INDEX + CUPS_SLOT_COUNT;
+
+    private final int[] SLOTS_FOR_OUTPUT = new int[OUTPUT_SLOT_COUNT];
+    private final int[] SLOTS_FOR_CUPS = new int[CUPS_SLOT_COUNT];
+    private final int[] SLOTS_FOR_INGREDIENTS = new int[CUPS_SLOT_COUNT];
+
 
     private CoffeeBrewRecipe currentRecipe;
     private int currentProgress = 0;
@@ -54,6 +61,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
 
     public CoffeeMachineBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
         super(RavenCoffeeBlockEntities.COFFEE_MACHINE_BLOCK_ENTITY.get(), p_155229_, p_155230_);
+
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
@@ -76,21 +84,43 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
                 return 2;
             }
         };
+
+        for(int i = 0; i < OUTPUT_SLOT_COUNT; i++) {
+            SLOTS_FOR_OUTPUT[i] = OUTPUT_FIRST_SLOT_INDEX + i;
+        }
+        for(int i = 0; i < CUPS_SLOT_COUNT; i++) {
+            SLOTS_FOR_CUPS[i] = CUPS_FIRST_SLOT_INDEX + i;
+        }
+        for(int i = 0; i < INGREDIENTS_SLOT_COUNT; i++) {
+            SLOTS_FOR_INGREDIENTS[i] = INGREDIENTS_FIRST_SLOT_INDEX + i;
+        }
     }
 
     private boolean hasNotReachedStackLimit() {
-        return this.itemHandler.getStackInSlot(0).getCount() < this.itemHandler.getStackInSlot(1).getMaxStackSize();
+        int outputCurrentCount = 0;
+        int outputMaxStackSize = 0;
+        for(int i = 0; i < OUTPUT_SLOT_COUNT; i++) {
+            outputCurrentCount += this.itemHandler.getStackInSlot(i + OUTPUT_FIRST_SLOT_INDEX).getCount();
+            outputMaxStackSize += this.itemHandler.getStackInSlot(i + OUTPUT_FIRST_SLOT_INDEX).getMaxStackSize();
+        }
+        return outputCurrentCount < outputMaxStackSize;
     }
 
     private static void craftItem(CoffeeMachineBlockEntity blockEntity, ItemStack cup, ItemStack output) {
-
-        for(int i = INGREDIENTS_FIRST_SLOT_INDEX; i < INGREDIENTS_FIRST_SLOT_INDEX + INGREDIENTS_SLOT_COUNT; i++) {
-            BrewSizedIngredient ingredient = blockEntity.currentRecipe.getMatchingIngredient(blockEntity.itemHandler.getStackInSlot(i));
+        for(int i = 0; i < INGREDIENTS_SLOT_COUNT; i++) {
+            BrewSizedIngredient ingredient = blockEntity.currentRecipe.getMatchingIngredient(blockEntity.itemHandler.getStackInSlot(
+                    i + INGREDIENTS_FIRST_SLOT_INDEX
+            ));
             if(ingredient != null)
-                blockEntity.itemHandler.extractItem(i, ingredient.getCountBySize(BrewCupInputSlot.getCupSize(cup)), false);
+                blockEntity.itemHandler.extractItem(i + INGREDIENTS_FIRST_SLOT_INDEX, ingredient.getCountBySize(BrewCupInputSlot.getCupSize(cup)), false);
         }
         //blockEntity.itemHandler.extractItem(INGREDIENTS_FIRST_SLOT_INDEX, 1, false);
-        blockEntity.itemHandler.extractItem(CUPS_FIRST_SLOT_INDEX, 1, false);
+        for(int i = 0; i < CUPS_SLOT_COUNT; i++) {
+            if(!blockEntity.itemHandler.getStackInSlot(i + CUPS_FIRST_SLOT_INDEX).isEmpty()){
+                blockEntity.itemHandler.extractItem(i + CUPS_FIRST_SLOT_INDEX, 1, false);
+                break;
+            }
+        }
 
         blockEntity.itemHandler.setStackInSlot(OUTPUT_FIRST_SLOT_INDEX, output);
         blockEntity.resetProgress();
@@ -105,6 +135,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
+    // Tick method is currently designed only with the Simple Coffee Machine in mind
     public static void tick(Level level, BlockPos pos, BlockState state, CoffeeMachineBlockEntity blockEntity) {
         if(!level.isClientSide()) {
             SimpleContainer ingredientsInventory = getIngredientsInventory(blockEntity);
@@ -215,7 +246,14 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private boolean canBrew() {
-        return this.hasRecipe() && this.hasNotReachedStackLimit() && BrewCupInputSlot.isCup(this.itemHandler.getStackInSlot(2));
+        boolean areCups = false;
+        for(int i = 0; i < CUPS_SLOT_COUNT; i++) {
+            if(BrewCupInputSlot.isCup(this.itemHandler.getStackInSlot(i + CUPS_FIRST_SLOT_INDEX))){
+                areCups = true;
+                break;
+            }
+        }
+        return this.hasNotReachedStackLimit() && areCups;
     }
 
     // ================================================= DATA =================================================
@@ -242,10 +280,6 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
 
     // ================================================= RECIPES =================================================
 
-    private boolean hasRecipe() {
-        return this.itemHandler.getStackInSlot(2).getItem() == RavenCoffeeItems.COFFEE_BEANS_ROASTED_GROUND.get();
-    }
-
     private static Optional<CoffeeBrewRecipe> findRecipe(ItemStack cup, SimpleContainer inventory, Level level) {
         CoffeeBrewRecipe foundRecipe = null;
         for(CoffeeBrewRecipe recipe : level.getRecipeManager().getAllRecipesFor(CoffeeBrewRecipe.Type.INSTANCE)) {
@@ -268,7 +302,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static SimpleContainer getIngredientsInventory(CoffeeMachineBlockEntity blockEntity) {
-        SimpleContainer inventory = new SimpleContainer(blockEntity.itemHandler.getSlots() - INGREDIENTS_FIRST_SLOT_INDEX);
+        SimpleContainer inventory = new SimpleContainer(INGREDIENTS_SLOT_COUNT);
         for (int i = 0; i < inventory.getContainerSize(); i++) {
             inventory.setItem(i, blockEntity.itemHandler.getStackInSlot(i + INGREDIENTS_FIRST_SLOT_INDEX));
         }
@@ -276,31 +310,43 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static ItemStack getCup(CoffeeMachineBlockEntity blockEntity) {
-        return blockEntity.itemHandler.getStackInSlot(CUPS_FIRST_SLOT_INDEX);
+        ItemStackHandler handler = blockEntity.itemHandler;
+        for(int i = 0; i < CUPS_SLOT_COUNT; i++) {
+            ItemStack stack = handler.getStackInSlot(i + CUPS_FIRST_SLOT_INDEX);
+            if(!stack.isEmpty())
+                return stack;
+        }
+        return ItemStack.EMPTY;
     }
 
     // =============================================== WORLDLY CONTAINER ===============================================
 
     @Override
     public int[] getSlotsForFace(Direction direction) {
-        if(direction == Direction.DOWN) return new int[] {0};
-        else if(direction == Direction.UP) return new int[] {2};
-        else return new int[] {1};
+        if(direction == Direction.DOWN) return SLOTS_FOR_OUTPUT;
+        else if(direction == Direction.UP) return SLOTS_FOR_INGREDIENTS;
+        else return SLOTS_FOR_CUPS;
     }
 
     @Override
-    public boolean canPlaceItemThroughFace(int p_19235_, ItemStack p_19236_, @Nullable Direction p_19237_) {
-        return true;
+    public boolean canPlaceItemThroughFace(int slot, ItemStack itemStack, @Nullable Direction direction) {
+        if(direction != Direction.DOWN) {
+            if (INGREDIENTS_FIRST_SLOT_INDEX <= slot && slot < INGREDIENTS_FIRST_SLOT_INDEX + INGREDIENTS_SLOT_COUNT && direction == Direction.UP)
+                return BrewIngredientInputSlot.isBrewIngredient(itemStack);
+            else if(CUPS_FIRST_SLOT_INDEX <= slot && slot < CUPS_FIRST_SLOT_INDEX + CUPS_SLOT_COUNT)
+                return BrewCupInputSlot.isCup(itemStack);
+        }
+        return false;
     }
 
     @Override
-    public boolean canTakeItemThroughFace(int p_19239_, ItemStack p_19240_, Direction p_19241_) {
-        return true;
+    public boolean canTakeItemThroughFace(int slot, ItemStack itemStack, Direction direction) {
+        return direction == Direction.DOWN && ((OUTPUT_FIRST_SLOT_INDEX <= slot && slot < OUTPUT_FIRST_SLOT_INDEX + OUTPUT_SLOT_COUNT) || itemStack.is(Items.BUCKET));
     }
 
     @Override
     public int getContainerSize() {
-        return 3;
+        return this.itemHandler.getSlots();
     }
 
     @Override
@@ -343,6 +389,8 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
             this.itemHandler.setStackInSlot(i, ItemStack.EMPTY);
         }
     }
+
+    // ================================================= CAPABILITIES =================================================
 
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
             net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
