@@ -48,12 +48,13 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final VoxelShape SHAPE = Stream.of(
-            Block.box(1, 0, 5, 15, 11, 15),
             Block.box(1, 0, 1, 15, 1, 5),
-            Block.box(1, 8, 4, 11, 11, 5),
+            Block.box(1, 0, 5, 15, 11, 15),
             Block.box(3, 7, 3, 4, 10, 4),
-            Block.box(2, 12, 6, 8, 15, 12),
-            Block.box(3, 11, 7, 7, 16, 11)
+            Block.box(1, 8, 4, 11, 11, 5),
+            Block.box(6, 11, 6, 10, 12, 10),
+            Block.box(5, 12, 5, 11, 15, 11),
+            Block.box(6, 15, 6, 10, 16, 10)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
             /*Stream.of(
             Block.box(1, 0, 1, 15, 1, 15),
