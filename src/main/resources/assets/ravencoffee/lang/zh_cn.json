@@ -18,6 +18,8 @@
   "item.ravencoffee.popchorus": "\u7d2b\u9882\u679c\u7172",
   "item.ravencoffee.muffin": "\u677e\u997c",
   "item.ravencoffee.melon_pan": "\u871c\u74dc\u5305",
+  "item.ravencoffee.coffee_eclair": "Coffee Eclair",
+  "item.ravencoffee.brownie": "Brownie",
   "item.ravencoffee.sandwich_ham": "\u706b\u817f\u4e09\u660e\u6cbb",
   "item.ravencoffee.sandwich_beef": "\u725b\u8089\u4e09\u660e\u6cbb",
   "item.ravencoffee.sandwich_chicken": "\u9e21\u8089\u4e09\u660e\u6cbb",
@@ -115,6 +117,7 @@
 
   "block.ravencoffee.coffee_grinder_block": "\u5496\u5561\u7814\u78e8\u673a",
   "container.ravencoffee.coffee_grinder_registry_name": "\u5496\u5561\u7814\u78e8\u673a",
+  "block.ravencoffee.brownie_block": "BIG Brownie",
   "block.ravencoffee.coffee_machine_block": "\u5496\u5561\u673a",
   "container.ravencoffee.coffee_machine": "\u5496\u5561\u673a",
   "block.ravencoffee.coffee_machine_premium_block": "\u9ad8\u7ea7\u5496\u5561\u673a",

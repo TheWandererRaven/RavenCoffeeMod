@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ravencoffee:brownie"
+    },
+    {
+      "item": "ravencoffee:brownie"
+    },
+    {
+      "item": "ravencoffee:brownie"
+    },
+    {
+      "item": "ravencoffee:brownie"
+    },
+    {
+      "item": "ravencoffee:brownie"
+    },
+    {
+      "item": "ravencoffee:brownie"
+    },
+    {
+      "item": "ravencoffee:brownie"
+    },
+    {
+      "item": "ravencoffee:brownie"
+    },
+    {
+      "item": "ravencoffee:brownie"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:brownie_block",
+    "count": 1
+  }
+}

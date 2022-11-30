@@ -18,6 +18,8 @@
   "item.ravencoffee.popchorus": "Popchorus",
   "item.ravencoffee.muffin": "Muffin",
   "item.ravencoffee.melon_pan": "Melon Pan",
+  "item.ravencoffee.coffee_eclair": "Eclair de café",
+  "item.ravencoffee.brownie": "Brownie",
   "item.ravencoffee.sandwich_ham": "Sandwich de jamón",
   "item.ravencoffee.sandwich_beef": "Sandwich de res",
   "item.ravencoffee.sandwich_chicken": "Sandwich de pollo",
@@ -115,6 +117,7 @@
 
   "block.ravencoffee.coffee_grinder_block": "Molino de café",
   "container.ravencoffee.coffee_grinder_registry_name": "Molino de café",
+  "block.ravencoffee.brownie_block": "BROWNIEZOTE",
   "block.ravencoffee.coffee_machine_block": "Máquina de café",
   "container.ravencoffee.coffee_machine": "Máquina de café",
   "block.ravencoffee.coffee_machine_premium_block": "Máquina de café edición Premium",
