@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ravencoffee:coffee_mug",
+    "ravencoffee:cup_large",
+    "ravencoffee:cup_medium",
+    "ravencoffee:cup_small"
+  ]
+}

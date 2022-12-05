@@ -14,5 +14,6 @@ public interface RavenCoffeeRecipeTypes {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, RavenCoffee.MOD_ID);
 
     RegistryObject<RecipeType<?>> COFFEE_GRINDING = RECIPE_TYPES.register(CoffeeGrinderRecipe.Type.ID, () -> CoffeeGrinderRecipe.Type.INSTANCE);
+    RegistryObject<RecipeType<?>> COFFEE_BREWING = RECIPE_TYPES.register(CoffeeBrewRecipe.Type.ID, () -> CoffeeBrewRecipe.Type.INSTANCE);
 
 }

@@ -115,8 +115,12 @@
 
   "block.ravencoffee.coffee_grinder_block": "Coffee Grinder",
   "container.ravencoffee.coffee_grinder_registry_name": "Coffee Grinder",
+  "block.ravencoffee.coffee_machine_block": "Coffee Machine",
+  "container.ravencoffee.coffee_machine": "Coffee Machine",
+  "block.ravencoffee.coffee_machine_premium_block": "Coffee Machine Premium Edition",
+  "container.ravencoffee.coffee_machine_premium": "Coffee Machine Premium Edition",
   "block.ravencoffee.coffee_beans_roasted_block": "Roasted Coffee Block",
-  "block.ravencoffee.coffee_beans_roasted_magma_block": "Magma Coffee Block",
+  "block.ravencoffee.coffee_beans_magma_block": "Magma Coffee Block",
   "block.ravencoffee.coffee_tree_leaves_block": "Coffee Tree Leaves",
   "block.ravencoffee.coffee_tree_trunk_block": "Coffee Tree Trunk"
 }

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ravencoffee:coffee_beans_roasted_magma_block"
+          "name": "ravencoffee:coffee_beans_magma_block"
         }
       ]
     }

@@ -33,14 +33,19 @@ public class RavenCoffeeItems {
             "coffee_beans_roasted",
             ItemBase::new
     );
-    public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_MAGMA = ITEMS.register(
-            "coffee_beans_roasted_magma",
+    public static final RegistryObject<Item> COFFEE_BEANS_MAGMA = ITEMS.register(
+            "coffee_beans_magma",
             ItemBase::new
     );
 
     // ############################################### COFFEE INGREDIENTS ##############################################
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_GROUND = ITEMS.register(
             "coffee_beans_roasted_ground",
+            ItemBase::new
+    );
+
+    public static final RegistryObject<Item> COFFEE_BEANS_MAGMA_GROUND = ITEMS.register(
+            "coffee_beans_magma_ground",
             ItemBase::new
     );
 
@@ -268,13 +273,18 @@ public class RavenCoffeeItems {
             "coffee_beans_roasted_block",
             () -> new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_ROASTED_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
     );
-    public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_MAGMA_BLOCK_ITEM = ITEMS.register(
-            "coffee_beans_roasted_magma_block",
-            () -> new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_ROASTED_MAGMA_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
+    public static final RegistryObject<Item> COFFEE_BEANS_MAGMA_BLOCK_ITEM = ITEMS.register(
+            "coffee_beans_magma_block",
+            () -> new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_MAGMA_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
     );
 
     public static final RegistryObject<Item> COFFEE_GRINDER_ITEM = ITEMS.register(
             "coffee_grinder_block",
             () -> new BlockItem(RavenCoffeeBlocks.COFFEE_GRINDER.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
+    );
+
+    public static final RegistryObject<Item> COFFEE_MACHINE_ITEM = ITEMS.register(
+            "coffee_machine_block",
+            () -> new BlockItem(RavenCoffeeBlocks.COFFEE_MACHINE_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
     );
 }

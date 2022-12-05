@@ -1,0 +1,14 @@
+{
+  "type": "ravencoffee:coffee_brewing",
+  "forCupSizes" : [false, true, true],
+  "brewingredients": [
+    {
+      "item": "ravencoffee:coffee_beans_magma_ground",
+      "ingredientspersize": [0, 1, 0]
+    }
+  ],
+  "result": {
+    "brewtype": "brew_nether",
+    "cookingtime": 60
+  }
+}
