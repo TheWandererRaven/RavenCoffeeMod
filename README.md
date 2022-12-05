@@ -14,21 +14,10 @@ To install the mod just copy the **"ravencoffee-x.x.x-x.x.jar"** file from the [
 >Be wary of the versions, the minecraft and forge version will be specified on each file.
 # Changelog
 
-**Version:** *0.4*
-- Enhanced Coffee Tree classes
-- Removed unnecessary files and classes
-- Fixed isseue where coffee trees would spawn in huge numbers in the jungle
-  - In my defense this was not happening when I tested it before, on the newer versions I saw the jungle had huuuuge patches of the trees, so I made some tweaks to the generation
-- Made some minor adjustments to Coffee Tool Tier
-- Added Configuration file
-  - Added configuration for Coffee Tree world generation
-- Updated languages
-  - Added creative tab names
-  - Added Chinese language
-  - Added Spanish language (All spanish translations are the same at the moment)
-- Added more info to the modfile
-- Added Raven Brews Core as a dependency
-  - Moved some code over there for future implementations
+**Version:** *0.5*
+- Added Coffee Machine
+  - Including new recipe formats, hopper and redstone functionality
+- Refactored Coffee Magma Block
 
 ## Known bugs
 
@@ -50,6 +39,7 @@ What has been accomplished:
 |`0.4`|*Coffee Tools*			|Basic Coffee Tools|
 |`0.4`|*Coffee Brewing p1*			|Multiple coffee brewings using already existing minecraft items|
 |`0.4`|*Coffee Food p1*			|Multiple food items (desserts, sandwitches, etc) to expand the food variety, moslty coffee-shop based|
+|`0.5`|*Coffee Machine*			|Simple Coffee Machine for automatic brewing of simple coffee|
 
 Some ideas I have:
 |Priority|Feature                        |Description|
