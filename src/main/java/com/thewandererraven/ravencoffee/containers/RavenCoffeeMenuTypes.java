@@ -18,4 +18,8 @@ public class RavenCoffeeMenuTypes {
             "coffee_machine",
             () -> IForgeMenuType.create(CoffeeMachineMenu::new)
     );
+    public static final RegistryObject<MenuType<SackMenu>> SACK_MENU = MENUS.register(
+            "sack",
+            () -> IForgeMenuType.create(SackMenu::new)
+    );
 }

@@ -18,6 +18,12 @@ public class RavenCoffeeBlockEntities {
             ).build(null)
     );
 
+    public static final RegistryObject<BlockEntityType<SackBlockEntity>> SACK_BLOCK_ENTITY = BLOCK_ENTITIES.register(
+            "sack_block_entity",
+            () -> BlockEntityType.Builder.of(
+                    SackBlockEntity::new, RavenCoffeeBlocks.SACK_BLOCK.get()
+            ).build(null)
+    );
     /*public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }*/
