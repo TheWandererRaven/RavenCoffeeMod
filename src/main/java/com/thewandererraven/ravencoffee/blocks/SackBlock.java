@@ -10,6 +10,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -19,11 +20,18 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class SackBlock extends BaseEntityBlock {
-    public static final IntegerProperty FULLNESS = IntegerProperty.create("fullness", 0, 5);
+    public static final VoxelShape SHAPE_0 = Block.box(2, 0, 2, 14, 3, 14);
+    public static final VoxelShape SHAPE_1 = Block.box(2, 0, 2, 14, 5, 14);
+    public static final VoxelShape SHAPE_2 = Block.box(1, 0, 1, 15, 8, 15);
+    public static final VoxelShape SHAPE_3 = Block.box(0, 0, 0, 16, 11, 16);
+    public static final VoxelShape SHAPE_4 = Block.box(0, 0, 0, 16, 16, 16);
+    public static final IntegerProperty FULLNESS = IntegerProperty.create("fullness", 0, 4);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     protected SackBlock() {
@@ -41,6 +49,18 @@ public class SackBlock extends BaseEntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new SackBlockEntity(blockPos, blockState);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return switch (state.getValue(FULLNESS)) {
+            case (1) -> SHAPE_1;
+            case (2) -> SHAPE_2;
+            case (3) -> SHAPE_3;
+            case (4) -> SHAPE_4;
+            default -> SHAPE_0;
+        };
     }
 
     // ================================================= BLOSCKSTATE =================================================
