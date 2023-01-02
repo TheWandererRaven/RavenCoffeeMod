@@ -119,6 +119,8 @@
   "container.ravencoffee.coffee_machine": "\u5496\u5561\u673a",
   "block.ravencoffee.coffee_machine_premium_block": "\u9ad8\u7ea7\u5496\u5561\u673a",
   "container.ravencoffee.coffee_machine_premium": "\u9ad8\u7ea7\u5496\u5561\u673a",
+  "block.ravencoffee.sack_block": "Sack",
+  "container.ravencoffee.sack": "Sack",
   "block.ravencoffee.coffee_beans_roasted_block": "\u70e4\u5496\u5561\u5757",
   "block.ravencoffee.coffee_beans_magma_block": "\u5ca9\u6d46\u5496\u5561\u5757",
   "block.ravencoffee.coffee_tree_leaves_block": "\u5496\u5561\u6811\u53f6",
