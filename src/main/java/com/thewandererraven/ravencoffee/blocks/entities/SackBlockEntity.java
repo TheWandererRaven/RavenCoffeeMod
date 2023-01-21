@@ -56,7 +56,6 @@ public class SackBlockEntity extends BlockEntity implements MenuProvider, Contai
     }
 
     private void updateFullness() {
-        RavenCoffee.LOGGER.debug(SackBlock.getFullnessState(getFullnessPercentage()));
         this.level.setBlock(
                 this.worldPosition,
                 this.getBlockState().setValue(SackBlock.FULLNESS, SackBlock.getFullnessState(getFullnessPercentage())),

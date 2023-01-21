@@ -232,7 +232,10 @@ public class RavenCoffeeItems {
     );
     public static final RegistryObject<Item> COFFEE_MUG = ITEMS.register(
             "coffee_mug",
-            () -> new ItemBase(RavenCoffee.COFFEE_MUG_TAB)
+            () -> new StackingCupsBlockItem(
+                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
+                    new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
+            )
     );
 
     // ############################################### COFFEE MATERIALS ################################################
