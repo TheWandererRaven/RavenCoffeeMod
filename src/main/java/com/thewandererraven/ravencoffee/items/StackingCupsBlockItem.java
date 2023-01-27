@@ -46,11 +46,21 @@ public class StackingCupsBlockItem extends BlockItem {
     }
 
     @Override
-    public InteractionResult place(BlockPlaceContext p_40577_) {
-        if (!p_40577_.canPlace()) {
-            return InteractionResult.FAIL;
+    public InteractionResult place(BlockPlaceContext originalPlaceContext) {
+        if (!originalPlaceContext.canPlace()) {
+            Level contextLevel = originalPlaceContext.getLevel();
+            if(contextLevel.getBlockEntity(originalPlaceContext.getClickedPos()) instanceof StackingCupsBlockEntity blockEntity) {
+                ItemStack itemStack = originalPlaceContext.getItemInHand();
+                Player player = originalPlaceContext.getPlayer();
+                blockEntity.placeItem(new ItemStack(itemStack.getItem(), 1));
+                if (player == null || !player.getAbilities().instabuild) {
+                    itemStack.shrink(1);
+                }
+                return InteractionResult.sidedSuccess(contextLevel.isClientSide);
+            } else
+                return InteractionResult.FAIL;
         } else {
-            BlockPlaceContext blockplacecontext = this.updatePlacementContext(p_40577_);
+            BlockPlaceContext blockplacecontext = this.updatePlacementContext(originalPlaceContext);
             if (blockplacecontext == null) {
                 return InteractionResult.FAIL;
             } else {
@@ -75,8 +85,8 @@ public class StackingCupsBlockItem extends BlockItem {
                     }
 
                     level.gameEvent(GameEvent.BLOCK_PLACE, blockpos, GameEvent.Context.of(player, blockstate1));
-                    SoundType soundtype = blockstate1.getSoundType(level, blockpos, p_40577_.getPlayer());
-                    level.playSound(player, blockpos, this.getPlaceSound(blockstate1, level, blockpos, p_40577_.getPlayer()), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                    SoundType soundtype = blockstate1.getSoundType(level, blockpos, originalPlaceContext.getPlayer());
+                    level.playSound(player, blockpos, this.getPlaceSound(blockstate1, level, blockpos, originalPlaceContext.getPlayer()), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                     BlockEntity blockEntity = level.getBlockEntity(blockpos);
                     if(blockEntity instanceof StackingCupsBlockEntity) {
                         ((StackingCupsBlockEntity) blockEntity).placeItem(new ItemStack(itemstack.getItem(), 1));

@@ -1,6 +1,8 @@
 package com.thewandererraven.ravencoffee.blocks.entities;
 
+import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.StackingCupsBlock;
+import com.thewandererraven.ravencoffee.util.CupType;
 import com.thewandererraven.ravencoffee.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -12,6 +14,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.Arrays;
 
 public class StackingCupsBlockEntity extends BlockEntity implements Container {
     public static final int CONTENTS_SLOT_COUNT = 9;
@@ -76,12 +80,32 @@ public class StackingCupsBlockEntity extends BlockEntity implements Container {
         for(int i = 0; i < this.items.size(); i++) {
             ItemStack currentItem = this.items.get(i);
             if(currentItem.isEmpty()) {
+                if(this.isEmpty())
+                     setCupTypeOnBlockstate(itemStack.getItem().toString());
                 this.items.set(i, itemStack);
                 updateBlockCount();
                 return true;
             }
         }
         return false;
+    }
+
+    private void setCupTypeOnBlockstate(String itemId) {
+        String[] idArray = Arrays.stream(itemId.split("_")).filter(x -> !x.equals("cup")).toArray(String[]::new);
+        String identifier = String.join("_", idArray);
+        /*
+        for(String word: idArray) {
+            RavenCoffee.LOGGER.debug("WORD");
+            RavenCoffee.LOGGER.debug(word);
+            if(!word.equals("cup"))
+                identifier = String.join(identifier, "_", word);
+        }
+         */
+        this.level.setBlockAndUpdate(
+                this.worldPosition,
+                this.level.getBlockState(this.worldPosition).setValue(StackingCupsBlock.CUP_TYPE,
+                        CupType.byPrefix(identifier)
+        ));
     }
 
     @Override

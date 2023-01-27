@@ -1,0 +1,248 @@
+{
+  "variants": {
+    "cup_count=0,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_0"
+    },
+    "cup_count=0,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_0", "y": 180
+    },
+    "cup_count=0,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_0", "y": 270
+    },
+    "cup_count=0,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_0", "y": 90
+    },
+    "cup_count=1,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_1"
+    },
+    "cup_count=1,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_1", "y": 180
+    },
+    "cup_count=1,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_1", "y": 270
+    },
+    "cup_count=1,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_1", "y": 90
+    },
+    "cup_count=2,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_2"
+    },
+    "cup_count=2,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_2", "y": 180
+    },
+    "cup_count=2,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_2", "y": 270
+    },
+    "cup_count=2,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_2", "y": 90
+    },
+    "cup_count=3,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_3"
+    },
+    "cup_count=3,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_3", "y": 180
+    },
+    "cup_count=3,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_3", "y": 270
+    },
+    "cup_count=3,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_3", "y": 90
+    },
+    "cup_count=4,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_4"
+    },
+    "cup_count=4,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_4", "y": 180
+    },
+    "cup_count=4,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_4", "y": 270
+    },
+    "cup_count=4,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_4", "y": 90
+    },
+    "cup_count=5,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_5"
+    },
+    "cup_count=5,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_5", "y": 180
+    },
+    "cup_count=5,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_5", "y": 270
+    },
+    "cup_count=5,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_5", "y": 90
+    },
+    "cup_count=6,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_6"
+    },
+    "cup_count=6,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_6", "y": 180
+    },
+    "cup_count=6,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_6", "y": 270
+    },
+    "cup_count=6,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_6", "y": 90
+    },
+    "cup_count=7,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_7"
+    },
+    "cup_count=7,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_7", "y": 180
+    },
+    "cup_count=7,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_7", "y": 270
+    },
+    "cup_count=7,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_7", "y": 90
+    },
+    "cup_count=8,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_8"
+    },
+    "cup_count=8,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_8", "y": 180
+    },
+    "cup_count=8,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_8", "y": 270
+    },
+    "cup_count=8,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_8", "y": 90
+    },
+    "cup_count=9,cup_type=coffee_mug,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_9"
+    },
+    "cup_count=9,cup_type=coffee_mug,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_9", "y": 180
+    },
+    "cup_count=9,cup_type=coffee_mug,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_9", "y": 270
+    },
+    "cup_count=9,cup_type=coffee_mug,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_9", "y": 90
+    },
+
+
+
+
+    "cup_count=0,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_0"
+    },
+    "cup_count=0,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_0", "y": 180
+    },
+    "cup_count=0,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_0", "y": 270
+    },
+    "cup_count=0,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_0", "y": 90
+    },
+    "cup_count=1,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_1"
+    },
+    "cup_count=1,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_1", "y": 180
+    },
+    "cup_count=1,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_1", "y": 270
+    },
+    "cup_count=1,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_1", "y": 90
+    },
+    "cup_count=2,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_2"
+    },
+    "cup_count=2,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_2", "y": 180
+    },
+    "cup_count=2,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_2", "y": 270
+    },
+    "cup_count=2,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_2", "y": 90
+    },
+    "cup_count=3,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_3"
+    },
+    "cup_count=3,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_3", "y": 180
+    },
+    "cup_count=3,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_3", "y": 270
+    },
+    "cup_count=3,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_3", "y": 90
+    },
+    "cup_count=4,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_4"
+    },
+    "cup_count=4,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_4", "y": 180
+    },
+    "cup_count=4,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_4", "y": 270
+    },
+    "cup_count=4,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_4", "y": 90
+    },
+    "cup_count=5,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_5"
+    },
+    "cup_count=5,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_5", "y": 180
+    },
+    "cup_count=5,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_5", "y": 270
+    },
+    "cup_count=5,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_5", "y": 90
+    },
+    "cup_count=6,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_6"
+    },
+    "cup_count=6,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_6", "y": 180
+    },
+    "cup_count=6,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_6", "y": 270
+    },
+    "cup_count=6,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_6", "y": 90
+    },
+    "cup_count=7,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_7"
+    },
+    "cup_count=7,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_7", "y": 180
+    },
+    "cup_count=7,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_7", "y": 270
+    },
+    "cup_count=7,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_7", "y": 90
+    },
+    "cup_count=8,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_8"
+    },
+    "cup_count=8,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_8", "y": 180
+    },
+    "cup_count=8,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_8", "y": 270
+    },
+    "cup_count=8,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_8", "y": 90
+    },
+    "cup_count=9,cup_type=medium,facing=north": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_9"
+    },
+    "cup_count=9,cup_type=medium,facing=south": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_9", "y": 180
+    },
+    "cup_count=9,cup_type=medium,facing=west": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_9", "y": 270
+    },
+    "cup_count=9,cup_type=medium,facing=east": {
+      "model": "ravencoffee:block/stacking_cups_block_medium_9", "y": 90
+    }
+  }
+}
