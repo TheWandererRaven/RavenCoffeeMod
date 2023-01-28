@@ -212,7 +212,10 @@ public class RavenCoffeeItems {
     );
     public static final RegistryObject<Item> CUP_SMALL = ITEMS.register(
             "cup_small",
-            () -> new ItemBase(RavenCoffee.CUP_SMALL_TAB)
+            () -> new StackingCupsBlockItem(
+                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
+                    new Item.Properties().tab(RavenCoffee.CUP_SMALL_TAB)
+            )
     );
     public static final RegistryObject<Item> CUP_MEDIUM_UNFIRED = ITEMS.register(
             "cup_medium_unfired",

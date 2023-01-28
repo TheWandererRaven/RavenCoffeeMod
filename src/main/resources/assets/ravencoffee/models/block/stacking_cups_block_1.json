@@ -2,15 +2,15 @@
 	"credit": "The Wanderer Raven",
 	"texture_size": [32, 32],
 	"textures": {
-		"cup": "ravencoffee:blocks/coffee_mug_empty",
-		"particle": "ravencoffee:blocks/coffee_mug_empty"
+		"particle": "ravencoffee:blocks/coffee_mug_empty",
+		"cup": "ravencoffee:blocks/coffee_mug_empty"
 	},
 	"elements": [
 		{
 			"name": "cup_main",
-			"from": [5, 0, 5],
-			"to": [8, 4, 8],
-			"rotation": {"angle": 0, "axis": "z", "origin": [6.5, 2, 6.5]},
+			"from": [6.5, 0, 6.5],
+			"to": [9.5, 4, 9.5],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 2, 8]},
 			"faces": {
 				"north": {"uv": [3, 3, 6, 7], "texture": "#cup"},
 				"east": {"uv": [0, 3, 3, 7], "texture": "#cup"},
@@ -22,9 +22,9 @@
 		},
 		{
 			"name": "cup_handle",
-			"from": [6, 1, 4],
-			"to": [7, 3, 5],
-			"rotation": {"angle": 0, "axis": "z", "origin": [6.5, 2, 6.5]},
+			"from": [7.5, 1, 5.5],
+			"to": [8.5, 3, 6.5],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 2, 8]},
 			"faces": {
 				"north": {"uv": [14, 4, 15, 6], "texture": "#cup"},
 				"east": {"uv": [13, 4, 14, 6], "texture": "#cup"},

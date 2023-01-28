@@ -1,15 +1,15 @@
 {
 	"parent": "ravencoffee:block/stacking_cups_block_1",
 	"textures": {
-		"cup": "ravencoffee:blocks/cup_medium_empty",
-		"particle": "ravencoffee:blocks/cup_medium_empty"
+		"particle": "ravencoffee:blocks/cup_medium_empty",
+		"cup": "ravencoffee:blocks/cup_medium_empty"
 	},
 	"elements": [
 		{
 			"name": "cup_main",
-			"from": [5, 0, 5],
-			"to": [8, 4, 8],
-			"rotation": {"angle": 0, "axis": "z", "origin": [6.5, 2, 6.5]},
+			"from": [6.5, 0, 6.5],
+			"to": [9.5, 4, 9.5],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 2, 8]},
 			"faces": {
 				"north": {"uv": [3, 3, 6, 7], "texture": "#cup"},
 				"east": {"uv": [0, 3, 3, 7], "texture": "#cup"},
