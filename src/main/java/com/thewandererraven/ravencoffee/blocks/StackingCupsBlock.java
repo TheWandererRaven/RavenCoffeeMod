@@ -28,15 +28,15 @@ import org.jetbrains.annotations.Nullable;
 
 public class StackingCupsBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE_0 = Block.box(0, 0, 0, 16, 16, 16);
-    public static final VoxelShape SHAPE_1 = Block.box(5, 0, 5, 8, 4, 8);
-    public static final VoxelShape SHAPE_2 = Block.box(3, 0, 3, 12, 4, 12);
-    public static final VoxelShape SHAPE_3 = Block.box(2, 0, 4, 12, 4, 12);
-    public static final VoxelShape SHAPE_4 = Block.box(3, 0, 5, 13, 4, 13);
-    public static final VoxelShape SHAPE_5 = Block.box(3, 0, 4, 12, 8, 13);
-    public static final VoxelShape SHAPE_6 = Block.box(2, 0, 4, 12, 8, 14);
-    public static final VoxelShape SHAPE_7 = Block.box(1, 0, 3, 12, 8, 14);
-    public static final VoxelShape SHAPE_8 = Block.box(1, 0, 2, 13, 8, 14);
-    public static final VoxelShape SHAPE_9 = Block.box(1, 0, 3, 14, 8, 14);
+    public static final VoxelShape SHAPE_1 = Block.box(6, 0, 6, 10, 5, 10);
+    public static final VoxelShape SHAPE_2 = Block.box(3, 0, 3, 13, 5, 13);
+    public static final VoxelShape SHAPE_3 = Block.box(2, 0, 3, 13, 5, 13);
+    public static final VoxelShape SHAPE_4 = Block.box(1, 0, 3, 13, 5, 13);
+    public static final VoxelShape SHAPE_5 = Block.box(1, 0, 5, 13, 10, 14);
+    public static final VoxelShape SHAPE_6 = Block.box(1, 0, 3, 14, 10, 15);
+    public static final VoxelShape SHAPE_7 = Block.box(1, 0, 2, 15, 10, 16);
+    public static final VoxelShape SHAPE_8 = Block.box(1, 0, 2, 16, 10, 16);
+    public static final VoxelShape SHAPE_9 = Block.box(1, 0, 2, 16, 10, 16);
 
     public static final IntegerProperty CUP_COUNT = IntegerProperty.create("cup_count", 0, 9);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

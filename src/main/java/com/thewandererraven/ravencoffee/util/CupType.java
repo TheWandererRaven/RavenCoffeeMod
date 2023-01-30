@@ -8,7 +8,7 @@ public enum CupType implements StringRepresentable {
     SMALL("small"),
     MEDIUM("medium"),
     COFFEE_MUG("coffee_mug"),
-    BIG("big");
+    LARGE("large");
 
     private final String prefix;
 
