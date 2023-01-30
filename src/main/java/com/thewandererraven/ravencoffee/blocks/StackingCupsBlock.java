@@ -1,7 +1,7 @@
 package com.thewandererraven.ravencoffee.blocks;
 
 import com.thewandererraven.ravencoffee.blocks.entities.StackingCupsBlockEntity;
-import com.thewandererraven.ravencoffee.util.CupType;
+import com.thewandererraven.ravenbrewscore.CupType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import com.thewandererraven.ravencoffee.util.ModTags;

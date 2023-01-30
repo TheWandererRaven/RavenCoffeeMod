@@ -1,6 +1,7 @@
 package com.thewandererraven.ravencoffee.items;
 
 import com.thewandererraven.ravenbrewscore.Brew;
+import com.thewandererraven.ravenbrewscore.CupType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -16,8 +17,8 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nonnull;
 
 public class ChorusBrew extends CoffeeBrew {
-    public ChorusBrew(double _cupSize, Item _parentContainer, Brew _brew, Properties p_i48476_1_) {
-        super(_cupSize, _parentContainer, _brew, p_i48476_1_);
+    public ChorusBrew(CupType _cupType, Item _parentContainer, Brew _brew, Properties p_i48476_1_) {
+        super(_cupType, _parentContainer, _brew, p_i48476_1_);
     }
     @Nonnull
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {

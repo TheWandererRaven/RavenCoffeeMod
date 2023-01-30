@@ -2,6 +2,7 @@ package com.thewandererraven.ravencoffee.items;
 
 import com.thewandererraven.ravenbrewscore.Brew;
 import com.thewandererraven.ravenbrewscore.BrewEffect;
+import com.thewandererraven.ravenbrewscore.CupType;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,14 +26,20 @@ import java.util.List;
 
 public class CoffeeBrew extends Item {
     private final Item parentVessel;
+    private final CupType cupType;
     private final double cupSize;
     private final Brew brew;
 
-    public CoffeeBrew(double _cupSize, Item _parentVessel, Brew _brew, Item.Properties p_i48476_1_) {
+    public CoffeeBrew(CupType _cupType, Item _parentVessel, Brew _brew, Item.Properties p_i48476_1_) {
         super(p_i48476_1_);
         this.parentVessel = _parentVessel;
-        this.cupSize = _cupSize;
+        this.cupType = _cupType;
+        this.cupSize = CupType.getSizeMultiplier(this.cupType);
         this.brew = _brew;
+    }
+
+    public CupType getCupType() {
+        return this.cupType;
     }
 
     @Override
