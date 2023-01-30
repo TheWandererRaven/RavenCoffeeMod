@@ -96,7 +96,6 @@ public class StackingCupsBlock extends BaseEntityBlock {
                 ItemStack itemInHand = player.getItemInHand(interactionHand);
                 if (itemInHand.is(ModTags.Items.CUPS) && entity.canPlaceItem(itemInHand)) {
                     entity.placeItem(new ItemStack(itemInHand.getItem(), 1));
-                    level.setBlockAndUpdate(blockPos, blockState.setValue(CUP_COUNT, entity.getCount()));
                     if (!player.getAbilities().instabuild) {
                         itemInHand.shrink(1);
                     }
@@ -104,6 +103,11 @@ public class StackingCupsBlock extends BaseEntityBlock {
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(BlockGetter p_49823_, BlockPos p_49824_, BlockState p_49825_) {
+        return new ItemStack(((StackingCupsBlockEntity) p_49823_.getBlockEntity(p_49824_)).getItem());
     }
 
     // =============================================== RENDER & SHAPES ================================================

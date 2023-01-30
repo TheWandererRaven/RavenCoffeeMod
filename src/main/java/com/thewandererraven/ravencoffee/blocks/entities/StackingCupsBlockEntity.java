@@ -11,6 +11,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,10 +37,9 @@ public class StackingCupsBlockEntity extends BlockEntity implements Container {
     }
 
     private void updateBlockCount() {
-        this.level.setBlock(
+        this.level.setBlockAndUpdate(
                 this.worldPosition,
-                this.getBlockState().setValue(StackingCupsBlock.CUP_COUNT, this.getCount()),
-                1
+                this.getBlockState().setValue(StackingCupsBlock.CUP_COUNT, this.getCount())
         );
     }
 
@@ -88,6 +88,10 @@ public class StackingCupsBlockEntity extends BlockEntity implements Container {
             }
         }
         return false;
+    }
+
+    public Item getItem() {
+        return this.items.get(0).getItem();
     }
 
     private void setCupTypeOnBlockstate(String itemId) {

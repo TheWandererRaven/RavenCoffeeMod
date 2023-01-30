@@ -3,14 +3,17 @@ package com.thewandererraven.ravencoffee.items;
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.StackingCupsBlock;
 import com.thewandererraven.ravencoffee.blocks.entities.StackingCupsBlockEntity;
+import com.thewandererraven.ravencoffee.util.ModTags;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -50,13 +53,17 @@ public class StackingCupsBlockItem extends BlockItem {
         if (!originalPlaceContext.canPlace()) {
             Level contextLevel = originalPlaceContext.getLevel();
             if(contextLevel.getBlockEntity(originalPlaceContext.getClickedPos()) instanceof StackingCupsBlockEntity blockEntity) {
-                ItemStack itemStack = originalPlaceContext.getItemInHand();
-                Player player = originalPlaceContext.getPlayer();
-                blockEntity.placeItem(new ItemStack(itemStack.getItem(), 1));
-                if (player == null || !player.getAbilities().instabuild) {
-                    itemStack.shrink(1);
+                if(!contextLevel.isClientSide) {
+                    ItemStack itemInHand = originalPlaceContext.getItemInHand();
+                    Player player = originalPlaceContext.getPlayer();
+                    if (itemInHand.is(ModTags.Items.CUPS) && blockEntity.canPlaceItem(itemInHand)) {
+                        blockEntity.placeItem(new ItemStack(itemInHand.getItem(), 1));
+                        if (player == null || !player.getAbilities().instabuild) {
+                            itemInHand.shrink(1);
+                        }
+                    }
                 }
-                return InteractionResult.sidedSuccess(contextLevel.isClientSide);
+                    return InteractionResult.sidedSuccess(contextLevel.isClientSide);
             } else
                 return InteractionResult.FAIL;
         } else {
@@ -128,5 +135,12 @@ public class StackingCupsBlockItem extends BlockItem {
         return p_40595_.getValue(p_40596_).map((p_40592_) -> {
             return p_40594_.setValue(p_40595_, p_40592_);
         }).orElse(p_40594_);
+    }
+
+    @Override
+    public void fillItemCategory(CreativeModeTab p_41391_, NonNullList<ItemStack> p_41392_) {
+        if (this.allowedIn(p_41391_)) {
+            p_41392_.add(new ItemStack(this));
+        }
     }
 }

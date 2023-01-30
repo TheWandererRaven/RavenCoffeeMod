@@ -2,8 +2,6 @@ package com.thewandererraven.ravencoffee.items;
 
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
-import com.thewandererraven.ravencoffee.items.ItemBase;
-import com.thewandererraven.ravencoffee.items.ItemThrowable;
 import com.thewandererraven.ravencoffee.items.tools.RavenCoffeeItemTier;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
