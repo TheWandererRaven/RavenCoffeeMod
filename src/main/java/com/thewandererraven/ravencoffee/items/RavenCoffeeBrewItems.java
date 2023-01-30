@@ -49,7 +49,7 @@ public class RavenCoffeeBrewItems {
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_BASIC = BREWS.register(
             "coffee_mug_brew_basic",
-            () -> new PlaceableCoffeeBrew(
+            () -> new CoffeeBrew(
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.BASIC,
