@@ -312,6 +312,10 @@ public class RavenCoffeeItems {
                             .build()
                     ))
     );
+    public static final RegistryObject<Item> ROSCA_DE_REYES_BLOCK_ITEM = ITEMS.register(
+            "rosca_de_reyes_block",
+            () -> new BlockItem(RavenCoffeeBlocks.ROSCA_DE_REYES_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
+    );
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_block",
             () -> new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_ROASTED_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
