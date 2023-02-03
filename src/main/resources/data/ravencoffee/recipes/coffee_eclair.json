@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ccc",
-    "www",
-    "bbb"
+    "ggg",
+    "www"
   ],
   "key": {
     "w": {
@@ -12,8 +12,8 @@
     "c": {
       "item": "minecraft:cocoa_beans"
     },
-    "b": {
-      "item": "ravencoffee:coffee_beans_roasted"
+    "g": {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
     }
   },
   "result": {
