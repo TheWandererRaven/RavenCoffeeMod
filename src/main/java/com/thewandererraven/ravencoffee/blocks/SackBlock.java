@@ -20,17 +20,25 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.stream.Stream;
 
 public class SackBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE_0 = Block.box(2, 0, 2, 14, 3, 14);
     public static final VoxelShape SHAPE_1 = Block.box(2, 0, 2, 14, 5, 14);
     public static final VoxelShape SHAPE_2 = Block.box(1, 0, 1, 15, 8, 15);
     public static final VoxelShape SHAPE_3 = Block.box(0, 0, 0, 16, 11, 16);
-    public static final VoxelShape SHAPE_4 = Block.box(0, 0, 0, 16, 16, 16);
+    public static final VoxelShape SHAPE_4 = Stream.of(
+            Block.box(0, 0, 0, 16, 12, 16),
+            Block.box(3, 12, 3, 13, 16, 13)
+    ).reduce((v1, v2) -> {return Shapes.join(v1, v2, BooleanOp.OR);})
+            .orElse(Block.box(0, 0, 0, 16, 16, 16));
     public static final IntegerProperty FULLNESS = IntegerProperty.create("fullness", 0, 4);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
@@ -38,6 +46,7 @@ public class SackBlock extends BaseEntityBlock {
         super(Properties
                 .of(Material.WOOL)
                 .sound(SoundType.WOOL)
+                .noOcclusion()
         );
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
