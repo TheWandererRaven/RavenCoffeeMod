@@ -13,6 +13,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -67,13 +68,22 @@ public class StackingCupsBlockEntity extends BlockEntity implements Container {
         return false;
     }
 
+    public boolean containsItem(Item item) {
+        for (ItemStack itemStack : items) {
+            if (!item.equals(Items.AIR))
+                if(itemStack.is(item))
+                    return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean canPlaceItem(int slot, ItemStack itemStack) {
         return canPlaceItem(itemStack);
     }
 
     public boolean canPlaceItem(ItemStack itemStack) {
-        return (this.contains(itemStack) && this.getCount() < 9) || (itemStack.is(ModTags.Items.CUPS) && isEmpty());
+        return (this.containsItem(itemStack.getItem()) && this.getCount() < 9) || (itemStack.is(ModTags.Items.CUPS) && isEmpty());
     }
 
     public boolean placeItem(ItemStack itemStack) {
