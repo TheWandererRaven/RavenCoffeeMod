@@ -121,7 +121,9 @@ public class SackBlock extends BaseEntityBlock {
                 else {
                     ItemStack itemInHand = player.getItemInHand(interactionHand);
                     if(!itemInHand.isEmpty() && entity.canPlaceItem(itemInHand)) {
-                        entity.insertItem(new ItemStack(itemInHand.getItem(), 1));
+                        ItemStack itemToInsert = itemInHand.copy();
+                        itemToInsert.setCount(1);
+                        entity.insertItem(itemToInsert);
                         itemInHand.setCount(itemInHand.getCount() - 1);
                     } else {
                         ItemStack grabbedItem = entity.grabItem();

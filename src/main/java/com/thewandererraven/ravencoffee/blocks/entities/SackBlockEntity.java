@@ -41,6 +41,12 @@ public class SackBlockEntity extends BlockEntity implements MenuProvider, Contai
         return ItemStack.EMPTY.getItem();
     }
 
+    public ItemStack getSackItemStack() {
+        for(ItemStack stack : this.items)
+            if(!stack.isEmpty()) return stack;
+        return ItemStack.EMPTY;
+    }
+
     // ================================================= FULLNESS =================================================
 
     private int getFullnessPercentage() {
@@ -82,11 +88,14 @@ public class SackBlockEntity extends BlockEntity implements MenuProvider, Contai
 
     @Override
     public boolean canPlaceItem(int slot, ItemStack itemStack) {
-        return canPlaceItem(itemStack);
+        ItemStack itemInSlot = this.items.get(slot);
+        return itemInSlot.is(itemStack.getItem()) && itemInSlot.getDisplayName().equals(itemStack.getDisplayName());
     }
 
     public boolean canPlaceItem(ItemStack itemStack) {
-        return isEmpty() || itemStack.is(getSackItem());
+        ItemStack sackItemStack = getSackItemStack();
+        return isEmpty() || (itemStack.is(sackItemStack.getItem()) &&
+                itemStack.getDisplayName().getContents().equals(sackItemStack.getDisplayName().getContents()));
     }
 
     public boolean insertItem(ItemStack itemStack) {
@@ -94,7 +103,6 @@ public class SackBlockEntity extends BlockEntity implements MenuProvider, Contai
         for(int i = 0; i < this.items.size(); i++) {
             ItemStack currentItem = this.items.get(i);
             if(!currentItem.equals(ItemStack.EMPTY)) {
-                RavenCoffee.LOGGER.debug("COUNT: " + currentItem.getCount());
                 if((currentItem.getCount() + itemStack.getCount()) <= currentItem.getMaxStackSize()) {
                     currentItem.setCount(currentItem.getCount() + itemStack.getCount());
                     updateFullness();
@@ -104,7 +112,7 @@ public class SackBlockEntity extends BlockEntity implements MenuProvider, Contai
                 firstEmptySlot = i;
         }
         if(firstEmptySlot >= 0) {
-            this.items.set(firstEmptySlot, itemStack);
+            this.items.set(firstEmptySlot, itemStack.copy());
             updateFullness();
             return true;
         }
@@ -120,11 +128,17 @@ public class SackBlockEntity extends BlockEntity implements MenuProvider, Contai
     public ItemStack removeItem(int slot, int count) {
         ItemStack oldStack = this.items.get(slot);
         if(oldStack.getCount() > count)
-            this.items.set(slot, new ItemStack(oldStack.getItem(), oldStack.getCount() - count));
+            this.items.set(slot, duplicateItemWithCount(oldStack, oldStack.getCount() - count));
         else
             this.items.set(slot, ItemStack.EMPTY);
         updateFullness();
-        return new ItemStack(oldStack.getItem(), count);
+        return duplicateItemWithCount(oldStack, count);
+    }
+
+    private static ItemStack duplicateItemWithCount(ItemStack originalStack, int newCount) {
+        ItemStack newStack = originalStack.copy();
+        newStack.setCount(newCount);
+        return newStack;
     }
 
     public ItemStack grabItem() {
