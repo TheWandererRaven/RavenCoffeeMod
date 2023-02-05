@@ -179,7 +179,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
                 // Check if there's a recipe
                 if (blockEntity.currentRecipe != null) {
                     ItemStack output = blockEntity.currentRecipe.getResultItem(
-                            cup.getItem(),
+                            cup,
                             blockEntity.itemHandler.getStackInSlot(OUTPUT_FIRST_SLOT_INDEX).getCount() + 1
                     );
                     // Check if the output is empty or the same as the result item
