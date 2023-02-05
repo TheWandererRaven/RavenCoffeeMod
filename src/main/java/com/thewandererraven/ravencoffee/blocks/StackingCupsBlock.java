@@ -95,7 +95,9 @@ public class StackingCupsBlock extends BaseEntityBlock {
             if(level.getBlockEntity(blockPos) instanceof StackingCupsBlockEntity entity) {
                 ItemStack itemInHand = player.getItemInHand(interactionHand);
                 if (itemInHand.is(ModTags.Items.CUPS) && entity.canPlaceItem(itemInHand)) {
-                    entity.placeItem(new ItemStack(itemInHand.getItem(), 1));
+                    ItemStack itemToInsert = itemInHand.copy();
+                    itemToInsert.setCount(1);
+                    entity.placeItem(itemToInsert);
                     if (!player.getAbilities().instabuild) {
                         itemInHand.shrink(1);
                     }

@@ -61,7 +61,7 @@ public class StackingCupsBlockEntity extends BlockEntity implements Container {
     public boolean contains(ItemStack itemStack) {
         for (ItemStack item : items) {
             if (!itemStack.isEmpty())
-                if(itemStack.is(item.getItem()))
+                if(itemStack.is(item.getItem()) && itemStack.getDisplayName().getContents().equals(item.getDisplayName().getContents()))
                     return true;
         }
         return false;
@@ -82,7 +82,7 @@ public class StackingCupsBlockEntity extends BlockEntity implements Container {
             if(currentItem.isEmpty()) {
                 if(this.isEmpty())
                      setCupTypeOnBlockstate(itemStack.getItem().toString());
-                this.items.set(i, itemStack);
+                this.items.set(i, itemStack.copy());
                 updateBlockCount();
                 return true;
             }
@@ -117,13 +117,19 @@ public class StackingCupsBlockEntity extends BlockEntity implements Container {
         return this.items.get(slot);
     }
 
+    private static ItemStack duplicateItemWithCount(ItemStack originalStack, int newCount) {
+        ItemStack newStack = originalStack.copy();
+        newStack.setCount(newCount);
+        return newStack;
+    }
+
     @Override
     public ItemStack removeItem(int slot, int count) {
         ItemStack oldStack = this.items.get(slot);
         if(!oldStack.isEmpty()) {
             this.items.set(slot, ItemStack.EMPTY);
             updateBlockCount();
-            return new ItemStack(oldStack.getItem(), count);
+            return duplicateItemWithCount(oldStack, count);
         }
         return ItemStack.EMPTY;
     }
@@ -137,7 +143,7 @@ public class StackingCupsBlockEntity extends BlockEntity implements Container {
 
     @Override
     public void setItem(int slot, ItemStack itemStack) {
-        this.items.set(slot, itemStack);
+        this.items.set(slot, itemStack.copy());
         updateBlockCount();
     }
 

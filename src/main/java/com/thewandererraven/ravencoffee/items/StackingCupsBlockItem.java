@@ -57,7 +57,9 @@ public class StackingCupsBlockItem extends BlockItem {
                     ItemStack itemInHand = originalPlaceContext.getItemInHand();
                     Player player = originalPlaceContext.getPlayer();
                     if (itemInHand.is(ModTags.Items.CUPS) && blockEntity.canPlaceItem(itemInHand)) {
-                        blockEntity.placeItem(new ItemStack(itemInHand.getItem(), 1));
+                        ItemStack newStack = itemInHand.copy();
+                        newStack.setCount(1);
+                        blockEntity.placeItem(newStack);
                         if (player == null || !player.getAbilities().instabuild) {
                             itemInHand.shrink(1);
                         }
@@ -96,7 +98,9 @@ public class StackingCupsBlockItem extends BlockItem {
                     level.playSound(player, blockpos, this.getPlaceSound(blockstate1, level, blockpos, originalPlaceContext.getPlayer()), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                     BlockEntity blockEntity = level.getBlockEntity(blockpos);
                     if(blockEntity instanceof StackingCupsBlockEntity) {
-                        ((StackingCupsBlockEntity) blockEntity).placeItem(new ItemStack(itemstack.getItem(), 1));
+                        ItemStack newStack = itemstack.copy();
+                        newStack.setCount(1);
+                        ((StackingCupsBlockEntity) blockEntity).placeItem(newStack);
                     }
                     if (player == null || !player.getAbilities().instabuild) {
                         itemstack.shrink(1);
