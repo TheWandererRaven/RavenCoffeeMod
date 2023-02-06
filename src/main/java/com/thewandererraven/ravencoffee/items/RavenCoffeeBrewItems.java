@@ -1,7 +1,7 @@
 package com.thewandererraven.ravencoffee.items;
 
 import com.thewandererraven.ravencoffee.items.Brews;
-import com.thewandererraven.ravenbrewscore.CupSizes;
+import com.thewandererraven.ravenbrewscore.CupType;
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.items.ChorusBrew;
 import com.thewandererraven.ravencoffee.items.CoffeeBrew;
@@ -23,7 +23,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_SMALL_BREW_BASIC = BREWS.register(
             "cup_small_brew_basic",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_SMALL.get(),
                     Brews.ESPRESSO,
                     new Item.Properties().tab(RavenCoffee.CUP_SMALL_TAB)
@@ -32,7 +32,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_BASIC = BREWS.register(
             "cup_medium_brew_basic",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.BASIC,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -41,7 +41,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_BASIC = BREWS.register(
             "cup_large_brew_basic",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.BASIC,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -50,7 +50,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_BASIC = BREWS.register(
             "coffee_mug_brew_basic",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.BASIC,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -60,7 +60,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_SUGAR = BREWS.register(
             "cup_medium_brew_sugar",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.SUGAR,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -69,7 +69,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_SUGAR = BREWS.register(
             "cup_large_brew_sugar",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.SUGAR,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -78,7 +78,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_SUGAR = BREWS.register(
             "coffee_mug_brew_sugar",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.SUGAR,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -88,7 +88,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_APPLE = BREWS.register(
             "cup_medium_brew_apple",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.APPLE,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -101,7 +101,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_APPLE = BREWS.register(
             "cup_large_brew_apple",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.APPLE,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -114,7 +114,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_APPLE = BREWS.register(
             "coffee_mug_brew_apple",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.APPLE,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -128,7 +128,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_BERRY = BREWS.register(
             "cup_medium_brew_berry",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.BERRY,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -141,7 +141,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_BERRY = BREWS.register(
             "cup_large_brew_berry",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.BERRY,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -154,7 +154,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_BERRY = BREWS.register(
             "coffee_mug_brew_berry",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.BERRY,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -168,7 +168,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_HONEY = BREWS.register(
             "cup_medium_brew_honey",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.HONEY,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -181,7 +181,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_HONEY = BREWS.register(
             "cup_large_brew_honey",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.HONEY,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -194,7 +194,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_HONEY = BREWS.register(
             "coffee_mug_brew_honey",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.HONEY,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -208,7 +208,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_CHOCOLATE = BREWS.register(
             "cup_medium_brew_chocolate",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.CHOCOLATE,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -221,7 +221,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_CHOCOLATE = BREWS.register(
             "cup_large_brew_chocolate",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.CHOCOLATE,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -234,7 +234,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_CHOCOLATE = BREWS.register(
             "coffee_mug_brew_chocolate",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.CHOCOLATE,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -248,7 +248,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_MILK = BREWS.register(
             "cup_medium_brew_milk",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.MILK,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -257,7 +257,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_MILK = BREWS.register(
             "cup_large_brew_milk",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.MILK,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -266,7 +266,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MILK = BREWS.register(
             "coffee_mug_brew_milk",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.MILK,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -276,7 +276,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_MOCHA = BREWS.register(
             "cup_medium_brew_mocha",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.MOCHA,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -285,7 +285,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_MOCHA = BREWS.register(
             "cup_large_brew_mocha",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.MOCHA,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -294,7 +294,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MOCHA = BREWS.register(
             "coffee_mug_brew_mocha",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.MOCHA,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -304,7 +304,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_AWKWARD = BREWS.register(
             "cup_medium_brew_awkward",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.AWKWARD,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -313,7 +313,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_AWKWARD = BREWS.register(
             "cup_large_brew_awkward",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.AWKWARD,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -322,7 +322,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_AWKWARD = BREWS.register(
             "coffee_mug_brew_awkward",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.AWKWARD,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -332,7 +332,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_CARROT = BREWS.register(
             "cup_medium_brew_carrot",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.CARROT,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -345,7 +345,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_CARROT = BREWS.register(
             "cup_large_brew_carrot",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.CARROT,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -358,7 +358,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_CARROT = BREWS.register(
             "coffee_mug_brew_carrot",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.CARROT,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -372,7 +372,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_CARROT_GOLDEN = BREWS.register(
             "cup_medium_brew_carrot_golden",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.CARROT_GOLDEN,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -385,7 +385,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_CARROT_GOLDEN = BREWS.register(
             "cup_large_brew_carrot_golden",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.CARROT_GOLDEN,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -398,7 +398,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_CARROT_GOLDEN = BREWS.register(
             "coffee_mug_brew_carrot_golden",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.CARROT_GOLDEN,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -412,7 +412,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_COOKIESANDCREAM = BREWS.register(
             "cup_medium_brew_cookiesandcream",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.COOKIESANDCREAM,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -425,7 +425,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_COOKIESANDCREAM = BREWS.register(
             "cup_large_brew_cookiesandcream",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.COOKIESANDCREAM,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -438,7 +438,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_COOKIESANDCREAM = BREWS.register(
             "coffee_mug_brew_cookiesandcream",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.COOKIESANDCREAM,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -452,7 +452,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_END = BREWS.register(
             "cup_medium_brew_end",
             () -> new ChorusBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.END,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -465,7 +465,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_END = BREWS.register(
             "cup_large_brew_end",
             () -> new ChorusBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.END,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -478,7 +478,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_END = BREWS.register(
             "coffee_mug_brew_end",
             () -> new ChorusBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.END,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -492,7 +492,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_MELON = BREWS.register(
             "cup_medium_brew_melon",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.MELON,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -505,7 +505,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_MELON = BREWS.register(
             "cup_large_brew_melon",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.MELON,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -518,7 +518,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MELON = BREWS.register(
             "coffee_mug_brew_melon",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.MELON,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -532,7 +532,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_MELON_GOLDEN = BREWS.register(
             "cup_medium_brew_melon_golden",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.MELON_GOLDEN,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -545,7 +545,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_MELON_GOLDEN = BREWS.register(
             "cup_large_brew_melon_golden",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.MELON_GOLDEN,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -558,7 +558,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MELON_GOLDEN = BREWS.register(
             "coffee_mug_brew_melon_golden",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.MELON_GOLDEN,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -572,7 +572,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_NETHER = BREWS.register(
             "cup_medium_brew_nether",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.NETHER,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -585,7 +585,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_NETHER = BREWS.register(
             "cup_large_brew_nether",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.NETHER,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -598,7 +598,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_NETHER = BREWS.register(
             "coffee_mug_brew_nether",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.NETHER,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -612,7 +612,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_PHANTASM = BREWS.register(
             "cup_medium_brew_phantasm",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.PHANTASM,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -621,7 +621,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_PHANTASM = BREWS.register(
             "cup_large_brew_phantasm",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.PHANTASM,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -630,7 +630,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_PHANTASM = BREWS.register(
             "coffee_mug_brew_phantasm",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.PHANTASM,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -640,7 +640,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_PUMPKINSPICELATTE = BREWS.register(
             "cup_medium_brew_pumpkinspicelatte",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.PUMPKINSPICELATTE,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -649,7 +649,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_PUMPKINSPICELATTE = BREWS.register(
             "cup_large_brew_pumpkinspicelatte",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.PUMPKINSPICELATTE,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -658,7 +658,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_PUMPKINSPICELATTE = BREWS.register(
             "coffee_mug_brew_pumpkinspicelatte",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.PUMPKINSPICELATTE,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)
@@ -668,7 +668,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
             "cup_medium_brew_pumpkinspicelatte_with_pumpkin",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
                     new Item.Properties().tab(RavenCoffee.CUP_MEDIUM_TAB)
@@ -681,7 +681,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> CUP_LARGE_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
             "cup_large_brew_pumpkinspicelatte_with_pumpkin",
             () -> new CoffeeBrew(
-                    CupSizes.LARGE,
+                    CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
                     new Item.Properties().tab(RavenCoffee.CUP_LARGE_TAB)
@@ -694,7 +694,7 @@ public class RavenCoffeeBrewItems {
     public static final RegistryObject<Item> COFFEE_MUG_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
             "coffee_mug_brew_pumpkinspicelatte_with_pumpkin",
             () -> new CoffeeBrew(
-                    CupSizes.MEDIUM,
+                    CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
                     new Item.Properties().tab(RavenCoffee.COFFEE_MUG_TAB)

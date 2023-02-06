@@ -46,4 +46,12 @@ public class RavenCoffeeBlocks {
             "coffee_machine_block",
             CoffeeMachineBlock::new
     );
+    public static final RegistryObject<Block> SACK_BLOCK = BLOCKS.register(
+            "sack_block",
+            SackBlock::new
+    );
+    public static final RegistryObject<Block> STACKING_CUPS_BLOCK = BLOCKS.register(
+            "stacking_cups_block",
+            StackingCupsBlock::new
+    );
 }

@@ -1,0 +1,79 @@
+{
+	"parent": "ravencoffee:block/stacking_cups_block_5",
+	"textures": {
+		"cup": "ravencoffee:blocks/cup_medium_empty",
+		"particle": "ravencoffee:blocks/cup_medium_empty"
+	},
+	"elements": [
+		{
+			"name": "cup_main",
+			"from": [3, 0, 9],
+			"to": [6, 4, 12],
+			"rotation": {"angle": 0, "axis": "z", "origin": [4.5, 2, 10.5]},
+			"faces": {
+				"north": {"uv": [3, 3, 6, 7], "texture": "#cup"},
+				"east": {"uv": [0, 3, 3, 7], "texture": "#cup"},
+				"south": {"uv": [9, 3, 12, 7], "texture": "#cup"},
+				"west": {"uv": [6, 3, 9, 7], "texture": "#cup"},
+				"up": {"uv": [0, 0, 3, 3], "rotation": 90, "texture": "#cup"},
+				"down": {"uv": [9, 7, 12, 10], "rotation": 270, "texture": "#cup"}
+			}
+		},
+		{
+			"name": "cup_main",
+			"from": [8, 0, 10],
+			"to": [11, 4, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9.5, 2, 11.5]},
+			"faces": {
+				"north": {"uv": [6, 3, 9, 7], "texture": "#cup"},
+				"east": {"uv": [3, 3, 6, 7], "texture": "#cup"},
+				"south": {"uv": [0, 3, 3, 7], "texture": "#cup"},
+				"west": {"uv": [9, 3, 12, 7], "texture": "#cup"},
+				"up": {"uv": [0, 0, 3, 3], "rotation": 180, "texture": "#cup"},
+				"down": {"uv": [9, 7, 12, 10], "rotation": 180, "texture": "#cup"}
+			}
+		},
+		{
+			"name": "cup_main",
+			"from": [8, 0, 5],
+			"to": [12, 3, 8],
+			"rotation": {"angle": 0, "axis": "z", "origin": [10, 1.5, 6.5]},
+			"faces": {
+				"north": {"uv": [0, 3, 3, 7], "rotation": 270, "texture": "#cup"},
+				"east": {"uv": [0, 0, 3, 3], "rotation": 90, "texture": "#cup"},
+				"south": {"uv": [6, 3, 9, 7], "rotation": 90, "texture": "#cup"},
+				"west": {"uv": [9, 7, 12, 10], "rotation": 90, "texture": "#cup"},
+				"up": {"uv": [3, 3, 6, 7], "rotation": 90, "texture": "#cup"},
+				"down": {"uv": [9, 3, 12, 7], "rotation": 90, "texture": "#cup"}
+			}
+		},
+		{
+			"name": "cup_main",
+			"from": [1, 0, 5],
+			"to": [4, 4, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2.5, 2, 6.5]},
+			"faces": {
+				"north": {"uv": [9, 3, 12, 7], "texture": "#cup"},
+				"east": {"uv": [6, 3, 9, 7], "texture": "#cup"},
+				"south": {"uv": [3, 3, 6, 7], "texture": "#cup"},
+				"west": {"uv": [0, 3, 3, 7], "texture": "#cup"},
+				"up": {"uv": [0, 0, 3, 3], "rotation": 270, "texture": "#cup"},
+				"down": {"uv": [9, 7, 12, 10], "rotation": 90, "texture": "#cup"}
+			}
+		},
+		{
+			"name": "cup_main",
+			"from": [2, 4, 7],
+			"to": [5, 8, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3.5, 6, 8.5]},
+			"faces": {
+				"north": {"uv": [6, 3, 9, 7], "texture": "#cup"},
+				"east": {"uv": [3, 3, 6, 7], "texture": "#cup"},
+				"south": {"uv": [0, 3, 3, 7], "texture": "#cup"},
+				"west": {"uv": [9, 3, 12, 7], "texture": "#cup"},
+				"up": {"uv": [0, 0, 3, 3], "rotation": 180, "texture": "#cup"},
+				"down": {"uv": [9, 7, 12, 10], "rotation": 180, "texture": "#cup"}
+			}
+		}
+	]
+}

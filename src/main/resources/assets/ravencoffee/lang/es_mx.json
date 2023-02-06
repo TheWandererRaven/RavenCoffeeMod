@@ -119,6 +119,8 @@
   "container.ravencoffee.coffee_machine": "Máquina de café",
   "block.ravencoffee.coffee_machine_premium_block": "Máquina de café edición Premium",
   "container.ravencoffee.coffee_machine_premium": "Máquina de café edición Premium",
+  "block.ravencoffee.sack_block": "Costal",
+  "container.ravencoffee.sack": "Costal",
   "block.ravencoffee.coffee_beans_roasted_block": "Bloque de café tostado",
   "block.ravencoffee.coffee_beans_magma_block": "Bloque de café ínfusionado con magma",
   "block.ravencoffee.coffee_tree_leaves_block": "Hojas de cafeto",

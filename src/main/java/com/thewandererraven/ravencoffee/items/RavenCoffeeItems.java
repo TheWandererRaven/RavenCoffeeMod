@@ -2,8 +2,6 @@ package com.thewandererraven.ravencoffee.items;
 
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
-import com.thewandererraven.ravencoffee.items.ItemBase;
-import com.thewandererraven.ravencoffee.items.ItemThrowable;
 import com.thewandererraven.ravencoffee.items.tools.RavenCoffeeItemTier;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
@@ -212,7 +210,10 @@ public class RavenCoffeeItems {
     );
     public static final RegistryObject<Item> CUP_SMALL = ITEMS.register(
             "cup_small",
-            () -> new ItemBase(RavenCoffee.CUP_SMALL_TAB)
+            () -> new StackingCupsBlockItem(
+                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
+                    (new Item.Properties()).tab(RavenCoffee.CUP_SMALL_TAB)
+            )
     );
     public static final RegistryObject<Item> CUP_MEDIUM_UNFIRED = ITEMS.register(
             "cup_medium_unfired",
@@ -220,7 +221,10 @@ public class RavenCoffeeItems {
     );
     public static final RegistryObject<Item> CUP_MEDIUM = ITEMS.register(
             "cup_medium",
-            () -> new ItemBase(RavenCoffee.CUP_MEDIUM_TAB)
+            () -> new StackingCupsBlockItem(
+                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
+                    (new Item.Properties()).tab(RavenCoffee.CUP_MEDIUM_TAB)
+            )
     );
     public static final RegistryObject<Item> CUP_LARGE_UNFIRED = ITEMS.register(
             "cup_large_unfired",
@@ -228,11 +232,16 @@ public class RavenCoffeeItems {
     );
     public static final RegistryObject<Item> CUP_LARGE = ITEMS.register(
             "cup_large",
-            () -> new ItemBase(RavenCoffee.CUP_LARGE_TAB)
+            () -> new StackingCupsBlockItem(RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
+                    (new Item.Properties()).tab(RavenCoffee.CUP_LARGE_TAB)
+            )
     );
     public static final RegistryObject<Item> COFFEE_MUG = ITEMS.register(
             "coffee_mug",
-            () -> new ItemBase(RavenCoffee.COFFEE_MUG_TAB)
+            () -> new StackingCupsBlockItem(
+                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
+                    (new Item.Properties()).tab(RavenCoffee.COFFEE_MUG_TAB)
+            )
     );
 
     // ############################################### COFFEE MATERIALS ################################################
@@ -286,5 +295,10 @@ public class RavenCoffeeItems {
     public static final RegistryObject<Item> COFFEE_MACHINE_ITEM = ITEMS.register(
             "coffee_machine_block",
             () -> new BlockItem(RavenCoffeeBlocks.COFFEE_MACHINE_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
+    );
+
+    public static final RegistryObject<Item> SACK_BLOCK_ITEM = ITEMS.register(
+            "sack_block",
+            () -> new BlockItem(RavenCoffeeBlocks.SACK_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
     );
 }

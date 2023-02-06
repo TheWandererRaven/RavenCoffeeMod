@@ -110,11 +110,14 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
         return new ItemStack(RavenCoffeeItems.COFFEE_MUG.get());
     }
 
-    public ItemStack getResultItem(Item cup, int count) {
-        return new ItemStack(
-                getBrew(cup),
+    public ItemStack getResultItem(ItemStack cup, int count) {
+        ItemStack resItem = new ItemStack(
+                getBrew(cup.getItem()),
                 count
         );
+        if(!cup.getHoverName().getContents().equals(cup.getItem().getName(cup).getContents()))
+            resItem.setHoverName(cup.getHoverName());
+        return resItem;
     }
 
     // ================================================ CLASSES ================================================

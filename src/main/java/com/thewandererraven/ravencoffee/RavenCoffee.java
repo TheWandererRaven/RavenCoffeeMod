@@ -4,6 +4,7 @@ import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.blocks.entities.RavenCoffeeBlockEntities;
 import com.thewandererraven.ravencoffee.containers.RavenCoffeeMenuTypes;
 import com.thewandererraven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
+import com.thewandererraven.ravencoffee.containers.screen.SackScreen;
 import com.thewandererraven.ravencoffee.recipes.CoffeeBrewRecipe;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
@@ -103,6 +104,7 @@ public class RavenCoffee
         //ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
         MenuScreens.register(RavenCoffeeMenuTypes.COFFEE_GRINDER_MENU.get(), CoffeeGrinderContainerScreen::new);
         MenuScreens.register(RavenCoffeeMenuTypes.COFFEE_MACHINE_MENU.get(), CoffeeMachineScreen::new);
+        MenuScreens.register(RavenCoffeeMenuTypes.SACK_MENU.get(), SackScreen::new);
     }
 
     //@SubscribeEvent
