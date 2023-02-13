@@ -105,6 +105,17 @@ public class RavenCoffeeItems {
                     )
             )
     );
+    public static final RegistryObject<Item> TIRAMISU_SLICE = ITEMS.register(
+            "tiramisu_slice",
+            () -> new Item(new Item.Properties()
+                    .tab(RavenCoffee.GENERAL_TAB)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(3)
+                            .saturationMod(0.6f/2f)
+                            .build()
+                    )
+            )
+    );
     public static final RegistryObject<Item> SANDWICH_HAM = ITEMS.register(
             "sandwich_ham",
             () -> new Item(new Item.Properties()
@@ -315,6 +326,10 @@ public class RavenCoffeeItems {
     public static final RegistryObject<Item> ROSCA_DE_REYES_BLOCK_ITEM = ITEMS.register(
             "rosca_de_reyes_block",
             () -> new BlockItem(RavenCoffeeBlocks.ROSCA_DE_REYES_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
+    );
+    public static final RegistryObject<Item> TIRAMISU_BLOCK_ITEM = ITEMS.register(
+            "tiramisu_block",
+            () -> new BlockItem(RavenCoffeeBlocks.TIRAMISU_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
     );
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_block",

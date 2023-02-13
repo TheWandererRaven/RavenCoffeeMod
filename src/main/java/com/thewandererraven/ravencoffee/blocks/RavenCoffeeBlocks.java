@@ -27,6 +27,14 @@ public class RavenCoffeeBlocks {
                     .noOcclusion()
             )
     );
+    public static final RegistryObject<Block> TIRAMISU_BLOCK = BLOCKS.register(
+            "tiramisu_block",
+            () -> new TiramisuBlock(BlockBehaviour.Properties
+                    .of(Material.CAKE)
+                    .sound(SoundType.WOOL)
+                    .noOcclusion()
+            )
+    );
     public static final RegistryObject<Block> COFFEE_BEANS_ROASTED_BLOCK = BLOCKS.register(
             "coffee_beans_roasted_block",
             CoffeeBeansRoastedBlock::new
