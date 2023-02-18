@@ -12,6 +12,29 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class RavenCoffeeBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RavenCoffee.MOD_ID);
+    public static final RegistryObject<Block> BROWNIE_BLOCK = BLOCKS.register(
+            "brownie_block",
+            () -> new Block(BlockBehaviour.Properties
+                    .of(Material.CAKE)
+                    .sound(SoundType.WOOL)
+            )
+    );
+    public static final RegistryObject<Block> ROSCA_DE_REYES_BLOCK = BLOCKS.register(
+            "rosca_de_reyes_block",
+            () -> new RoscaDeReyesBlock(BlockBehaviour.Properties
+                    .of(Material.CAKE)
+                    .sound(SoundType.WOOL)
+                    .noOcclusion()
+            )
+    );
+    public static final RegistryObject<Block> TIRAMISU_BLOCK = BLOCKS.register(
+            "tiramisu_block",
+            () -> new TiramisuBlock(BlockBehaviour.Properties
+                    .of(Material.CAKE)
+                    .sound(SoundType.WOOL)
+                    .noOcclusion()
+            )
+    );
     public static final RegistryObject<Block> COFFEE_BEANS_ROASTED_BLOCK = BLOCKS.register(
             "coffee_beans_roasted_block",
             CoffeeBeansRoastedBlock::new

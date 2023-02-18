@@ -1,0 +1,162 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "ravencoffee:blocks/tiramisu_top",
+		"1": "ravencoffee:blocks/tiramisu_side",
+		"2": "ravencoffee:blocks/tiramisu_bottom",
+		"particle": "ravencoffee:blocks/tiramisu_top"
+	},
+	"elements": [
+		{
+			"name": "piece_2",
+			"from": [2, 0, 5],
+			"to": [5, 4, 8],
+			"faces": {
+				"north": {"uv": [11, 6, 14, 10], "texture": "#1"},
+				"west": {"uv": [5, 0, 8, 4], "texture": "#1"},
+				"up": {"uv": [2, 5, 5, 8], "texture": "#0"},
+				"down": {"uv": [2, 8, 5, 11], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_3",
+			"from": [2, 0, 8],
+			"to": [5, 4, 11],
+			"faces": {
+				"west": {"uv": [8, 0, 11, 4], "texture": "#1"},
+				"up": {"uv": [2, 8, 5, 11], "texture": "#0"},
+				"down": {"uv": [2, 5, 5, 8], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_4",
+			"from": [2, 0, 11],
+			"to": [5, 4, 14],
+			"faces": {
+				"south": {"uv": [2, 0, 5, 4], "texture": "#1"},
+				"west": {"uv": [11, 0, 14, 4], "texture": "#1"},
+				"up": {"uv": [2, 11, 5, 14], "texture": "#0"},
+				"down": {"uv": [2, 2, 5, 5], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_5",
+			"from": [5, 0, 11],
+			"to": [8, 4, 14],
+			"faces": {
+				"south": {"uv": [5, 0, 8, 4], "texture": "#1"},
+				"up": {"uv": [5, 11, 8, 14], "texture": "#0"},
+				"down": {"uv": [5, 2, 8, 5], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_6",
+			"from": [5, 0, 8],
+			"to": [8, 4, 11],
+			"faces": {
+				"up": {"uv": [5, 8, 8, 11], "texture": "#0"},
+				"down": {"uv": [5, 5, 8, 8], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_7",
+			"from": [5, 0, 5],
+			"to": [8, 4, 8],
+			"faces": {
+				"up": {"uv": [5, 5, 8, 8], "texture": "#0"},
+				"down": {"uv": [5, 8, 8, 11], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_8",
+			"from": [5, 0, 2],
+			"to": [8, 4, 5],
+			"faces": {
+				"north": {"uv": [8, 0, 11, 4], "texture": "#1"},
+				"west": {"uv": [2, 6, 5, 10], "texture": "#1"},
+				"up": {"uv": [5, 2, 8, 5], "texture": "#0"},
+				"down": {"uv": [5, 11, 8, 14], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_9",
+			"from": [8, 0, 2],
+			"to": [11, 4, 5],
+			"faces": {
+				"north": {"uv": [5, 0, 8, 4], "texture": "#1"},
+				"up": {"uv": [8, 2, 11, 5], "texture": "#0"},
+				"down": {"uv": [8, 11, 11, 14], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_10",
+			"from": [8, 0, 5],
+			"to": [11, 4, 8],
+			"faces": {
+				"up": {"uv": [8, 5, 11, 8], "texture": "#0"},
+				"down": {"uv": [8, 8, 11, 11], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_11",
+			"from": [8, 0, 8],
+			"to": [11, 4, 11],
+			"faces": {
+				"up": {"uv": [8, 8, 11, 11], "texture": "#0"},
+				"down": {"uv": [8, 5, 11, 8], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_12",
+			"from": [8, 0, 11],
+			"to": [11, 4, 14],
+			"faces": {
+				"south": {"uv": [8, 0, 11, 4], "texture": "#1"},
+				"up": {"uv": [8, 11, 11, 14], "texture": "#0"},
+				"down": {"uv": [8, 2, 11, 5], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_13",
+			"from": [11, 0, 11],
+			"to": [14, 4, 14],
+			"faces": {
+				"east": {"uv": [2, 0, 5, 4], "texture": "#1"},
+				"south": {"uv": [11, 0, 14, 4], "texture": "#1"},
+				"up": {"uv": [11, 11, 14, 14], "texture": "#0"},
+				"down": {"uv": [11, 2, 14, 5], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_14",
+			"from": [11, 0, 8],
+			"to": [14, 4, 11],
+			"faces": {
+				"east": {"uv": [5, 0, 8, 4], "texture": "#1"},
+				"up": {"uv": [11, 8, 14, 11], "texture": "#0"},
+				"down": {"uv": [11, 5, 14, 8], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_15",
+			"from": [11, 0, 5],
+			"to": [14, 4, 8],
+			"faces": {
+				"east": {"uv": [8, 0, 11, 4], "texture": "#1"},
+				"up": {"uv": [11, 5, 14, 8], "texture": "#0"},
+				"down": {"uv": [11, 8, 14, 11], "texture": "#2"}
+			}
+		},
+		{
+			"name": "piece_16",
+			"from": [11, 0, 2],
+			"to": [14, 4, 5],
+			"faces": {
+				"north": {"uv": [2, 0, 5, 4], "texture": "#1"},
+				"east": {"uv": [11, 0, 14, 4], "texture": "#1"},
+				"up": {"uv": [11, 2, 14, 5], "texture": "#0"},
+				"down": {"uv": [11, 11, 14, 14], "texture": "#2"}
+			}
+		}
+	]
+}

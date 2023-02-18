@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "slices=1": {
+      "model": "ravencoffee:block/tiramisu_block_1"
+    },
+    "slices=2": {
+      "model": "ravencoffee:block/tiramisu_block_2"
+    },
+    "slices=3": {
+      "model": "ravencoffee:block/tiramisu_block_3"
+    },
+    "slices=4": {
+      "model": "ravencoffee:block/tiramisu_block_4"
+    },
+    "slices=5": {
+      "model": "ravencoffee:block/tiramisu_block_5"
+    },
+    "slices=6": {
+      "model": "ravencoffee:block/tiramisu_block_6"
+    },
+    "slices=7": {
+      "model": "ravencoffee:block/tiramisu_block_7"
+    },
+    "slices=8": {
+      "model": "ravencoffee:block/tiramisu_block_8"
+    },
+    "slices=9": {
+      "model": "ravencoffee:block/tiramisu_block_9"
+    },
+    "slices=10": {
+      "model": "ravencoffee:block/tiramisu_block_10"
+    },
+    "slices=11": {
+      "model": "ravencoffee:block/tiramisu_block_11"
+    },
+    "slices=12": {
+      "model": "ravencoffee:block/tiramisu_block_12"
+    },
+    "slices=13": {
+      "model": "ravencoffee:block/tiramisu_block_13"
+    },
+    "slices=14": {
+      "model": "ravencoffee:block/tiramisu_block_14"
+    },
+    "slices=15": {
+      "model": "ravencoffee:block/tiramisu_block_15"
+    },
+    "slices=16": {
+      "model": "ravencoffee:block/tiramisu_block_16"
+    }
+  }
+}

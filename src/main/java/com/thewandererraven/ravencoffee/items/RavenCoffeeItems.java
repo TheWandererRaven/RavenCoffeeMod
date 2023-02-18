@@ -3,6 +3,8 @@ package com.thewandererraven.ravencoffee.items;
 import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.items.tools.RavenCoffeeItemTier;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
@@ -77,6 +79,39 @@ public class RavenCoffeeItems {
                     .food(new FoodProperties.Builder()
                             .nutrition(7)
                             .saturationMod(0.8f/2f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> COFFEE_ECLAIR = ITEMS.register(
+            "coffee_eclair",
+            () -> new Item(new Item.Properties()
+                    .tab(RavenCoffee.GENERAL_TAB)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.6f/2f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> BROWNIE = ITEMS.register(
+            "brownie",
+            () -> new Item(new Item.Properties()
+                    .tab(RavenCoffee.GENERAL_TAB)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(2)
+                            .saturationMod(0.4f/2f)
+                            .build()
+                    )
+            )
+    );
+    public static final RegistryObject<Item> TIRAMISU_SLICE = ITEMS.register(
+            "tiramisu_slice",
+            () -> new Item(new Item.Properties()
+                    .tab(RavenCoffee.GENERAL_TAB)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(3)
+                            .saturationMod(0.6f/2f)
                             .build()
                     )
             )
@@ -278,6 +313,24 @@ public class RavenCoffeeItems {
     );
 
     // ############################################### COFFEE BLOCK ITEMS ################################################
+    public static final RegistryObject<Item> BROWNIE_BLOCK_ITEM = ITEMS.register(
+            "brownie_block",
+            () -> new BlockItem(RavenCoffeeBlocks.BROWNIE_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(25)
+                            .saturationMod(5.0f/2f)
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 6000, 5), 1.0f)
+                            .build()
+                    ))
+    );
+    public static final RegistryObject<Item> ROSCA_DE_REYES_BLOCK_ITEM = ITEMS.register(
+            "rosca_de_reyes_block",
+            () -> new BlockItem(RavenCoffeeBlocks.ROSCA_DE_REYES_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
+    );
+    public static final RegistryObject<Item> TIRAMISU_BLOCK_ITEM = ITEMS.register(
+            "tiramisu_block",
+            () -> new BlockItem(RavenCoffeeBlocks.TIRAMISU_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
+    );
     public static final RegistryObject<Item> COFFEE_BEANS_ROASTED_BLOCK_ITEM = ITEMS.register(
             "coffee_beans_roasted_block",
             () -> new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_ROASTED_BLOCK.get(), new Item.Properties().tab(RavenCoffee.GENERAL_TAB))
