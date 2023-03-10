@@ -77,26 +77,30 @@ public class VillageAddition {
         int coffeeShopsWeight = 10;
         int coffeeShopEntrancesWeight = 1;
 
+        // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"chests/village/desert_coffe_shop"}
+        // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"ravencoffee:chests/village/desert_coffee_shop_chest"}
         // Desert village with shop coordinates
         //
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/desert/houses"),
-                String.format("%s:village/desert/houses/desert_coffee_shop", RavenCoffee.MOD_ID), coffeeShopsWeight);
+                String.format("%s:village/desert/houses/desert_coffee_lounge", RavenCoffee.MOD_ID), coffeeShopsWeight);
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/desert/streets"),
-                String.format("%s:village/desert/streets/coffee_shop_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
+                String.format("%s:village/desert/streets/coffee_lounge_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
 
 
+        // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"ravencoffee:chests/village/plains_coffee_shop_chest"}
         // Plains village with shop coordinates
         //
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/plains/houses"),
-                String.format("%s:village/plains/houses/plains_coffee_shop", RavenCoffee.MOD_ID), coffeeShopsWeight);
+                String.format("%s:village/plains/houses/plains_coffee_lounge", RavenCoffee.MOD_ID), coffeeShopsWeight);
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/plains/streets"),
-                String.format("%s:village/plains/streets/coffee_shop_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
+                String.format("%s:village/plains/streets/coffee_lounge_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
 
 
+        // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"ravencoffee:chests/village/savanna_coffee_shop_chest"}
         // Savanna village with shop coordinates
         //
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
@@ -107,30 +111,32 @@ public class VillageAddition {
                 String.format("%s:village/savanna/savanna_coffee_tree_fenced_2", RavenCoffee.MOD_ID), 2);
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/savanna/houses"),
-                String.format("%s:village/savanna/houses/savanna_coffee_shop", RavenCoffee.MOD_ID), coffeeShopsWeight);
+                String.format("%s:village/savanna/houses/savanna_coffee_lounge", RavenCoffee.MOD_ID), coffeeShopsWeight);
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/savanna/streets"),
-                String.format("%s:village/savanna/streets/coffee_shop_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
+                String.format("%s:village/savanna/streets/coffee_lounge_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
 
 
+        // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"ravencoffee:chests/village/snowy_coffee_shop_chest"}
         // Snowy village with shop coordinates
         //
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/snowy/houses"),
-                String.format("%s:village/snowy/houses/snowy_coffee_shop", RavenCoffee.MOD_ID), coffeeShopsWeight);
+                String.format("%s:village/snowy/houses/snowy_coffee_lounge", RavenCoffee.MOD_ID), coffeeShopsWeight);
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/snowy/streets"),
-                String.format("%s:village/snowy/streets/coffee_shop_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
+                String.format("%s:village/snowy/streets/coffee_lounge_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
 
 
+        // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"ravencoffee:chests/village/taiga_coffee_shop_chest"}
         // Taiga village with shop coordinates
         //
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/taiga/houses"),
-                String.format("%s:village/taiga/houses/taiga_coffee_shop", RavenCoffee.MOD_ID), coffeeShopsWeight);
+                String.format("%s:village/taiga/houses/taiga_coffee_lounge", RavenCoffee.MOD_ID), coffeeShopsWeight);
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/taiga/streets"),
-                String.format("%s:village/taiga/streets/coffee_shop_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
+                String.format("%s:village/taiga/streets/coffee_lounge_entrance", RavenCoffee.MOD_ID), coffeeShopEntrancesWeight);
 
         // Adds our piece to all village houses pool
         // Note, the resourcelocation is getting the pool files from the data folder. Not assets folder.

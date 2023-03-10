@@ -1,6 +1,5 @@
 package com.thewandererraven.ravencoffee.blocks;
 
-import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.entities.CoffeeMachineBlockEntity;
 import com.thewandererraven.ravencoffee.blocks.entities.RavenCoffeeBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -10,8 +9,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.HopperMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -21,7 +18,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -149,7 +145,7 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
                 flag = true;
             }
         }
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());//.setValue(ACTIVE, true);
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public void onPlace(BlockState selfState, Level level, BlockPos blockPos, BlockState neighborState, boolean p_54114_) {
@@ -179,11 +175,17 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
     @SuppressWarnings("deprecation")
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
+
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
     @Override
     public BlockState rotate(BlockState state, LevelAccessor world, BlockPos pos, Rotation direction) {
+        return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation direction) {
         return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
     }
 
