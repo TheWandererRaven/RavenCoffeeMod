@@ -101,3 +101,8 @@ The following are the multiple foods included in the mod, their ingredients and 
 |**Melon Pan**|![MELON PAN](https://user-images.githubusercontent.com/36650776/132445614-7e8cda87-a7cc-4520-a8ab-d77dd05a8234.png)|7 (3.5 hunger points)|5.6|
 |**Popchorus**|![POPCHORUS](https://user-images.githubusercontent.com/36650776/132445878-bd6fb454-f962-4d41-8ad6-ab4e3d9d5c8b.png)|12 (6 hunger points)|3.6|
 |**Muffin**|![MUFFIN](https://user-images.githubusercontent.com/36650776/132445748-5b261d7b-1e13-40fc-81d7-6516b3166ff9.png)|2 (1 hunger points)|1.0|
+|**Coffee Eclair**|![CoffeeEclairRecipe](https://user-images.githubusercontent.com/36650776/225449699-39f6ca51-1f7b-40d3-969d-a9bf88bbff2f.png)|4|1.2|
+|**Brownie**|![BrownieRecipe](https://user-images.githubusercontent.com/36650776/225437852-a4aa69e3-d4c8-4ec0-92d4-e789f7230bd1.png)|2 (1 hunger point)|0.8|
+|**Brownie Block**|![BIGBrownieBlockRecipe](https://user-images.githubusercontent.com/36650776/225440593-8939371c-736a-46e8-b230-909e27411cd7.png)|20|20|
+|**Rosca de Reyes**|![RoscaDeReyesRecipe](https://user-images.githubusercontent.com/36650776/225445984-139819d8-43a1-4151-9460-c70007a6dee7.png)|1 (x slice)|1 (x slice)|
+|**Tiramisu**|![TiramisuRecipe](https://user-images.githubusercontent.com/36650776/225450077-e1c6dad7-b627-4ed7-966c-ea7983ab6298.png)|2 (x slice)|1 (x slice)|
