@@ -31,29 +31,33 @@ I'm open to suggestions as well as feedback.
 What has been accomplished:
 |Ver. |Feature                        |Description|
 |-----|---------------------------------|-|
-|`0.4`|*Coffee Tree Sapling*		|Coffee tree sapling block (With sapling functionality)|
-|`0.4`|*Coffee Leaves*			|Coffee Leaves Block that drop coffee cherries|
-|`0.4`|*Coffee Tree*			|Ganeration of a Coffee tree from its sapling|
+|`0.4`|*Coffee Tree Sapling*	      	|Coffee tree sapling block (With sapling functionality)|
+|`0.4`|*Coffee Leaves*  	  	  	    |Coffee Leaves Block that drop coffee cherries|
+|`0.4`|*Coffee Tree*		            	|Ganeration of a Coffee tree from its sapling|
 |`0.4`|*Coffee Tree World Generation*	|Simple world generation for savannah and jungle|
 |`0.4`|*Define Coffee Ingot process*	|Rework current process to make it a bit more complex, add a similar process as Netherite but for Iron tier|
-|`0.4`|*Coffee Tools*			|Basic Coffee Tools|
-|`0.4`|*Coffee Brewing p1*			|Multiple coffee brewings using already existing minecraft items|
-|`0.4`|*Coffee Food p1*			|Multiple food items (desserts, sandwitches, etc) to expand the food variety, moslty coffee-shop based|
-|`0.5`|*Coffee Machine*			|Simple Coffee Machine for automatic brewing of simple coffee|
+|`0.4`|*Coffee Tools*		            	|Basic Coffee Tools|
+|`0.4`|*Coffee Brewing p1*		      	|Multiple coffee brewings using already existing minecraft items|
+|`0.4`|*Coffee Food p1*		          	|Multiple food items (desserts, sandwitches, etc) to expand the food variety, moslty coffee-shop based|
+|`0.5`|*Coffee Machine*		          	|Simple Coffee Machine for automatic brewing of simple coffee|
+|`0.5`|*Stacking Cups*		          	|Empty cups can now be stacked as a block (up to 9 cups)|
+|`0.5`|*Sack*		                    	|A container block that can contain up to 4 stacks of the same item, player can take and insert items from the top|
+|`0.5`|*Coffee Food p1*		          	|Added more pastries, cakes and stuff|
+|`0.5`|*Coffee Shops*		            	|Added Coffee Shop to villages|
+|`0.5`|*Barista*		                 	|Added a new villager job to sell coffee related products|
 
 Some ideas I have:
 |Priority|Feature                        |Description|
 |-----|---------------------------------|-|
+|`1`|*Port/Compat to Fabric*			|Bring the mod to Fabric mod loader|
+|`1`|*Compat with other mods*			|Starting with compat with Farmer's Respite|
 |`1`|*Special Brews Effects*			|Create custom effects for special brews & Desserts|
 |`1`|*Brews Effects*			|Redefine & adjust the effects|
 |`2`|*Barista Guidebook*			|Create a Guide book for coffee related stuff|
 |`2`|*Coffee Tree better bonemeal*			|Enmhance bonemeanable capabilities to Coffee Tree so if the player bonemeals the trunk at full age the leaves grow|
 |`2`|*Coffee Cups are coockable*			|If Mojang implements the ceramic cooking system they showed on some previous minecon|
 |`3`|*Coffee Armor*			|Simple Coffee Armor|
-|`3`|*Coffee Shops*			|Buildings of abandoned or active coffee shops to be generated on the world|
-|`3`|*Coffee Barista*			|Npcs (villagers) who can trade you coffee|
 |`4`|*Coffee Thermos?*			|Make thermos that can carry different liquids (or just different brews?) and change cups so they can't stack(?)|
-|`5`|*Coffee Machine*			|Automatic coffee crafting? I have not a certain idea on what to do here, gotta define the brews effects before this|
 |`5`|*Coffee Vending Machines*			|Maybe something mysterious with these coffee machines...hmmm|
 |`6`|*Raven Coffee*			|???|
 
