@@ -1,16 +1,16 @@
 
 # Raven Coffee Mod
-Hello! If you happen to find yourself here let me offer you a cup of coffee, I hope you'e doing well.
+Hello! Since you are here let me offer you a cup of coffee, I hope you're doing well.
 Anyways, welcome to the page for my first published mod.
 >This is just an introduction to the project, nothing really important here
 
-I was inspired to mod the game by all the new changes that are coming to the Caves & Cliffs minecraft update. I already wanted coffee on minecraft but I also want to make something that feels like part of the vanilla experience.
+I was inspired to mod the game by all the new changes that were announced on the Caves & Cliffs minecraft update. I already wanted coffee on minecraft but I also wanted to make something that feels like part of the vanilla experience.
 
 For now I'll just make averything that I can, coffee ingot, coffee swort, coffe pig, coffee creeper, coffee coffee (?) Mostly because I want to learn how to make anything so my creativity can flow.
 
 if you have any other suggestions feels free to send me a message, post, anything you'd like (don't stalk me please). You can follow or dm me [@T_WandererRaven](https://twitter.com/T_WandererRaven) on twitter.
 # Install The mod
-To install the mod just copy the **"ravencoffee-x.x.x-x.x.jar"** file from the [CurseForge](https://www.curseforge.com/minecraft/mc-mods/raven-coffee) page and paste it on your **"mods"** folder inside your **".minecraft"** folder.
+To install the mod just copy the **"ravencoffee-x.x.x-x.x.jar"** file from the [CurseForge](https://www.curseforge.com/minecraft/mc-mods/raven-coffee) page and paste it on your **"mods"** folder inside your **".minecraft"** folder. This mod is dependent on [Raven Brews Core](https://www.curseforge.com/minecraft/mc-mods/raven-brews-core), you can install it on the same manner, just make sure the versions match.
 >Be wary of the versions, the minecraft and forge version will be specified on each file.
 # Changelog
 
@@ -18,6 +18,12 @@ To install the mod just copy the **"ravencoffee-x.x.x-x.x.jar"** file from the [
 - Added Coffee Machine
   - Including new recipe formats, hopper and redstone functionality
 - Refactored Coffee Magma Block
+- Added "stacking cups" block for empty cups
+- Added Sack block
+- Added Coffee Eclair, Brownie, BIG Brownie, Rosca de Reyes and Tiramisu
+- Added Coffee Shops to villages
+- Added Barista to villages
+- Couple of minor fixes
 
 ## Known bugs
 
@@ -42,7 +48,7 @@ What has been accomplished:
 |`0.5`|*Coffee Machine*		          	|Simple Coffee Machine for automatic brewing of simple coffee|
 |`0.5`|*Stacking Cups*		          	|Empty cups can now be stacked as a block (up to 9 cups)|
 |`0.5`|*Sack*		                    	|A container block that can contain up to 4 stacks of the same item, player can take and insert items from the top|
-|`0.5`|*Coffee Food p1*		          	|Added more pastries, cakes and stuff|
+|`0.5`|*Coffee Food p2*		          	|Added more pastries, cakes and stuff|
 |`0.5`|*Coffee Shops*		            	|Added Coffee Shop to villages|
 |`0.5`|*Barista*		                 	|Added a new villager job to sell coffee related products|
 
