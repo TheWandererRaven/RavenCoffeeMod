@@ -14,6 +14,7 @@ import com.thewandererraven.ravencoffee.recipes.CoffeeGrinderRecipe;
 import com.thewandererraven.ravencoffee.containers.screen.CoffeeMachineScreen;
 import com.thewandererraven.ravencoffee.util.configuration.ModConfiguration;
 import com.thewandererraven.ravencoffee.util.registries.*;
+import com.thewandererraven.ravencoffee.villager.RavenCoffeeVillagers;
 import com.thewandererraven.ravencoffee.world.features.RavenCoffeeConfiguredFeatures;
 import com.thewandererraven.ravencoffee.world.features.RavenCoffeeFeatures;
 import com.thewandererraven.ravencoffee.world.features.RavenCoffeePlacedFeatures;
@@ -61,6 +62,8 @@ public class RavenCoffee
         RavenCoffeeBlockEntities.BLOCK_ENTITIES.register(eventBus);
         RavenCoffeeItems.ITEMS.register(eventBus);
         RavenCoffeeBrewItems.BREWS.register(eventBus);
+        RavenCoffeeVillagers.POI_TYPES.register(eventBus);
+        RavenCoffeeVillagers.VILLAGER_PROFESSIONS.register(eventBus);
         RavenCoffeeFeatures.FEATURES.register(eventBus);
         //ConfiguredFeaturesRegistry.CONFIGURED_FEATURES.register(eventBus);
         //PlacedFeaturesRegistry.PLACED_FEATURES.register(eventBus);
@@ -86,6 +89,9 @@ public class RavenCoffee
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            RavenCoffeeVillagers.registerPOIs();
+        });
     }
 
     /*

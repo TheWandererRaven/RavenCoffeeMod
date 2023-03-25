@@ -26,6 +26,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.Iterator;
@@ -189,7 +190,7 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
             direction = var4.next();
             blockstate = blockGetter.getBlockState(blockPos.offset(direction.getNormal()));
             material = blockstate.getMaterial();
-        } while((!material.isSolid() || material.equals(Material.LEAVES)) && !blockGetter.getFluidState(blockPos.offset(direction.getNormal())).is(FluidTags.LAVA));
+        } while((!material.isSolid() || material.equals(Material.LEAVES) || blockstate.is(Tags.Blocks.FENCES) || blockstate.is(Tags.Blocks.FENCE_GATES) || blockstate.is(Blocks.JIGSAW)) && !blockGetter.getFluidState(blockPos.offset(direction.getNormal())).is(FluidTags.LAVA));
         return false;
     }
 

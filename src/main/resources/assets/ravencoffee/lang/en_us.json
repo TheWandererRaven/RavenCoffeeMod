@@ -130,5 +130,7 @@
   "block.ravencoffee.coffee_beans_roasted_block": "Roasted Coffee Block",
   "block.ravencoffee.coffee_beans_magma_block": "Magma Coffee Block",
   "block.ravencoffee.coffee_tree_leaves_block": "Coffee Tree Leaves",
-  "block.ravencoffee.coffee_tree_trunk_block": "Coffee Tree Trunk"
+  "block.ravencoffee.coffee_tree_trunk_block": "Coffee Tree Trunk",
+
+  "entity.minecraft.villager.ravencoffee.barista": "Barista"
 }
