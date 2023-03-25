@@ -86,6 +86,7 @@ public class CoffeeBrew extends Item {
         }
 
         if (player != null) {
+            player.eat(level, stack);
             player.awardStat(Stats.ITEM_USED.get(this));
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
@@ -119,9 +120,9 @@ public class CoffeeBrew extends Item {
 
     @Override
     @Nonnull
-    public InteractionResultHolder<ItemStack> use(@Nonnull Level p_77659_1_, @Nonnull Player p_77659_2_, @Nonnull InteractionHand p_77659_3_) {
+    public InteractionResultHolder<ItemStack> use(@Nonnull Level level, @Nonnull Player player, @Nonnull InteractionHand hand) {
         // ItemUtils.useDrink(...) ?????
-        return ItemUtils.startUsingInstantly(p_77659_1_, p_77659_2_, p_77659_3_);
+        return ItemUtils.startUsingInstantly(level, player, hand);
     }
 
     @OnlyIn(Dist.CLIENT)
