@@ -130,5 +130,7 @@
   "block.ravencoffee.coffee_beans_roasted_block": "Bloque de café tostado",
   "block.ravencoffee.coffee_beans_magma_block": "Bloque de café ínfusionado con magma",
   "block.ravencoffee.coffee_tree_leaves_block": "Hojas de cafeto",
-  "block.ravencoffee.coffee_tree_trunk_block": "Tronco de cafeto"
+  "block.ravencoffee.coffee_tree_trunk_block": "Tronco de cafeto",
+
+  "entity.minecraft.villager.ravencoffee.barista": "Barista"
 }
