@@ -82,6 +82,12 @@ public class SackBlockEntity extends BlockEntity implements MenuProvider, Contai
         return true;
     }
 
+    public boolean isFull() {
+        for(ItemStack stack : this.items)
+            if (stack.getCount() < stack.getItem().getMaxStackSize(stack)) return false;
+        return true;
+    }
+
     public void drops() {
         Containers.dropContents(this.level, this.worldPosition, this);
     }
@@ -94,8 +100,11 @@ public class SackBlockEntity extends BlockEntity implements MenuProvider, Contai
 
     public boolean canPlaceItem(ItemStack itemStack) {
         ItemStack sackItemStack = getSackItemStack();
-        return isEmpty() || (itemStack.is(sackItemStack.getItem()) &&
-                itemStack.getDisplayName().getContents().equals(sackItemStack.getDisplayName().getContents()));
+        return isEmpty() || (
+                itemStack.is(sackItemStack.getItem()) &&
+                itemStack.getDisplayName().getContents().equals(sackItemStack.getDisplayName().getContents()) &&
+                        !isFull()
+        );
     }
 
     public boolean insertItem(ItemStack itemStack) {

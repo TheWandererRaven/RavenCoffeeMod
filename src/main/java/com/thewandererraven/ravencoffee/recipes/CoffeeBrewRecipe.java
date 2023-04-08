@@ -204,7 +204,7 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, CoffeeBrewRecipe recipe) {
-            buffer.writeInt(recipe.getIngredients().size());
+            buffer.writeInt(recipe.recipeItems.size());
             for (BrewSizedIngredient sizedIngredient : recipe.recipeItems) {
                 sizedIngredient.getIngredient().toNetwork(buffer);
                 for(int i = 0; i < BrewSizedIngredient.cupSizesCount; i++) {

@@ -79,7 +79,7 @@ public class RoscaDeReyesBlock extends Block {
         if (!player.canEat(false)) {
             return InteractionResult.PASS;
         } else {
-            player.getFoodData().eat(2, 0.1F);
+            player.getFoodData().eat(1, 1.0F);
             int i = blockState.getValue(BITES);
             levelAccessor.gameEvent(player, GameEvent.EAT, blockPos);
             if (i < MAX_BITES) {
