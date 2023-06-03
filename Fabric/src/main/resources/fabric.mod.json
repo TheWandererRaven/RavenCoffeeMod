@@ -10,7 +10,7 @@
     ],
     "contact": {
       "homepage": "https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme",
-      "sources": "https://github.com/FabricMC/fabric-example-mod"
+      "sources": "https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
     },
   
     "license": "All rights reserved",
@@ -19,10 +19,13 @@
     "environment": "*",
     "entrypoints": {
       "main": [
-        "com.thewandererraven.ravencoffee.RavenCoffeeFabric"
+        "com.thewandererraven.ravencoffee.RavenCoffee"
       ],
       "client": [
-        "com.thewandererraven.ravencoffee.RavenCoffeeFabricClient"
+        "com.thewandererraven.ravencoffee.RavenCoffeeClient"
+      ],
+      "fabric-datagen": [
+        "com.thewandererraven.ravencoffee.RavenCoffeeDataGenerator"
       ]
     },
     "mixins": [

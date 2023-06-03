@@ -1,5 +1,7 @@
 package com.thewandererraven.ravencoffee;
 
+import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import net.fabricmc.api.ModInitializer;
 
 public class RavenCoffeeFabric implements ModInitializer {
@@ -12,7 +14,8 @@ public class RavenCoffeeFabric implements ModInitializer {
         // project.
 
         // Use Fabric to bootstrap the Common mod.
-        Constants.LOGGER.info("Hello Fabric world!");
-        RavenCoffee.init();
+        RavenCoffeeCommon.init();
+        RavenCoffeeItems.register();
+        RavenCoffeeBlocks.register();
     }
 }
