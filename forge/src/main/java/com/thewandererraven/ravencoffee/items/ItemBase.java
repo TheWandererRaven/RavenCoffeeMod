@@ -1,6 +1,5 @@
 package com.thewandererraven.ravencoffee.items;
 
-import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.RavenCoffeeForge;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;

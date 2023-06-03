@@ -1,6 +1,5 @@
 package com.thewandererraven.ravencoffee.blocks;
 
-import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.containers.CoffeeGrinderContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

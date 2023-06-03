@@ -1,6 +1,5 @@
 package com.thewandererraven.ravencoffee.items;
 
-import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.thewandererraven.ravencoffee.blocks.StackingCupsBlock;
 import com.thewandererraven.ravencoffee.blocks.entities.StackingCupsBlockEntity;
 import com.thewandererraven.ravencoffee.util.ModTags;

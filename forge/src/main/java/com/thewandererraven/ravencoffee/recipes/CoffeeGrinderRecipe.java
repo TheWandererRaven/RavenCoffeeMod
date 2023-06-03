@@ -1,7 +1,6 @@
 package com.thewandererraven.ravencoffee.recipes;
 
 import com.thewandererraven.ravencoffee.Constants;
-import com.thewandererraven.ravencoffee.RavenCoffee;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;

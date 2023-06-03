@@ -123,31 +123,31 @@ public class RavenCoffeeForge
         IDispenserBehaviourRegistry.registerBehaviours();
     }
 
-    public static final CreativeModeTab GENERAL_TAB = new CreativeModeTab("ravencoffee_general_tab") {
+    public static final CreativeModeTab GENERAL_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_general_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(RavenCoffeeItems.COFFEE_BEANS_ROASTED.get());
         }
     };
-    public static final CreativeModeTab COFFEE_MUG_TAB = new CreativeModeTab("ravencoffee_mug_tab") {
+    public static final CreativeModeTab COFFEE_MUG_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_mug_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(RavenCoffeeBrewItems.COFFEE_MUG_BREW_BASIC.get());
         }
     };
-    public static final CreativeModeTab CUP_SMALL_TAB = new CreativeModeTab("ravencoffee_small_tab") {
+    public static final CreativeModeTab CUP_SMALL_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_small_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(RavenCoffeeBrewItems.CUP_SMALL_BREW_BASIC.get());
         }
     };
-    public static final CreativeModeTab CUP_MEDIUM_TAB = new CreativeModeTab("ravencoffee_medium_tab") {
+    public static final CreativeModeTab CUP_MEDIUM_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_medium_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_BASIC.get());
         }
     };
-    public static final CreativeModeTab CUP_LARGE_TAB = new CreativeModeTab("ravencoffee_large_tab") {
+    public static final CreativeModeTab CUP_LARGE_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_large_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(RavenCoffeeBrewItems.CUP_LARGE_BREW_BASIC.get());
