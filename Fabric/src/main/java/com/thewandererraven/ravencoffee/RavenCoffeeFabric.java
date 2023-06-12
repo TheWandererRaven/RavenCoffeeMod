@@ -15,7 +15,7 @@ public class RavenCoffeeFabric implements ModInitializer {
 
         // Use Fabric to bootstrap the Common mod.
         RavenCoffeeCommon.init();
-        RavenCoffeeItems.register();
         RavenCoffeeBlocks.register();
+        RavenCoffeeItems.register();
     }
 }

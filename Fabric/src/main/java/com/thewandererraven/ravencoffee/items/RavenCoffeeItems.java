@@ -12,6 +12,8 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.function.Supplier;
+
 public class RavenCoffeeItems {
 
 
@@ -248,52 +250,46 @@ public class RavenCoffeeItems {
                     .group(RavenCoffeeItemGroups.CUP_SMALL_TAB)
             )
     );
-    /*
     public static final Item CUP_SMALL = registerItem(
             "cup_small",
             new StackingCupsBlockItem(
-                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
-                    (new FabricItemSettings()).group(RavenCoffeeItemGroups.CUP_SMALL_TAB)
+                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK,
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_SMALL_TAB)
             )
     );
-
-     */
     public static final Item CUP_MEDIUM_UNFIRED = registerItem(
             "cup_medium_unfired",
             new Item(new FabricItemSettings()
                     .group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
             )
     );
-    /*
     public static final Item CUP_MEDIUM = registerItem(
             "cup_medium",
             new StackingCupsBlockItem(
-                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
-                    (new FabricItemSettings()).group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK,
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
             )
     );
-     */
     public static final Item CUP_LARGE_UNFIRED = registerItem(
             "cup_large_unfired",
             new Item(new FabricItemSettings()
                     .group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
             )
     );
-    /*
     public static final Item CUP_LARGE = registerItem(
             "cup_large",
-            new StackingCupsBlockItem(RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
-                    (new FabricItemSettings()).group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+            new StackingCupsBlockItem(
+                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK,
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
             )
     );
     public static final Item COFFEE_MUG = registerItem(
             "coffee_mug",
             new StackingCupsBlockItem(
-                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK.get(),
-                    (new FabricItemSettings()).group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                    RavenCoffeeBlocks.STACKING_CUPS_BLOCK,
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
             )
     );
-     */
 
     // ############################################### COFFEE MATERIALS ################################################
     public static final Item COFFEE_PLATES = registerItem(
@@ -378,7 +374,11 @@ public class RavenCoffeeItems {
      */
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registry.ITEM, new Identifier(Constants.MOD_ID, name), item);
+        Constants.LOGGER.info("=======================================================================================");
+        Identifier res = Registry.ITEM.getId(item);
+        Constants.LOGGER.info(res.toString());
+        Item ret = Registry.register(Registry.ITEM, new Identifier(Constants.MOD_ID, name), item);
+        return ret;
     }
     
     public static void register() {

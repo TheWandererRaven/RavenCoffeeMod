@@ -72,11 +72,11 @@ public class RavenCoffeeBlocks {
             SackBlock::new
     );
 
+     */
     public static final Block STACKING_CUPS_BLOCK = registerItem(
             "stacking_cups_block",
-            StackingCupsBlock::new
+            new StackingCupsBlock()
     );
-     */
     
     
     
