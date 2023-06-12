@@ -1,0 +1,130 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:emerald",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 7.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "ravencoffee:coffee_beans_roasted_ground",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 10.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "ravencoffee:coffee_beans_roasted",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:brownie",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:sandwich_chicken",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:croissant_chicken",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:bagel_chicken",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:tiramisu_block",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:brownie_block",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:honey_bottle",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sugar",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:pumpkin",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 7.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "weight": 2
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 7.0,
+        "min": 3.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "ravencoffee:cup_medium_brew_basic"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:cup_medium_brew_milk",
+    "count": 1
+  }
+}

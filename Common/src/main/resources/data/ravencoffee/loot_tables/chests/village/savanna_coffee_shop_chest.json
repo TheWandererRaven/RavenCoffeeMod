@@ -1,0 +1,98 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:emerald",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 7.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "ravencoffee:coffee_beans_roasted_ground",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 10.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "ravencoffee:coffee_beans_roasted",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:coffee_eclair",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:sandwich_ham",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:croissant_ham",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:bagel_ham",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ravencoffee:rosca_de_reyes_block",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:melon_slice",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot",
+          "weight": 1
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 7.0,
+        "min": 3.0
+      }
+    }
+  ]
+}

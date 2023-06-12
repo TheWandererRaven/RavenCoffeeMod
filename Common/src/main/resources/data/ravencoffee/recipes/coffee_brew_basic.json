@@ -1,0 +1,14 @@
+{
+  "type": "ravencoffee:coffee_brewing",
+  "forCupSizes" : [true, true, true],
+  "brewingredients": [
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground",
+      "ingredientspersize": [1, 2, 3]
+    }
+  ],
+  "result": {
+    "brewtype": "brew_basic",
+    "cookingtime": 60
+  }
+}

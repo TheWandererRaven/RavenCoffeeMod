@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx",
+    "xyx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "ravencoffee:coffee_beans_roasted"
+    },
+    "y": {
+      "item": "minecraft:magma_cream"
+    }
+  },
+  "result": {
+    "item": "ravencoffee:coffee_beans_magma_block",
+    "count": 1
+  }
+}

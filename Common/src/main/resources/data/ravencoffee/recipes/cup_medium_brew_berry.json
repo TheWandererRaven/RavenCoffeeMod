@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "ravencoffee:cup_medium_brew_basic"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:cup_medium_brew_berry",
+    "count": 1
+  }
+}

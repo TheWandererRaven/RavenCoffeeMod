@@ -1,0 +1,18 @@
+{
+  "type": "ravencoffee:coffee_brewing",
+  "forCupSizes" : [false, true, true],
+  "brewingredients": [
+    {
+      "item": "ravencoffee:coffee_beans_roasted_ground",
+      "ingredientspersize": [1, 2, 3]
+    },
+    {
+      "item": "minecraft:apple",
+      "ingredientspersize": [1, 2, 3]
+    }
+  ],
+  "result": {
+    "brewtype": "brew_apple",
+    "cookingtime": 60
+  }
+}

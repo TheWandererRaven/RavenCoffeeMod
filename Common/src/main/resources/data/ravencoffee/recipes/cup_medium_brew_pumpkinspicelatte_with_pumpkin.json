@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ravencoffee:cup_medium_brew_pumpkinspicelatte"
+    },
+    {
+      "item": "minecraft:pumpkin_pie"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:cup_medium_brew_pumpkinspicelatte_with_pumpkin",
+    "count": 1
+  }
+}
