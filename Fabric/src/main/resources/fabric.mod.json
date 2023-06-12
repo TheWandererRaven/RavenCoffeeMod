@@ -19,7 +19,7 @@
     "environment": "*",
     "entrypoints": {
       "main": [
-        "com.thewandererraven.ravencoffee.RavenCoffee"
+        "com.thewandererraven.ravencoffee.RavenCoffeeFabric"
       ],
       "client": [
         "com.thewandererraven.ravencoffee.RavenCoffeeClient"
@@ -33,6 +33,7 @@
     ],
   
     "depends": {
+      "ravenbrewscore": "1.0.1",
       "fabricloader": ">=0.14",
       "fabric": "*",
       "minecraft": "1.19.2",
