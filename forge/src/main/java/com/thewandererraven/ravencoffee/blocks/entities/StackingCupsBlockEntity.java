@@ -25,7 +25,7 @@ public class StackingCupsBlockEntity extends BlockEntity implements Container {
     private NonNullList<ItemStack> items = NonNullList.withSize(CONTENTS_SLOT_COUNT, ItemStack.EMPTY);
 
     public StackingCupsBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
-        super(RavenCoffeeBlockEntities.STACKING_CUPS_BLOCK_ENTITY.get(), p_155229_, p_155230_);
+        super(RavenCoffeeBlockEntityType.STACKING_CUPS_BLOCK_ENTITY.get(), p_155229_, p_155230_);
     }
 
     public int getCount() {

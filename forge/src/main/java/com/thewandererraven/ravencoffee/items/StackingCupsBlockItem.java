@@ -1,5 +1,6 @@
 package com.thewandererraven.ravencoffee.items;
 
+import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.StackingCupsBlock;
 import com.thewandererraven.ravencoffee.blocks.entities.StackingCupsBlockEntity;
 import com.thewandererraven.ravencoffee.util.ModTags;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.gameevent.GameEvent;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -32,7 +34,8 @@ public class StackingCupsBlockItem extends BlockItem {
         super(p_41579_, p_41580_);
     }
 
-    public String getDescriptionId() {
+    @Override
+    public @NotNull String getDescriptionId() {
         return this.getOrCreateDescriptionId();
     }
 
