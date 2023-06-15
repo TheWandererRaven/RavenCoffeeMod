@@ -67,12 +67,12 @@ public class RavenCoffeeBlocks {
             "coffee_machine_block",
             CoffeeMachineBlock::new
     );
-    public static final Block SACK_BLOCK = registerItem(
-            "sack_block",
-            SackBlock::new
-    );
 
      */
+    public static final Block SACK_BLOCK = registerItem(
+            "sack_block",
+            new SackBlock()
+    );
     public static final Block STACKING_CUPS_BLOCK = registerItem(
             "stacking_cups_block",
             new StackingCupsBlock()

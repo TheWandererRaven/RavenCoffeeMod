@@ -5,13 +5,13 @@ import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.StackingCupsBlock;
 import com.thewandererraven.ravencoffee.util.ModTags;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
@@ -60,13 +60,11 @@ public class StackingCupsBlockEntity extends LootableContainerBlockEntity implem
 
     @Override
     public ItemStack getStack(int slot) {
-        Constants.LOGGER.info("GET STACK");
         return this.inventory.get(slot);
     }
 
     @Override
     public ItemStack removeStack(int slot, int amount) {
-        Constants.LOGGER.info("REMOVE STACK");
         ItemStack oldStack = this.inventory.get(slot);
         if(!oldStack.isEmpty()) {
             this.inventory.set(slot, ItemStack.EMPTY);
@@ -85,20 +83,17 @@ public class StackingCupsBlockEntity extends LootableContainerBlockEntity implem
 */
     @Override
     public ItemStack removeStack(int slot) {
-        Constants.LOGGER.info("REMOVE STACK NO COUNT");
         return Inventories.removeStack(this.inventory, slot);
     }
 
     @Override
     public void setStack(int slot, ItemStack stack) {
-        Constants.LOGGER.info("SET STACK");
         this.inventory.set(slot, stack.copy());
         updateBlockCount();
     }
 
     @Override
     public boolean canPlayerUse(PlayerEntity player) {
-        Constants.LOGGER.info("CAN PLAYER USE");
         return false;
     }
 
@@ -109,22 +104,15 @@ public class StackingCupsBlockEntity extends LootableContainerBlockEntity implem
 
     @Override
     protected DefaultedList<ItemStack> getInvStackList() {
-        Constants.LOGGER.info("get inv stack list");
         return this.inventory;
     }
 
     @Override
     protected void setInvStackList(DefaultedList<ItemStack> list) {
-        Constants.LOGGER.info("set inv stack list");
         this.inventory = list;
     }
 
     // ================================================= OTHER =================================================
-/*
-    public void drops() {
-        Containers.dropContents(this.world, this.pos, this);
-    }
-*/
 
     /*
     public boolean contains(ItemStack itemStack) {
@@ -203,17 +191,16 @@ public class StackingCupsBlockEntity extends LootableContainerBlockEntity implem
     }
 
     // ================================================= DATA =================================================
-/*
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(tag, this.inventory);
 
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        Inventories.readNbt(nbt, inventory);
     }
 
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        ContainerHelper.saveAllItems(tag, this.inventory);
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt, inventory);
     }
-*/
 }

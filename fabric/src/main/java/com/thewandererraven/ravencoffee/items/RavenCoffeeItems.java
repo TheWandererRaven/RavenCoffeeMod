@@ -366,12 +366,12 @@ public class RavenCoffeeItems {
             "coffee_machine_block",
             () -> new BlockItem(RavenCoffeeBlocks.COFFEE_MACHINE_BLOCK.get(), new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.GENERAL_TAB))
     );
+     */
 
     public static final Item SACK_BLOCK_ITEM = registerItem(
             "sack_block",
-            () -> new BlockItem(RavenCoffeeBlocks.SACK_BLOCK.get(), new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.GENERAL_TAB))
+            new BlockItem(RavenCoffeeBlocks.SACK_BLOCK, new Item.Settings().group(RavenCoffeeItemGroups.GENERAL_TAB))
     );
-     */
 
     private static Item registerItem(String name, Item item) {
         Constants.LOGGER.info("=======================================================================================");

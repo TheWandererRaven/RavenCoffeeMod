@@ -147,21 +147,6 @@ public class StackingCupsBlock extends BlockWithEntity implements BlockEntityPro
         return true;
     }
 
-    public VoxelShape _getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (state.get(CUP_COUNT)) {
-            case (1) -> SHAPE_1;
-            case (2) -> SHAPE_2;
-            case (3) -> SHAPE_3;
-            case (4) -> SHAPE_4;
-            case (5) -> SHAPE_5;
-            case (6) -> SHAPE_6;
-            case (7) -> SHAPE_7;
-            case (8) -> SHAPE_8;
-            case (9) -> SHAPE_9;
-            default -> SHAPE_0;
-        };
-    }
-
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return switch (state.get(CUP_COUNT)) {
             case (1) -> rotateShape(SHAPE_1, state.get(FACING));
@@ -176,6 +161,7 @@ public class StackingCupsBlock extends BlockWithEntity implements BlockEntityPro
             default -> rotateShape(SHAPE_0, state.get(FACING));
         };
     }
+
     protected static VoxelShape rotateShape(VoxelShape shape, Direction to) {
         VoxelShape[] buffer = new VoxelShape[]{shape, VoxelShapes.empty()};
 

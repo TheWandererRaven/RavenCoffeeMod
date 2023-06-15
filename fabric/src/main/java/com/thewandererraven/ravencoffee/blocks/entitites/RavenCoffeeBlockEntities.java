@@ -11,20 +11,11 @@ import net.minecraft.util.registry.Registry;
 
 public class RavenCoffeeBlockEntities {
     public static BlockEntityType<StackingCupsBlockEntity> STACKING_CUPS_BLOCK_ENTITY;
+    public static BlockEntityType<SackBlockEntity> SACK_BLOCK_ENTITY;
 
-    public static void registerBlockEntities() {
+    static {
         STACKING_CUPS_BLOCK_ENTITY = (BlockEntityType<StackingCupsBlockEntity>) register("stacking_cups_block_entity", StackingCupsBlockEntity::new, RavenCoffeeBlocks.STACKING_CUPS_BLOCK);
-        /*
-        STACKING_CUPS_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,
-                new Identifier(
-                        Constants.MOD_ID,
-                        "name"),
-                FabricBlockEntityTypeBuilder.create(
-                        StackingCupsBlockEntity::new,
-                        RavenCoffeeBlocks.BROWNIE_BLOCK
-                ).build(null)
-        );
-         */
+        SACK_BLOCK_ENTITY = (BlockEntityType<SackBlockEntity>) register("sack_block_entity", SackBlockEntity::new, RavenCoffeeBlocks.SACK_BLOCK);
     }
 
     private static <T extends BlockEntity> BlockEntityType<?> register(String name, FabricBlockEntityTypeBuilder.Factory<? extends T> factory, Block block) {
@@ -35,7 +26,11 @@ public class RavenCoffeeBlockEntities {
                 FabricBlockEntityTypeBuilder.create(
                         factory,
                         block
-                ).build(null)
+                ).build()
                 );
+    }
+
+    public static void register() {
+        Constants.LOGGER.info(Constants.MOD_NAME + " has registered its block entities!");
     }
 }
