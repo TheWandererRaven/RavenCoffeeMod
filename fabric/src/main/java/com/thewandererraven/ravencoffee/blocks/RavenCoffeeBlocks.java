@@ -3,6 +3,7 @@ package com.thewandererraven.ravencoffee.blocks;
 import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.MagmaBlock;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
@@ -16,31 +17,42 @@ public class RavenCoffeeBlocks {
                     .sounds(BlockSoundGroup.WOOL)
             )
     );
-    /*
     public static final Block ROSCA_DE_REYES_BLOCK = registerItem(
             "rosca_de_reyes_block",
-            () -> new RoscaDeReyesBlock(BlockBehaviour.Properties
+            new RoscaDeReyesBlock(AbstractBlock.Settings
                     .of(Material.CAKE)
-                    .sound(SoundType.WOOL)
-                    .noOcclusion()
+                    .sounds(BlockSoundGroup.WOOL)
+                    .nonOpaque()
             )
     );
     public static final Block TIRAMISU_BLOCK = registerItem(
             "tiramisu_block",
-            () -> new TiramisuBlock(BlockBehaviour.Properties
+            new TiramisuBlock(AbstractBlock.Settings
                     .of(Material.CAKE)
-                    .sound(SoundType.WOOL)
-                    .noOcclusion()
+                    .sounds(BlockSoundGroup.WOOL)
+                    .nonOpaque()
             )
     );
     public static final Block COFFEE_BEANS_ROASTED_BLOCK = registerItem(
             "coffee_beans_roasted_block",
-            CoffeeBeansRoastedBlock::new
+            new Block(AbstractBlock.Settings
+                    .of(Material.CACTUS)
+                    .strength(2.0f, 1.0f)
+                    .sounds(BlockSoundGroup.STONE)
+                    .requiresTool()
+            )
     );
     public static final Block COFFEE_BEANS_MAGMA_BLOCK = registerItem(
             "coffee_beans_magma_block",
-            CoffeeBeansMagmaBlock::new
+            new MagmaBlock(AbstractBlock.Settings
+                    .of(Material.CACTUS)
+                    .strength(2.0f, 1.0f)
+                    .sounds(BlockSoundGroup.STONE)
+                    .requiresTool()
+                    .velocityMultiplier(1.5f)
+            )
     );
+    /*
     public static final Block COFFEE_TREE_LEAVES_BLOCK = registerItem(
             "coffee_tree_leaves_block",
             () -> new CoffeeTreeLeavesBlock(BlockBehaviour.Properties.of(Material.PLANT)

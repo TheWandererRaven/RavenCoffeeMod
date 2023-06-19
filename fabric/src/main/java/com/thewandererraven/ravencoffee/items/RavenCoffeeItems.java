@@ -339,23 +339,27 @@ public class RavenCoffeeItems {
                             .build()
                     ))
     );
-    /*
     public static final Item ROSCA_DE_REYES_BLOCK_ITEM = registerItem(
             "rosca_de_reyes_block",
-            () -> new BlockItem(RavenCoffeeBlocks.ROSCA_DE_REYES_BLOCK.get(), new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.GENERAL_TAB))
+            new BlockItem(RavenCoffeeBlocks.ROSCA_DE_REYES_BLOCK, new FabricItemSettings()
+                    .group(RavenCoffeeItemGroups.GENERAL_TAB))
     );
     public static final Item TIRAMISU_BLOCK_ITEM = registerItem(
             "tiramisu_block",
-            () -> new BlockItem(RavenCoffeeBlocks.TIRAMISU_BLOCK.get(), new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.GENERAL_TAB))
+            new BlockItem(RavenCoffeeBlocks.TIRAMISU_BLOCK, new FabricItemSettings()
+                    .group(RavenCoffeeItemGroups.GENERAL_TAB))
     );
     public static final Item COFFEE_BEANS_ROASTED_BLOCK_ITEM = registerItem(
             "coffee_beans_roasted_block",
-            () -> new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_ROASTED_BLOCK.get(), new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.GENERAL_TAB))
+            new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_ROASTED_BLOCK, new FabricItemSettings()
+                    .group(RavenCoffeeItemGroups.GENERAL_TAB))
     );
     public static final Item COFFEE_BEANS_MAGMA_BLOCK_ITEM = registerItem(
             "coffee_beans_magma_block",
-            () -> new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_MAGMA_BLOCK.get(), new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.GENERAL_TAB))
+            new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_MAGMA_BLOCK, new FabricItemSettings()
+                    .group(RavenCoffeeItemGroups.GENERAL_TAB))
     );
+    /*
 
     public static final Item COFFEE_GRINDER_ITEM = registerItem(
             "coffee_grinder_block",
@@ -374,11 +378,7 @@ public class RavenCoffeeItems {
     );
 
     private static Item registerItem(String name, Item item) {
-        Constants.LOGGER.info("=======================================================================================");
-        Identifier res = Registry.ITEM.getId(item);
-        Constants.LOGGER.info(res.toString());
-        Item ret = Registry.register(Registry.ITEM, new Identifier(Constants.MOD_ID, name), item);
-        return ret;
+        return Registry.register(Registry.ITEM, new Identifier(Constants.MOD_ID, name), item);
     }
     
     public static void register() {
