@@ -2,6 +2,7 @@
 # Raven Coffee Mod
 Hello! Since you are here let me offer you a cup of coffee, I hope you're doing well.
 Anyways, welcome to the page for my first published mod.
+_**Note**: For this project I'm using the MultiLoader template from [MultiLoader-Template](https://github.com/jaredlll08/MultiLoader-Template) made by [jaredlll08](https://github.com/jaredlll08)_
 >This is just an introduction to the project, nothing really important here
 
 I was inspired to mod the game by all the new changes that were announced on the Caves & Cliffs minecraft update. I already wanted coffee on minecraft but I also wanted to make something that feels like part of the vanilla experience.
