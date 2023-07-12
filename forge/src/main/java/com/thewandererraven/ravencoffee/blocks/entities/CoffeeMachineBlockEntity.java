@@ -59,7 +59,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     private LazyOptional<ItemStackHandler> lazyItemHandler = LazyOptional.empty();
 
     public CoffeeMachineBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
-        super(RavenCoffeeBlockEntityType.COFFEE_MACHINE_BLOCK_ENTITY.get(), p_155229_, p_155230_);
+        super(RavenCoffeeBlockEntities.COFFEE_MACHINE_BLOCK_ENTITY.get(), p_155229_, p_155230_);
 
         this.data = new ContainerData() {
             @Override

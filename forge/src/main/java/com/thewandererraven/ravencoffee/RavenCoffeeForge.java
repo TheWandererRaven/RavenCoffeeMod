@@ -1,7 +1,7 @@
 package com.thewandererraven.ravencoffee;
 
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
-import com.thewandererraven.ravencoffee.blocks.entities.RavenCoffeeBlockEntityType;
+import com.thewandererraven.ravencoffee.blocks.entities.RavenCoffeeBlockEntities;
 import com.thewandererraven.ravencoffee.containers.RavenCoffeeMenuTypes;
 import com.thewandererraven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
 import com.thewandererraven.ravencoffee.containers.screen.SackScreen;
@@ -51,7 +51,7 @@ public class RavenCoffeeForge
         RavenCoffeeRecipes.RECIPE_SERIALIZERS.register(eventBus);
         RavenCoffeeMenuTypes.MENUS.register(eventBus);
         RavenCoffeeBlocks.BLOCKS.register(eventBus);
-        RavenCoffeeBlockEntityType.BLOCK_ENTITIES.register(eventBus);
+        RavenCoffeeBlockEntities.BLOCK_ENTITIES.register(eventBus);
         RavenCoffeeItems.ITEMS.register(eventBus);
         RavenCoffeeBrewItems.BREWS.register(eventBus);
         RavenCoffeeVillagers.POI_TYPES.register(eventBus);

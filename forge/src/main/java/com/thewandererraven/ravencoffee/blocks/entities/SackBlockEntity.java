@@ -28,7 +28,7 @@ public class SackBlockEntity extends BlockEntity implements MenuProvider, Contai
     private NonNullList<ItemStack> items = NonNullList.withSize(CONTENTS_SLOT_COUNT, ItemStack.EMPTY);
 
     public SackBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
-        super(RavenCoffeeBlockEntityType.SACK_BLOCK_ENTITY.get(), p_155229_, p_155230_);
+        super(RavenCoffeeBlockEntities.SACK_BLOCK_ENTITY.get(), p_155229_, p_155230_);
 
         for(int i = 0; i < CONTENTS_SLOT_COUNT; i++) {
             SLOTS_FOR_HOPPER[i] = i;

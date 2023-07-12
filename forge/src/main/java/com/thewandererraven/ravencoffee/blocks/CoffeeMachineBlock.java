@@ -1,7 +1,7 @@
 package com.thewandererraven.ravencoffee.blocks;
 
 import com.thewandererraven.ravencoffee.blocks.entities.CoffeeMachineBlockEntity;
-import com.thewandererraven.ravencoffee.blocks.entities.RavenCoffeeBlockEntityType;
+import com.thewandererraven.ravencoffee.blocks.entities.RavenCoffeeBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -127,7 +127,7 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, RavenCoffeeBlockEntityType.COFFEE_MACHINE_BLOCK_ENTITY.get(), CoffeeMachineBlockEntity::tick);
+        return createTickerHelper(blockEntityType, RavenCoffeeBlockEntities.COFFEE_MACHINE_BLOCK_ENTITY.get(), CoffeeMachineBlockEntity::tick);
     }
 
     @Override
