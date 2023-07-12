@@ -52,23 +52,26 @@ public class RavenCoffeeBlocks {
                     .velocityMultiplier(1.5f)
             )
     );
-    /*
     public static final Block COFFEE_TREE_LEAVES_BLOCK = registerItem(
             "coffee_tree_leaves_block",
-            () -> new CoffeeTreeLeavesBlock(BlockBehaviour.Properties.of(Material.PLANT)
-                    .noOcclusion()
-                    .sound(SoundType.GRASS)
-                    .randomTicks()
+            new CoffeeTreeLeavesBlock(AbstractBlock.Settings
+                    .of(Material.PLANT)
+                    .sounds(BlockSoundGroup.GRASS)
+                    .ticksRandomly()
+                    .nonOpaque()
             )
     );
     public static final Block COFFEE_TREE_TRUNK_BLOCK = registerItem(
             "coffee_tree_trunk_block",
-            () -> new CoffeeTreeTrunkBlock(CropBlock.Properties.of(Material.PLANT)
-                    .sound(SoundType.GRASS)
-                    .randomTicks()
+            new CoffeeTreeTrunkBlock(AbstractBlock.Settings
+                    .of(Material.PLANT)
+                    .sounds(BlockSoundGroup.GRASS)
+                    .ticksRandomly()
+                    .nonOpaque()
             )
     );
 
+    /*
     public static final Block COFFEE_GRINDER = registerItem(
             "coffee_grinder_block",
             () -> new CoffeeGrinderBlock(net.minecraft.world.level.block.Block.Properties.of(Material.WOOD)

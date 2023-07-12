@@ -43,7 +43,7 @@ public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
     public void tickGrow(int age, BlockState blockState, ServerLevel server, BlockPos blockPos) {
         super.tickGrow(age, blockState, server, blockPos);
         BlockPos abovePos = blockPos.above();
-        boolean isMaxAge = (age+1) >= this.getMaxAge(), isAboveEmpty = server.isEmptyBlock(abovePos);
+        //boolean isMaxAge = (age+1) >= this.getMaxAge(), isAboveEmpty = server.isEmptyBlock(abovePos);
         if((age+1) >= this.getMaxAge() && server.isEmptyBlock(abovePos)) {
             server.setBlock(abovePos, this.getLeavesBlock().defaultBlockState(), 2);
         }

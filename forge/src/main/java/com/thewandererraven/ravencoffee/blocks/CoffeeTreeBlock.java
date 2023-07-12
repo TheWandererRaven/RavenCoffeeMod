@@ -131,8 +131,7 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
         if (server.isAreaLoaded(blockPos, 1))
             if(isAboveBlockAcceptable(server, blockPos))
                 if (server.getRawBrightness(blockPos, 0) >= 9 || server.canSeeSky(blockPos)) {
-                    float f = getGrowthSpeed(this, server, blockPos);
-                    if (ForgeHooks.onCropsGrowPre(server, blockPos, blockState, rand.nextInt((int)(25.0F / f) + 1) == 0)) {
+                    if (ForgeHooks.onCropsGrowPre(server, blockPos, blockState, rand.nextInt((int)(25.0F) + 1) == 0)) {
                         this.tickGrow(blockState.getValue(AGE), blockState, server, blockPos);
                         ForgeHooks.onCropsGrowPost(server, blockPos, blockState);
                     }

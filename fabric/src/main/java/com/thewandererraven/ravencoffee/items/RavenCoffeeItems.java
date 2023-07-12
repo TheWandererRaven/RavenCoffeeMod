@@ -18,16 +18,13 @@ public class RavenCoffeeItems {
 
 
     // ############################################### BASIC COFFEE STUFF ##############################################
-    /*
     public static final Item COFFEE_CHERRIES = registerItem(
             "coffee_cherries",
-            new ItemNameBlockItem(
-                    RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK.get(),
+            new BlockItem(
+                    RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK,
                     new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB)
             )
     );
-
-     */
     public static final Item COFFEE_BEANS = registerItem(
             "coffee_beans",
             new Item(new FabricItemSettings().group(ItemGroup.MISC))
