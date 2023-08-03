@@ -20,8 +20,8 @@ public class CoffeeGrinderContainerScreen extends AbstractContainerScreen<Coffee
         super(coffeeGrinderContainer, playerInventory, title);
         this.coffeeGrinderContainer = coffeeGrinderContainer;
         // Set the width and height of the gui.  Should match the size of the texture!
-        imageWidth = 176;
-        imageHeight = 166;
+        //imageWidth = 176;
+        //imageHeight = 166;
     }
 
     @Override
@@ -40,10 +40,10 @@ public class CoffeeGrinderContainerScreen extends AbstractContainerScreen<Coffee
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         final int LABEL_XPOS = CoffeeGrinderContainer.PLAYER_INVENTORY_XPOS;
         final int FONT_Y_SPACING = 12;
-        guiGraphics.drawString(this.font, this.title, LABEL_XPOS, STATION_NAME_YPOS, Color.darkGray.getRGB());
+        guiGraphics.drawString(this.font, this.title, LABEL_XPOS, STATION_NAME_YPOS, Color.darkGray.getRGB(), false);
 
         final int PLAYER_INV_LABEL_YPOS = CoffeeGrinderContainer.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
-        guiGraphics.drawString(this.font, this.playerInventoryTitle, LABEL_XPOS, PLAYER_INV_LABEL_YPOS, Color.darkGray.getRGB());
+        guiGraphics.drawString(this.font, this.playerInventoryTitle, LABEL_XPOS, PLAYER_INV_LABEL_YPOS, Color.darkGray.getRGB(), false);
     }
 
     /**

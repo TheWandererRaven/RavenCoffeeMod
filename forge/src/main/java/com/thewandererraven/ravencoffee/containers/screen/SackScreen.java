@@ -5,10 +5,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.thewandererraven.ravencoffee.containers.SackMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.CraftingScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.CraftingMenu;
 
 import java.awt.*;
 
@@ -30,7 +32,7 @@ public class SackScreen extends AbstractContainerScreen<SackMenu> {
         //RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        guiGraphics.blit(BACKGROUND_TEXTURE, x, y, 0, 0, imageHeight, imageHeight);
+        guiGraphics.blit(BACKGROUND_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
     }
 
     @Override
@@ -44,9 +46,10 @@ public class SackScreen extends AbstractContainerScreen<SackMenu> {
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         final int LABEL_XPOS = SackMenu.PLAYER_INVENTORY_XPOS;
         final int FONT_Y_SPACING = 12;
-        guiGraphics.drawString(this.font, this.title, LABEL_XPOS, STATION_NAME_YPOS, Color.darkGray.getRGB());
+
+        guiGraphics.drawString(this.font, this.title, LABEL_XPOS, STATION_NAME_YPOS, Color.darkGray.getRGB(), false);
 
         final int PLAYER_INV_LABEL_YPOS = SackMenu.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
-        guiGraphics.drawString(this.font, this.playerInventoryTitle, LABEL_XPOS, PLAYER_INV_LABEL_YPOS, Color.darkGray.getRGB());
+        guiGraphics.drawString(this.font, this.playerInventoryTitle, LABEL_XPOS, PLAYER_INV_LABEL_YPOS, Color.darkGray.getRGB(), false);
     }
 }
