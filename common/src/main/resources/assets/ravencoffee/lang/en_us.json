@@ -1,9 +1,9 @@
 {
-  "itemGroup.ravencoffee.ravencoffee_general_tab": "Raven Coffee General Items",
-  "itemGroup.ravencoffee.ravencoffee_mug_tab": "Coffee Mug Brews",
-  "itemGroup.ravencoffee.ravencoffee_small_tab": "Small Brews",
-  "itemGroup.ravencoffee.ravencoffee_medium_tab": "Medium Brews",
-  "itemGroup.ravencoffee.ravencoffee_large_tab": "Large Brews",
+  "creativetab.ravencoffee.ravencoffee_general_tab": "Raven Coffee General Items",
+  "creativetab.ravencoffee.ravencoffee_mug_tab": "Coffee Mug Brews",
+  "creativetab.ravencoffee.ravencoffee_small_tab": "Small Brews",
+  "creativetab.ravencoffee.ravencoffee_medium_tab": "Medium Brews",
+  "creativetab.ravencoffee.ravencoffee_large_tab": "Large Brews",
 
 
   "item.ravencoffee.coffee_cherries": "Coffee Cherries",

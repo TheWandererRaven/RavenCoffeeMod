@@ -2,7 +2,7 @@
   "ambientocclusion": false,
   "render_type": "cutout",
   "textures": {
-    "stem": "ravencoffee:blocks/coffee_tree_trunk_block_stage2",
+    "stem": "ravencoffee:block/coffee_tree_trunk_block_stage2",
     "particle": "#stem"
   },
   "elements": [

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ravencoffee:items/coffee_beans"
+    "layer0": "ravencoffee:item/coffee_beans"
   }
 }

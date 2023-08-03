@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ravencoffee:items/food/bagel_ham"
+    "layer0": "ravencoffee:item/food/bagel_ham"
   }
 }

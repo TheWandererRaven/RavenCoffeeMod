@@ -3,8 +3,8 @@
 	"texture_size": [48, 48],
 	"render_type": "cutout",
 	"textures": {
-		"0": "ravencoffee:blocks/coffee_machine_block",
-		"1": "ravencoffee:blocks/espresso_water_still",
+		"0": "ravencoffee:block/coffee_machine_block",
+		"1": "ravencoffee:block/espresso_water_still",
 		"particle": "block/iron_block"
 	},
 	"elements": [

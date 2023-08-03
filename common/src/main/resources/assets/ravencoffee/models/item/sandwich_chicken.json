@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ravencoffee:items/food/sandwich_chicken"
+    "layer0": "ravencoffee:item/food/sandwich_chicken"
   }
 }

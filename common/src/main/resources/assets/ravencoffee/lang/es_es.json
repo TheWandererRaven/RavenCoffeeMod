@@ -1,9 +1,9 @@
 {
-  "itemGroup.ravencoffee.ravencoffee_general_tab": "Raven Coffee general",
-  "itemGroup.ravencoffee.ravencoffee_mug_tab": "Tazas de café",
-  "itemGroup.ravencoffee.ravencoffee_small_tab": "Café pequeño",
-  "itemGroup.ravencoffee.ravencoffee_medium_tab": "Café mediano",
-  "itemGroup.ravencoffee.ravencoffee_large_tab": "Café grande",
+  "creativetab.ravencoffee.ravencoffee_general_tab": "Raven Coffee general",
+  "creativetab.ravencoffee.ravencoffee_mug_tab": "Tazas de café",
+  "creativetab.ravencoffee.ravencoffee_small_tab": "Café pequeño",
+  "creativetab.ravencoffee.ravencoffee_medium_tab": "Café mediano",
+  "creativetab.ravencoffee.ravencoffee_large_tab": "Café grande",
 
 
   "item.ravencoffee.coffee_cherries": "Cerezas de café",

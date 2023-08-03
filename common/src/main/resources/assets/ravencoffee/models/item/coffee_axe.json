@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "ravencoffee:items/coffee_axe"
+    "layer0": "ravencoffee:item/coffee_axe"
   }
 }
