@@ -15,6 +15,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -50,7 +51,8 @@ public class SackBlock extends BlockWithEntity implements BlockEntityProvider, I
 
     protected SackBlock() {
         super(Settings
-                .of(Material.WOOL)
+                .create()
+                //.of(Material.WOOL)
                 .sounds(BlockSoundGroup.WOOL)
                 .nonOpaque()
         );
@@ -72,7 +74,7 @@ public class SackBlock extends BlockWithEntity implements BlockEntityProvider, I
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         return this.getDefaultState()
-                .with(FACING, context.getPlayerFacing().getOpposite());
+                .with(FACING, context.getPlayerLookDirection().getOpposite());
     }
 
     public static int getFullnessState(int percentage) {
@@ -109,12 +111,6 @@ public class SackBlock extends BlockWithEntity implements BlockEntityProvider, I
 
             super.onStateReplaced(state, world, pos, newState, moved);
         }
-    }
-
-    @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-        Constants.LOGGER.info("GET DROPPED STACKS");
-        return super.getDroppedStacks(state, builder);
     }
 
     @Override

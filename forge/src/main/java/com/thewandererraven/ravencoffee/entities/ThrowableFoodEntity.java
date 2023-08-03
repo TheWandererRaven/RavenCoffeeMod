@@ -14,6 +14,7 @@ import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 
 public class ThrowableFoodEntity extends Snowball {
     public ThrowableFoodEntity(EntityType<? extends Snowball> entityType, Level level) {
@@ -39,43 +40,45 @@ public class ThrowableFoodEntity extends Snowball {
 
         if (hitEntity instanceof Player) {
             Player hitPlayer = (Player)hitEntity;
+            Level playerLevel = hitPlayer.level();
             if (hitPlayer.canEat(false)) {
-                hitPlayer.eat(hitPlayer.level, this.getItem());
+                hitPlayer.eat(playerLevel, this.getItem());
                 // SOUND PITCH
                 //      HIGH = 2
                 //    NORMAL = 1
                 //       LOW =
-                hitPlayer.level.playSound(null, hitPlayer.blockPosition(), SoundEvents.GENERIC_EAT, SoundSource.AMBIENT, 1.0f, 1.0f);
-                hitPlayer.level.playSound(null, hitPlayer.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.AMBIENT, 1.0f, 1.0f);
+                playerLevel.playSound(null, hitPlayer.blockPosition(), SoundEvents.GENERIC_EAT, SoundSource.AMBIENT, 1.0f, 1.0f);
+                playerLevel.playSound(null, hitPlayer.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.AMBIENT, 1.0f, 1.0f);
             } else
-                hitPlayer.hurt(DamageSource.thrown(this, this.getOwner()), (float)0.5);
+                hitPlayer.hurt(playerLevel.damageSources().thrown(this, this.getOwner()), (float)0.5);
         }
         else if (hitEntity instanceof Villager) {
             Villager hitVillager = (Villager)hitEntity;
-            if (hitVillager.wantsMoreFood()) hitVillager.eat(hitVillager.level, Items.BREAD.getDefaultInstance());
+            if (hitVillager.wantsMoreFood()) hitVillager.eat(hitVillager.level(), Items.BREAD.getDefaultInstance());
             hitVillager.knockback(0.5f, this.position().x - hitEntity.getX(), this.position().z - hitEntity.getZ());
         }
         else if(hitEntity instanceof Animal) {
             Animal hitAnimal = (Animal)hitEntity;
             hitAnimal.setInLoveTime(600);
-            this.level.broadcastEntityEvent(hitAnimal, (byte)18);
+            this.level().broadcastEntityEvent(hitAnimal, (byte)18);
             hitAnimal.knockback(0.5f, this.position().x - hitEntity.getX(), this.position().z - hitEntity.getZ());
             // SOUND PITCH
             //      HIGH = 2
             //    NORMAL = 1
             //       LOW = 0
-            hitAnimal.level.playSound(null, hitAnimal.blockPosition(), SoundEvents.GENERIC_EAT, SoundSource.AMBIENT, 1.0f, 1.15f);
-            hitAnimal.level.playSound(null, hitAnimal.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.AMBIENT, 1.0f, 1.1f);
+            hitAnimal.level().playSound(null, hitAnimal.blockPosition(), SoundEvents.GENERIC_EAT, SoundSource.AMBIENT, 1.0f, 1.15f);
+            hitAnimal.level().playSound(null, hitAnimal.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.AMBIENT, 1.0f, 1.1f);
         }
         else {
-            hitEntity.hurt(DamageSource.thrown(this, this.getOwner()), (float) 1.0);
+            hitEntity.hurt(hitEntity.level().damageSources().thrown(this, this.getOwner()), (float) 1.0);
         }
     }
 
-    protected void onHit(EntityHitResult hitResult) {
+    @Override
+    protected void onHit(HitResult hitResult) {
         super.onHit(hitResult);
-        if (this.level.isClientSide) {
-            this.level.broadcastEntityEvent(this, (byte)3);
+        if (this.level().isClientSide) {
+            this.level().broadcastEntityEvent(this, (byte)3);
             this.remove(RemovalReason.DISCARDED);
         }
 

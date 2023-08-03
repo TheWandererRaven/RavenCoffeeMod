@@ -11,17 +11,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.monster.Ravager;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
@@ -63,13 +59,8 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     }
 
     @Override
-    protected int getAge(BlockState p_185527_1_) {
+    public int getAge(BlockState p_185527_1_) {
         return p_185527_1_.getValue(this.getAgeProperty());
-    }
-
-    @Override
-    public boolean isMaxAge(BlockState p_185525_1_) {
-        return p_185525_1_.getValue(this.getAgeProperty()) >= this.getMaxAge();
     }
 
     @Override
@@ -146,8 +137,8 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter p_176473_1_, BlockPos p_176473_2_, BlockState p_176473_3_, boolean p_176473_4_) {
-        return !this.isMaxAge(p_176473_3_);
+    public boolean isValidBonemealTarget(LevelReader p_255715_, BlockPos p_52259_, BlockState p_52260_, boolean p_52261_) {
+        return !this.isMaxAge(p_52260_);
     }
 
     @Override
@@ -177,8 +168,7 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
 
         Iterator<Direction> var4 = Direction.Plane.HORIZONTAL.iterator();
         Direction direction;
-        Material material;
-        BlockState blockstate;
+        BlockState blockStateCheck;
 
         do {
             if (!var4.hasNext()) {
@@ -187,9 +177,8 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
             }
 
             direction = var4.next();
-            blockstate = blockGetter.getBlockState(blockPos.offset(direction.getNormal()));
-            material = blockstate.getMaterial();
-        } while((!material.isSolid() || material.equals(Material.LEAVES) || blockstate.is(Tags.Blocks.FENCES) || blockstate.is(Tags.Blocks.FENCE_GATES) || blockstate.is(Blocks.JIGSAW)) && !blockGetter.getFluidState(blockPos.offset(direction.getNormal())).is(FluidTags.LAVA));
+            blockStateCheck = blockGetter.getBlockState(blockPos.offset(direction.getNormal()));
+        } while((!blockStateCheck.isSolidRender(blockGetter, blockPos.offset(direction.getNormal()))/* || blockStateCheck.is(Tags)*/ || blockStateCheck.is(Tags.Blocks.FENCES) || blockStateCheck.is(Tags.Blocks.FENCE_GATES) || blockStateCheck.is(Blocks.JIGSAW)) && !blockGetter.getFluidState(blockPos.offset(direction.getNormal())).is(FluidTags.LAVA));
         return false;
     }
 

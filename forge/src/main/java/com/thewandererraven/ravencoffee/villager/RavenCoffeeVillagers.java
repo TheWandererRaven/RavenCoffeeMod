@@ -37,7 +37,7 @@ public class RavenCoffeeVillagers {
                     SoundEvents.VILLAGER_WORK_CLERIC
                     )
     );
-
+/*
     public static void registerPOIs() {
         try {
             ObfuscationReflectionHelper
@@ -49,4 +49,5 @@ public class RavenCoffeeVillagers {
             exception.printStackTrace();
         }
     }
+ */
 }

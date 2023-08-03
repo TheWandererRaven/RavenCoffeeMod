@@ -13,6 +13,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
@@ -76,5 +77,10 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, net.minecraft.util.math.BlockPos pos, ShapeContext context) {
         return SHAPE_BY_AGE[state.get(this.getAgeProperty())];
+    }
+
+    @Override
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+        return true;
     }
 }

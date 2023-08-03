@@ -4,23 +4,25 @@ import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.MagmaBlock;
-import net.minecraft.block.Material;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class RavenCoffeeBlocks {
     public static final Block BROWNIE_BLOCK = registerItem(
             "brownie_block",
             new Block(AbstractBlock.Settings
-                    .of(Material.CAKE)
+                    .create()
+                    //.of(Blocks.CAKE.CAKE)
                     .sounds(BlockSoundGroup.WOOL)
             )
     );
     public static final Block ROSCA_DE_REYES_BLOCK = registerItem(
             "rosca_de_reyes_block",
             new RoscaDeReyesBlock(AbstractBlock.Settings
-                    .of(Material.CAKE)
+                    .create()
+                    //.of(Material.CAKE)
                     .sounds(BlockSoundGroup.WOOL)
                     .nonOpaque()
             )
@@ -28,7 +30,8 @@ public class RavenCoffeeBlocks {
     public static final Block TIRAMISU_BLOCK = registerItem(
             "tiramisu_block",
             new TiramisuBlock(AbstractBlock.Settings
-                    .of(Material.CAKE)
+                    .create()
+                    //.of(Material.CAKE)
                     .sounds(BlockSoundGroup.WOOL)
                     .nonOpaque()
             )
@@ -36,7 +39,8 @@ public class RavenCoffeeBlocks {
     public static final Block COFFEE_BEANS_ROASTED_BLOCK = registerItem(
             "coffee_beans_roasted_block",
             new Block(AbstractBlock.Settings
-                    .of(Material.CACTUS)
+                    .create()
+                    //.of(Material.CACTUS)
                     .strength(2.0f, 1.0f)
                     .sounds(BlockSoundGroup.STONE)
                     .requiresTool()
@@ -45,7 +49,8 @@ public class RavenCoffeeBlocks {
     public static final Block COFFEE_BEANS_MAGMA_BLOCK = registerItem(
             "coffee_beans_magma_block",
             new MagmaBlock(AbstractBlock.Settings
-                    .of(Material.CACTUS)
+                    .create()
+                    //.of(Material.CACTUS)
                     .strength(2.0f, 1.0f)
                     .sounds(BlockSoundGroup.STONE)
                     .requiresTool()
@@ -55,7 +60,8 @@ public class RavenCoffeeBlocks {
     public static final Block COFFEE_TREE_LEAVES_BLOCK = registerItem(
             "coffee_tree_leaves_block",
             new CoffeeTreeLeavesBlock(AbstractBlock.Settings
-                    .of(Material.PLANT)
+                    .create()
+                    //.of(Material.PLANT)
                     .sounds(BlockSoundGroup.GRASS)
                     .ticksRandomly()
                     .nonOpaque()
@@ -64,7 +70,8 @@ public class RavenCoffeeBlocks {
     public static final Block COFFEE_TREE_TRUNK_BLOCK = registerItem(
             "coffee_tree_trunk_block",
             new CoffeeTreeTrunkBlock(AbstractBlock.Settings
-                    .of(Material.PLANT)
+                    .create()
+                    //.of(Material.PLANT)
                     .sounds(BlockSoundGroup.GRASS)
                     .ticksRandomly()
                     .nonOpaque()
@@ -96,7 +103,8 @@ public class RavenCoffeeBlocks {
     
     
     private static Block registerItem(String name, Block item) {
-        return Registry.register(Registry.BLOCK, new Identifier(Constants.MOD_ID, name), item);
+
+        return Registry.register(Registries.BLOCK, new Identifier(Constants.MOD_ID, name), item);
     }
 
     public static void register() {

@@ -2,9 +2,9 @@ package com.thewandererraven.ravencoffee.util;
 
 import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.item.Item;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class ModTags {
     public static class Items {
@@ -14,7 +14,7 @@ public class ModTags {
         public static final TagKey<Item> CUPS_LARGE = tag("cups_large");
         public static final TagKey<Item> BREW_INGREDIENTS = tag("brew_ingredients");
         private static TagKey<Item> tag(String name) {
-            return TagKey.of(Registry.ITEM_KEY, new Identifier(Constants.MOD_ID, name));
+            return TagKey.of(Registries.ITEM.getKey(), new Identifier(Constants.MOD_ID, name));
         }
     }
 }

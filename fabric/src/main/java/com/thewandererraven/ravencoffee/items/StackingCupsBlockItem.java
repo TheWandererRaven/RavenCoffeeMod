@@ -139,7 +139,7 @@ public class StackingCupsBlockItem extends BlockItem {
         }).orElse(p_40594_);
     }
  */
-
+/*
 
     @Override
     public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
@@ -148,4 +148,6 @@ public class StackingCupsBlockItem extends BlockItem {
         }
 
     }
+
+ */
 }

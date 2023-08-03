@@ -8,11 +8,9 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
-import java.util.function.Supplier;
 
 public class RavenCoffeeItems {
 
@@ -22,38 +20,37 @@ public class RavenCoffeeItems {
             "coffee_cherries",
             new BlockItem(
                     RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK,
-                    new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB)
+                    new FabricItemSettings()
             )
     );
     public static final Item COFFEE_BEANS = registerItem(
             "coffee_beans",
-            new Item(new FabricItemSettings().group(ItemGroup.MISC))
+            new Item(new FabricItemSettings())
     );
     public static final Item COFFEE_BEANS_ROASTED = registerItem(
             "coffee_beans_roasted",
-            new Item(new FabricItemSettings().group(ItemGroup.MISC))
+            new Item(new FabricItemSettings())
     );
     public static final Item COFFEE_BEANS_MAGMA = registerItem(
             "coffee_beans_magma",
-            new Item(new FabricItemSettings().group(ItemGroup.MISC))
+            new Item(new FabricItemSettings())
     );
 
     // ############################################### COFFEE INGREDIENTS ##############################################
     public static final Item COFFEE_BEANS_ROASTED_GROUND = registerItem(
             "coffee_beans_roasted_ground",
-            new Item(new FabricItemSettings().group(ItemGroup.MISC))
+            new Item(new FabricItemSettings())
     );
 
     public static final Item COFFEE_BEANS_MAGMA_GROUND = registerItem(
             "coffee_beans_magma_ground",
-            new Item(new FabricItemSettings().group(ItemGroup.MISC))
+            new Item(new FabricItemSettings())
     );
 
     // ############################################### FOODSTUFF ##############################################
     public static final Item POPCHORUS = registerItem(
             "popchorus",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(12)
                             .saturationModifier(0.15f)
@@ -77,7 +74,6 @@ public class RavenCoffeeItems {
     public static final Item MELON_PAN = registerItem(
             "melon_pan",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(7)
                             .saturationModifier(0.8f/2f)
@@ -88,7 +84,6 @@ public class RavenCoffeeItems {
     public static final Item COFFEE_ECLAIR = registerItem(
             "coffee_eclair",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(4)
                             .saturationModifier(0.3f/2f)
@@ -99,7 +94,6 @@ public class RavenCoffeeItems {
     public static final Item BROWNIE = registerItem(
             "brownie",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(2)
                             .saturationModifier(0.4f/2f)
@@ -110,7 +104,6 @@ public class RavenCoffeeItems {
     public static final Item TIRAMISU_SLICE = registerItem(
             "tiramisu_slice",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(2)
                             .saturationModifier(0.5f/2f)
@@ -121,7 +114,6 @@ public class RavenCoffeeItems {
     public static final Item SANDWICH_HAM = registerItem(
             "sandwich_ham",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(8)
                             .saturationModifier(0.9f/2f)
@@ -132,7 +124,6 @@ public class RavenCoffeeItems {
     public static final Item SANDWICH_BEEF = registerItem(
             "sandwich_beef",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(11)
                             .saturationModifier(1.4f/2f)
@@ -143,7 +134,6 @@ public class RavenCoffeeItems {
     public static final Item SANDWICH_CHICKEN = registerItem(
             "sandwich_chicken",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(9)
                             .saturationModifier(1.2f/2f)
@@ -154,7 +144,6 @@ public class RavenCoffeeItems {
     public static final Item CROISSANT = registerItem(
             "croissant",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(5)
                             .saturationModifier(1.2f/2f)
@@ -165,7 +154,6 @@ public class RavenCoffeeItems {
     public static final Item CROISSANT_HAM = registerItem(
             "croissant_ham",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(8)
                             .saturationModifier(0.9f/2f)
@@ -176,7 +164,6 @@ public class RavenCoffeeItems {
     public static final Item CROISSANT_BEEF = registerItem(
             "croissant_beef",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(11)
                             .saturationModifier(1.4f/2f)
@@ -187,7 +174,6 @@ public class RavenCoffeeItems {
     public static final Item CROISSANT_CHICKEN = registerItem(
             "croissant_chicken",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(9)
                             .saturationModifier(1.2f/2f)
@@ -198,7 +184,6 @@ public class RavenCoffeeItems {
     public static final Item BAGEL = registerItem(
             "bagel",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(7)
                             .saturationModifier(1.2f/2f)
@@ -209,7 +194,6 @@ public class RavenCoffeeItems {
     public static final Item BAGEL_HAM = registerItem(
             "bagel_ham",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(10)
                             .saturationModifier(0.9f/2f)
@@ -220,7 +204,6 @@ public class RavenCoffeeItems {
     public static final Item BAGEL_BEEF = registerItem(
             "bagel_beef",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(13)
                             .saturationModifier(1.4f/2f)
@@ -231,7 +214,6 @@ public class RavenCoffeeItems {
     public static final Item BAGEL_CHICKEN = registerItem(
             "bagel_chicken",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(11)
                             .saturationModifier(1.2f/2f)
@@ -244,58 +226,55 @@ public class RavenCoffeeItems {
     public static final Item CUP_SMALL_UNFIRED = registerItem(
             "cup_small_unfired",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.CUP_SMALL_TAB)
             )
     );
     public static final Item CUP_SMALL = registerItem(
             "cup_small",
             new StackingCupsBlockItem(
                     RavenCoffeeBlocks.STACKING_CUPS_BLOCK,
-                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_SMALL_TAB)
+                    new FabricItemSettings()
             )
     );
     public static final Item CUP_MEDIUM_UNFIRED = registerItem(
             "cup_medium_unfired",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
             )
     );
     public static final Item CUP_MEDIUM = registerItem(
             "cup_medium",
             new StackingCupsBlockItem(
                     RavenCoffeeBlocks.STACKING_CUPS_BLOCK,
-                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                    new FabricItemSettings()
             )
     );
     public static final Item CUP_LARGE_UNFIRED = registerItem(
             "cup_large_unfired",
             new Item(new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
             )
     );
     public static final Item CUP_LARGE = registerItem(
             "cup_large",
             new StackingCupsBlockItem(
                     RavenCoffeeBlocks.STACKING_CUPS_BLOCK,
-                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                    new FabricItemSettings()
             )
     );
     public static final Item COFFEE_MUG = registerItem(
             "coffee_mug",
             new StackingCupsBlockItem(
                     RavenCoffeeBlocks.STACKING_CUPS_BLOCK,
-                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                    new FabricItemSettings()
             )
     );
 
     // ############################################### COFFEE MATERIALS ################################################
     public static final Item COFFEE_PLATES = registerItem(
             "coffee_plates",
-            new Item(new FabricItemSettings().group(ItemGroup.MISC))
+            new Item(new FabricItemSettings())
     );
     public static final Item COFFEE_INGOT = registerItem(
             "coffee_ingot",
-            new Item(new FabricItemSettings().group(ItemGroup.MISC))
+            new Item(new FabricItemSettings())
     );
 
     // ################################################# COFFEE TOOLS ##################################################
@@ -328,7 +307,6 @@ public class RavenCoffeeItems {
     public static final Item BROWNIE_BLOCK_ITEM = registerItem(
             "brownie_block",
             new BlockItem(RavenCoffeeBlocks.BROWNIE_BLOCK, new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(20)
                             .saturationModifier(1.0f)
@@ -339,22 +317,22 @@ public class RavenCoffeeItems {
     public static final Item ROSCA_DE_REYES_BLOCK_ITEM = registerItem(
             "rosca_de_reyes_block",
             new BlockItem(RavenCoffeeBlocks.ROSCA_DE_REYES_BLOCK, new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB))
+            )
     );
     public static final Item TIRAMISU_BLOCK_ITEM = registerItem(
             "tiramisu_block",
             new BlockItem(RavenCoffeeBlocks.TIRAMISU_BLOCK, new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB))
+            )
     );
     public static final Item COFFEE_BEANS_ROASTED_BLOCK_ITEM = registerItem(
             "coffee_beans_roasted_block",
             new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_ROASTED_BLOCK, new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB))
+            )
     );
     public static final Item COFFEE_BEANS_MAGMA_BLOCK_ITEM = registerItem(
             "coffee_beans_magma_block",
             new BlockItem(RavenCoffeeBlocks.COFFEE_BEANS_MAGMA_BLOCK, new FabricItemSettings()
-                    .group(RavenCoffeeItemGroups.GENERAL_TAB))
+            )
     );
     /*
 
@@ -371,11 +349,11 @@ public class RavenCoffeeItems {
 
     public static final Item SACK_BLOCK_ITEM = registerItem(
             "sack_block",
-            new BlockItem(RavenCoffeeBlocks.SACK_BLOCK, new Item.Settings().group(RavenCoffeeItemGroups.GENERAL_TAB))
+            new BlockItem(RavenCoffeeBlocks.SACK_BLOCK, new Item.Settings())
     );
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registry.ITEM, new Identifier(Constants.MOD_ID, name), item);
+        return Registry.register(Registries.ITEM, new Identifier(Constants.MOD_ID, name), item);
     }
     
     public static void register() {

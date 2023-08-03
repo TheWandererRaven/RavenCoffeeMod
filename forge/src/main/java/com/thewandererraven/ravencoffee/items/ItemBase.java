@@ -6,10 +6,10 @@ import net.minecraft.world.item.Item;
 
 public class ItemBase extends Item {
     public ItemBase() {
-        super(new Item.Properties().tab(RavenCoffeeForge.GENERAL_TAB));
+        super(new Item.Properties());
     }
     public ItemBase(CreativeModeTab tab) {
-        super(new Item.Properties().tab(tab));
+        super(new Item.Properties());
     }
     public ItemBase(Properties props) {
         super(props);

@@ -3,6 +3,7 @@ package com.thewandererraven.ravencoffee.screens;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.screens.handlers.SackScreenHandler;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -26,32 +27,35 @@ public class SackScreen extends HandledScreen<SackScreenHandler> {
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
+        RenderSystem.setShader(GameRenderer::getRenderTypeTextProgram);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        //drawTexture(context, x, y, 0, 0, backgroundWidth, backgroundHeight);
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     @Override
-    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
         final float LABEL_XPOS = SackScreenHandler.PLAYER_INVENTORY_XPOS;
         final float FONT_Y_SPACING = 12;
-        this.textRenderer.draw(matrices, this.title,
+        /*
+        this.textRenderer.draw(this.title,
                 LABEL_XPOS, STATION_NAME_YPOS, 4210752);
 
         final float PLAYER_INV_LABEL_YPOS = SackScreenHandler.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
-        this.textRenderer.draw(matrices, this.playerInventoryTitle,
+        this.textRenderer.draw(this.playerInventoryTitle,
                 LABEL_XPOS, PLAYER_INV_LABEL_YPOS, 4210752);
+
+         */
     }
 
 }

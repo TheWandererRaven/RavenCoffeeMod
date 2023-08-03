@@ -9,7 +9,6 @@ public class CoffeeCup extends BucketItem {
     public CoffeeCup() {
         super(() -> Fluids.EMPTY,
                 new Item.Properties()
-                .tab(RavenCoffeeForge.GENERAL_TAB)
                 );
     }
 }

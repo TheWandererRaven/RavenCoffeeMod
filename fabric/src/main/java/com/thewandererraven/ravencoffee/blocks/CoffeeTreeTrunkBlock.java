@@ -124,6 +124,11 @@ public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
     }
 
     @Override
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+        return true;
+    }
+
+    @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         if(this.isMature(state)) {
             BlockState upState = world.getBlockState(pos.up());

@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -44,7 +43,7 @@ public class SackBlock extends BaseEntityBlock {
 
     protected SackBlock() {
         super(Properties
-                .of(Material.WOOL)
+                .of()
                 .sound(SoundType.WOOL)
                 .noOcclusion()
         );

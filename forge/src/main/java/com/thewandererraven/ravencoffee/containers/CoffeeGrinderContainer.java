@@ -55,7 +55,7 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
     public static final int SLOT_X_SPACING = 18;
     public static final int SLOT_Y_SPACING = 18;
 
-    private final CraftingContainer craftMatrix = new CraftingContainer(this, 1, 2);
+    private final CraftingContainer craftMatrix = new TransientCraftingContainer(this, 1, 2);
     private final ResultContainer craftResult = new ResultContainer();
 
     public static CoffeeGrinderContainer createContainerServerSide(int windowID, Inventory playerInventory) {
@@ -242,7 +242,7 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
             if (optional.isPresent()) {
                 CoffeeGrinderRecipe craftingrecipe = optional.get();
                 if (inventoryResult.setRecipeUsed(world, serverplayer, craftingrecipe)) {
-                    itemstack = craftingrecipe.assemble(inventory);
+                    itemstack = craftingrecipe.assemble(inventory, null);
                 }
             }
             inventoryResult.setItem(0, itemstack);

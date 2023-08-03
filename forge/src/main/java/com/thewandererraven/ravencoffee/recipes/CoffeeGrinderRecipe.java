@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -38,7 +39,7 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
     }
 
     @Override
-    public ItemStack assemble(CraftingContainer p_44001_) {
+    public ItemStack assemble(CraftingContainer craftingContainer, RegistryAccess registryAccess) {
         return output.copy();
     }
 
@@ -47,8 +48,9 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
         return true;
     }
 
+
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
         return output.copy();
     }
 
@@ -122,7 +124,7 @@ public class CoffeeGrinderRecipe implements Recipe<CraftingContainer> {
             for (Ingredient ingredient : recipe.getIngredients()) {
                 ingredient.toNetwork(buffer);
             }
-            buffer.writeItemStack(recipe.getResultItem(), false);
+            buffer.writeItemStack(recipe.getResultItem(null), false);
         }
 
         private static <G> Class<G> castClass(Class<?> cls) {

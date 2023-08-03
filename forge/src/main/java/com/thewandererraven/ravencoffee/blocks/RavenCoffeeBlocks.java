@@ -5,7 +5,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -15,14 +14,14 @@ public class RavenCoffeeBlocks {
     public static final RegistryObject<Block> BROWNIE_BLOCK = BLOCKS.register(
             "brownie_block",
             () -> new Block(BlockBehaviour.Properties
-                    .of(Material.CAKE)
+                    .of()
                     .sound(SoundType.WOOL)
             )
     );
     public static final RegistryObject<Block> ROSCA_DE_REYES_BLOCK = BLOCKS.register(
             "rosca_de_reyes_block",
             () -> new RoscaDeReyesBlock(BlockBehaviour.Properties
-                    .of(Material.CAKE)
+                    .of()
                     .sound(SoundType.WOOL)
                     .noOcclusion()
             )
@@ -30,7 +29,7 @@ public class RavenCoffeeBlocks {
     public static final RegistryObject<Block> TIRAMISU_BLOCK = BLOCKS.register(
             "tiramisu_block",
             () -> new TiramisuBlock(BlockBehaviour.Properties
-                    .of(Material.CAKE)
+                    .of()
                     .sound(SoundType.WOOL)
                     .noOcclusion()
             )
@@ -45,7 +44,7 @@ public class RavenCoffeeBlocks {
     );
     public static final RegistryObject<Block> COFFEE_TREE_LEAVES_BLOCK = BLOCKS.register(
             "coffee_tree_leaves_block",
-            () -> new CoffeeTreeLeavesBlock(BlockBehaviour.Properties.of(Material.PLANT)
+            () -> new CoffeeTreeLeavesBlock(BlockBehaviour.Properties.of()
                     .noOcclusion()
                     .sound(SoundType.GRASS)
                     .randomTicks()
@@ -53,7 +52,7 @@ public class RavenCoffeeBlocks {
     );
     public static final RegistryObject<Block> COFFEE_TREE_TRUNK_BLOCK = BLOCKS.register(
             "coffee_tree_trunk_block",
-            () -> new CoffeeTreeTrunkBlock(CropBlock.Properties.of(Material.PLANT)
+            () -> new CoffeeTreeTrunkBlock(CropBlock.Properties.of()
                     .sound(SoundType.GRASS)
                     .randomTicks()
             )
@@ -61,7 +60,7 @@ public class RavenCoffeeBlocks {
 
     public static final RegistryObject<Block> COFFEE_GRINDER = BLOCKS.register(
             "coffee_grinder_block",
-            () -> new CoffeeGrinderBlock(Block.Properties.of(Material.WOOD)
+            () -> new CoffeeGrinderBlock(Block.Properties.of()
                     .sound(SoundType.WOOD)
             )
     );

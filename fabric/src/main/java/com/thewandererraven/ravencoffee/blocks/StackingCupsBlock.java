@@ -45,7 +45,8 @@ public class StackingCupsBlock extends BlockWithEntity implements BlockEntityPro
 
     public StackingCupsBlock() {
         super(Settings
-                .of(Material.STONE)
+                .create()
+                //.of(Material.STONE)
                 .sounds(BlockSoundGroup.STONE)
         );
     }
@@ -62,7 +63,7 @@ public class StackingCupsBlock extends BlockWithEntity implements BlockEntityPro
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         return this.getDefaultState()
-                .with(FACING, context.getPlayerFacing().getOpposite());
+                .with(FACING, context.getPlayerLookDirection().getOpposite());
     }
 
     @Override

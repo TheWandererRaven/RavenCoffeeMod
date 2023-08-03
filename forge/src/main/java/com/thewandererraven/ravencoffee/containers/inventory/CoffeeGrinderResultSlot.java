@@ -30,7 +30,7 @@ public class CoffeeGrinderResultSlot extends ResultSlot {
     public void onTake(Player thePlayer, ItemStack stack) {
         this.checkTakeAchievements(stack);
         net.minecraftforge.common.ForgeHooks.setCraftingPlayer(thePlayer);
-        NonNullList<ItemStack> nonnulllist = thePlayer.level.getRecipeManager().getRemainingItemsFor(CoffeeGrinderRecipe.Type.INSTANCE, this.craftSlots, thePlayer.level);
+        NonNullList<ItemStack> nonnulllist = thePlayer.level().getRecipeManager().getRemainingItemsFor(CoffeeGrinderRecipe.Type.INSTANCE, this.craftSlots, thePlayer.level());
         net.minecraftforge.common.ForgeHooks.setCraftingPlayer(null);
         for(int i = 0; i < nonnulllist.size(); ++i) {
             ItemStack itemstack = this.craftSlots.getItem(i);
@@ -43,7 +43,7 @@ public class CoffeeGrinderResultSlot extends ResultSlot {
             if (!itemstack1.isEmpty()) {
                 if (itemstack.isEmpty()) {
                     this.craftSlots.setItem(i, itemstack1);
-                } else if (ItemStack.isSame(itemstack, itemstack1) && ItemStack.tagMatches(itemstack, itemstack1)) {
+                } else if (ItemStack.isSameItem(itemstack, itemstack1) && ItemStack.isSameItemSameTags(itemstack, itemstack1)) {
                     itemstack1.grow(itemstack.getCount());
                     this.craftSlots.setItem(i, itemstack1);
                 } else if (!this.player.getInventory().add(itemstack1)) {
