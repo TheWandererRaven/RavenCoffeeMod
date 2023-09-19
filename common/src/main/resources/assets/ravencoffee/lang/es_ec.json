@@ -5,6 +5,12 @@
   "creativetab.ravencoffee.ravencoffee_medium_tab": "Café mediano",
   "creativetab.ravencoffee.ravencoffee_large_tab": "Café grande",
 
+  "upgrade.ravencoffee.coffee_upgrade": "Mejora de Café",
+  "item.ravencoffee.smithing_template.coffee_upgrade.applies_to": "Herramientas y armas de hierro",
+  "item.ravencoffee.smithing_template.coffee_upgrade.ingredients": "Lingote de café",
+  "item.ravencoffee.smithing_template.coffee_upgrade.base_slot_description": "Agregar una herramienta o arma de Hierro",
+  "item.ravencoffee.smithing_template.coffee_upgrade.additions_slot_description": "Agregar un lingote de café",
+
 
   "item.ravencoffee.coffee_cherries": "Cerezas de café",
   "item.ravencoffee.coffee_beans": "Granos de café",
