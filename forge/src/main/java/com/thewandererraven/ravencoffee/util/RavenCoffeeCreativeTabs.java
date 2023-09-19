@@ -45,6 +45,7 @@ public class RavenCoffeeCreativeTabs {
                         pOutput.accept(RavenCoffeeItems.BAGEL_HAM.get());
                         pOutput.accept(RavenCoffeeItems.BAGEL_BEEF.get());
                         pOutput.accept(RavenCoffeeItems.BAGEL_CHICKEN.get());
+                        pOutput.accept(RavenCoffeeItems.COFFEE_UPGRADE_SMITHING_TEMPLATE.get());
                         pOutput.accept(RavenCoffeeItems.COFFEE_PLATES.get());
                         pOutput.accept(RavenCoffeeItems.COFFEE_INGOT.get());
                         pOutput.accept(RavenCoffeeItems.COFFEE_PICKAXE.get());
