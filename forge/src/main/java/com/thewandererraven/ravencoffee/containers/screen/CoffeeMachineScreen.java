@@ -40,7 +40,7 @@ public class CoffeeMachineScreen extends AbstractContainerScreen<CoffeeMachineMe
         float progress = this.getMenu().getBrewingProgress(); // From 0 to 1
         if(progress > 0f)
             guiGraphics.blit(TEXTURE, x + PROGRESS_INDICATOR_X, y + PROGRESS_INDICATOR_Y,
-                    imageWidth + ProgressIndicatorWidth, 0,
+                    imageWidth, 0,
                     ProgressIndicatorWidth, Math.round(ProgressIndicatorHeight * progress)
                     );
         if(this.getMenu().isCupsSlotEmpty())
