@@ -138,7 +138,7 @@ public class SackBlock extends BlockWithEntity implements BlockEntityProvider, I
                         itemInHand.decrement(1);
                     } else {
                         ItemStack grabbedItem = entity.grabItem();
-                        ItemScatterer.spawn(world, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ(), grabbedItem);
+                        ItemScatterer.spawn(world, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY() + 1.0d, blockHitResult.getBlockPos().getZ(), grabbedItem);
                     }
                 }
             } else {
