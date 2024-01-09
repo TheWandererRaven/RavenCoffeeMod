@@ -17,6 +17,7 @@ public class RavenCoffeeBlocks {
                     .sounds(BlockSoundGroup.WOOL)
             )
     );
+
     public static final Block ROSCA_DE_REYES_BLOCK = registerItem(
             "rosca_de_reyes_block",
             new RoscaDeReyesBlock(AbstractBlock.Settings
@@ -25,6 +26,7 @@ public class RavenCoffeeBlocks {
                     .nonOpaque()
             )
     );
+
     public static final Block TIRAMISU_BLOCK = registerItem(
             "tiramisu_block",
             new TiramisuBlock(AbstractBlock.Settings
@@ -33,6 +35,7 @@ public class RavenCoffeeBlocks {
                     .nonOpaque()
             )
     );
+
     public static final Block COFFEE_BEANS_ROASTED_BLOCK = registerItem(
             "coffee_beans_roasted_block",
             new Block(AbstractBlock.Settings
@@ -42,6 +45,7 @@ public class RavenCoffeeBlocks {
                     .requiresTool()
             )
     );
+
     public static final Block COFFEE_BEANS_MAGMA_BLOCK = registerItem(
             "coffee_beans_magma_block",
             new MagmaBlock(AbstractBlock.Settings
@@ -52,6 +56,7 @@ public class RavenCoffeeBlocks {
                     .velocityMultiplier(1.5f)
             )
     );
+
     public static final Block COFFEE_TREE_LEAVES_BLOCK = registerItem(
             "coffee_tree_leaves_block",
             new CoffeeTreeLeavesBlock(AbstractBlock.Settings
@@ -61,6 +66,7 @@ public class RavenCoffeeBlocks {
                     .nonOpaque()
             )
     );
+
     public static final Block COFFEE_TREE_TRUNK_BLOCK = registerItem(
             "coffee_tree_trunk_block",
             new CoffeeTreeTrunkBlock(AbstractBlock.Settings
@@ -71,13 +77,15 @@ public class RavenCoffeeBlocks {
             )
     );
 
-    /*
     public static final Block COFFEE_GRINDER = registerItem(
             "coffee_grinder_block",
-            () -> new CoffeeGrinderBlock(net.minecraft.world.level.block.Block.Properties.of(Material.WOOD)
-                    .sound(SoundType.WOOD)
+            new CoffeeGrinderBlock(AbstractBlock.Settings
+                    .of(Material.WOOD)
+                    .sounds(BlockSoundGroup.WOOD)
             )
     );
+
+    /*
     public static final Block COFFEE_MACHINE_BLOCK = registerItem(
             "coffee_machine_block",
             CoffeeMachineBlock::new
@@ -88,6 +96,7 @@ public class RavenCoffeeBlocks {
             "sack_block",
             new SackBlock()
     );
+
     public static final Block STACKING_CUPS_BLOCK = registerItem(
             "stacking_cups_block",
             new StackingCupsBlock()
