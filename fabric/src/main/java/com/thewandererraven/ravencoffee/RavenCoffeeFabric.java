@@ -2,6 +2,7 @@ package com.thewandererraven.ravencoffee;
 
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.blocks.entitites.RavenCoffeeBlockEntities;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipes;
 import com.thewandererraven.ravencoffee.screens.handlers.RavenCoffeeScreenHandlers;
@@ -21,6 +22,7 @@ public class RavenCoffeeFabric implements ModInitializer {
         RavenCoffeeCommon.init();
         RavenCoffeeBlocks.register();
         RavenCoffeeItems.register();
+        RavenCoffeeBrewItems.register();
         RavenCoffeeBlockEntities.register();
         RavenCoffeeRecipes.registerRecipes();
     }
