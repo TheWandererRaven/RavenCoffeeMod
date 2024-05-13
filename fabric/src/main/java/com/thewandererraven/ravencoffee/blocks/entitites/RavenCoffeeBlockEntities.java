@@ -12,10 +12,12 @@ import net.minecraft.util.registry.Registry;
 public class RavenCoffeeBlockEntities {
     public static BlockEntityType<StackingCupsBlockEntity> STACKING_CUPS_BLOCK_ENTITY;
     public static BlockEntityType<SackBlockEntity> SACK_BLOCK_ENTITY;
+    public static BlockEntityType<CoffeeMachineBlockEntity> COFFEE_MACHINE;
 
     static {
         STACKING_CUPS_BLOCK_ENTITY = (BlockEntityType<StackingCupsBlockEntity>) register("stacking_cups_block_entity", StackingCupsBlockEntity::new, RavenCoffeeBlocks.STACKING_CUPS_BLOCK);
         SACK_BLOCK_ENTITY = (BlockEntityType<SackBlockEntity>) register("sack_block_entity", SackBlockEntity::new, RavenCoffeeBlocks.SACK_BLOCK);
+        COFFEE_MACHINE = (BlockEntityType<CoffeeMachineBlockEntity>) register("coffee_machine_block_entity", CoffeeMachineBlockEntity::new, RavenCoffeeBlocks.COFFEE_MACHINE_BLOCK);
     }
 
     private static <T extends BlockEntity> BlockEntityType<?> register(String name, FabricBlockEntityTypeBuilder.Factory<? extends T> factory, Block block) {

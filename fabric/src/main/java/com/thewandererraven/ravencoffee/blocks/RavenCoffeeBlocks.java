@@ -1,10 +1,7 @@
 package com.thewandererraven.ravencoffee.blocks;
 
 import com.thewandererraven.ravencoffee.Constants;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.MagmaBlock;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -85,13 +82,15 @@ public class RavenCoffeeBlocks {
             )
     );
 
-    /*
     public static final Block COFFEE_MACHINE_BLOCK = registerItem(
             "coffee_machine_block",
-            CoffeeMachineBlock::new
+            new CoffeeMachineBlock(AbstractBlock.Settings
+                    .of(Material.METAL)
+                    .sounds(BlockSoundGroup.METAL)
+                    .nonOpaque()
+            )
     );
 
-     */
     public static final Block SACK_BLOCK = registerItem(
             "sack_block",
             new SackBlock()
