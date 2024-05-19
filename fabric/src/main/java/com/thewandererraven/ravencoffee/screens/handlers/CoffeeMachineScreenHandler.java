@@ -1,6 +1,8 @@
 package com.thewandererraven.ravencoffee.screens.handlers;
 
 import com.thewandererraven.ravencoffee.blocks.entitites.CoffeeMachineBlockEntity;
+import com.thewandererraven.ravencoffee.recipes.CoffeeBrewingRecipe;
+import com.thewandererraven.ravencoffee.util.Cups;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -71,10 +73,6 @@ public class CoffeeMachineScreenHandler extends ScreenHandler {
         addProperties(delegate);
     }
 
-    public boolean isCrafting() {
-        return propertyDelegate.get(0) > 0;
-    }
-
     public float getScaledProgress() {
         int progress = this.propertyDelegate.get(0);
         int maxProgress = this.propertyDelegate.get(1);
@@ -84,33 +82,77 @@ public class CoffeeMachineScreenHandler extends ScreenHandler {
 
     @Override
     public ItemStack transferSlot(PlayerEntity player, int invSlot) {
-        ItemStack newStack = ItemStack.EMPTY;
+        ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
-        if (slot != null && slot.hasStack()) {
-            ItemStack originalStack = slot.getStack();
-            newStack = originalStack.copy();
-            if (invSlot < this.inventory.size()) {
-                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+        if (slot.hasStack()) {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
+            // If selected item is in output...
+            if (invSlot == CoffeeMachineBlockEntity.OUTPUT_FIRST_SLOT_INDEX) {
+                /*this.worldPosCallable.execute((p_217067_2_, p_217067_3_) -> {
+                    itemstack1.getItem().onCraftedBy(itemstack1, p_217067_2_, playerIn);
+                });*/
+                // ...move to rightmost hotbar slot...
+                /*
+                if (!this.moveItemStackTo(itemstack1, HOTBAR_FIRST_SLOT_INDEX, HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT, true))
+                    // ...if hotbar is full, move to rightmost and downmost empty slot
+                    if (!this.moveItemStackTo(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT, true))
+                        return ItemStack.EMPTY;
+                 */
+                if (!this.insertItem(itemstack1, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT, true))
                     return ItemStack.EMPTY;
-                }
-            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
+                //slot.onSlotChanged(itemstack1, itemstack);
+                slot.onQuickTransfer(itemstack1, itemstack);
+            }
+            // If selected item is in vanilla slots...
+            else if (invSlot >= VANILLA_FIRST_SLOT_INDEX && invSlot < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT) {
+                // ...move to input slots...
+                if (!this.insertItem(itemstack1, CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX, CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX + CoffeeMachineBlockEntity.INGREDIENTS_SLOT_COUNT, false))
+                    // ...if ingredients slots are full, try with cups slot
+                    if (!this.insertItem(itemstack1, CoffeeMachineBlockEntity.CUPS_FIRST_SLOT_INDEX, CoffeeMachineBlockEntity.CUPS_FIRST_SLOT_INDEX + CoffeeMachineBlockEntity.CUPS_SLOT_COUNT, false))
+                        // ...if input slots are full, and if selected slot is from player inventory...
+                        if (invSlot < PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT) {
+                            // ...move to hotbar...
+                            if (!this.insertItem(itemstack1, HOTBAR_FIRST_SLOT_INDEX, HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT, false)) {
+                                return ItemStack.EMPTY;
+                            }
+                        }
+                        // ...otherwise, selected slot is from hotbar so, move to inventory
+                        else if (!this.insertItem(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT, false))
+                            return ItemStack.EMPTY;
+            }
+            // If selected item is in input slots...
+            // ...move to Player vanilla slots (first to player inventory, then to hotbar)
+            else if (!this.insertItem(itemstack1, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT, false))
+                return ItemStack.EMPTY;
+
+            if (itemstack1.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                //slot.setChanged();
+                slot.markDirty();
+            }
+
+            if (itemstack1.getCount() == itemstack.getCount()) {
                 return ItemStack.EMPTY;
             }
 
-            if (originalStack.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
-            } else {
-                slot.markDirty();
-            }
+            //ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
+            ItemStack itemstack2 = slot.getStack();
+            slot.onTakeItem(player, itemstack1);
+            if (invSlot == CoffeeMachineBlockEntity.OUTPUT_FIRST_SLOT_INDEX)
+                player.dropItem(itemstack2, false);
         }
 
-        return newStack;
+        return itemstack;
     }
 
     @Override
     public boolean canUse(PlayerEntity player) {
         return this.inventory.canPlayerUse(player);
     }
+
+    // ##################################################### SLOTS #####################################################
 
     private void addPlayerInventory(PlayerInventory playerInventory) {
         // Add the rest of the players inventory to the gui
@@ -134,14 +176,24 @@ public class CoffeeMachineScreenHandler extends ScreenHandler {
     private void addIngredientSlots() {
         // Add the tile input containers to the gui
         for (int x = 0; x < CoffeeMachineBlockEntity.INGREDIENTS_SLOT_COUNT; x++) {
-            addSlot(new Slot(this.inventory, CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX + x, INGREDIENTS_SLOT_POS_X,  INGREDIENTS_SLOT_POS_Y + SLOT_Y_SPACING * x));
+            addSlot(new Slot(this.inventory, CoffeeMachineBlockEntity.INGREDIENTS_FIRST_SLOT_INDEX + x, INGREDIENTS_SLOT_POS_X,  INGREDIENTS_SLOT_POS_Y + (SLOT_Y_SPACING * x)) {
+                @Override
+                public boolean canInsert(ItemStack stack) {
+                    return CoffeeBrewingRecipe.isBrewIngredient(stack);
+                }
+            });
         }
     }
 
     private void addCupsSlots() {
         // Add the tile input containers to the gui
         for (int x = 0; x < CoffeeMachineBlockEntity.CUPS_SLOT_COUNT; x++) {
-            addSlot(new Slot(this.inventory, CoffeeMachineBlockEntity.CUPS_FIRST_SLOT_INDEX + x, CUPS_SLOT_POS_X,  CUPS_SLOT_POS_Y + SLOT_Y_SPACING * x));
+            addSlot(new Slot(this.inventory, CoffeeMachineBlockEntity.CUPS_FIRST_SLOT_INDEX + x, CUPS_SLOT_POS_X, CUPS_SLOT_POS_Y + (SLOT_Y_SPACING * x)) {
+                @Override
+                public boolean canInsert(ItemStack stack) {
+                    return Cups.isCup(stack);
+                }
+            });
         }
     }
 

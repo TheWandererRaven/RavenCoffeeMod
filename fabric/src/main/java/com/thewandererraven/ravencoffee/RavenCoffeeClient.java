@@ -17,6 +17,7 @@ public class RavenCoffeeClient implements ClientModInitializer {
         HandledScreens.register(RavenCoffeeScreenHandlers.COFFEE_GRINDER_SCREEN_HANDLER, CoffeeGrinderScreen::new);
         HandledScreens.register(RavenCoffeeScreenHandlers.COFFEE_MACHINE_SCREEN_HANDLER, CoffeeMachineScreen::new);
         BlockRenderLayerMap.INSTANCE.putBlock(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(RavenCoffeeBlocks.COFFEE_MACHINE_BLOCK, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(RavenCoffeeBlocks.COFFEE_TREE_LEAVES_BLOCK, RenderLayer.getCutout());
     }
 }

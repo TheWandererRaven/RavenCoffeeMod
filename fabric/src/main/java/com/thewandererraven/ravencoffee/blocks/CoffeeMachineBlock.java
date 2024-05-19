@@ -3,7 +3,6 @@ package com.thewandererraven.ravencoffee.blocks;
 import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.entitites.CoffeeMachineBlockEntity;
 import com.thewandererraven.ravencoffee.blocks.entitites.RavenCoffeeBlockEntities;
-import com.thewandererraven.ravencoffee.screens.handlers.CoffeeMachineScreenHandler;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -11,7 +10,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -73,13 +71,38 @@ public class CoffeeMachineBlock extends BlockWithEntity implements BlockEntityPr
         builder.add(HAS_INPUT_CUP);
         builder.add(HAS_COFFEE);
     }
+
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return super.getPlacementState(ctx).with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
-    // #################################################### SHAPES ####################################################
+    @Override
+    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+        checkPoweredState(world, pos, state);
+    }
+
+    private void checkPoweredState(World world, BlockPos pos, BlockState blockState) {
+        boolean flag = !world.isReceivingRedstonePower(pos);
+        if (flag != blockState.get(ENABLED)) {
+            world.setBlockState(pos, blockState.with(ENABLED, Boolean.valueOf(flag)), 4);
+        }
+    }
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof CoffeeMachineBlockEntity) {
+                ItemScatterer.spawn(world, pos, (CoffeeMachineBlockEntity)blockEntity);
+                world.updateComparators(pos,this);
+            }
+            super.onStateReplaced(state, world, pos, newState, moved);
+        }
+    }
+
+    // ################################################# SHAPE & MODEL #################################################
     protected static void calculateShapes(Direction to, VoxelShape shape) {
         VoxelShape[] buffer = new VoxelShape[] { shape, VoxelShapes.empty() };
 
@@ -102,28 +125,16 @@ public class CoffeeMachineBlock extends BlockWithEntity implements BlockEntityPr
         return SHAPES.get(state.get(FACING));
     }
 
-    // #################################################### MODEL ####################################################
-
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
+
+    // #################################################### GENERAL ####################################################
 
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new CoffeeMachineBlockEntity(pos, state);
-    }
-
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.getBlock() != newState.getBlock()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CoffeeMachineBlockEntity) {
-                ItemScatterer.spawn(world, pos, (CoffeeMachineBlockEntity)blockEntity);
-                world.updateComparators(pos,this);
-            }
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
     }
 
     @Override

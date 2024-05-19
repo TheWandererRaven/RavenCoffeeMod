@@ -9,9 +9,14 @@ public class RavenCoffeeRecipes {
         Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(Constants.MOD_ID, CoffeeGrindingRecipe.Serializer.ID),
                 CoffeeGrindingRecipe.Serializer.INSTANCE
         );
+        Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(Constants.MOD_ID, CoffeeBrewingRecipe.Serializer.ID),
+                CoffeeBrewingRecipe.Serializer.INSTANCE
+        );
         Registry.register(Registry.RECIPE_TYPE, new Identifier(Constants.MOD_ID, CoffeeGrindingRecipe.Type.ID),
                 CoffeeGrindingRecipe.Type.INSTANCE
         );
-
+        Registry.register(Registry.RECIPE_TYPE, new Identifier(Constants.MOD_ID, CoffeeBrewingRecipe.Type.ID),
+                CoffeeBrewingRecipe.Type.INSTANCE
+        );
     }
 }
