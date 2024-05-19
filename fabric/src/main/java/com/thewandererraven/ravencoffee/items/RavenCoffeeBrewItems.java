@@ -3,6 +3,7 @@ package com.thewandererraven.ravencoffee.items;
 import com.thewandererraven.ravenbrewscore.CupType;
 import com.thewandererraven.ravencoffee.Constants;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -47,656 +48,654 @@ public class RavenCoffeeBrewItems {
                     new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
             )
     );
-    /*
     //           #######################################   SUGAR   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_SUGAR = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_SUGAR = registerItem(
             "cup_medium_brew_sugar",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.SUGAR,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_SUGAR = BREWS.register(
+    public static final Item CUP_LARGE_BREW_SUGAR = registerItem(
             "cup_large_brew_sugar",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.SUGAR,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_SUGAR = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_SUGAR = registerItem(
             "coffee_mug_brew_sugar",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.SUGAR,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   APPLE   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_APPLE = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_APPLE = registerItem(
             "cup_medium_brew_apple",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.APPLE,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_APPLE = BREWS.register(
+    public static final Item CUP_LARGE_BREW_APPLE = registerItem(
             "cup_large_brew_apple",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.APPLE,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(3)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(3)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_APPLE = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_APPLE = registerItem(
             "coffee_mug_brew_apple",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.APPLE,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
     //           #######################################   BERRY   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_BERRY = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_BERRY = registerItem(
             "cup_medium_brew_berry",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.BERRY,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(1)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(1)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_BERRY = BREWS.register(
+    public static final Item CUP_LARGE_BREW_BERRY = registerItem(
             "cup_large_brew_berry",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.BERRY,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_BERRY = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_BERRY = registerItem(
             "coffee_mug_brew_berry",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.BERRY,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(1)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(1)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
     //           #######################################   HONEY   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_HONEY = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_HONEY = registerItem(
             "cup_medium_brew_honey",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.HONEY,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(6)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(6)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_HONEY = BREWS.register(
+    public static final Item CUP_LARGE_BREW_HONEY = registerItem(
             "cup_large_brew_honey",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.HONEY,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(9)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(9)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_HONEY = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_HONEY = registerItem(
             "coffee_mug_brew_honey",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.HONEY,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(6)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(6)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
     //           #######################################   CHOCOLATE   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_CHOCOLATE = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_CHOCOLATE = registerItem(
             "cup_medium_brew_chocolate",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.CHOCOLATE,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_CHOCOLATE = BREWS.register(
+    public static final Item CUP_LARGE_BREW_CHOCOLATE = registerItem(
             "cup_large_brew_chocolate",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.CHOCOLATE,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(3)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(3)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_CHOCOLATE = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_CHOCOLATE = registerItem(
             "coffee_mug_brew_chocolate",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.CHOCOLATE,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
     //           #######################################   MILK   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_MILK = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_MILK = registerItem(
             "cup_medium_brew_milk",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.MILK,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_MILK = BREWS.register(
+    public static final Item CUP_LARGE_BREW_MILK = registerItem(
             "cup_large_brew_milk",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.MILK,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_MILK = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_MILK = registerItem(
             "coffee_mug_brew_milk",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.MILK,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   MOCHA   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_MOCHA = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_MOCHA = registerItem(
             "cup_medium_brew_mocha",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.MOCHA,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_MOCHA = BREWS.register(
+    public static final Item CUP_LARGE_BREW_MOCHA = registerItem(
             "cup_large_brew_mocha",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.MOCHA,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_MOCHA = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_MOCHA = registerItem(
             "coffee_mug_brew_mocha",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.MOCHA,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   AWKWARD   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_AWKWARD = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_AWKWARD = registerItem(
             "cup_medium_brew_awkward",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.AWKWARD,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_AWKWARD = BREWS.register(
+    public static final Item CUP_LARGE_BREW_AWKWARD = registerItem(
             "cup_large_brew_awkward",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.AWKWARD,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_AWKWARD = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_AWKWARD = registerItem(
             "coffee_mug_brew_awkward",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.AWKWARD,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   CARROT   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_CARROT = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_CARROT = registerItem(
             "cup_medium_brew_carrot",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.CARROT,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(3)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(3)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_CARROT = BREWS.register(
+    public static final Item CUP_LARGE_BREW_CARROT = registerItem(
             "cup_large_brew_carrot",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.CARROT,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(3)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(3)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_CARROT = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_CARROT = registerItem(
             "coffee_mug_brew_carrot",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.CARROT,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(3)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(3)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
     //           #######################################   CARROT_GOLDEN   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_CARROT_GOLDEN = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_CARROT_GOLDEN = registerItem(
             "cup_medium_brew_carrot_golden",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.CARROT_GOLDEN,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(6)
-                                    .saturationMod(0.8f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(6)
+                                    .saturationModifier(0.8f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_CARROT_GOLDEN = BREWS.register(
+    public static final Item CUP_LARGE_BREW_CARROT_GOLDEN = registerItem(
             "cup_large_brew_carrot_golden",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.CARROT_GOLDEN,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(9)
-                                    .saturationMod(0.8f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(9)
+                                    .saturationModifier(0.8f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_CARROT_GOLDEN = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_CARROT_GOLDEN = registerItem(
             "coffee_mug_brew_carrot_golden",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.CARROT_GOLDEN,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(6)
-                                    .saturationMod(0.8f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(6)
+                                    .saturationModifier(0.8f)
                                     .build())
             )
     );
     //           #######################################   COOKIESANDCREAM   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_COOKIESANDCREAM = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_COOKIESANDCREAM = registerItem(
             "cup_medium_brew_cookiesandcream",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.COOKIESANDCREAM,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(4)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(4)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_COOKIESANDCREAM = BREWS.register(
+    public static final Item CUP_LARGE_BREW_COOKIESANDCREAM = registerItem(
             "cup_large_brew_cookiesandcream",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.COOKIESANDCREAM,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(4)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(4)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_COOKIESANDCREAM = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_COOKIESANDCREAM = registerItem(
             "coffee_mug_brew_cookiesandcream",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.COOKIESANDCREAM,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(4)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(4)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
     //           #######################################   END   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_END = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_END = registerItem(
             "cup_medium_brew_end",
-            () -> new ChorusBrew(
+            new ChorusBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.END,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_END = BREWS.register(
+    public static final Item CUP_LARGE_BREW_END = registerItem(
             "cup_large_brew_end",
-            () -> new ChorusBrew(
+            new ChorusBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.END,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(3)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(3)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_END = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_END = registerItem(
             "coffee_mug_brew_end",
-            () -> new ChorusBrew(
+            new ChorusBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.END,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
     //           #######################################   MELON   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_MELON = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_MELON = registerItem(
             "cup_medium_brew_melon",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.MELON,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_MELON = BREWS.register(
+    public static final Item CUP_LARGE_BREW_MELON = registerItem(
             "cup_large_brew_melon",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.MELON,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(3)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(3)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_MELON = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_MELON = registerItem(
             "coffee_mug_brew_melon",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.MELON,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
     //           #######################################   MELON_GOLDEN   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_MELON_GOLDEN = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_MELON_GOLDEN = registerItem(
             "cup_medium_brew_melon_golden",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.MELON_GOLDEN,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_MELON_GOLDEN = BREWS.register(
+    public static final Item CUP_LARGE_BREW_MELON_GOLDEN = registerItem(
             "cup_large_brew_melon_golden",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.MELON_GOLDEN,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(3)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(3)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_MELON_GOLDEN = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_MELON_GOLDEN = registerItem(
             "coffee_mug_brew_melon_golden",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.MELON_GOLDEN,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(2)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(2)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
     //           #######################################   NETHER   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_NETHER = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_NETHER = registerItem(
             "cup_medium_brew_nether",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.NETHER,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(1)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(1)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_NETHER = BREWS.register(
+    public static final Item CUP_LARGE_BREW_NETHER = registerItem(
             "cup_large_brew_nether",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.NETHER,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(1)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(1)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_NETHER = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_NETHER = registerItem(
             "coffee_mug_brew_nether",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.NETHER,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(1)
-                                    .saturationMod(0.1f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(1)
+                                    .saturationModifier(0.1f)
                                     .build())
             )
     );
     //           #######################################   PHANTASM   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_PHANTASM = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_PHANTASM = registerItem(
             "cup_medium_brew_phantasm",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.PHANTASM,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_PHANTASM = BREWS.register(
+    public static final Item CUP_LARGE_BREW_PHANTASM = registerItem(
             "cup_large_brew_phantasm",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.PHANTASM,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_PHANTASM = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_PHANTASM = registerItem(
             "coffee_mug_brew_phantasm",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.PHANTASM,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   PUMPKINSPICELATTE   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_PUMPKINSPICELATTE = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_PUMPKINSPICELATTE = registerItem(
             "cup_medium_brew_pumpkinspicelatte",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.PUMPKINSPICELATTE,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_PUMPKINSPICELATTE = BREWS.register(
+    public static final Item CUP_LARGE_BREW_PUMPKINSPICELATTE = registerItem(
             "cup_large_brew_pumpkinspicelatte",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.PUMPKINSPICELATTE,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_PUMPKINSPICELATTE = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_PUMPKINSPICELATTE = registerItem(
             "coffee_mug_brew_pumpkinspicelatte",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.PUMPKINSPICELATTE,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
             )
     );
     //           #######################################   PUMPKINSPICELATTE_WITH_PUMPKIN   #############################################
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_MEDIUM_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
+    public static final Item CUP_MEDIUM_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = registerItem(
             "cup_medium_brew_pumpkinspicelatte_with_pumpkin",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.CUP_MEDIUM.get(),
+                    RavenCoffeeItems.CUP_MEDIUM,
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(5)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_MEDIUM_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(5)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> CUP_LARGE_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
+    public static final Item CUP_LARGE_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = registerItem(
             "cup_large_brew_pumpkinspicelatte_with_pumpkin",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.LARGE,
-                    RavenCoffeeItems.CUP_LARGE.get(),
+                    RavenCoffeeItems.CUP_LARGE,
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
-                    new net.minecraft.world.item.Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(5)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.CUP_LARGE_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(5)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-    public static final RegistryObject<net.minecraft.world.item.Item> COFFEE_MUG_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = BREWS.register(
+    public static final Item COFFEE_MUG_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN = registerItem(
             "coffee_mug_brew_pumpkinspicelatte_with_pumpkin",
-            () -> new CoffeeBrew(
+            new CoffeeBrew(
                     CupType.MEDIUM,
-                    RavenCoffeeItems.COFFEE_MUG.get(),
+                    RavenCoffeeItems.COFFEE_MUG,
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
-                            .food(new FoodProperties.Builder()
-                                    .nutrition(5)
-                                    .saturationMod(0.3f)
+                    new FabricItemSettings().group(RavenCoffeeItemGroups.COFFEE_MUG_TAB)
+                            .food(new FoodComponent.Builder()
+                                    .hunger(5)
+                                    .saturationModifier(0.3f)
                                     .build())
             )
     );
-     */
 
 
     private static net.minecraft.item.Item registerItem(String name, net.minecraft.item.Item item) {
