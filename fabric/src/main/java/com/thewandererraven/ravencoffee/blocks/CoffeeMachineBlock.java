@@ -1,5 +1,6 @@
 package com.thewandererraven.ravencoffee.blocks;
 
+import com.google.common.collect.ImmutableMap;
 import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.entitites.CoffeeMachineBlockEntity;
 import com.thewandererraven.ravencoffee.blocks.entitites.RavenCoffeeBlockEntities;
@@ -14,9 +15,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -28,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public class CoffeeMachineBlock extends BlockWithEntity implements BlockEntityProvider {
     private static final Text TITLE = Text.translatable("container." + Constants.MOD_ID + ".coffee_grinder_registry_name");
@@ -70,6 +70,16 @@ public class CoffeeMachineBlock extends BlockWithEntity implements BlockEntityPr
         builder.add(HAS_OUTPUT);
         builder.add(HAS_INPUT_CUP);
         builder.add(HAS_COFFEE);
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state.rotate(mirror.getRotation(state.get(FACING)));
     }
 
     @Nullable

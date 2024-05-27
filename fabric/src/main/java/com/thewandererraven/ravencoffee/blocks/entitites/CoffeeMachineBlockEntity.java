@@ -289,8 +289,9 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements NamedScreen
         if (stateHasOutput && (isCurrentOutputEmpty && !stateIsActive))
             currentBlockState = currentBlockState.with(CoffeeMachineBlock.HAS_OUTPUT, false);
 
-        this.setCachedState(currentBlockState);
-        //this.getWorld().setBlockState(this.pos, currentBlockState);
+        //this.setCachedState(currentBlockState);
+        if(this.getWorld() != null)
+            this.getWorld().setBlockState(this.pos, currentBlockState);
     }
 
     private boolean canBrew() {
