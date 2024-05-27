@@ -21,6 +21,8 @@ dependencies {
     modImplementation "com.thewandererraven.ravenbrewscore:ravenbrewscore-fabric-${minecraft_version}-${ravebrewscore_version}:api"
     //implementation fg.deobf("com.thewandererraven.ravenbrewscore:ravenbrewscore-fabric-${minecraft_version}-${ravebrewscore_version}:api")
 
+    modImplementation "maven.modrinth:Wd844r7Q:1.19-01"
+    include("maven.modrinth:Wd844r7Q:1.19-01")
 
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":Common")

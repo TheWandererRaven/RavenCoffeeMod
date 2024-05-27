@@ -25,5 +25,8 @@ public class RavenCoffeeFabric implements ModInitializer {
         RavenCoffeeBrewItems.register();
         RavenCoffeeBlockEntities.register();
         RavenCoffeeRecipes.registerRecipes();
+
+        VillageAdditions.registerNewVillageStructures();
+
     }
 }
