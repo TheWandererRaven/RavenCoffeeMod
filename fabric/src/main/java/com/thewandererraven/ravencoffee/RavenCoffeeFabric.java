@@ -6,6 +6,8 @@ import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipes;
 import com.thewandererraven.ravencoffee.screens.handlers.RavenCoffeeScreenHandlers;
+import com.thewandererraven.ravencoffee.villagers.RavenCoffeeVillagerTrades;
+import com.thewandererraven.ravencoffee.villagers.RavenCoffeeVillagers;
 import com.thewandererraven.ravencoffee.world.feature.RavenCoffeeConfiguredFeatures;
 import com.thewandererraven.ravencoffee.world.feature.RavenCoffeeFeatures;
 import com.thewandererraven.ravencoffee.world.feature.RavenCoffeePlacedFeatures;
@@ -36,6 +38,9 @@ public class RavenCoffeeFabric implements ModInitializer {
         RavenCoffeePlacedFeatures.registerPlacedFeatures();
 
         VillageAdditions.registerNewVillageStructures();
+
+        RavenCoffeeVillagers.registerVillagers();
+        RavenCoffeeVillagerTrades.registerTrades();
 
         RavenCoffeeWorldGen.generateWorldGen();
     }
