@@ -132,5 +132,6 @@
   "block.ravencoffee.coffee_tree_leaves_block": "Hojas de cafeto",
   "block.ravencoffee.coffee_tree_trunk_block": "Tronco de cafeto",
 
-  "entity.minecraft.villager.ravencoffee.barista": "Barista"
+  "entity.minecraft.villager.ravencoffee.barista": "Barista",
+  "entity.minecraft.villager.barista": "Barista"
 }

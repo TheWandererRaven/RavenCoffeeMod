@@ -132,5 +132,6 @@
   "block.ravencoffee.coffee_tree_leaves_block": "\u5496\u5561\u6811\u53f6",
   "block.ravencoffee.coffee_tree_trunk_block": "\u5496\u5561\u6811\u5e72",
 
-  "entity.minecraft.villager.ravencoffee.barista": "\u5496\u5561\u5e08"
+  "entity.minecraft.villager.ravencoffee.barista": "\u5496\u5561\u5e08",
+  "entity.minecraft.villager.barista": "\u5496\u5561\u5e08"
 }
