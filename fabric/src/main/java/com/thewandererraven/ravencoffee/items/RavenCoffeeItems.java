@@ -62,10 +62,9 @@ public class RavenCoffeeItems {
                     )
             )
     );
-    /*
     public static final Item MUFFIN = registerItem(
             "muffin",
-            new ItemThrowable(new FabricItemSettings()
+            new MuffinItem(new FabricItemSettings()
                     .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
                             .hunger(2)
@@ -74,7 +73,6 @@ public class RavenCoffeeItems {
                     )
             )
     );
-     */
     public static final Item MELON_PAN = registerItem(
             "melon_pan",
             new Item(new FabricItemSettings()
