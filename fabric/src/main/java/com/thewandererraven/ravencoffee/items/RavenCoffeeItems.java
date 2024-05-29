@@ -5,10 +5,7 @@ import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -320,29 +317,28 @@ public class RavenCoffeeItems {
 
     // ################################################# COFFEE TOOLS ##################################################
     //                               Material Tier || Extra Attack Points || Attack Speed = 4 + n || Creative GENERAL_TAB
-    /*
     public static final Item COFFEE_PICKAXE = registerItem(
             "coffee_pickaxe",
-            new PickaxeItem(RavenCoffeeItemTier.COFFEE, 3, -2.8f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB))
+            new PickaxeItem(RavenCoffeeToolMaterial.COFFEE, 3, -2.8f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB))
     );
     public static final Item COFFEE_AXE =  registerItem(
             "coffee_axe",
-            new AxeItem(RavenCoffeeItemTier.COFFEE, 8, -2.7f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB))
+            new AxeItem(RavenCoffeeToolMaterial.COFFEE, 8, -2.7f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB))
     );
     public static final Item COFFEE_HOE =  registerItem(
             "coffee_hoe",
-            new HoeItem(RavenCoffeeItemTier.COFFEE, 0, 1.0f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB))
+            new HoeItem(RavenCoffeeToolMaterial.COFFEE, 0, 1.0f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB)) {
+
+            }
     );
     public static final Item COFFEE_SHOVEL =  registerItem(
             "coffee_shovel",
-            new ShovelItem(RavenCoffeeItemTier.COFFEE, 4, -3.0f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB))
+            new ShovelItem(RavenCoffeeToolMaterial.COFFEE, 4, -3.0f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB))
     );
     public static final Item COFFEE_SWORD =  registerItem(
             "coffee_sword",
-            new SwordItem(RavenCoffeeItemTier.COFFEE, 5, -2.0f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB))
+            new SwordItem(RavenCoffeeToolMaterial.COFFEE, 5, -2.0f, new FabricItemSettings().group(RavenCoffeeItemGroups.GENERAL_TAB))
     );
-
-     */
 
     // ############################################### COFFEE BLOCK ITEMS ################################################
     public static final Item BROWNIE_BLOCK_ITEM = registerItem(

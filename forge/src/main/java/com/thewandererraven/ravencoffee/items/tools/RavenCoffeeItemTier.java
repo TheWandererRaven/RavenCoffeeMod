@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 public enum RavenCoffeeItemTier implements Tier {
     // Material Tier / Durability / Efficiency / Base damage / enchantability / Repair material
-    COFFEE(2, 500, 8.0f, 0.0f, 18, () -> {
+    COFFEE(2, 350, 7.0f, 0.0f, 20, () -> {
         return Ingredient.of(RavenCoffeeItems.COFFEE_INGOT.get());
     });
 
