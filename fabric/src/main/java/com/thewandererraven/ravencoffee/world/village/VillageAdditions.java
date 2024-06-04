@@ -1,6 +1,7 @@
 package com.thewandererraven.ravencoffee.world.village;
 
 import com.thewandererraven.ravencoffee.Constants;
+import com.thewandererraven.ravencoffee.RavenCoffeeFabric;
 import fzzyhmstrs.structurized_reborn.impl.FabricStructurePoolRegistry;
 import net.minecraft.util.Identifier;
 
@@ -8,7 +9,7 @@ public class VillageAdditions {
     public static void registerNewVillageStructures() {
         // Seed for Testing:
         int coffeeShopsWeight = 10;
-        int coffeeShopEntrancesWeight = 1;
+        int coffeeShopEntrancesWeight = RavenCoffeeFabric.CONFIG.generateCoffeeShops() ? RavenCoffeeFabric.CONFIG.coffeeShopsRarity() : 0;
 
         // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"chests/village/desert_coffe_shop"}
         // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"ravencoffee:chests/village/desert_coffee_shop_chest"}

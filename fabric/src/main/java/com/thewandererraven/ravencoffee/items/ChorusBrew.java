@@ -2,6 +2,7 @@ package com.thewandererraven.ravencoffee.items;
 
 import com.thewandererraven.ravenbrewscore.Brew;
 import com.thewandererraven.ravenbrewscore.CupType;
+import com.thewandererraven.ravencoffee.RavenCoffeeFabric;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.FoxEntity;
@@ -23,7 +24,7 @@ public class ChorusBrew extends CoffeeBrew {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity entity) {
         ItemStack lvt_4_1_ = super.finishUsing(stack, world, entity);
-        if (!world.isClient()) {
+        if (!world.isClient() && !RavenCoffeeFabric.CONFIG.disableCoffeeBrewEffects()) {
             double lvt_5_1_ = entity.getX();
             double lvt_7_1_ = entity.getY();
             double lvt_9_1_ = entity.getZ();

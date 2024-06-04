@@ -2,6 +2,7 @@ package com.thewandererraven.ravencoffee;
 
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.blocks.entitites.RavenCoffeeBlockEntities;
+import com.thewandererraven.ravencoffee.config.RavenCoffeeConfig;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipes;
@@ -16,7 +17,9 @@ import com.thewandererraven.ravencoffee.world.village.VillageAdditions;
 import net.fabricmc.api.ModInitializer;
 
 public class RavenCoffeeFabric implements ModInitializer {
-    
+
+    public static final RavenCoffeeConfig CONFIG = RavenCoffeeConfig.createAndLoad();
+
     @Override
     public void onInitialize() {
         

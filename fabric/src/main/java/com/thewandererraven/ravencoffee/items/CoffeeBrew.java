@@ -4,6 +4,7 @@ import com.thewandererraven.ravenbrewscore.Brew;
 import com.thewandererraven.ravenbrewscore.BrewEffect;
 import com.thewandererraven.ravenbrewscore.CupType;
 import com.thewandererraven.ravencoffee.Constants;
+import com.thewandererraven.ravencoffee.RavenCoffeeFabric;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -67,7 +68,7 @@ public class CoffeeBrew extends Item {
             serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
         }
 
-        if (!level.isClient) {
+        if (!level.isClient && !RavenCoffeeFabric.CONFIG.disableCoffeeBrewEffects()) {
             for(BrewEffect brewEffect : this.brew.effects) {
                 if(!brewEffect.isForRemoving) {
                     double randomValue = Math.random();
@@ -87,7 +88,8 @@ public class CoffeeBrew extends Item {
         }
 
         if(entity instanceof ServerPlayerEntity player) {
-            player.eatFood(level, stack);
+            if(!RavenCoffeeFabric.CONFIG.disableCoffeeBrewFoodValues())
+                player.eatFood(level, stack);
             player.incrementStat(Stats.USED.getOrCreateStat(this));
             if (!player.getAbilities().creativeMode) {
                 stack.decrement(1);
