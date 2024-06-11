@@ -3,6 +3,7 @@ package com.thewandererraven.ravencoffee.items;
 import com.thewandererraven.ravenbrewscore.Brew;
 import com.thewandererraven.ravenbrewscore.BrewEffect;
 import com.thewandererraven.ravenbrewscore.CupType;
+import com.thewandererraven.ravencoffee.util.configuration.RavenCoffeeCommonConfigs;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -66,7 +67,7 @@ public class CoffeeBrew extends Item {
             CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer)player, stack);
         }
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide && !RavenCoffeeCommonConfigs.DISABLE_COFFEE_BREW_EFFECTS.get()) {
             for(BrewEffect brewEffect : this.brew.effects) {
                 if(!brewEffect.isForRemoving) {
                     double randomValue = Math.random();
@@ -85,7 +86,7 @@ public class CoffeeBrew extends Item {
             }
         }
 
-        if (player != null) {
+        if (player != null && !RavenCoffeeCommonConfigs.DISABLE_COFFEE_BREW_FOOD_VALUES.get()) {
             player.eat(level, stack);
             player.awardStat(Stats.ITEM_USED.get(this));
             if (!player.getAbilities().instabuild) {

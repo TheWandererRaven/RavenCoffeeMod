@@ -10,7 +10,8 @@ import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipeTypes;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipes;
 import com.thewandererraven.ravencoffee.containers.screen.CoffeeMachineScreen;
-import com.thewandererraven.ravencoffee.util.configuration.ModConfiguration;
+import com.thewandererraven.ravencoffee.util.configuration.RavenCoffeeClientConfigs;
+import com.thewandererraven.ravencoffee.util.configuration.RavenCoffeeCommonConfigs;
 import com.thewandererraven.ravencoffee.util.registries.*;
 import com.thewandererraven.ravencoffee.villager.RavenCoffeeVillagers;
 import com.thewandererraven.ravencoffee.world.features.RavenCoffeeConfiguredFeatures;
@@ -40,12 +41,14 @@ public class RavenCoffeeForge
         if(!isRavenBrewsPresent()) throw new Exception("Raven Brews Core not present!");
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-
         eventBus.addListener(this::setup);
         //MinecraftForge.EVENT_BUS.addListener(this::doBiomeStuff);
         eventBus.addListener(this::setupClient);
         eventBus.addListener(this::postInit);
         eventBus.addListener(this::registerEntityRenderers);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, RavenCoffeeClientConfigs.SPEC, "ravencoffee-client.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RavenCoffeeCommonConfigs.SPEC, "ravencoffee-common.toml");
 
         RavenCoffeeRecipeTypes.RECIPE_TYPES.register(eventBus);
         RavenCoffeeRecipes.RECIPE_SERIALIZERS.register(eventBus);
@@ -63,9 +66,6 @@ public class RavenCoffeeForge
         RavenCoffeePlacedFeatures.PLACED_FEATURES.register(eventBus);
         //ConfiguredFeaturesRegistry.register();
         //PlacedFeaturesRegistry.register();
-
-
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_SPEC);
 
         MinecraftForge.EVENT_BUS.register(this);
         Constants.LOGGER.info("RAVEN COFFEE FINISHED SETUP!");

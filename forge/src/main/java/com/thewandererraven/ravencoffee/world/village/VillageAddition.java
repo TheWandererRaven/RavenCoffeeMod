@@ -2,6 +2,7 @@ package com.thewandererraven.ravencoffee.world.village;
 
 import com.mojang.datafixers.util.Pair;
 import com.thewandererraven.ravencoffee.Constants;
+import com.thewandererraven.ravencoffee.util.configuration.RavenCoffeeCommonConfigs;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -76,7 +77,8 @@ public class VillageAddition {
 
         // Seed for Testing:
         int coffeeShopsWeight = 10;
-        int coffeeShopEntrancesWeight = 1;
+        //int coffeeShopEntrancesWeight = 1;
+        int coffeeShopEntrancesWeight = RavenCoffeeCommonConfigs.GENERATE_COFFEE_SHOPS.get() ? RavenCoffeeCommonConfigs.COFFEE_SHOPS_RARITY.get() : 0;
 
         // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"chests/village/desert_coffe_shop"}
         // /setblock 22 -60 -1 minecraft:chest[facing=west]{LootTable:"ravencoffee:chests/village/desert_coffee_shop_chest"}
