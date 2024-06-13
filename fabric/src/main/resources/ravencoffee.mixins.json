@@ -4,6 +4,7 @@
     "package": "com.thewandererraven.ravencoffee.mixin",
     "compatibilityLevel": "JAVA_17",
     "mixins": [
+      "DispenserMixin"
     ],
     "client": [
       "ExampleMixin"
