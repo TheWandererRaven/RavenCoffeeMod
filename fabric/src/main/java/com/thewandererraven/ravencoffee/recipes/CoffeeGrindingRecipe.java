@@ -35,6 +35,11 @@ public class CoffeeGrindingRecipe implements Recipe<Inventory> {
         return this.id;
     }
 
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
+
     // ################################################### CRAFTING ###################################################
     @Override
     public boolean matches(Inventory inventory, World world) {
