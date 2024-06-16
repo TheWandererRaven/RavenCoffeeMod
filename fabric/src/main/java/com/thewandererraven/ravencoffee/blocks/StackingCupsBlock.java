@@ -40,7 +40,7 @@ public class StackingCupsBlock extends BlockWithEntity implements BlockEntityPro
     public static final VoxelShape SHAPE_9 = Block.createCuboidShape(1, 0, 2, 16, 10, 16);
 
     public static final IntProperty CUP_COUNT = IntProperty.of("cup_count", 0, 9);
-    public static final DirectionProperty FACING = Properties.FACING;
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final EnumProperty<CupType> CUP_TYPE = EnumProperty.of("cup_type", CupType.class);
 
     public StackingCupsBlock() {

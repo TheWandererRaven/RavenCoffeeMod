@@ -30,7 +30,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 public class CoffeeMachineBlock extends BlockWithEntity implements BlockEntityProvider {
-    private static final Text TITLE = Text.translatable("container." + Constants.MOD_ID + ".coffee_grinder_registry_name");
     public static final VoxelShape SHAPE = VoxelShapes.union(
             Block.createCuboidShape(1, 0, 1, 15, 1, 5),
             Block.createCuboidShape(1, 0, 5, 15, 11, 15),

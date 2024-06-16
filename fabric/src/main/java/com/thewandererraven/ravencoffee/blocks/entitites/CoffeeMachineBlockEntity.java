@@ -1,5 +1,6 @@
 package com.thewandererraven.ravencoffee.blocks.entitites;
 
+import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.CoffeeMachineBlock;
 import com.thewandererraven.ravencoffee.recipes.CoffeeBrewSizedIngredient;
 import com.thewandererraven.ravencoffee.recipes.CoffeeBrewingRecipe;
@@ -87,7 +88,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements NamedScreen
 
     @Override
     public Text getDisplayName() {
-        return Text.literal("Coffee Grinding Machine");
+        return Text.translatable("container." + Constants.MOD_ID + ".coffee_machine");
     }
 
     @Nullable

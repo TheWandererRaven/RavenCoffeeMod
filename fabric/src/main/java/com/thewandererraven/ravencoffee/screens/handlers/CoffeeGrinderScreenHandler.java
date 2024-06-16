@@ -131,7 +131,6 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
 
     protected static void updateResult(ScreenHandler handler, World world, PlayerEntity player, CraftingInventory craftingInventory, CraftingResultInventory resultInventory) {
         if (!world.isClient) {
-            Constants.LOGGER.info("NOT CLIENT!");
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
             ItemStack itemStack = ItemStack.EMPTY;
             Optional<CoffeeGrindingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(CoffeeGrindingRecipe.Type.INSTANCE, craftingInventory, world);
@@ -144,7 +143,6 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
 
             resultInventory.setStack(0, itemStack);
         }
-        Constants.LOGGER.info("CLIENT!");
     }
 
     @Override

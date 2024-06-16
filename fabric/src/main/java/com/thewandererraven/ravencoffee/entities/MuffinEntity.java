@@ -4,9 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.Items;
@@ -65,7 +63,7 @@ public class MuffinEntity extends SnowballEntity {
             hitAnimal.world.playSound(null, hitAnimal.getBlockPos(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.AMBIENT, 1.0f, 1.15f);
             hitAnimal.world.playSound(null, hitAnimal.getBlockPos(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.AMBIENT, 1.0f, 1.1f);
         }
-        else {
+        else if(!(hitEntity instanceof GolemEntity))  {
             hitEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float) 1.0);
         }
     }
