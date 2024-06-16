@@ -3,6 +3,7 @@ package com.thewandererraven.ravencoffee.blocks;
 import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -37,11 +38,18 @@ public class RavenCoffeeBlocks {
     );
     public static final RegistryObject<Block> COFFEE_BEANS_ROASTED_BLOCK = BLOCKS.register(
             "coffee_beans_roasted_block",
-            CoffeeBeansRoastedBlock::new
+            () -> new Block(BlockBehaviour.Properties.of(Material.CACTUS)
+                    .strength(1.0f, 1.0f)
+                    .sound(SoundType.WOOD)
+            )
     );
     public static final RegistryObject<Block> COFFEE_BEANS_MAGMA_BLOCK = BLOCKS.register(
             "coffee_beans_magma_block",
-            CoffeeBeansMagmaBlock::new
+            () -> new MagmaBlock(BlockBehaviour.Properties.of(Material.CACTUS)
+                    .strength(1.0f, 1.0f)
+                    .sound(SoundType.STONE)
+                    .speedFactor(1.5f)
+            )
     );
     public static final RegistryObject<Block> COFFEE_TREE_LEAVES_BLOCK = BLOCKS.register(
             "coffee_tree_leaves_block",

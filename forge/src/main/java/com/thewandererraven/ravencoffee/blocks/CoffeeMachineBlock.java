@@ -75,7 +75,6 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
 
     public CoffeeMachineBlock() {
         super(Properties.of(Material.METAL)
-                .strength(2.0f, 2.0f)
                 .sound(SoundType.METAL)
         );
         this.registerDefaultState(this.getStateDefinition().any()

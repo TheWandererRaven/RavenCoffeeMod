@@ -37,9 +37,8 @@ public class RavenCoffeeBlocks {
             "coffee_beans_roasted_block",
             new Block(AbstractBlock.Settings
                     .of(Material.CACTUS)
-                    .strength(2.0f, 1.0f)
+                    .strength(1.0f, 1.0f)
                     .sounds(BlockSoundGroup.STONE)
-                    .requiresTool()
             )
     );
 
@@ -47,9 +46,8 @@ public class RavenCoffeeBlocks {
             "coffee_beans_magma_block",
             new MagmaBlock(AbstractBlock.Settings
                     .of(Material.CACTUS)
-                    .strength(2.0f, 1.0f)
+                    .strength(1.0f, 1.0f)
                     .sounds(BlockSoundGroup.STONE)
-                    .requiresTool()
                     .velocityMultiplier(1.5f)
             )
     );
