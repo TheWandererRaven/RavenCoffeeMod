@@ -3,11 +3,17 @@ package com.thewandererraven.ravencoffee.items;
 import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class RavenCoffeeItems {
 
@@ -350,7 +356,17 @@ public class RavenCoffeeItems {
                             .saturationModifier(1.0f)
                             .statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 6000, 5), 1.0f)
                             .build()
-                    ))
+                    )) {
+                @Override
+                public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+                    String descriptionKey = this.getTranslationKey().concat(".tooltip");
+                    String completeDescription = (Text.translatable(descriptionKey)).getString();
+                    tooltip.add(Text.of(String.format(
+                            "\u00A77%s\u00A77",
+                            completeDescription
+                    )));
+                }
+            }
     );
 
     public static final Item ROSCA_DE_REYES_BLOCK_ITEM = registerItem(

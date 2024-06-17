@@ -129,7 +129,7 @@ public class CoffeeBrew extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        String descriptionKey = this.getTranslationKey().concat(".description");
+        String descriptionKey = this.getTranslationKey().concat(".tooltip");
         String completeDescription = (Text.translatable(descriptionKey)).getString();
         if(!completeDescription.equals(descriptionKey))
             for(String line: completeDescription.split("<br>")) {

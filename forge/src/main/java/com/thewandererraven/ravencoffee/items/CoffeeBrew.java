@@ -127,8 +127,9 @@ public class CoffeeBrew extends Item {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(@Nonnull ItemStack p_77624_1_, @Nullable Level p_77624_2_, @Nonnull List<Component> p_77624_3_, @Nonnull TooltipFlag p_77624_4_) {
-        String descriptionKey = this.getDescriptionId().concat(".description");
+    @Override
+    public void appendHoverText(@Nonnull ItemStack p_77624_1_, @Nullable Level p_77624_2_, @Nonnull List<Component> p_77624_3_, @Nonnull TooltipFlag p_77624_4_) {
+        String descriptionKey = this.getDescriptionId().concat(".tooltip");
         String completeDescription = (Component.translatable(descriptionKey)).getString();
         if(!completeDescription.equals(descriptionKey))
             for(String line: completeDescription.split("<br>")) {
