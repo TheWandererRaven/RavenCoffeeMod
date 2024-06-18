@@ -84,7 +84,7 @@
 
   "item.ravencoffee.coffee_mug": "Coffee Mug",
   "item.ravencoffee.coffee_mug_brew_basic": "Coffee",
-  "item.ravencoffee.coffee_mug_brew_basic.description": "Smell the fragrance of<br>dark coffee",
+  "item.ravencoffee.coffee_mug_brew_basic.tooltip": "Smell the fragrance of<br>dark coffee",
   "item.ravencoffee.coffee_mug_brew_apple": "Apple Coffee",
   "item.ravencoffee.coffee_mug_brew_berry": "Berry Coffee",
   "item.ravencoffee.coffee_mug_brew_chocolate": "Chocolate",
@@ -119,6 +119,7 @@
   "block.ravencoffee.coffee_grinder_block": "Coffee Grinder",
   "container.ravencoffee.coffee_grinder_registry_name": "Coffee Grinder",
   "block.ravencoffee.brownie_block": "BIG Brownie",
+  "block.ravencoffee.brownie_block.tooltip": "Eat it with some milk!",
   "block.ravencoffee.rosca_de_reyes_block": "Rosca de Reyes",
   "block.ravencoffee.tiramisu_block": "Tiramisù",
   "block.ravencoffee.coffee_machine_block": "Coffee Machine",
