@@ -1,19 +1,14 @@
 package com.thewandererraven.ravencoffee.blocks;
 
-import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.WorldView;
 
 public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
@@ -53,6 +48,15 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
 
     public CoffeeTreeLeavesBlock(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        boolean flag = false;
+        BlockState belowBlock = world.getBlockState(pos.down());
+        if(belowBlock.isOf(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK))
+            flag = ((CoffeeTreeTrunkBlock)belowBlock.getBlock()).isMature(belowBlock);
+        return super.canPlaceAt(state, world, pos) && flag;
     }
 
     @Override

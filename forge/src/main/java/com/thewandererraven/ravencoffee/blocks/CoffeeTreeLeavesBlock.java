@@ -2,6 +2,7 @@ package com.thewandererraven.ravencoffee.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -26,6 +27,15 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
     @Override
     public VoxelShape getShape(BlockState p_220053_1_, BlockGetter p_220053_2_, BlockPos p_220053_3_, CollisionContext p_220053_4_) {
         return SHAPE_BY_AGE[p_220053_1_.getValue(this.getAgeProperty())];
+    }
+
+    @Override
+    public boolean canSurvive(BlockState blockState, LevelReader blockGetter, BlockPos blockPos) {
+        boolean flag = false;
+        BlockState belowBlock = blockGetter.getBlockState(blockPos.below());
+        if(belowBlock.is(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK.get()))
+            flag = ((CoffeeTreeTrunkBlock)belowBlock.getBlock()).isMaxAge(belowBlock);
+        return super.canSurvive(blockState, blockGetter, blockPos) && flag;
     }
 
     static {
