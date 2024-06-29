@@ -2,8 +2,10 @@ package com.thewandererraven.ravencoffee.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -18,11 +20,6 @@ public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
     public CoffeeTreeTrunkBlock(Properties p_i48421_1_) {
         super(p_i48421_1_);
         this.registerDefaultState(this.getStateDefinition().any().setValue(this.getAgeProperty(), 0));
-    }
-
-    @Override
-    protected boolean mayPlaceOn(BlockState p_200014_1_, BlockGetter p_200014_2_, BlockPos p_200014_3_) {
-        return p_200014_1_.is(net.minecraft.world.level.block.Blocks.GRASS_BLOCK) || p_200014_1_.is(net.minecraft.world.level.block.Blocks.DIRT);
     }
 
     public Block getLeavesBlock() {
@@ -46,7 +43,8 @@ public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
         //boolean isMaxAge = (age+1) >= this.getMaxAge(), isAboveEmpty = server.isEmptyBlock(abovePos);
         if((age+1) >= this.getMaxAge() && server.isEmptyBlock(abovePos)) {
             server.setBlock(abovePos, this.getLeavesBlock().defaultBlockState(), 2);
-        }
+        } else if (server.getBlockState(abovePos).is(getLeavesBlock()))
+            server.destroyBlock(abovePos, true);
     }
 
     @Override
