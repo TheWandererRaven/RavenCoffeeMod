@@ -15,6 +15,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
@@ -106,7 +107,7 @@ public abstract class CoffeeTreeBlock extends PlantBlock implements Fertilizable
     // ##################################### BLOCK #####################################
 
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isOf(Blocks.GRASS_BLOCK) || floor.isOf(Blocks.DIRT);
+        return floor.isIn(BlockTags.DIRT);
     }
 
 
