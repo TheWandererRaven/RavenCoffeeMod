@@ -103,17 +103,27 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
             i = j;
         }
 
-        level.setBlock(blockPos, this.getStateForAge(i), 2);
+        level.setBlock(blockPos, blockState.setValue(AGE, i), 2);
     }
 
     // ##################################### TICKS #####################################
 
     @Override
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+        if (serverLevel.getLightEmission(blockPos) >= 9) {
+            int i = this.getAge(blockState);
+            if (i < this.getMaxAge()) {
+                if (randomSource.nextInt((int)(25.0F) + 1) == 0) {
+                    serverLevel.setBlock(blockPos, blockState.setValue(AGE, i + 1), 2);
+                }
+            }
+        }
+        /*
         if (!serverLevel.isAreaLoaded(blockPos, 1)) return;
         if (!blockState.canSurvive(serverLevel, blockPos)) {
             serverLevel.destroyBlock(blockPos, true);
         }
+         */
     }
 
     public void tickGrow(int age, BlockState blockState, ServerLevel server, BlockPos blockPos) {
@@ -141,8 +151,20 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     // ##################################### BONEMEAL #####################################
 
     @Override
-    protected int getBonemealAgeIncrease(Level p_185529_1_) {
-        return Mth.nextInt(p_185529_1_.random, 2, 5);
+    protected int getBonemealAgeIncrease(Level level) {
+        return Mth.nextInt(level.random, 1, 3);
+    }
+
+    public void applyGrowth(ServerLevel world, BlockPos pos, BlockState state) {
+        BlockState latestState = world.getBlockState(pos.below());
+        int i = this.getAge(state) + this.getBonemealAgeIncrease(world);
+        int j = this.getMaxAge();
+        if (i > j) {
+            i = j;
+        }
+        latestState = world.getBlockState(pos.below());
+        world.setBlock(pos, state.setValue(AGE, i), 2);
+        latestState = world.getBlockState(pos.below());
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.thewandererraven.ravencoffee.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,6 +37,17 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
         if(belowBlock.is(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK.get()))
             flag = ((CoffeeTreeTrunkBlock)belowBlock.getBlock()).isMaxAge(belowBlock);
         return super.canSurvive(blockState, blockGetter, blockPos) && flag;
+    }
+
+    @Override
+    public void onRemove(BlockState oldState, Level level, BlockPos blockPos, BlockState newState, boolean isClient) {
+        if(!isClient) {
+            super.onRemove(oldState, level, blockPos, newState, isClient);
+            BlockState blockDown = level.getBlockState(blockPos.below());
+            if (blockDown.is(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK.get()) && !newState.is(this))
+                if (blockDown.getValue(CoffeeTreeTrunkBlock.HAS_LEAVES))
+                    level.setBlock(blockPos.below(), blockDown.setValue(CoffeeTreeTrunkBlock.HAS_LEAVES, false), 2);
+        }
     }
 
     static {
