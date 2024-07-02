@@ -27,49 +27,11 @@ import net.minecraft.world.WorldView;
 
 import javax.annotation.Nullable;
 
-public abstract class CoffeeTreeBlock extends PlantBlock implements Fertilizable {
+public abstract class CoffeeTreeBlock extends CropBlock {
     public static final IntProperty AGE = Properties.AGE_3;
-    /*
-    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.createCuboidShape(
-                    0.0D,
-                    0.0D,// volume bottom
-                    0.0D,
-                    16.0D,// top
-                    16.0D,// volume top
-                    16.0D// right
-            ),
-            Block.createCuboidShape(
-                    0.0D,
-                    0.0D,// volume bottom
-                    0.0D,
-                    16.0D,// top
-                    16.0D,// volume top
-                    16.0D// right
-            ),
-            Block.createCuboidShape(
-                    0.0D,
-                    0.0D,// volume bottom
-                    0.0D,
-                    16.0D,// top
-                    16.0D,// volume top
-                    16.0D// right
-            ),
-            Block.createCuboidShape(
-                    0.0D,
-                    0.0D,// volume bottom
-                    0.0D,
-                    16.0D,// top
-                    16.0D,// volume top
-                    16.0D// right
-            )
-    };
-
-     */
 
     public CoffeeTreeBlock(Settings properties) {
         super(properties);
-        this.setDefaultState(this.getDefaultState().with(this.getAgeProperty(), 0));
     }
 
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
@@ -99,35 +61,40 @@ public abstract class CoffeeTreeBlock extends PlantBlock implements Fertilizable
 
     @Override
     protected void appendProperties(StateManager.Builder<net.minecraft.block.Block, BlockState> builder) {
-        super.appendProperties(builder);
         builder.add(AGE);
     }
 
 
     // ##################################### BLOCK #####################################
 
+    @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isIn(BlockTags.DIRT);
     }
 
 
     // ##################################### AGE #####################################
+    @Override
     public IntProperty getAgeProperty() {
         return AGE;
     }
 
+    @Override
     public int getMaxAge() {
         return 3;
     }
 
+    @Override
     protected int getAge(BlockState state) {
         return (Integer)state.get(this.getAgeProperty());
     }
 
+    @Override
     public BlockState withAge(int age) {
         return (BlockState)this.getDefaultState().with(this.getAgeProperty(), age);
     }
 
+    @Override
     public boolean isMature(BlockState state) {
         return (Integer)state.get(this.getAgeProperty()) >= this.getMaxAge();
     }
@@ -139,6 +106,7 @@ public abstract class CoffeeTreeBlock extends PlantBlock implements Fertilizable
         return !this.isMature(state);
     }
 
+    @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (world.getBaseLightLevel(pos, 0) >= 9) {
             int i = this.getAge(state);
@@ -170,7 +138,6 @@ public abstract class CoffeeTreeBlock extends PlantBlock implements Fertilizable
     }
 
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        // TODO: Update to enable fertilizable if leaves block can be too
         return !this.isMature(state);
     }
 
@@ -181,5 +148,4 @@ public abstract class CoffeeTreeBlock extends PlantBlock implements Fertilizable
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         this.applyGrowth(world, pos, state);
     }
-
 }

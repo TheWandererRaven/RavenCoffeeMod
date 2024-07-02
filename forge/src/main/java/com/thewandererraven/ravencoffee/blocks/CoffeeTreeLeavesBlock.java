@@ -60,28 +60,31 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
                         12.0D,// TOP
                         8.0D,// VOLUME TOP
                         12.0D// RIGHT
-                ), Block.box(
+                ),
+                Block.box(
                 1.0D,
                 0.0D,
                 1.0D,
                 15.0D,
                 15.0D,
                 14.0D
-        ), Block.box(
+                ),
+                Block.box(
                 0.0D,
                 0.0D,
                 0.0D,
                 16.0D,
                 16.0D,
                 16.0D
-        ), Block.box(
+                ),
+                Block.box(
                 0.0D,
                 0.0D,// volume bottom
                 0.0D,
                 16.0D,// top
                 16.0D,// volume top
                 16.0D// right
-        )
+                )
         };
     }
-    }
+}

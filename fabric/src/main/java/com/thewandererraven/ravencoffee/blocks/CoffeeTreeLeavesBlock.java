@@ -56,7 +56,7 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
         BlockState belowBlock = world.getBlockState(pos.down());
         if(belowBlock.isOf(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK))
             flag = ((CoffeeTreeTrunkBlock)belowBlock.getBlock()).isMature(belowBlock);
-        return super.canPlaceAt(state, world, pos) && flag;
+        return flag;//super.canPlaceAt(state, world, pos) && flag;
     }
 
     @Override
