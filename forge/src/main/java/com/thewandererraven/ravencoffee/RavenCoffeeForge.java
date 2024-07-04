@@ -41,11 +41,8 @@ public class RavenCoffeeForge
         if(!isRavenBrewsPresent()) throw new Exception("Raven Brews Core not present!");
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        eventBus.addListener(this::setup);
-        //MinecraftForge.EVENT_BUS.addListener(this::doBiomeStuff);
         eventBus.addListener(this::setupClient);
         eventBus.addListener(this::postInit);
-        eventBus.addListener(this::registerEntityRenderers);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, RavenCoffeeClientConfigs.SPEC, "ravencoffee-client.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RavenCoffeeCommonConfigs.SPEC, "ravencoffee-common.toml");
@@ -60,12 +57,8 @@ public class RavenCoffeeForge
         RavenCoffeeVillagers.POI_TYPES.register(eventBus);
         RavenCoffeeVillagers.VILLAGER_PROFESSIONS.register(eventBus);
         RavenCoffeeFeatures.FEATURES.register(eventBus);
-        //ConfiguredFeaturesRegistry.CONFIGURED_FEATURES.register(eventBus);
-        //PlacedFeaturesRegistry.PLACED_FEATURES.register(eventBus);
         RavenCoffeeConfiguredFeatures.CONFIGURED_FEATURES.register(eventBus);
         RavenCoffeePlacedFeatures.PLACED_FEATURES.register(eventBus);
-        //ConfiguredFeaturesRegistry.register();
-        //PlacedFeaturesRegistry.register();
 
         MinecraftForge.EVENT_BUS.register(this);
         Constants.LOGGER.info("RAVEN COFFEE FINISHED SETUP!");
@@ -80,43 +73,11 @@ public class RavenCoffeeForge
         }
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            RavenCoffeeVillagers.registerPOIs();
-        });
-    }
-
-    /*
-    private void doBiomeStuff(final BiomeLoadingEvent event) {
-        if(event.getCategory().equals(Biome.BiomeCategory.JUNGLE) && ModConfiguration.COMMON.COFFEE_TREE_JUNGLE_ENABLED.get())
-            //event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> PlacedFeaturesRegistry.PATCH_COFFEE_TREE_JUNGLE);
-            event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeaturesRegistry.PATCH_COFFEE_TREE_JUNGLE);
-        if(event.getCategory().equals(Biome.BiomeCategory.SAVANNA) && ModConfiguration.COMMON.COFFEE_TREE_SAVANNAH_ENABLED.get())
-            //event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> PlacedFeaturesRegistry.PATCH_COFFEE_TREE_SAVANNAH);
-            event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeaturesRegistry.PATCH_COFFEE_TREE_SAVANNAH);
-    }
-     */
-
     private void setupClient(final FMLClientSetupEvent event) {
-        //ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
-        //ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
         MenuScreens.register(RavenCoffeeMenuTypes.COFFEE_GRINDER_MENU.get(), CoffeeGrinderContainerScreen::new);
         MenuScreens.register(RavenCoffeeMenuTypes.COFFEE_MACHINE_MENU.get(), CoffeeMachineScreen::new);
         MenuScreens.register(RavenCoffeeMenuTypes.SACK_MENU.get(), SackScreen::new);
     }
-
-    //@SubscribeEvent
-    public void registerEntityRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-        // pre 1.17.1
-        //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_TRUNK_BLOCK.get(), RenderType.cutout());
-        //event.registerBlockEntityRenderer(BlocksRegistry.COFFEE_TREE_LEAVES_BLOCK.get(), RenderType.cutout());
-    }
-    /*
-    public void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
-        Registry.register(Registry.RECIPE_TYPE, CoffeeGrinderRecipe.Type.ID, CoffeeGrinderRecipe.Type.INSTANCE);
-        Registry.register(Registry.RECIPE_TYPE, CoffeeBrewRecipe.Type.ID, CoffeeBrewRecipe.Type.INSTANCE);
-    }
-     */
 
     private void postInit(FMLLoadCompleteEvent event) {
         // Register new behaviour for dispensing certain items

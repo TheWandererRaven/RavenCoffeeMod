@@ -37,16 +37,4 @@ public class RavenCoffeeVillagers {
                     SoundEvents.VILLAGER_WORK_CLERIC
                     )
     );
-
-    public static void registerPOIs() {
-        try {
-            ObfuscationReflectionHelper
-                    .findMethod(PoiTypes.class, "registerBlockStates", Holder.class)
-                    .invoke(null, BARISTA_BLOCK_POI.getHolder(), ImmutableSet.of());
-        } catch (InvocationTargetException | IllegalAccessException exception) {
-            exception.printStackTrace();
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
-    }
 }
