@@ -61,8 +61,8 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
         if(!world.isClient) {
-            super.onBreak(world, pos, state, player);
             BlockState blockDown = world.getBlockState(pos.down());
             if (blockDown.isOf(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK))
                 if (blockDown.get(CoffeeTreeTrunkBlock.HAS_LEAVES))

@@ -41,8 +41,8 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
 
     @Override
     public void onRemove(BlockState oldState, Level level, BlockPos blockPos, BlockState newState, boolean isClient) {
+        super.onRemove(oldState, level, blockPos, newState, isClient);
         if(!isClient) {
-            super.onRemove(oldState, level, blockPos, newState, isClient);
             BlockState blockDown = level.getBlockState(blockPos.below());
             if (blockDown.is(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK.get()) && !newState.is(this))
                 if (blockDown.getValue(CoffeeTreeTrunkBlock.HAS_LEAVES))
