@@ -16,7 +16,7 @@ public class Cups {
     ));
 
     public static boolean isCup(ItemStack item) {
-        return item.isIn(ModTags.Items.CUPS);
+        return item.isIn(RavenCoffeeTags.Items.CUPS);
     }
 
     public static String getCupSizeName(Item item) {
@@ -29,9 +29,9 @@ public class Cups {
     }
 
     public static Sizes getCupSize(Item item) {
-        if(item.getRegistryEntry().isIn(ModTags.Items.CUPS_SMALL)) return Sizes.SMALL;
+        if(item.getRegistryEntry().isIn(RavenCoffeeTags.Items.CUPS_SMALL)) return Sizes.SMALL;
         //if(item.isIn(ModTags.Items.CUPS_MEDIUM)) return CupSizes.MEDIUM;
-        if(item.getRegistryEntry().isIn(ModTags.Items.CUPS_LARGE)) return Sizes.LARGE;
+        if(item.getRegistryEntry().isIn(RavenCoffeeTags.Items.CUPS_LARGE)) return Sizes.LARGE;
         return Sizes.MEDIUM;
     }
 

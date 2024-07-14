@@ -6,7 +6,7 @@ import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class ModTags {
+public class RavenCoffeeTags {
     public static class Items {
         public static final TagKey<Item> CUPS = tag("cups");
         public static final TagKey<Item> CUPS_SMALL = tag("cups_small");

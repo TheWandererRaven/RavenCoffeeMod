@@ -16,7 +16,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 
-public class RoscaDeReyesBlock extends Block {
+public class RoscaDeReyesBlock extends Block implements ICakeLikeBlock {
     public static final int MAX_BITES = 11;
     public static final IntProperty BITES = IntProperty.of("bites", 0, 11);
     //public static final int FULL_SIGNAL = getOutputSignal(0);
@@ -121,4 +121,8 @@ public class RoscaDeReyesBlock extends Block {
         return false;
     }
 
+    @Override
+    public IntProperty getBitesProperty() {
+        return BITES;
+    }
 }

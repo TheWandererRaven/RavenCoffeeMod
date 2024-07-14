@@ -7,7 +7,7 @@ import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.util.Cups;
-import com.thewandererraven.ravencoffee.util.ModTags;
+import com.thewandererraven.ravencoffee.util.RavenCoffeeTags;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -109,7 +109,7 @@ public class CoffeeBrewingRecipe implements Recipe<SimpleInventory> {
 
 
     public static boolean isBrewIngredient(@NotNull ItemStack stack){
-        return stack.isIn(ModTags.Items.BREW_INGREDIENTS);
+        return stack.isIn(RavenCoffeeTags.Items.BREW_INGREDIENTS);
     }
     // ================================================ OUTPUT ================================================
 
