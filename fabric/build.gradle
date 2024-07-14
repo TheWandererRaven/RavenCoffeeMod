@@ -52,7 +52,15 @@ loom {
 }
 
 
+
+fabricApi {
+    configureDataGeneration {
+        outputDirectory.set(project(":Common").file(datagen_output_dir))
+    }
+}
+
 processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from project(":Common").sourceSets.main.resources
     inputs.property "version", project.version
 

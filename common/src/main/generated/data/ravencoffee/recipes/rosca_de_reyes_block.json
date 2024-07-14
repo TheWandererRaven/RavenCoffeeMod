@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:apple"
+    },
+    "B": {
+      "item": "minecraft:bread"
+    },
+    "C": {
+      "item": "minecraft:cactus"
+    },
+    "G": {
+      "item": "minecraft:glow_berries"
+    },
+    "S": {
+      "item": "minecraft:sweet_berries"
+    },
+    "Z": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    "SAG",
+    "ZCZ",
+    "BBB"
+  ],
+  "result": {
+    "item": "ravencoffee:rosca_de_reyes_block"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:cocoa_beans"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    "CC",
+    "WW"
+  ],
+  "result": {
+    "item": "ravencoffee:brownie"
+  }
+}

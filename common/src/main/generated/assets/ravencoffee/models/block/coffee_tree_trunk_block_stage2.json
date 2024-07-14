@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "ravencoffee:block/coffee_tree_trunk_block_stage2"
+  }
+}
