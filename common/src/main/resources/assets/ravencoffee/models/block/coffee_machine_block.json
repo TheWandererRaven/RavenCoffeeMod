@@ -3,13 +3,13 @@
 	"texture_size": [32, 32],
 	"render_type": "translucent",
 	"textures": {
-		"0": "ravencoffee:blocks/coffee_machine_block_base",
-		"1": "ravencoffee:blocks/coffee_machine_block_coffee",
-		"2": "ravencoffee:blocks/coffee_mug_empty",
-		"3": "ravencoffee:blocks/coffee_machine_block_panel_off",
-		"4": "ravencoffee:blocks/coffee_machine_block_water",
-		"5": "ravencoffee:blocks/coffee_mug_coffee",
-		"particle": "ravencoffee:blocks/coffee_mug_coffee"
+		"0": "ravencoffee:block/coffee_machine_block_base",
+		"1": "ravencoffee:block/coffee_machine_block_coffee",
+		"2": "ravencoffee:block/coffee_mug_empty",
+		"3": "ravencoffee:block/coffee_machine_block_panel_off",
+		"4": "ravencoffee:block/coffee_machine_block_water",
+		"5": "ravencoffee:block/coffee_mug_coffee",
+		"particle": "ravencoffee:block/coffee_mug_coffee"
 	},
 	"elements": [
 		{

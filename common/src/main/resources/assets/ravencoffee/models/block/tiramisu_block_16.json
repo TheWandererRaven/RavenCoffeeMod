@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"render_type": "translucent",
 	"textures": {
-		"0": "ravencoffee:blocks/tiramisu_top",
-		"1": "ravencoffee:blocks/tiramisu_side",
-		"2": "ravencoffee:blocks/tiramisu_bottom",
-		"particle": "ravencoffee:blocks/tiramisu_top"
+		"0": "ravencoffee:block/tiramisu_top",
+		"1": "ravencoffee:block/tiramisu_side",
+		"2": "ravencoffee:block/tiramisu_bottom",
+		"particle": "ravencoffee:block/tiramisu_top"
 	},
 	"elements": [
 		{

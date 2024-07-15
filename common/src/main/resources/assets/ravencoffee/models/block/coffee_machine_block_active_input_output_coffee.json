@@ -1,7 +1,7 @@
 {
 	"parent": "ravencoffee:block/coffee_machine_block_inactive_input_output_coffee",
 	"textures": {
-		"3": "ravencoffee:blocks/coffee_machine_block_panel_on"
+		"3": "ravencoffee:block/coffee_machine_block_panel_on"
 	},
 	"elements": [
 		{

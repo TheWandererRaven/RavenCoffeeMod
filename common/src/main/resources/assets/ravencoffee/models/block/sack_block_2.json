@@ -2,10 +2,10 @@
 	"credit": "The Wanderer Raven",
 	"render_type": "translucent",
 	"textures": {
-		"0": "ravencoffee:blocks/sack_side",
-		"1": "ravencoffee:blocks/sack_bottom",
-		"2": "ravencoffee:blocks/sack_top",
-		"particle": "ravencoffee:blocks/sack_side"
+		"0": "ravencoffee:block/sack_side",
+		"1": "ravencoffee:block/sack_bottom",
+		"2": "ravencoffee:block/sack_top",
+		"particle": "ravencoffee:block/sack_side"
 	},
 	"elements": [
 		{

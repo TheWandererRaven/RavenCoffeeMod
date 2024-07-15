@@ -1,8 +1,8 @@
 {
 	"parent": "ravencoffee:block/stacking_cups_block_9",
 	"textures": {
-		"cup": "ravencoffee:blocks/cup_medium_empty",
-		"particle": "ravencoffee:blocks/cup_medium_empty"
+		"cup": "ravencoffee:block/cup_medium_empty",
+		"particle": "ravencoffee:block/cup_medium_empty"
 	},
 	"elements": [
 		{
