@@ -1,9 +1,0 @@
-// 1.19.2	2024-07-14T15:04:41.0183817	Block Loot Tables
-be5fd3a9dac7b6bf453d5fb063a766950809f2bf data\ravencoffee\loot_tables\blocks\coffee_machine_block.json
-95886085abf72a64e9938ab44f0021e9f32c1c24 data\ravencoffee\loot_tables\blocks\coffee_grinder_block.json
-17ca3a43064b142a77f49a62c47f4aad9099fccf data\ravencoffee\loot_tables\blocks\coffee_beans_roasted_block.json
-5702e33062adb3eb729c4695bb0968d8e8eaac71 data\ravencoffee\loot_tables\blocks\brownie_block.json
-4e0d5c3e2ea183fc2d4478b9a99a186225f21364 data\ravencoffee\loot_tables\blocks\coffee_beans_magma_block.json
-0939579339b5a712cb660c1066f9bbd3664cc243 data\ravencoffee\loot_tables\blocks\coffee_tree_trunk_block.json
-7681fed86b7563f662247932e081a2e249eeee14 data\ravencoffee\loot_tables\blocks\sack_block.json
-84f61d04b2d3890e51138f18e0dbf8f6ef34561d data\ravencoffee\loot_tables\blocks\coffee_tree_leaves_block.json
