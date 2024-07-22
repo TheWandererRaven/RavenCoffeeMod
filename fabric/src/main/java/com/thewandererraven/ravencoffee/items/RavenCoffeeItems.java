@@ -93,7 +93,7 @@ public class RavenCoffeeItems {
             new Item(new FabricItemSettings()
                     .group(RavenCoffeeItemGroups.GENERAL_TAB)
                     .food(new FoodComponent.Builder()
-                            .hunger(2)
+                            .hunger(3)
                             .saturationModifier(0.1f/2f)
                             .build()
                     )

@@ -96,7 +96,7 @@ public class RavenCoffeeItems {
             () -> new Item(new Item.Properties()
                     .tab(RavenCoffeeForge.GENERAL_TAB)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
+                            .nutrition(3)
                             .saturationMod(0.3f/2f)
                             .build()
                     )
