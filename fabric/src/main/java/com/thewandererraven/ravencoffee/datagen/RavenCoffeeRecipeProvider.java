@@ -245,7 +245,7 @@ public class RavenCoffeeRecipeProvider extends FabricRecipeProvider {
 
         // ================================================= OTHER FOOD ================================================
         offerReversibleCompactingRecipesWithReverseRecipeGroup(exporter, RavenCoffeeItems.BROWNIE, RavenCoffeeItems.BROWNIE_BLOCK_ITEM, "brownie_from_brownie_block", null);
-        ShapedRecipeJsonBuilder.create(RavenCoffeeItems.BROWNIE)
+        ShapedRecipeJsonBuilder.create(RavenCoffeeItems.BROWNIE, 2)
                 .pattern("CC")
                 .pattern("WW")
                 .input('C', Items.COCOA_BEANS)
@@ -281,9 +281,9 @@ public class RavenCoffeeRecipeProvider extends FabricRecipeProvider {
                         }).build())
                 ).offerTo(exporter, new Identifier(getRecipeName(RavenCoffeeItems.MUFFIN)));
         ShapelessRecipeJsonBuilder.create(RavenCoffeeItems.POPCHORUS)
-                .input(Items.CHORUS_FRUIT)
-                .input(Items.CHORUS_FRUIT)
-                .input(Items.CHORUS_FRUIT)
+                .input(Items.POPPED_CHORUS_FRUIT)
+                .input(Items.POPPED_CHORUS_FRUIT)
+                .input(Items.POPPED_CHORUS_FRUIT)
                 .input(Items.BOWL)
                 .criterion(hasItem(Items.CHORUS_FRUIT), conditionsFromItem(Items.CHORUS_FRUIT))
                 .offerTo(exporter, new Identifier(getRecipeName(RavenCoffeeItems.POPCHORUS)));
