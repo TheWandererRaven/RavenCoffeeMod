@@ -109,11 +109,11 @@ public class RavenCoffeeModelProvider extends FabricModelProvider {
         registerItem(itemModelGenerator, "food", RavenCoffeeItems.BAGEL_BEEF);
         registerItem(itemModelGenerator, "food", RavenCoffeeItems.BAGEL_CHICKEN);
 
-        registerItem(itemModelGenerator, RavenCoffeeItems.CUP_SMALL_UNFIRED, "ravencoffee:item/cup_small/cup");
+        registerItem(itemModelGenerator, RavenCoffeeItems.CUP_SMALL_UNFIRED, "ravencoffee:item/cup_small/unfired");
         registerItem(itemModelGenerator, RavenCoffeeItems.CUP_SMALL, "ravencoffee:item/cup_small/cup");
-        registerItem(itemModelGenerator, RavenCoffeeItems.CUP_MEDIUM_UNFIRED, "ravencoffee:item/cup_medium/cup");
+        registerItem(itemModelGenerator, RavenCoffeeItems.CUP_MEDIUM_UNFIRED, "ravencoffee:item/cup_medium/unfired");
         registerItem(itemModelGenerator, RavenCoffeeItems.CUP_MEDIUM, "ravencoffee:item/cup_medium/cup");
-        registerItem(itemModelGenerator, RavenCoffeeItems.CUP_LARGE_UNFIRED, "ravencoffee:item/cup_large/cup");
+        registerItem(itemModelGenerator, RavenCoffeeItems.CUP_LARGE_UNFIRED, "ravencoffee:item/cup_large/unfired");
         registerItem(itemModelGenerator, RavenCoffeeItems.CUP_LARGE, "ravencoffee:item/cup_large/cup");
         registerItem(itemModelGenerator, RavenCoffeeItems.COFFEE_MUG, "ravencoffee:item/coffee_mug/coffee_mug");
 
