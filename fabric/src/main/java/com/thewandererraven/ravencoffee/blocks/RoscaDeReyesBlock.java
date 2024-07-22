@@ -34,12 +34,20 @@ public class RoscaDeReyesBlock extends Block implements ICakeLikeBlock {
             Block.createCuboidShape(4, 0, 0, 12, 4, 4),
             Block.createCuboidShape(4, 0, 0, 8, 4, 4)
     };
-    
-    public RoscaDeReyesBlock(Settings p_49795_) {
+    public final int HUNGER_PER_BITE;
+    public final float SATURATION_PER_BITE;
+
+    public RoscaDeReyesBlock(Settings p_49795_, int hunger, float saturation) {
         super(p_49795_);
         this.setDefaultState(this.getDefaultState()
                 .with(BITES, 0)
         );
+        this.HUNGER_PER_BITE = hunger;
+        this.SATURATION_PER_BITE = saturation;
+    }
+
+    public RoscaDeReyesBlock(Settings p_49795_) {
+        this(p_49795_, 1, 1.0F);
     }
 
     @Override
@@ -74,11 +82,11 @@ public class RoscaDeReyesBlock extends Block implements ICakeLikeBlock {
         return eatRes;
     }
 
-    protected static ActionResult tryEat(World levelAccessor, BlockPos blockPos, BlockState blockState, PlayerEntity player) {
+    public ActionResult tryEat(World levelAccessor, BlockPos blockPos, BlockState blockState, PlayerEntity player) {
         if (!player.canConsume(false)) {
             return ActionResult.PASS;
         } else {
-            player.getHungerManager().add(1, 1.0F);
+            player.getHungerManager().add(this.HUNGER_PER_BITE, this.SATURATION_PER_BITE);
             int i = blockState.get(BITES);
             levelAccessor.emitGameEvent(player, GameEvent.EAT, blockPos);
             if (i < MAX_BITES) {

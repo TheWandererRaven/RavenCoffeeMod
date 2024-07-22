@@ -25,7 +25,9 @@ public class RavenCoffeeBlocks {
             () -> new RoscaDeReyesBlock(BlockBehaviour.Properties
                     .of(Material.CAKE)
                     .sound(SoundType.WOOL)
-                    .noOcclusion()
+                    .noOcclusion(),
+                    2,
+                    1.5F
             )
     );
     public static final RegistryObject<Block> TIRAMISU_BLOCK = BLOCKS.register(

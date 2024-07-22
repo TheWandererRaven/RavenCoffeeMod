@@ -20,7 +20,9 @@ public class RavenCoffeeBlocks {
             new RoscaDeReyesBlock(AbstractBlock.Settings
                     .of(Material.CAKE)
                     .sounds(BlockSoundGroup.WOOL)
-                    .nonOpaque()
+                    .nonOpaque(),
+                    2,
+                    1.5F
             )
     );
 
