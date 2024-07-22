@@ -14,11 +14,11 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -42,12 +42,8 @@ public class SackBlock extends BaseEntityBlock {
     public static final IntegerProperty FULLNESS = IntegerProperty.create("fullness", 0, 4);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-    protected SackBlock() {
-        super(Properties
-                .of(Material.WOOL)
-                .sound(SoundType.WOOL)
-                .noOcclusion()
-        );
+    protected SackBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(FULLNESS, 0)

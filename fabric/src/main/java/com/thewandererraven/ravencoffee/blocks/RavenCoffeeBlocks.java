@@ -91,7 +91,12 @@ public class RavenCoffeeBlocks {
 
     public static final Block SACK_BLOCK = registerItem(
             "sack_block",
-            new SackBlock()
+            new SackBlock(AbstractBlock.Settings
+                    .of(Material.WOOL)
+                    .sounds(BlockSoundGroup.WOOL)
+                    .strength(0.8F)
+                    .nonOpaque()
+            )
     );
 
     public static final Block STACKING_CUPS_BLOCK = registerItem(

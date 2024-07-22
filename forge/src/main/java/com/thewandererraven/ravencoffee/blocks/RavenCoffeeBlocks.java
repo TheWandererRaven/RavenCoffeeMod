@@ -79,7 +79,12 @@ public class RavenCoffeeBlocks {
     );
     public static final RegistryObject<Block> SACK_BLOCK = BLOCKS.register(
             "sack_block",
-            SackBlock::new
+            () -> new SackBlock(BlockBehaviour.Properties
+                        .of(Material.WOOL)
+                        .sound(SoundType.WOOL)
+                        .destroyTime(0.8F)
+                        .noOcclusion()
+            )
     );
     public static final RegistryObject<Block> STACKING_CUPS_BLOCK = BLOCKS.register(
             "stacking_cups_block",
