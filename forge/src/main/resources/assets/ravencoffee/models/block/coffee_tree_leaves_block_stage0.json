@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "render_type": "cutout",
+  "textures": {
+    "cross": "ravencoffee:block/coffee_tree_leaves_block_stage0"
+  }
+}

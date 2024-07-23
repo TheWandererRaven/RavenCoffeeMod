@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_coffee_beans_roasted_ground": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ravencoffee:coffee_beans_roasted_ground"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cups": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "ravencoffee:cups"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:coffee_machine_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_coffee_beans_roasted_ground",
+      "has_cups",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:coffee_machine_block"
+    ]
+  }
+}
