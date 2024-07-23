@@ -42,11 +42,8 @@ public class StackingCupsBlock extends BlockWithEntity implements BlockEntityPro
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final EnumProperty<CupType> CUP_TYPE = EnumProperty.of("cup_type", CupType.class);
 
-    public StackingCupsBlock() {
-        super(Settings
-                .of(Material.STONE)
-                .sounds(BlockSoundGroup.STONE)
-        );
+    public StackingCupsBlock(Settings settings) {
+        super(settings);
     }
 
     @Nullable

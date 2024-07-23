@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -73,10 +74,8 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
             ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();*/
     public static final Map<Direction, VoxelShape> SHAPES = new HashMap<Direction, VoxelShape>();
 
-    public CoffeeMachineBlock() {
-        super(Properties.of(Material.METAL)
-                .sound(SoundType.METAL)
-        );
+    public CoffeeMachineBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(ENABLED, true)

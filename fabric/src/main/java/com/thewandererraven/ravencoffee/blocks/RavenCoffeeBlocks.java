@@ -12,6 +12,7 @@ public class RavenCoffeeBlocks {
             new Block(AbstractBlock.Settings
                     .of(Material.CAKE)
                     .sounds(BlockSoundGroup.WOOL)
+                    .strength(0.5F)
             )
     );
 
@@ -69,6 +70,7 @@ public class RavenCoffeeBlocks {
             new CoffeeTreeTrunkBlock(AbstractBlock.Settings
                     .of(Material.PLANT)
                     .sounds(BlockSoundGroup.GRASS)
+                    .strength(1.0F)
                     .ticksRandomly()
                     .nonOpaque()
             )
@@ -79,6 +81,7 @@ public class RavenCoffeeBlocks {
             new CoffeeGrinderBlock(AbstractBlock.Settings
                     .of(Material.WOOD)
                     .sounds(BlockSoundGroup.WOOD)
+                    .strength(0.8F)
             )
     );
 
@@ -87,6 +90,7 @@ public class RavenCoffeeBlocks {
             new CoffeeMachineBlock(AbstractBlock.Settings
                     .of(Material.METAL)
                     .sounds(BlockSoundGroup.METAL)
+                    .strength(0.8F)
                     .nonOpaque()
             )
     );
@@ -103,7 +107,11 @@ public class RavenCoffeeBlocks {
 
     public static final Block STACKING_CUPS_BLOCK = registerItem(
             "stacking_cups_block",
-            new StackingCupsBlock()
+            new StackingCupsBlock(AbstractBlock.Settings
+                    .of(Material.STONE)
+                    .sounds(BlockSoundGroup.STONE)
+                    .strength(0.5F)
+            )
     );
     
     
