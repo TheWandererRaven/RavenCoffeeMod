@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 
 public class ModTags {
     public static class Items {
+        public static final TagKey<Item> ROASTED_BEANS = tag("roasted_beans");
         public static final TagKey<Item> CUPS = tag("cups");
         public static final TagKey<Item> CUPS_SMALL = tag("cups_small");
         public static final TagKey<Item> CUPS_MEDIUM = tag("cups_medium");

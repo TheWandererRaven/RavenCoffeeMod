@@ -53,9 +53,9 @@ public class RavenCoffeeRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(RavenCoffeeItems.COFFEE_BEANS_ROASTED), conditionsFromItem(RavenCoffeeItems.COFFEE_BEANS_ROASTED))
                 .offerTo(exporter, new Identifier(getRecipeName(RavenCoffeeItems.COFFEE_BEANS_ROASTED).concat("_from_block")));
         ShapelessRecipeJsonBuilder.create(RavenCoffeeItems.COFFEE_BEANS_ROASTED_GROUND, 1)
-                .input(RavenCoffeeItems.COFFEE_BEANS_ROASTED)
-                .input(RavenCoffeeItems.COFFEE_BEANS_ROASTED)
-                .input(RavenCoffeeItems.COFFEE_BEANS_ROASTED)
+                .input(RavenCoffeeTags.Items.ROASTED_BEANS)
+                .input(RavenCoffeeTags.Items.ROASTED_BEANS)
+                .input(RavenCoffeeTags.Items.ROASTED_BEANS)
                 .criterion(hasItem(RavenCoffeeItems.COFFEE_CHERRIES), conditionsFromItem(RavenCoffeeItems.COFFEE_CHERRIES))
                 .offerTo(exporter, new Identifier(getRecipeName(RavenCoffeeItems.COFFEE_BEANS_ROASTED_GROUND)));
 

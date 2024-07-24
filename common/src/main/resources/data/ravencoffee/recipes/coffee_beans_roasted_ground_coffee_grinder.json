@@ -2,10 +2,10 @@
   "type": "ravencoffee:coffee_grinding",
   "ingredients": [
     {
-      "item": "ravencoffee:coffee_beans_roasted"
+      "tag": "ravencoffee:roasted_beans"
     },
     {
-      "item": "ravencoffee:coffee_beans_roasted"
+      "tag": "ravencoffee:roasted_beans"
     }
   ],
   "result": {
