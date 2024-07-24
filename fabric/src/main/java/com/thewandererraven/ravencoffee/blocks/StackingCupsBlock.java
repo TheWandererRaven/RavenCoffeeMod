@@ -3,7 +3,7 @@ package com.thewandererraven.ravencoffee.blocks;
 import com.thewandererraven.ravenbrewscore.CupType;
 import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.entitites.StackingCupsBlockEntity;
-import com.thewandererraven.ravencoffee.util.ModTags;
+import com.thewandererraven.ravencoffee.util.RavenCoffeeTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +11,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -40,14 +39,11 @@ public class StackingCupsBlock extends BlockWithEntity implements BlockEntityPro
     public static final VoxelShape SHAPE_9 = Block.createCuboidShape(1, 0, 2, 16, 10, 16);
 
     public static final IntProperty CUP_COUNT = IntProperty.of("cup_count", 0, 9);
-    public static final DirectionProperty FACING = Properties.FACING;
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final EnumProperty<CupType> CUP_TYPE = EnumProperty.of("cup_type", CupType.class);
 
-    public StackingCupsBlock() {
-        super(Settings
-                .of(Material.STONE)
-                .sounds(BlockSoundGroup.STONE)
-        );
+    public StackingCupsBlock(Settings settings) {
+        super(settings);
     }
 
     @Nullable
@@ -116,7 +112,7 @@ public class StackingCupsBlock extends BlockWithEntity implements BlockEntityPro
         if (!world.isClient()) {
             if (world.getBlockEntity(blockPos) instanceof StackingCupsBlockEntity entity) {
                 ItemStack itemInHand = player.getStackInHand(interactionHand);
-                if (itemInHand.isIn(ModTags.Items.CUPS) && entity.canPlaceItem(itemInHand)) {
+                if (itemInHand.isIn(RavenCoffeeTags.Items.CUPS) && entity.canPlaceItem(itemInHand)) {
                     ItemStack itemToInsert = itemInHand.copy();
                     itemToInsert.setCount(1);
                     entity.placeItem(itemToInsert);

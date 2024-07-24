@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.0-SNAPSHOT'
+    id 'fabric-loom' version '1.7-SNAPSHOT'
     id 'maven-publish'
     id 'idea'
 }
@@ -9,6 +9,10 @@ archivesBaseName = "${mod_name}-fabric-${minecraft_version}"
 repositories {
     flatDir {
         dir 'libs'
+    }
+    maven {
+        name = 'Wisp Forest'
+        url = 'https://maven.wispforest.io'
     }
 }
 
@@ -21,9 +25,13 @@ dependencies {
     modImplementation "com.thewandererraven.ravenbrewscore:ravenbrewscore-fabric-${minecraft_version}-${ravebrewscore_version}:api"
     //implementation fg.deobf("com.thewandererraven.ravenbrewscore:ravenbrewscore-fabric-${minecraft_version}-${ravebrewscore_version}:api")
 
+    modImplementation "maven.modrinth:Wd844r7Q:1.19-01"
+    include("maven.modrinth:Wd844r7Q:1.19-01")
 
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":Common")
+    annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
+    include "io.wispforest:owo-sentinel:${project.owo_version}"
 }
 
 loom {
@@ -44,7 +52,15 @@ loom {
 }
 
 
+
+fabricApi {
+    configureDataGeneration {
+        outputDirectory.set(project(":Common").file(datagen_output_dir))
+    }
+}
+
 processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from project(":Common").sourceSets.main.resources
     inputs.property "version", project.version
 

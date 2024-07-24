@@ -16,7 +16,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 
-public class RoscaDeReyesBlock extends Block {
+public class RoscaDeReyesBlock extends Block implements ICakeLikeBlock {
     public static final int MAX_BITES = 11;
     public static final IntProperty BITES = IntProperty.of("bites", 0, 11);
     //public static final int FULL_SIGNAL = getOutputSignal(0);
@@ -34,12 +34,20 @@ public class RoscaDeReyesBlock extends Block {
             Block.createCuboidShape(4, 0, 0, 12, 4, 4),
             Block.createCuboidShape(4, 0, 0, 8, 4, 4)
     };
-    
-    public RoscaDeReyesBlock(Settings p_49795_) {
+    public final int HUNGER_PER_BITE;
+    public final float SATURATION_PER_BITE;
+
+    public RoscaDeReyesBlock(Settings p_49795_, int hunger, float saturation) {
         super(p_49795_);
         this.setDefaultState(this.getDefaultState()
                 .with(BITES, 0)
         );
+        this.HUNGER_PER_BITE = hunger;
+        this.SATURATION_PER_BITE = saturation;
+    }
+
+    public RoscaDeReyesBlock(Settings p_49795_) {
+        this(p_49795_, 1, 1.0F);
     }
 
     @Override
@@ -74,11 +82,11 @@ public class RoscaDeReyesBlock extends Block {
         return eatRes;
     }
 
-    protected static ActionResult tryEat(World levelAccessor, BlockPos blockPos, BlockState blockState, PlayerEntity player) {
+    public ActionResult tryEat(World levelAccessor, BlockPos blockPos, BlockState blockState, PlayerEntity player) {
         if (!player.canConsume(false)) {
             return ActionResult.PASS;
         } else {
-            player.getHungerManager().add(1, 1.0F);
+            player.getHungerManager().add(this.HUNGER_PER_BITE, this.SATURATION_PER_BITE);
             int i = blockState.get(BITES);
             levelAccessor.emitGameEvent(player, GameEvent.EAT, blockPos);
             if (i < MAX_BITES) {
@@ -121,4 +129,8 @@ public class RoscaDeReyesBlock extends Block {
         return false;
     }
 
+    @Override
+    public IntProperty getBitesProperty() {
+        return BITES;
+    }
 }

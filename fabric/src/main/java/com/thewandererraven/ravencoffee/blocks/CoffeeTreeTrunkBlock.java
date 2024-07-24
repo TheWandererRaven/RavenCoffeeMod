@@ -1,6 +1,5 @@
 package com.thewandererraven.ravencoffee.blocks;
 
-import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -8,15 +7,11 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
@@ -94,6 +89,8 @@ public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
         BlockState newState = world.getBlockState(pos);
         if(newState.get(AGE) >= this.getMaxAge() && world.isAir(abovePos)) {
             growLeaves(world, pos, newState, abovePos);
+        } else if(world.getBlockState(abovePos).isOf(getLeavesBlock())) {
+            world.breakBlock(abovePos, true);
         }
     }
 

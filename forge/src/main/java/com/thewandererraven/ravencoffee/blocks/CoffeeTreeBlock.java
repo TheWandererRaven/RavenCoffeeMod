@@ -4,6 +4,7 @@ import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -41,12 +42,12 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_206840_1_) {
-        p_206840_1_.add(new Property[]{AGE});
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(new Property[]{AGE});
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter p_185473_1_, BlockPos p_185473_2_, BlockState p_185473_3_) {
+    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos pos, BlockState blockState) {
         return new ItemStack(this.getBaseSeedId());
     }
 
@@ -63,18 +64,18 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     }
 
     @Override
-    protected int getAge(BlockState p_185527_1_) {
-        return p_185527_1_.getValue(this.getAgeProperty());
+    protected int getAge(BlockState blockState) {
+        return blockState.getValue(this.getAgeProperty());
     }
 
     @Override
-    public boolean isMaxAge(BlockState p_185525_1_) {
-        return p_185525_1_.getValue(this.getAgeProperty()) >= this.getMaxAge();
+    public boolean isMaxAge(BlockState blockState) {
+        return blockState.getValue(this.getAgeProperty()) >= this.getMaxAge();
     }
 
     @Override
-    public BlockState getStateForAge(int p_52290_) {
-        return this.defaultBlockState().setValue(this.getAgeProperty(), p_52290_);
+    public BlockState getStateForAge(int age) {
+        return this.defaultBlockState().setValue(this.getAgeProperty(), age);
     }
 
     // ##################################### CROPS #####################################
@@ -102,18 +103,27 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
             i = j;
         }
 
-        level.setBlock(blockPos, this.getStateForAge(i), 2);
+        level.setBlock(blockPos, blockState.setValue(AGE, i), 2);
     }
 
     // ##################################### TICKS #####################################
 
     @Override
-    public void tick(BlockState p_51138_, ServerLevel p_51139_, BlockPos p_51140_, RandomSource p_51141_) {
-        if (!p_51139_.isAreaLoaded(p_51140_, 1)) return;
-        if (!p_51138_.canSurvive(p_51139_, p_51140_)) {
-            p_51139_.destroyBlock(p_51140_, true);
+    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+        if (serverLevel.getLightEmission(blockPos) >= 9) {
+            int i = this.getAge(blockState);
+            if (i < this.getMaxAge()) {
+                if (randomSource.nextInt((int)(25.0F) + 1) == 0) {
+                    serverLevel.setBlock(blockPos, blockState.setValue(AGE, i + 1), 2);
+                }
+            }
         }
-
+        /*
+        if (!serverLevel.isAreaLoaded(blockPos, 1)) return;
+        if (!blockState.canSurvive(serverLevel, blockPos)) {
+            serverLevel.destroyBlock(blockPos, true);
+        }
+         */
     }
 
     public void tickGrow(int age, BlockState blockState, ServerLevel server, BlockPos blockPos) {
@@ -141,17 +151,29 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     // ##################################### BONEMEAL #####################################
 
     @Override
-    protected int getBonemealAgeIncrease(Level p_185529_1_) {
-        return Mth.nextInt(p_185529_1_.random, 2, 5);
+    protected int getBonemealAgeIncrease(Level level) {
+        return Mth.nextInt(level.random, 1, 3);
+    }
+
+    public void applyGrowth(ServerLevel world, BlockPos pos, BlockState state) {
+        BlockState latestState = world.getBlockState(pos.below());
+        int i = this.getAge(state) + this.getBonemealAgeIncrease(world);
+        int j = this.getMaxAge();
+        if (i > j) {
+            i = j;
+        }
+        latestState = world.getBlockState(pos.below());
+        world.setBlock(pos, state.setValue(AGE, i), 2);
+        latestState = world.getBlockState(pos.below());
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter p_176473_1_, BlockPos p_176473_2_, BlockState p_176473_3_, boolean p_176473_4_) {
-        return !this.isMaxAge(p_176473_3_);
+    public boolean isValidBonemealTarget(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, boolean isClient) {
+        return !this.isMaxAge(blockState);
     }
 
     @Override
-    public boolean isBonemealSuccess(Level p_180670_1_, RandomSource p_180670_2_, BlockPos p_180670_3_, BlockState p_180670_4_) {
+    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
         return true;
     }
 
@@ -163,8 +185,8 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     // ##################################### WORLD #####################################
 
     @Override
-    protected boolean mayPlaceOn(BlockState p_200014_1_, BlockGetter p_200014_2_, BlockPos p_200014_3_) {
-        return p_200014_1_.is(Blocks.GRASS_BLOCK) || p_200014_1_.is(Blocks.DIRT);
+    protected boolean mayPlaceOn(BlockState floor, BlockGetter getter, BlockPos pos) {
+        return floor.is(BlockTags.DIRT);
     }
 
     public BlockState getBiomeGenState() {
@@ -194,28 +216,28 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     }
 
     @Override
-    public void entityInside(BlockState p_196262_1_, Level p_196262_2_, BlockPos p_196262_3_, Entity p_196262_4_) {
-        if (p_196262_4_ instanceof Ravager && ForgeEventFactory.getMobGriefingEvent(p_196262_2_, p_196262_4_)) {
-            p_196262_2_.destroyBlock(p_196262_3_, true, p_196262_4_);
+    public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
+        if (entity instanceof Ravager && ForgeEventFactory.getMobGriefingEvent(level, entity)) {
+            level.destroyBlock(blockPos, true, entity);
         }
 
-        super.entityInside(p_196262_1_, p_196262_2_, p_196262_3_, p_196262_4_);
+        super.entityInside(blockState, level, blockPos, entity);
     }
 
     // ##################################### BLOCK SHAPE #####################################
 
     @Override
-    public VoxelShape getShape(BlockState p_220053_1_, BlockGetter p_220053_2_, BlockPos p_220053_3_, CollisionContext p_220053_4_) {
-        return SHAPE_BY_AGE[p_220053_1_.getValue(this.getAgeProperty())];
+    public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+        return SHAPE_BY_AGE[blockState.getValue(this.getAgeProperty())];
     }
 
     @Override
-    public BlockState updateShape(BlockState p_51157_, Direction p_51158_, BlockState p_51159_, LevelAccessor p_51160_, BlockPos p_51161_, BlockPos p_51162_) {
-        if (!p_51157_.canSurvive(p_51160_, p_51161_)) {
-            p_51160_.scheduleTick(p_51161_, this, 1);
+    public BlockState updateShape(BlockState blockState, Direction p_51158_, BlockState secondState, LevelAccessor levelAccessor, BlockPos pos, BlockPos secondPos) {
+        if (!blockState.canSurvive(levelAccessor, pos)) {
+            levelAccessor.scheduleTick(pos, this, 1);
         }
 
-        return super.updateShape(p_51157_, p_51158_, p_51159_, p_51160_, p_51161_, p_51162_);
+        return super.updateShape(blockState, p_51158_, secondState, levelAccessor, pos, secondPos);
     }
 
     static {

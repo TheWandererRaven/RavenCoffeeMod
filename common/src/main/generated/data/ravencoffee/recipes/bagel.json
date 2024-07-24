@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    " W ",
+    "W W",
+    " W "
+  ],
+  "result": {
+    "item": "ravencoffee:bagel"
+  }
+}

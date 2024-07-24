@@ -1,19 +1,14 @@
 package com.thewandererraven.ravencoffee.blocks;
 
-import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.WorldView;
 
 public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
@@ -56,22 +51,24 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
     }
 
     @Override
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        boolean flag = false;
+        BlockState belowBlock = world.getBlockState(pos.down());
+        if(belowBlock.isOf(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK))
+            flag = ((CoffeeTreeTrunkBlock)belowBlock.getBlock()).isMature(belowBlock);
+        return flag;//super.canPlaceAt(state, world, pos) && flag;
+    }
+
+    @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
         if(!world.isClient) {
-            super.onBreak(world, pos, state, player);
             BlockState blockDown = world.getBlockState(pos.down());
             if (blockDown.isOf(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK))
                 if (blockDown.get(CoffeeTreeTrunkBlock.HAS_LEAVES))
                     world.setBlockState(pos.down(), blockDown.with(CoffeeTreeTrunkBlock.HAS_LEAVES, false));
         }
     }
-
-    /*
-    @Override
-    protected boolean mayPlaceOn(BlockState p_200014_1_, BlockGetter p_200014_2_, BlockPos p_200014_3_) {
-        return p_200014_1_.is(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK.get());
-    }
-*/
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, net.minecraft.util.math.BlockPos pos, ShapeContext context) {

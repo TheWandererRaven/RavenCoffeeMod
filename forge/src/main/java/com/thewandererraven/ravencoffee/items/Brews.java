@@ -51,7 +51,7 @@ public class Brews {
             .addEffect(MobEffects.NIGHT_VISION,1800, 0.3d);
     public static final Brew COOKIESANDCREAM = new Brew()
             .addEffect(MobEffects.MOVEMENT_SPEED,900, 0.7d)
-            .addEffect(MobEffects.JUMP, 900, 0.2d);
+            .addEffect(MobEffects.JUMP, 900, 0.3d);
     public static final Brew END = new Brew()
             .addEffect(MobEffects.LEVITATION,200, 1.0d)
             .addEffect(MobEffects.SLOW_FALLING, 300, 1.0d);

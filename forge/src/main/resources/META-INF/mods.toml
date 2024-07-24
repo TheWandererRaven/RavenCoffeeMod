@@ -1,29 +1,29 @@
 modLoader="javafml"
 loaderVersion="[34,)"
-license="All rights reserved"
+license="Apache-2.0"
 issueTrackerURL="https://github.com/TheWandererRaven/RavenCoffeeMod/issues"
 [[mods]]
-modId="ravencoffee"
-version="0.5.0"
-displayName="Raven Coffee Mod"
-updateJSONURL="https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/raven-coffee"
-logoFile="ravenCoffeeLogo.png"
-credits="Credits to me, TheWandererRaven, cheers."
-authors="TheWandererRaven"
-description='''
-I haven't finished this yet! Thanks for downloading tho.
-'''
+    modId="ravencoffee"
+    version="0.5.1"
+    displayName="Raven Coffee Mod"
+    updateJSONURL="https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/raven-coffee"
+    logoFile="ravenCoffeeLogo.png"
+    credits="Credits to me, TheWandererRaven, cheers."
+    authors="The Wanderer Raven"
+    description='''
+    I haven't finished this yet! Thanks for downloading tho.
+    '''
 [[dependencies.raven_coffee]]
     modId="forge"
     mandatory=true
-    versionRange="[40,)"
+    versionRange="[43,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.raven_coffee]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.1]"
+    versionRange="[1.19.2]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.raven_coffee]]

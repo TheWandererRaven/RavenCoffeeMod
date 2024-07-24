@@ -5,6 +5,11 @@
   "itemGroup.ravencoffee.ravencoffee_medium_tab": "\u4e2d\u91cf\u51b2\u6ce1",
   "itemGroup.ravencoffee.ravencoffee_large_tab": "\u5927\u91cf\u51b2\u6ce1",
 
+  "upgrade.ravencoffee.coffee_upgrade": "Coffee Upgrade",
+  "item.ravencoffee.smithing_template.coffee_upgrade.applies_to": "Iron Tools & Weapons",
+  "item.ravencoffee.smithing_template.coffee_upgrade.ingredients": "Coffee Ingot",
+  "item.ravencoffee.smithing_template.coffee_upgrade.base_slot_description": "Add Iron weapon or tool",
+  "item.ravencoffee.smithing_template.coffee_upgrade.additions_slot_description": "Add Coffee Ingot",
 
   "item.ravencoffee.coffee_cherries": "\u5496\u5561\u79cd\u5b50",
   "item.ravencoffee.coffee_beans": "\u5496\u5561\u8c46",
@@ -84,7 +89,7 @@
 
   "item.ravencoffee.coffee_mug": "\u5496\u5561\u676f",
   "item.ravencoffee.coffee_mug_brew_basic": "\u7f8e\u5f0f\u5496\u5561",
-  "item.ravencoffee.coffee_mug_brew_basic.description": "\u95fb\u4e00\u95fb<br>\u9ed1\u6697\u5496\u5561\u7684\u9999\u5473",
+  "item.ravencoffee.coffee_mug_brew_basic.tooltip": "\u95fb\u4e00\u95fb<br>\u9ed1\u6697\u5496\u5561\u7684\u9999\u5473",
   "item.ravencoffee.coffee_mug_brew_apple": "\u82f9\u679c\u5496\u5561",
   "item.ravencoffee.coffee_mug_brew_berry": "\u6d46\u679c\u5496\u5561",
   "item.ravencoffee.coffee_mug_brew_chocolate": "\u5de7\u514b\u529b",
@@ -119,6 +124,7 @@
   "block.ravencoffee.coffee_grinder_block": "\u5496\u5561\u7814\u78e8\u673a",
   "container.ravencoffee.coffee_grinder_registry_name": "\u5496\u5561\u7814\u78e8\u673a",
   "block.ravencoffee.brownie_block": "\u5de8\u5927\u5e03\u6717\u5c3c",
+  "block.ravencoffee.brownie_block.tooltip": "Eat it with some milk!",
   "block.ravencoffee.rosca_de_reyes_block": "\u56fd\u738b\u997c",
   "block.ravencoffee.tiramisu_block": "\u63d0\u62c9\u7c73\u82cf",
   "block.ravencoffee.coffee_machine_block": "\u5496\u5561\u673a",
@@ -132,5 +138,6 @@
   "block.ravencoffee.coffee_tree_leaves_block": "\u5496\u5561\u6811\u53f6",
   "block.ravencoffee.coffee_tree_trunk_block": "\u5496\u5561\u6811\u5e72",
 
-  "entity.minecraft.villager.ravencoffee.barista": "\u5496\u5561\u5e08"
+  "entity.minecraft.villager.ravencoffee.barista": "\u5496\u5561\u5e08",
+  "entity.minecraft.villager.barista": "\u5496\u5561\u5e08"
 }

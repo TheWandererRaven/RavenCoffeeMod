@@ -2,6 +2,8 @@ package com.thewandererraven.ravencoffee.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -28,6 +30,26 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
         return SHAPE_BY_AGE[p_220053_1_.getValue(this.getAgeProperty())];
     }
 
+    @Override
+    public boolean canSurvive(BlockState blockState, LevelReader blockGetter, BlockPos blockPos) {
+        boolean flag = false;
+        BlockState belowBlock = blockGetter.getBlockState(blockPos.below());
+        if(belowBlock.is(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK.get()))
+            flag = ((CoffeeTreeTrunkBlock)belowBlock.getBlock()).isMaxAge(belowBlock);
+        return super.canSurvive(blockState, blockGetter, blockPos) && flag;
+    }
+
+    @Override
+    public void onRemove(BlockState oldState, Level level, BlockPos blockPos, BlockState newState, boolean isClient) {
+        super.onRemove(oldState, level, blockPos, newState, isClient);
+        if(!isClient) {
+            BlockState blockDown = level.getBlockState(blockPos.below());
+            if (blockDown.is(RavenCoffeeBlocks.COFFEE_TREE_TRUNK_BLOCK.get()) && !newState.is(this))
+                if (blockDown.getValue(CoffeeTreeTrunkBlock.HAS_LEAVES))
+                    level.setBlock(blockPos.below(), blockDown.setValue(CoffeeTreeTrunkBlock.HAS_LEAVES, false), 2);
+        }
+    }
+
     static {
         AGE = BlockStateProperties.AGE_3;
         SHAPE_BY_AGE = new VoxelShape[]{
@@ -38,28 +60,31 @@ public class CoffeeTreeLeavesBlock extends CoffeeTreeBlock {
                         12.0D,// TOP
                         8.0D,// VOLUME TOP
                         12.0D// RIGHT
-                ), Block.box(
+                ),
+                Block.box(
                 1.0D,
                 0.0D,
                 1.0D,
                 15.0D,
                 15.0D,
                 14.0D
-        ), Block.box(
+                ),
+                Block.box(
                 0.0D,
                 0.0D,
                 0.0D,
                 16.0D,
                 16.0D,
                 16.0D
-        ), Block.box(
+                ),
+                Block.box(
                 0.0D,
                 0.0D,// volume bottom
                 0.0D,
                 16.0D,// top
                 16.0D,// volume top
                 16.0D// right
-        )
+                )
         };
     }
-    }
+}

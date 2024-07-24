@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "fullness=0": {
+      "model": "ravencoffee:block/sack_block"
+    },
+    "fullness=1": {
+      "model": "ravencoffee:block/sack_block_1"
+    },
+    "fullness=2": {
+      "model": "ravencoffee:block/sack_block_2"
+    },
+    "fullness=3": {
+      "model": "ravencoffee:block/sack_block_3"
+    },
+    "fullness=4": {
+      "model": "ravencoffee:block/sack_block_4"
+    }
+  }
+}

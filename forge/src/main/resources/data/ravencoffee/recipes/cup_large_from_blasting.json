@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "ravencoffee:cup_large_unfired"
+  },
+  "result": "ravencoffee:cup_large"
+}

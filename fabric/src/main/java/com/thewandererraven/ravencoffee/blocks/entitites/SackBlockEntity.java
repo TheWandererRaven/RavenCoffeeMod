@@ -99,12 +99,15 @@ public class SackBlockEntity extends LootableContainerBlockEntity implements Inv
             this.inventory.set(slot, duplicateItemWithCount(oldStack, oldStack.getCount() - amount));
         else
             this.inventory.set(slot, ItemStack.EMPTY);
+        this.markDirty();
         updateFullness();
         return duplicateItemWithCount(oldStack, amount);
     }
     @Override
     public ItemStack removeStack(int slot) {
-        return Inventories.removeStack(this.inventory, slot);
+        ItemStack retStack = Inventories.removeStack(this.inventory, slot);
+        this.markDirty();
+        return retStack;
     }
 
     @Override
@@ -131,6 +134,7 @@ public class SackBlockEntity extends LootableContainerBlockEntity implements Inv
     @Override
     protected void setInvStackList(DefaultedList<ItemStack> list) {
         this.inventory = list;
+        updateFullness();
     }
 
     public boolean isFull() {
@@ -161,6 +165,7 @@ public class SackBlockEntity extends LootableContainerBlockEntity implements Inv
                 if((currentItem.getCount() + itemStack.getCount()) <= currentItem.getMaxCount()) {
                     currentItem.setCount(currentItem.getCount() + itemStack.getCount());
                     updateFullness();
+                    this.markDirty();
                     return true;
                 }
             } else if(firstEmptySlot < 0) {
@@ -170,6 +175,7 @@ public class SackBlockEntity extends LootableContainerBlockEntity implements Inv
         if(firstEmptySlot >= 0) {
             this.inventory.set(firstEmptySlot, itemStack.copy());
             updateFullness();
+            this.markDirty();
             return true;
         }
         return false;

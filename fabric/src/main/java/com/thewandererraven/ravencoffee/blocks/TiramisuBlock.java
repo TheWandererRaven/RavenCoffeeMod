@@ -19,7 +19,7 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 
 
-public class TiramisuBlock extends Block {
+public class TiramisuBlock extends Block implements ICakeLikeBlock {
     public static final int MAX_SLICES = 16;
     public static final IntProperty SLICES = IntProperty.of("slices", 1, 16);
     public static final int FULL_SIGNAL = getOutputSignal(0);
@@ -131,4 +131,8 @@ public class TiramisuBlock extends Block {
         return false;
     }
 
+    @Override
+    public IntProperty getBitesProperty() {
+        return SLICES;
+    }
 }

@@ -4,13 +4,20 @@ import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.RavenCoffeeForge;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.items.tools.RavenCoffeeItemTier;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class RavenCoffeeItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(
@@ -89,7 +96,7 @@ public class RavenCoffeeItems {
             () -> new Item(new Item.Properties()
                     .tab(RavenCoffeeForge.GENERAL_TAB)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
+                            .nutrition(3)
                             .saturationMod(0.3f/2f)
                             .build()
                     )
@@ -322,7 +329,18 @@ public class RavenCoffeeItems {
                             .saturationMod(1.0f)
                             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 6000, 5), 1.0f)
                             .build()
-                    ))
+                    )) {
+                @OnlyIn(Dist.CLIENT)
+                @Override
+                public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                    String descriptionKey = this.getDescriptionId().concat(".tooltip");
+                    String completeDescription = (Component.translatable(descriptionKey)).getString();
+                    tooltip.add(Component.nullToEmpty(String.format(
+                            "\u00A77%s\u00A77",
+                            completeDescription
+                    )));
+                }
+            }
     );
     public static final RegistryObject<Item> ROSCA_DE_REYES_BLOCK_ITEM = ITEMS.register(
             "rosca_de_reyes_block",

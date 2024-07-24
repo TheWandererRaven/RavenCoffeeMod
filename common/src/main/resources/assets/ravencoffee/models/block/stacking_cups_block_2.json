@@ -2,8 +2,8 @@
 	"credit": "The Wanderer Raven",
 	"texture_size": [32, 32],
 	"textures": {
-		"cup": "ravencoffee:blocks/coffee_mug_empty",
-		"particle": "ravencoffee:blocks/coffee_mug_empty"
+		"cup": "ravencoffee:block/coffee_mug_empty",
+		"particle": "ravencoffee:block/coffee_mug_empty"
 	},
 	"elements": [
 		{

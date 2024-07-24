@@ -3,20 +3,16 @@ package com.thewandererraven.ravencoffee.blocks;
 
 import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.entitites.SackBlockEntity;
-import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
@@ -48,12 +44,8 @@ public class SackBlock extends BlockWithEntity implements BlockEntityProvider, I
     public static final IntProperty FULLNESS = IntProperty.of("fullness", 0, 4);
     public static final DirectionProperty FACING = Properties.FACING;
 
-    protected SackBlock() {
-        super(Settings
-                .of(Material.WOOL)
-                .sounds(BlockSoundGroup.WOOL)
-                .nonOpaque()
-        );
+    protected SackBlock(Settings settings) {
+        super(settings);
         this.setDefaultState(this.getDefaultState()
                 .with(FACING, Direction.NORTH)
                 .with(FULLNESS, 0)
@@ -138,7 +130,7 @@ public class SackBlock extends BlockWithEntity implements BlockEntityProvider, I
                         itemInHand.decrement(1);
                     } else {
                         ItemStack grabbedItem = entity.grabItem();
-                        ItemScatterer.spawn(world, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ(), grabbedItem);
+                        ItemScatterer.spawn(world, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY() + 1.0d, blockHitResult.getBlockPos().getZ(), grabbedItem);
                     }
                 }
             } else {

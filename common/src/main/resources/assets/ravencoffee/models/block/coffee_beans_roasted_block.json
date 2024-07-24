@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "ravencoffee:blocks/coffee_beans_roasted_block"
-  }
-}

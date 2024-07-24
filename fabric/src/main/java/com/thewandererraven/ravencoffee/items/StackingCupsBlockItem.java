@@ -1,9 +1,8 @@
 package com.thewandererraven.ravencoffee.items;
 
-import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.StackingCupsBlock;
 import com.thewandererraven.ravencoffee.blocks.entitites.StackingCupsBlockEntity;
-import com.thewandererraven.ravencoffee.util.ModTags;
+import com.thewandererraven.ravencoffee.util.RavenCoffeeTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -52,7 +51,7 @@ public class StackingCupsBlockItem extends BlockItem {
                 if(!contextWorld.isClient) {
                     ItemStack itemInHand = context.getStack();
                     PlayerEntity player = context.getPlayer();
-                    if (itemInHand.isIn(ModTags.Items.CUPS) && blockEntity.canPlaceItem(itemInHand)) {
+                    if (itemInHand.isIn(RavenCoffeeTags.Items.CUPS) && blockEntity.canPlaceItem(itemInHand)) {
                         ItemStack newStack = itemInHand.copy();
                         newStack.setCount(1);
                         blockEntity.placeItem(newStack);

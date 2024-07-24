@@ -3,6 +3,7 @@ package com.thewandererraven.ravencoffee.blocks;
 import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -17,6 +18,7 @@ public class RavenCoffeeBlocks {
             () -> new Block(BlockBehaviour.Properties
                     .of(Material.CAKE)
                     .sound(SoundType.WOOL)
+                    .destroyTime(0.5F)
             )
     );
     public static final RegistryObject<Block> ROSCA_DE_REYES_BLOCK = BLOCKS.register(
@@ -24,7 +26,9 @@ public class RavenCoffeeBlocks {
             () -> new RoscaDeReyesBlock(BlockBehaviour.Properties
                     .of(Material.CAKE)
                     .sound(SoundType.WOOL)
-                    .noOcclusion()
+                    .noOcclusion(),
+                    2,
+                    1.5F
             )
     );
     public static final RegistryObject<Block> TIRAMISU_BLOCK = BLOCKS.register(
@@ -37,11 +41,18 @@ public class RavenCoffeeBlocks {
     );
     public static final RegistryObject<Block> COFFEE_BEANS_ROASTED_BLOCK = BLOCKS.register(
             "coffee_beans_roasted_block",
-            CoffeeBeansRoastedBlock::new
+            () -> new Block(BlockBehaviour.Properties.of(Material.CACTUS)
+                    .strength(1.0f, 1.0f)
+                    .sound(SoundType.WOOD)
+            )
     );
     public static final RegistryObject<Block> COFFEE_BEANS_MAGMA_BLOCK = BLOCKS.register(
             "coffee_beans_magma_block",
-            CoffeeBeansMagmaBlock::new
+            () -> new MagmaBlock(BlockBehaviour.Properties.of(Material.CACTUS)
+                    .strength(1.0f, 1.0f)
+                    .sound(SoundType.STONE)
+                    .speedFactor(1.5f)
+            )
     );
     public static final RegistryObject<Block> COFFEE_TREE_LEAVES_BLOCK = BLOCKS.register(
             "coffee_tree_leaves_block",
@@ -56,6 +67,7 @@ public class RavenCoffeeBlocks {
             () -> new CoffeeTreeTrunkBlock(CropBlock.Properties.of(Material.PLANT)
                     .sound(SoundType.GRASS)
                     .randomTicks()
+                    .destroyTime(1.0F)
             )
     );
 
@@ -63,18 +75,31 @@ public class RavenCoffeeBlocks {
             "coffee_grinder_block",
             () -> new CoffeeGrinderBlock(Block.Properties.of(Material.WOOD)
                     .sound(SoundType.WOOD)
+                    .destroyTime(0.8F)
             )
     );
     public static final RegistryObject<Block> COFFEE_MACHINE_BLOCK = BLOCKS.register(
             "coffee_machine_block",
-            CoffeeMachineBlock::new
+            () -> new CoffeeMachineBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .sound(SoundType.METAL)
+                    .destroyTime(0.8F)
+            )
     );
     public static final RegistryObject<Block> SACK_BLOCK = BLOCKS.register(
             "sack_block",
-            SackBlock::new
+            () -> new SackBlock(BlockBehaviour.Properties
+                        .of(Material.WOOL)
+                        .sound(SoundType.WOOL)
+                        .destroyTime(0.8F)
+                        .noOcclusion()
+            )
     );
     public static final RegistryObject<Block> STACKING_CUPS_BLOCK = BLOCKS.register(
             "stacking_cups_block",
-            StackingCupsBlock::new
+            () -> new StackingCupsBlock(BlockBehaviour.Properties
+                    .of(Material.STONE)
+                    .sound(SoundType.STONE)
+                    .destroyTime(0.5F)
+            )
     );
 }

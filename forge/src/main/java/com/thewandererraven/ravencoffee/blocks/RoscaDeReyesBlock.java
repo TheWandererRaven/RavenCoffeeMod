@@ -39,10 +39,19 @@ public class RoscaDeReyesBlock extends Block {
             Block.box(4, 0, 0, 12, 4, 4),
             Block.box(4, 0, 0, 8, 4, 4)
     };
-    
-    public RoscaDeReyesBlock(Properties p_49795_) {
-        super(p_49795_);
+    public final int HUNGER_PER_BITE;
+    public final float SATURATION_PER_BITE;
+
+    public RoscaDeReyesBlock(Properties properties, int hunger, float saturation) {
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(BITES, Integer.valueOf(0)));
+
+        this.HUNGER_PER_BITE = hunger;
+        this.SATURATION_PER_BITE = saturation;
+    }
+
+    public RoscaDeReyesBlock(Properties properties) {
+        this(properties, 1, 1.0F);
     }
 
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context) {
@@ -75,11 +84,11 @@ public class RoscaDeReyesBlock extends Block {
         return eatRes;
     }
 
-    protected static InteractionResult eat(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, Player player) {
+    public InteractionResult eat(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, Player player) {
         if (!player.canEat(false)) {
             return InteractionResult.PASS;
         } else {
-            player.getFoodData().eat(1, 1.0F);
+            player.getFoodData().eat(this.HUNGER_PER_BITE, this.SATURATION_PER_BITE);
             int i = blockState.getValue(BITES);
             levelAccessor.gameEvent(player, GameEvent.EAT, blockPos);
             if (i < MAX_BITES) {

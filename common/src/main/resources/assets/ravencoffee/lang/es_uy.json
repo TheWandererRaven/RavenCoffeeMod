@@ -1,10 +1,15 @@
 {
   "itemGroup.ravencoffee.ravencoffee_general_tab": "Raven Coffee general",
   "itemGroup.ravencoffee.ravencoffee_mug_tab": "Tazas de café",
-  "itemGroup.ravencoffee.ravencoffee_small_tab": "Café pequeño",
-  "itemGroup.ravencoffee.ravencoffee_medium_tab": "Café mediano",
-  "itemGroup.ravencoffee.ravencoffee_large_tab": "Café grande",
+  "itemGroup.ravencoffee.ravencoffee_small_tab": "Cafés pequeños",
+  "itemGroup.ravencoffee.ravencoffee_medium_tab": "Cafés medianos",
+  "itemGroup.ravencoffee.ravencoffee_large_tab": "Cafés grandes",
 
+  "upgrade.ravencoffee.coffee_upgrade": "Mejora de Café",
+  "item.ravencoffee.smithing_template.coffee_upgrade.applies_to": "Herramientas y armas de hierro",
+  "item.ravencoffee.smithing_template.coffee_upgrade.ingredients": "Lingote de café",
+  "item.ravencoffee.smithing_template.coffee_upgrade.base_slot_description": "Colocá una herramienta o arma de Hierro",
+  "item.ravencoffee.smithing_template.coffee_upgrade.additions_slot_description": "Colocá un lingote de café",
 
   "item.ravencoffee.coffee_cherries": "Cerezas de café",
   "item.ravencoffee.coffee_beans": "Granos de café",
@@ -84,7 +89,7 @@
 
   "item.ravencoffee.coffee_mug": "Taza para café",
   "item.ravencoffee.coffee_mug_brew_basic": "Café",
-  "item.ravencoffee.coffee_mug_brew_basic.description": "Huele la fragancia del <br>café oscuro",
+  "item.ravencoffee.coffee_mug_brew_basic.tooltip": "Huele la fragancia del <br>café oscuro",
   "item.ravencoffee.coffee_mug_brew_apple": "Café con manzana",
   "item.ravencoffee.coffee_mug_brew_berry": "Café con bayas",
   "item.ravencoffee.coffee_mug_brew_chocolate": "Chocolate",
@@ -118,7 +123,8 @@
 
   "block.ravencoffee.coffee_grinder_block": "Molino de café",
   "container.ravencoffee.coffee_grinder_registry_name": "Molino de café",
-  "block.ravencoffee.brownie_block": "Brownie GRANDE",
+  "block.ravencoffee.brownie_block": "GRAN Brownie",
+  "block.ravencoffee.brownie_block.tooltip": "Cómelo con leche!",
   "block.ravencoffee.rosca_de_reyes_block": "Rosca de Reyes",
   "block.ravencoffee.tiramisu_block": "Tiramisù",
   "block.ravencoffee.coffee_machine_block": "Máquina de café",
@@ -132,5 +138,6 @@
   "block.ravencoffee.coffee_tree_leaves_block": "Hojas de cafeto",
   "block.ravencoffee.coffee_tree_trunk_block": "Tronco de cafeto",
 
-  "entity.minecraft.villager.ravencoffee.barista": "Barista"
+  "entity.minecraft.villager.ravencoffee.barista": "Barista",
+  "entity.minecraft.villager.barista": "Barista"
 }

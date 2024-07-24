@@ -3,8 +3,8 @@
 	"render_type": "cutout",
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "ravencoffee:blocks/coffee_mug_empty",
-		"cup": "ravencoffee:blocks/coffee_mug_empty"
+		"particle": "ravencoffee:block/coffee_mug_empty",
+		"cup": "ravencoffee:block/coffee_mug_empty"
 	},
 	"elements": [
 		{

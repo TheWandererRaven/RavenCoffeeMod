@@ -96,6 +96,9 @@ public class SackScreenHandler extends ScreenHandler {
             if (index >= SackBlockEntity.CONTENTS_FIRST_SLOT_INDEX && index < SackBlockEntity.CONTENTS_FIRST_SLOT_INDEX + SackBlockEntity.CONTENTS_SLOT_COUNT) {
                 if (!this.insertItem(itemstack1, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT, true))
                     return ItemStack.EMPTY;
+                if (itemstack1.isEmpty()) {
+                    this.inventory.setStack(index, ItemStack.EMPTY);
+                }
             }
             // If selected item is in vanilla slots...
             else if (index >= VANILLA_FIRST_SLOT_INDEX && index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOTS_COUNT) {
@@ -111,10 +114,10 @@ public class SackScreenHandler extends ScreenHandler {
                     // ...otherwise, selected slot is from hotbar so, move to inventory
                     else if (!this.insertItem(itemstack1, PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOTS_COUNT, false))
                         return ItemStack.EMPTY;
-            }
 
-            if (itemstack1.isEmpty()) {
-                slot.insertStack(ItemStack.EMPTY);
+                if (itemstack1.isEmpty()) {
+                    slot.insertStack(ItemStack.EMPTY);
+                }
             }
 
             if (itemstack1.getCount() == itemstack.getCount()) {

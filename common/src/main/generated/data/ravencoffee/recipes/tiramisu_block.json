@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:bread"
+    },
+    "C": {
+      "item": "minecraft:cocoa_beans"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "R": {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    "Z": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    "RCR",
+    "EMZ",
+    "BBB"
+  ],
+  "result": {
+    "item": "ravencoffee:tiramisu_block"
+  }
+}

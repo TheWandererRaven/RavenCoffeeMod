@@ -1,9 +1,8 @@
 package com.thewandererraven.ravencoffee.blocks.entitites;
 
 import com.thewandererraven.ravenbrewscore.CupType;
-import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.StackingCupsBlock;
-import com.thewandererraven.ravencoffee.util.ModTags;
+import com.thewandererraven.ravencoffee.util.RavenCoffeeTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -139,7 +138,7 @@ public class StackingCupsBlockEntity extends LootableContainerBlockEntity implem
     }
 
     public boolean canPlaceItem(ItemStack itemStack) {
-        return (this.containsAny(Set.of(itemStack.getItem())) && this.getCount() < 9) || (itemStack.isIn(ModTags.Items.CUPS) && isEmpty());
+        return (this.containsAny(Set.of(itemStack.getItem())) && this.getCount() < 9) || (itemStack.isIn(RavenCoffeeTags.Items.CUPS) && isEmpty());
     }
 
     public boolean placeItem(ItemStack itemStack) {
