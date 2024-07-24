@@ -13,7 +13,7 @@
       "sources": "https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
     },
   
-    "license": "All rights reserved",
+    "license": "Apache-2.0 license",
     "icon": "ravenCoffeeLogo.png",
   
     "environment": "*",

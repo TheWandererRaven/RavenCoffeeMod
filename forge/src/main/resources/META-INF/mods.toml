@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[34,)"
-license="All rights reserved"
+license="Apache-2.0"
 issueTrackerURL="https://github.com/TheWandererRaven/RavenCoffeeMod/issues"
 [[mods]]
     modId="ravencoffee"
