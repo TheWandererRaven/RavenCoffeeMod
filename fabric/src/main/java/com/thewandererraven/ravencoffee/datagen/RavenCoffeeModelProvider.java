@@ -4,18 +4,19 @@ import com.thewandererraven.ravencoffee.blocks.*;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.*;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class RavenCoffeeModelProvider extends FabricModelProvider {
-    public RavenCoffeeModelProvider(FabricDataGenerator dataGenerator) {
-        super(dataGenerator);
+
+    public RavenCoffeeModelProvider(FabricDataOutput output) {
+        super(output);
     }
 
     @Override
@@ -166,7 +167,7 @@ public class RavenCoffeeModelProvider extends FabricModelProvider {
     }
 
     public static Identifier getTextureId(String folder, Item item) {
-        Identifier identifier = Registry.ITEM.getId(item);
+        Identifier identifier = Registries.ITEM.getId(item);
         String namespace = identifier.getNamespace();
         String path = identifier.getPath();
         return new Identifier(namespace,  folder + path);

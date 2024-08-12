@@ -9,16 +9,16 @@ import net.minecraft.world.gen.GenerationStep;
 public class CoffeeTreeGeneration {
     public static void generateCoffeeTrees() {
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SAVANNA),
-                GenerationStep.Feature.VEGETAL_DECORATION, RavenCoffeePlacedFeatures.COFFEE_TREE_SAVANNA.getKey().get()
+                GenerationStep.Feature.VEGETAL_DECORATION, RavenCoffeePlacedFeatures.COFFEE_TREE_SAVANNA_KEY
         );
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SAVANNA_PLATEAU),
-                GenerationStep.Feature.VEGETAL_DECORATION, RavenCoffeePlacedFeatures.COFFEE_TREE_SAVANNA.getKey().get()
+                GenerationStep.Feature.VEGETAL_DECORATION, RavenCoffeePlacedFeatures.COFFEE_TREE_SAVANNA_KEY
         );
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SPARSE_JUNGLE),
-                GenerationStep.Feature.VEGETAL_DECORATION, RavenCoffeePlacedFeatures.COFFEE_TREE_SAVANNA.getKey().get()
+                GenerationStep.Feature.VEGETAL_DECORATION, RavenCoffeePlacedFeatures.COFFEE_TREE_SAVANNA_KEY
         );
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.JUNGLE),
-                GenerationStep.Feature.VEGETAL_DECORATION, RavenCoffeePlacedFeatures.COFFEE_TREE_JUNGLE.getKey().get()
+                GenerationStep.Feature.VEGETAL_DECORATION, RavenCoffeePlacedFeatures.COFFEE_TREE_JUNGLE_KEY
         );
     }
 }
