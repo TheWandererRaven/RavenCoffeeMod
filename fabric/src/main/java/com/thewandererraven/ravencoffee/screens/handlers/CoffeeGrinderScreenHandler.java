@@ -201,7 +201,8 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
         return index != OUTPUT_FIRST_SLOT_INDEX;
     }
 
-    public ItemStack transferSlot(PlayerEntity player, int index) {
+    @Override
+    public ItemStack quickMove(PlayerEntity player, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasStack()) {
