@@ -6,8 +6,9 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityT
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class RavenCoffeeBlockEntities {
     public static BlockEntityType<StackingCupsBlockEntity> STACKING_CUPS_BLOCK_ENTITY;
@@ -21,7 +22,7 @@ public class RavenCoffeeBlockEntities {
     }
 
     private static <T extends BlockEntity> BlockEntityType<?> register(String name, FabricBlockEntityTypeBuilder.Factory<? extends T> factory, Block block) {
-        return Registry.register(Registry.BLOCK_ENTITY_TYPE,
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE,
                 new Identifier(
                         Constants.MOD_ID,
                         name),

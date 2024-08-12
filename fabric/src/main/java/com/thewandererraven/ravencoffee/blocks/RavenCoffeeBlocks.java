@@ -2,9 +2,10 @@ package com.thewandererraven.ravencoffee.blocks;
 
 import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.block.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class RavenCoffeeBlocks {
     public static final Block BROWNIE_BLOCK = registerItem(
@@ -117,7 +118,7 @@ public class RavenCoffeeBlocks {
     
     
     private static Block registerItem(String name, Block item) {
-        return Registry.register(Registry.BLOCK, new Identifier(Constants.MOD_ID, name), item);
+        return Registry.register(Registries.BLOCK, new Identifier(Constants.MOD_ID, name), item);
     }
 
     public static void register() {

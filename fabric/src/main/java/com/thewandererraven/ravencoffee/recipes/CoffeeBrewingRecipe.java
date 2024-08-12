@@ -13,9 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -115,7 +115,7 @@ public class CoffeeBrewingRecipe implements Recipe<SimpleInventory> {
 
     private Item getBrew(Item cup) {
         String BrewId = Constants.MOD_ID + ":" + cup + "_" + this.brewType;
-        return Registry.ITEM
+        return Registries.ITEM
                 .getOrEmpty(new Identifier(BrewId))
                 .orElse(RavenCoffeeBrewItems.COFFEE_MUG_BREW_BASIC).asItem();
     }
