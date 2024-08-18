@@ -1,0 +1,40 @@
+{
+  "type": "ravencoffee:coffee_tree",
+  "config": {
+    "blacklist": [],
+    "can_replace": false,
+    "leaves_state_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "ravencoffee:coffee_tree_leaves_block",
+        "Properties": {
+          "age": "0"
+        }
+      }
+    },
+    "need_water": false,
+    "project": false,
+    "tries": 25,
+    "trunk_state_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "ravencoffee:coffee_tree_trunk_block",
+        "Properties": {
+          "age": "0",
+          "has_leaves": "true"
+        }
+      }
+    },
+    "whitelist": [
+      {
+        "Name": "minecraft:grass_block",
+        "Properties": {
+          "snowy": "false"
+        }
+      }
+    ],
+    "xspread": 10,
+    "yspread": 3,
+    "zspread": 10
+  }
+}
