@@ -167,8 +167,9 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
         latestState = world.getBlockState(pos.below());
     }
 
+
     @Override
-    public boolean isValidBonemealTarget(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader reader, BlockPos blockPos, BlockState blockState, boolean isClient) {
         return !this.isMaxAge(blockState);
     }
 
