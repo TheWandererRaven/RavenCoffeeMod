@@ -23,7 +23,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_SMALL.get(),
                     Brews.ESPRESSO,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_SMALL_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> CUP_MEDIUM_BREW_BASIC = BREWS.register(
@@ -32,7 +32,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.BASIC,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_BASIC = BREWS.register(
@@ -41,7 +41,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.BASIC,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_BASIC = BREWS.register(
@@ -50,7 +50,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.BASIC,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
             )
     );
     //           #######################################   SUGAR   #############################################
@@ -60,7 +60,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.SUGAR,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_SUGAR = BREWS.register(
@@ -69,7 +69,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.SUGAR,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_SUGAR = BREWS.register(
@@ -78,7 +78,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.SUGAR,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
             )
     );
     //           #######################################   APPLE   #############################################
@@ -88,7 +88,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.APPLE,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                     .food(new FoodProperties.Builder()
                             .nutrition(2)
                             .saturationMod(0.3f)
@@ -101,7 +101,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.APPLE,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(3)
                                     .saturationMod(0.3f)
@@ -114,7 +114,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.APPLE,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.3f)
@@ -128,7 +128,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.BERRY,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(1)
                                     .saturationMod(0.1f)
@@ -141,7 +141,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.BERRY,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.1f)
@@ -154,7 +154,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.BERRY,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(1)
                                     .saturationMod(0.1f)
@@ -168,7 +168,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.HONEY,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(6)
                                     .saturationMod(0.1f)
@@ -181,7 +181,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.HONEY,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(9)
                                     .saturationMod(0.1f)
@@ -194,7 +194,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.HONEY,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(6)
                                     .saturationMod(0.1f)
@@ -208,7 +208,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.CHOCOLATE,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.1f)
@@ -221,7 +221,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.CHOCOLATE,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(3)
                                     .saturationMod(0.1f)
@@ -234,7 +234,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.CHOCOLATE,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.1f)
@@ -248,7 +248,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.MILK,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_MILK = BREWS.register(
@@ -257,7 +257,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.MILK,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MILK = BREWS.register(
@@ -266,7 +266,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.MILK,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
             )
     );
     //           #######################################   MOCHA   #############################################
@@ -276,7 +276,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.MOCHA,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_MOCHA = BREWS.register(
@@ -285,7 +285,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.MOCHA,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_MOCHA = BREWS.register(
@@ -294,7 +294,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.MOCHA,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
             )
     );
     //           #######################################   AWKWARD   #############################################
@@ -304,7 +304,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.AWKWARD,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_AWKWARD = BREWS.register(
@@ -313,7 +313,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.AWKWARD,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_AWKWARD = BREWS.register(
@@ -322,7 +322,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.AWKWARD,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
             )
     );
     //           #######################################   CARROT   #############################################
@@ -332,7 +332,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.CARROT,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(3)
                                     .saturationMod(0.3f)
@@ -345,7 +345,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.CARROT,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(3)
                                     .saturationMod(0.3f)
@@ -358,7 +358,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.CARROT,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(3)
                                     .saturationMod(0.3f)
@@ -372,7 +372,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.CARROT_GOLDEN,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(6)
                                     .saturationMod(0.8f)
@@ -385,7 +385,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.CARROT_GOLDEN,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(9)
                                     .saturationMod(0.8f)
@@ -398,7 +398,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.CARROT_GOLDEN,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(6)
                                     .saturationMod(0.8f)
@@ -412,7 +412,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.COOKIESANDCREAM,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(4)
                                     .saturationMod(0.1f)
@@ -425,7 +425,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.COOKIESANDCREAM,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(4)
                                     .saturationMod(0.1f)
@@ -438,7 +438,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.COOKIESANDCREAM,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(4)
                                     .saturationMod(0.1f)
@@ -452,7 +452,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.END,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.3f)
@@ -465,7 +465,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.END,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(3)
                                     .saturationMod(0.3f)
@@ -478,7 +478,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.END,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.3f)
@@ -492,7 +492,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.MELON,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.3f)
@@ -505,7 +505,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.MELON,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(3)
                                     .saturationMod(0.3f)
@@ -518,7 +518,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.MELON,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.3f)
@@ -532,7 +532,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.MELON_GOLDEN,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.3f)
@@ -545,7 +545,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.MELON_GOLDEN,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(3)
                                     .saturationMod(0.3f)
@@ -558,7 +558,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.MELON_GOLDEN,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(2)
                                     .saturationMod(0.3f)
@@ -572,7 +572,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.NETHER,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(1)
                                     .saturationMod(0.1f)
@@ -585,7 +585,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.NETHER,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(1)
                                     .saturationMod(0.1f)
@@ -598,7 +598,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.NETHER,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(1)
                                     .saturationMod(0.1f)
@@ -612,7 +612,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.PHANTASM,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_PHANTASM = BREWS.register(
@@ -621,7 +621,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.PHANTASM,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_PHANTASM = BREWS.register(
@@ -630,7 +630,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.PHANTASM,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
             )
     );
     //           #######################################   PUMPKINSPICELATTE   #############################################
@@ -640,7 +640,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.PUMPKINSPICELATTE,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> CUP_LARGE_BREW_PUMPKINSPICELATTE = BREWS.register(
@@ -649,7 +649,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.PUMPKINSPICELATTE,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
             )
     );
     public static final RegistryObject<Item> COFFEE_MUG_BREW_PUMPKINSPICELATTE = BREWS.register(
@@ -658,7 +658,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.PUMPKINSPICELATTE,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
             )
     );
     //           #######################################   PUMPKINSPICELATTE_WITH_PUMPKIN   #############################################
@@ -668,7 +668,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.CUP_MEDIUM.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_MEDIUM_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(5)
                                     .saturationMod(0.3f)
@@ -681,7 +681,7 @@ public class RavenCoffeeBrewItems {
                     CupType.LARGE,
                     RavenCoffeeItems.CUP_LARGE.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
-                    new Item.Properties().tab(RavenCoffeeForge.CUP_LARGE_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(5)
                                     .saturationMod(0.3f)
@@ -694,7 +694,7 @@ public class RavenCoffeeBrewItems {
                     CupType.MEDIUM,
                     RavenCoffeeItems.COFFEE_MUG.get(),
                     Brews.PUMPKINSPICELATTE_WITH_PUMPKIN,
-                    new Item.Properties().tab(RavenCoffeeForge.COFFEE_MUG_TAB)
+                    new Item.Properties()
                             .food(new FoodProperties.Builder()
                                     .nutrition(5)
                                     .saturationMod(0.3f)
