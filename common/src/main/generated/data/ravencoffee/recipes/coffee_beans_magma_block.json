@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "C": {
       "item": "ravencoffee:coffee_beans_magma"
