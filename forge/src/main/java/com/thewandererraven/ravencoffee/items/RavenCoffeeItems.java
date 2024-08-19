@@ -1,7 +1,6 @@
 package com.thewandererraven.ravencoffee.items;
 
 import com.thewandererraven.ravencoffee.Constants;
-import com.thewandererraven.ravencoffee.RavenCoffeeForge;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.items.tools.RavenCoffeeItemTier;
 import net.minecraft.network.chat.Component;
@@ -70,7 +69,7 @@ public class RavenCoffeeItems {
     );
     public static final RegistryObject<Item> MUFFIN = ITEMS.register(
             "muffin",
-            () -> new ItemThrowable(new Item.Properties()
+            () -> new MuffinItem(new Item.Properties()
                     .food(new FoodProperties.Builder()
                             .nutrition(2)
                             .saturationMod(0.5f/2f)
