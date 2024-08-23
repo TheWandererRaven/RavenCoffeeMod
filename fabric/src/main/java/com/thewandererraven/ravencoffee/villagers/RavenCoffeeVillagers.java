@@ -15,38 +15,33 @@ import net.minecraft.world.poi.PointOfInterestType;
 
 public class RavenCoffeeVillagers {
 
-    public static final PointOfInterestType BARISTA_POI = registerPointOfInterestType(
-            "barista_block_poi",
+    public static final String BARISTA_POI_ID = "barista_block_poi";
+
+    public static final PointOfInterestType BARISTA_POI = registerPOI(
+            BARISTA_POI_ID,
             RavenCoffeeBlocks.COFFEE_GRINDER
     );
 
     public static final VillagerProfession BARISTA = registerProfession(
             "barista",
             RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY,
-                    new Identifier(Constants.MOD_ID, "barista_block_poi")
+                    new Identifier(Constants.MOD_ID, BARISTA_POI_ID)
             )
     );
 
-
     public static VillagerProfession registerProfession(String name, RegistryKey<PointOfInterestType> type) {
-        return Registry.register(Registry.VILLAGER_PROFESSION,
-                new Identifier(Constants.MOD_ID, name),
-                VillagerProfessionBuilder.create().id(new Identifier(Constants.MOD_ID, name))
-                        .workstation(type)
-                        .workSound(SoundEvents.BLOCK_BREWING_STAND_BREW).build()
-        );
+        return Registry.register(Registry.VILLAGER_PROFESSION, new Identifier(Constants.MOD_ID, name),
+                VillagerProfessionBuilder.create().id(new Identifier(Constants.MOD_ID, name)).workstation(type)
+                        .workSound(SoundEvents.BLOCK_BREWING_STAND_BREW).build());
     }
 
-    public static PointOfInterestType registerPointOfInterestType(String name, Block block) {
-        return PointOfInterestHelper.register(
-                new Identifier(Constants.MOD_ID, name),
-                1,
-                1,
-                ImmutableSet.copyOf(block.getStateManager().getStates())
-        );
+    public static PointOfInterestType registerPOI(String name, Block block) {
+        return PointOfInterestHelper.register(new Identifier(Constants.MOD_ID, name),
+                1, 1, ImmutableSet.copyOf(block.getStateManager().getStates()));
     }
 
     public static void registerVillagers() {
         Constants.LOGGER.info("Registering Raven Coffee Villagers");
+
     }
 }

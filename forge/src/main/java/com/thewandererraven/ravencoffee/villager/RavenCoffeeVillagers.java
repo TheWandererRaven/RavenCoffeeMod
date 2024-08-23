@@ -4,10 +4,8 @@ import com.google.common.collect.ImmutableSet;
 import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
-import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.DeferredRegister;
@@ -37,4 +35,13 @@ public class RavenCoffeeVillagers {
                     SoundEvents.VILLAGER_WORK_CLERIC
                     )
     );
+
+    public static void registerPOIs() {
+        try {
+            ObfuscationReflectionHelper.findMethod(PoiType.class,
+                    "registerBlockStates", PoiType.class).invoke(null, BARISTA_BLOCK_POI.get());
+        } catch (InvocationTargetException | IllegalAccessException exception) {
+            exception.printStackTrace();
+        }
+    }
 }

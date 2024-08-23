@@ -20,7 +20,6 @@ import com.thewandererraven.ravencoffee.world.features.RavenCoffeePlacedFeatures
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -43,6 +42,7 @@ public class RavenCoffeeForge
 
         eventBus.addListener(this::setupClient);
         eventBus.addListener(this::postInit);
+        eventBus.addListener(this::commonSetup);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, RavenCoffeeClientConfigs.SPEC, "ravencoffee-client.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RavenCoffeeCommonConfigs.SPEC, "ravencoffee-common.toml");
@@ -71,6 +71,12 @@ public class RavenCoffeeForge
         } catch (Exception e){
             return false;
         }
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            RavenCoffeeVillagers.registerPOIs();
+        });
     }
 
     private void setupClient(final FMLClientSetupEvent event) {

@@ -12,5 +12,6 @@ public class RavenCoffeeDataGenerator implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(RavenCoffeeLootTableTagProvider::new);
         fabricDataGenerator.addProvider(RavenCoffeeModelProvider::new);
         fabricDataGenerator.addProvider(RavenCoffeeRecipeProvider::new);
+        fabricDataGenerator.addProvider(RavenCoffeePoiTagProvider::new);
     }
 }

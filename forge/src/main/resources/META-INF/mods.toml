@@ -4,7 +4,7 @@ license="Apache-2.0"
 issueTrackerURL="https://github.com/TheWandererRaven/RavenCoffeeMod/issues"
 [[mods]]
     modId="ravencoffee"
-    version="0.5.1"
+    version="0.5.2"
     displayName="Raven Coffee Mod"
     updateJSONURL="https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/raven-coffee"
