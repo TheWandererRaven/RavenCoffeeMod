@@ -1,9 +1,9 @@
 {
-  "itemGroup.ravencoffee.ravencoffee_general_tab": "\u4e4c\u9e26\u5496\u5561\u4e00\u822c\u7269\u54c1",
-  "itemGroup.ravencoffee.ravencoffee_mug_tab": "\u5496\u5561\u676f\u51b2\u6ce1",
-  "itemGroup.ravencoffee.ravencoffee_small_tab": "\u5c11\u91cf\u51b2\u6ce1",
-  "itemGroup.ravencoffee.ravencoffee_medium_tab": "\u4e2d\u91cf\u51b2\u6ce1",
-  "itemGroup.ravencoffee.ravencoffee_large_tab": "\u5927\u91cf\u51b2\u6ce1",
+  "itemGroup.ravencoffee.general_tab": "\u4e4c\u9e26\u5496\u5561\u4e00\u822c\u7269\u54c1",
+  "itemGroup.ravencoffee.mug_tab": "\u5496\u5561\u676f\u51b2\u6ce1",
+  "itemGroup.ravencoffee.small_tab": "\u5c11\u91cf\u51b2\u6ce1",
+  "itemGroup.ravencoffee.medium_tab": "\u4e2d\u91cf\u51b2\u6ce1",
+  "itemGroup.ravencoffee.large_tab": "\u5927\u91cf\u51b2\u6ce1",
 
   "upgrade.ravencoffee.coffee_upgrade": "Coffee Upgrade",
   "item.ravencoffee.smithing_template.coffee_upgrade.applies_to": "Iron Tools & Weapons",
