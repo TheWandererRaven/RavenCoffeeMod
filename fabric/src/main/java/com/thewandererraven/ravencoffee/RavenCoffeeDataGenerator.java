@@ -19,7 +19,7 @@ public class RavenCoffeeDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(RavenCoffeeModelProvider::new);
         pack.addProvider(RavenCoffeeRecipeProvider::new);
         pack.addProvider(RavenCoffeeWorldGenerator::new);
-        fabricDataGenerator.addProvider(RavenCoffeePoiTagProvider::new);
+        pack.addProvider(RavenCoffeePoiTagProvider::new);
     }
 
     @Override
