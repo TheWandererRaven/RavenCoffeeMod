@@ -142,11 +142,4 @@ public class StackingCupsBlockItem extends BlockItem {
             return p_40594_.setValue(p_40595_, p_40592_);
         }).orElse(p_40594_);
     }
-
-    @Override
-    public void fillItemCategory(CreativeModeTab p_41391_, NonNullList<ItemStack> p_41392_) {
-        if (this.allowedIn(p_41391_)) {
-            p_41392_.add(new ItemStack(this));
-        }
-    }
 }

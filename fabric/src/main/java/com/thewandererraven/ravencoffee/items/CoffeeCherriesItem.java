@@ -2,8 +2,8 @@ package com.thewandererraven.ravencoffee.items;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Util;
-import net.minecraft.util.registry.Registry;
 
 public class CoffeeCherriesItem extends BlockItem {
 
@@ -16,7 +16,7 @@ public class CoffeeCherriesItem extends BlockItem {
     @Override
     public String getTranslationKey() {
         if (this.translationKey == null) {
-            this.translationKey = Util.createTranslationKey("item", Registry.ITEM.getId(this));
+            this.translationKey = Util.createTranslationKey("item", Registries.ITEM.getId(this));
         }
         return this.translationKey;
     }

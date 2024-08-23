@@ -1,0 +1,23 @@
+{
+  "feature": "ravencoffee:coffee_tree_patch_default",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 17
+    },
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 200
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

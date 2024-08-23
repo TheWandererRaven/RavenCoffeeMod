@@ -1,15 +1,32 @@
 package com.thewandererraven.ravencoffee.items;
 
 import com.thewandererraven.ravencoffee.Constants;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class RavenCoffeeItemGroups {
-    public static final ItemGroup GENERAL_TAB = FabricItemGroupBuilder.build(new Identifier(Constants.MOD_ID, "ravencoffee_general_tab"), () -> new ItemStack(RavenCoffeeItems.COFFEE_BEANS_ROASTED));
-    public static final ItemGroup COFFEE_MUG_TAB = FabricItemGroupBuilder.build(new Identifier(Constants.MOD_ID, "ravencoffee_mug_tab"), () -> new ItemStack(RavenCoffeeItems.COFFEE_MUG));
-    public static final ItemGroup CUP_SMALL_TAB = FabricItemGroupBuilder.build(new Identifier(Constants.MOD_ID, "ravencoffee_small_tab"), () -> new ItemStack(RavenCoffeeItems.CUP_SMALL));
-    public static final ItemGroup CUP_MEDIUM_TAB = FabricItemGroupBuilder.build(new Identifier(Constants.MOD_ID, "ravencoffee_medium_tab"), () -> new ItemStack(RavenCoffeeItems.CUP_MEDIUM));
-    public static final ItemGroup CUP_LARGE_TAB = FabricItemGroupBuilder.build(new Identifier(Constants.MOD_ID, "ravencoffee_large_tab"), () -> new ItemStack(RavenCoffeeItems.CUP_LARGE));
+    public static final ItemGroup GENERAL_TAB = FabricItemGroup.builder(new Identifier(Constants.MOD_ID,"general_tab"))
+            .icon(() -> new ItemStack(RavenCoffeeItems.COFFEE_BEANS_ROASTED))
+            .build();
+    public static final ItemGroup COFFEE_MUG_TAB = FabricItemGroup.builder(new Identifier(Constants.MOD_ID,"mug_tab"))
+            .icon(() -> new ItemStack(RavenCoffeeItems.COFFEE_MUG))
+            .build();
+    public static final ItemGroup CUP_SMALL_TAB = FabricItemGroup.builder(new Identifier(Constants.MOD_ID,"small_tab"))
+            .icon(() -> new ItemStack(RavenCoffeeItems.CUP_SMALL))
+            .build();
+    public static final ItemGroup CUP_MEDIUM_TAB = FabricItemGroup.builder(new Identifier(Constants.MOD_ID,"medium_tab"))
+            .icon(() -> new ItemStack(RavenCoffeeItems.CUP_MEDIUM))
+            .build();
+    public static final ItemGroup CUP_LARGE_TAB = FabricItemGroup.builder(new Identifier(Constants.MOD_ID,"large_tab"))
+            .icon(() -> new ItemStack(RavenCoffeeItems.CUP_LARGE))
+            .build();
+
+    public static void registerItemGroups() {
+        Constants.LOGGER.info("Registering Item Groups for " + Constants.MOD_NAME);
+    }
 }

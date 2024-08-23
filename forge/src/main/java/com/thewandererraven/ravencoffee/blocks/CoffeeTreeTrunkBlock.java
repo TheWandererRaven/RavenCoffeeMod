@@ -111,9 +111,9 @@ public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, boolean isClient) {
-        if(blockGetter.getBlockState(blockPos.above()).is(this.getLeavesBlock())) {
-            BlockState upBlock = blockGetter.getBlockState(blockPos.above());
+    public boolean isValidBonemealTarget(LevelReader reader, BlockPos blockPos, BlockState blockState, boolean isClient) {
+        if(reader.getBlockState(blockPos.above()).is(this.getLeavesBlock())) {
+            BlockState upBlock = reader.getBlockState(blockPos.above());
             return !this.isMaxAge(blockState) || !blockState.getValue(HAS_LEAVES) || !((CoffeeTreeLeavesBlock) upBlock.getBlock()).isMaxAge(upBlock);
         } else
             return !this.isMaxAge(blockState) || !blockState.getValue(HAS_LEAVES);

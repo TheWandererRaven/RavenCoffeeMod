@@ -6,10 +6,12 @@ import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
 import net.minecraft.block.Block;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
 
@@ -24,13 +26,13 @@ public class RavenCoffeeVillagers {
 
     public static final VillagerProfession BARISTA = registerProfession(
             "barista",
-            RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY,
+            RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE,
                     new Identifier(Constants.MOD_ID, BARISTA_POI_ID)
             )
     );
 
     public static VillagerProfession registerProfession(String name, RegistryKey<PointOfInterestType> type) {
-        return Registry.register(Registry.VILLAGER_PROFESSION, new Identifier(Constants.MOD_ID, name),
+        return Registry.register(Registries.VILLAGER_PROFESSION, new Identifier(Constants.MOD_ID, name),
                 VillagerProfessionBuilder.create().id(new Identifier(Constants.MOD_ID, name)).workstation(type)
                         .workSound(SoundEvents.BLOCK_BREWING_STAND_BREW).build());
     }

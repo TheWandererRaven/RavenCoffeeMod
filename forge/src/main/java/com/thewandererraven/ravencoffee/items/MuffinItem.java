@@ -1,5 +1,6 @@
 package com.thewandererraven.ravencoffee.items;
 
+import com.thewandererraven.ravencoffee.RavenCoffeeForge;
 import com.thewandererraven.ravencoffee.entities.ThrowableFoodEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -9,16 +10,17 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 import java.util.Objects;
 
-public class ItemThrowable extends ItemBase {
-    public ItemThrowable() { super(); }
-    public ItemThrowable(CreativeModeTab tab) { super(tab); }
-    public ItemThrowable(Properties props) { super(props); }
+public class MuffinItem extends Item {
+    public MuffinItem(Properties props) {
+        super(props);
+    }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {

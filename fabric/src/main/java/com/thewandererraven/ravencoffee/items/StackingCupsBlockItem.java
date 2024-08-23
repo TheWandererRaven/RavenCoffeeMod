@@ -36,13 +36,6 @@ public class StackingCupsBlockItem extends BlockItem {
         return blockstate != null && this.canPlace(context, blockstate) ? blockstate : null;
     }
 
-    /*
-    @Override
-    protected boolean placeBlock(BlockPlaceContext p_40578_, BlockState p_40579_) {
-        return p_40578_.getLevel().setBlock(p_40578_.getClickedPos(), p_40579_, 11);
-    }
-     */
-
     @Override
     public ActionResult place(ItemPlacementContext context) {
         if (!context.canPlace()) {
@@ -108,43 +101,5 @@ public class StackingCupsBlockItem extends BlockItem {
             }
         }
     }
-/*
-    private BlockState updateBlockStateFromTag(BlockPos blockPos, World world, ItemStack stack, BlockState blockState) {
-        CompoundTag compoundtag = stack.getTag();
-        if (compoundtag != null) {
-            CompoundTag compoundtag1 = compoundtag.getCompound("BlockStateTag");
-            StateDefinition<Block, BlockState> statedefinition = blockState.getBlock().getStateDefinition();
 
-            for(String s : compoundtag1.getAllKeys()) {
-                Property<?> property = statedefinition.getProperty(s);
-                if (property != null) {
-                    String s1 = compoundtag1.get(s).getAsString();
-                    blockstate = updateState(blockstate, property, s1);
-                }
-            }
-        }
-
-        if (blockstate != blockState) {
-            world.setBlock(blockPos, blockstate, 2);
-        }
-
-        return blockstate;
-    }
-
-
-    private static <T extends Comparable<T>> BlockState updateState(BlockState p_40594_, Property<T> p_40595_, String p_40596_) {
-        return p_40595_.getValue(p_40596_).map((p_40592_) -> {
-            return p_40594_.setValue(p_40595_, p_40592_);
-        }).orElse(p_40594_);
-    }
- */
-
-
-    @Override
-    public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-        if (this.isIn(group)) {
-            stacks.add(new ItemStack(this));
-        }
-
-    }
 }

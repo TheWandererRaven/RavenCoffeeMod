@@ -40,9 +40,9 @@ public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPil
     }
 
     public BlockState getTrunkToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
-        return config.trunkStateProvider.getBlockState(rand, pos).with(CoffeeTreeTrunkBlock.AGE, 3);
+        return config.trunkStateProvider.get(rand, pos).with(CoffeeTreeTrunkBlock.AGE, 3);
     }
     public BlockState getLeavesToPlace(Random rand, BlockPos pos, DualBlockPileFeatureConfig config) {
-        return config.leavesStateProvider.getBlockState(rand, pos).with(CoffeeTreeTrunkBlock.AGE, rand.nextInt(4));
+        return config.leavesStateProvider.get(rand, pos).with(CoffeeTreeTrunkBlock.AGE, rand.nextInt(4));
     }
 }

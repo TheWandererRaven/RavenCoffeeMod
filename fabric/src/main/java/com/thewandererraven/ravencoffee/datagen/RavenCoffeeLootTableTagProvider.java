@@ -2,7 +2,7 @@ package com.thewandererraven.ravencoffee.datagen;
 
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.StemBlock;
@@ -15,12 +15,13 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
 
 public class RavenCoffeeLootTableTagProvider extends FabricBlockLootTableProvider {
-    public RavenCoffeeLootTableTagProvider(FabricDataGenerator dataGenerator) {
-        super(dataGenerator);
+
+    public RavenCoffeeLootTableTagProvider(FabricDataOutput dataOutput) {
+        super(dataOutput);
     }
 
     @Override
-    protected void generateBlockLootTables() {
+    public void generate() {
         addDrop(RavenCoffeeBlocks.BROWNIE_BLOCK);
         addDrop(RavenCoffeeBlocks.COFFEE_BEANS_MAGMA_BLOCK);
         addDrop(RavenCoffeeBlocks.COFFEE_BEANS_ROASTED_BLOCK);
@@ -41,8 +42,8 @@ public class RavenCoffeeLootTableTagProvider extends FabricBlockLootTableProvide
 
     }
 
-    public static LootTable.Builder leavesDrops(Block crop, Item product, net.minecraft.loot.condition.LootCondition.Builder condition) {
-        return (LootTable.Builder)applyExplosionDecay(crop, LootTable.builder()
+    public LootTable.Builder leavesDrops(Block crop, Item product, net.minecraft.loot.condition.LootCondition.Builder condition) {
+        return (LootTable.Builder) applyExplosionDecay(crop, LootTable.builder()
                 .pool(LootPool.builder()
                         .with(
                                 ItemEntry.builder(product)

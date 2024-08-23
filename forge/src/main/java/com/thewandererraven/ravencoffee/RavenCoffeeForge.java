@@ -6,6 +6,7 @@ import com.thewandererraven.ravencoffee.containers.RavenCoffeeMenuTypes;
 import com.thewandererraven.ravencoffee.containers.screen.CoffeeGrinderContainerScreen;
 import com.thewandererraven.ravencoffee.containers.screen.SackScreen;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
+import com.thewandererraven.ravencoffee.items.RavenCoffeeCreativeModeTabs;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipeTypes;
 import com.thewandererraven.ravencoffee.recipes.RavenCoffeeRecipes;
@@ -14,13 +15,10 @@ import com.thewandererraven.ravencoffee.util.configuration.RavenCoffeeClientConf
 import com.thewandererraven.ravencoffee.util.configuration.RavenCoffeeCommonConfigs;
 import com.thewandererraven.ravencoffee.util.registries.*;
 import com.thewandererraven.ravencoffee.villager.RavenCoffeeVillagers;
-import com.thewandererraven.ravencoffee.world.features.RavenCoffeeConfiguredFeatures;
 import com.thewandererraven.ravencoffee.world.features.RavenCoffeeFeatures;
-import com.thewandererraven.ravencoffee.world.features.RavenCoffeePlacedFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -42,6 +40,7 @@ public class RavenCoffeeForge
 
         eventBus.addListener(this::setupClient);
         eventBus.addListener(this::postInit);
+        eventBus.addListener(this::addCreative);
         eventBus.addListener(this::commonSetup);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, RavenCoffeeClientConfigs.SPEC, "ravencoffee-client.toml");
@@ -57,8 +56,6 @@ public class RavenCoffeeForge
         RavenCoffeeVillagers.POI_TYPES.register(eventBus);
         RavenCoffeeVillagers.VILLAGER_PROFESSIONS.register(eventBus);
         RavenCoffeeFeatures.FEATURES.register(eventBus);
-        RavenCoffeeConfiguredFeatures.CONFIGURED_FEATURES.register(eventBus);
-        RavenCoffeePlacedFeatures.PLACED_FEATURES.register(eventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         Constants.LOGGER.info("RAVEN COFFEE FINISHED SETUP!");
@@ -90,34 +87,118 @@ public class RavenCoffeeForge
         IDispenserBehaviourRegistry.registerBehaviours();
     }
 
-    public static final CreativeModeTab GENERAL_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_general_tab") {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(RavenCoffeeItems.COFFEE_BEANS_ROASTED.get());
+    private void addCreative(CreativeModeTabEvent.BuildContents event) {
+        if(event.getTab() == RavenCoffeeCreativeModeTabs.GENERAL_TAB) {
+            event.accept(RavenCoffeeItems.COFFEE_CHERRIES);
+            event.accept(RavenCoffeeItems.COFFEE_BEANS);
+            event.accept(RavenCoffeeItems.COFFEE_BEANS_ROASTED);
+            event.accept(RavenCoffeeItems.COFFEE_BEANS_MAGMA);
+            event.accept(RavenCoffeeItems.COFFEE_BEANS_ROASTED_GROUND);
+            event.accept(RavenCoffeeItems.COFFEE_BEANS_MAGMA_GROUND);
+            event.accept(RavenCoffeeItems.POPCHORUS);
+            event.accept(RavenCoffeeItems.MUFFIN);
+            event.accept(RavenCoffeeItems.MELON_PAN);
+            event.accept(RavenCoffeeItems.COFFEE_ECLAIR);
+            event.accept(RavenCoffeeItems.BROWNIE);
+            event.accept(RavenCoffeeItems.TIRAMISU_SLICE);
+            event.accept(RavenCoffeeItems.SANDWICH_HAM);
+            event.accept(RavenCoffeeItems.SANDWICH_BEEF);
+            event.accept(RavenCoffeeItems.SANDWICH_CHICKEN);
+            event.accept(RavenCoffeeItems.CROISSANT);
+            event.accept(RavenCoffeeItems.CROISSANT_HAM);
+            event.accept(RavenCoffeeItems.CROISSANT_BEEF);
+            event.accept(RavenCoffeeItems.CROISSANT_CHICKEN);
+            event.accept(RavenCoffeeItems.BAGEL);
+            event.accept(RavenCoffeeItems.BAGEL_BEEF);
+            event.accept(RavenCoffeeItems.BAGEL_CHICKEN);
+            event.accept(RavenCoffeeItems.COFFEE_PLATES);
+            event.accept(RavenCoffeeItems.COFFEE_INGOT);
+            event.accept(RavenCoffeeItems.COFFEE_PICKAXE);
+            event.accept(RavenCoffeeItems.COFFEE_AXE);
+            event.accept(RavenCoffeeItems.COFFEE_HOE);
+            event.accept(RavenCoffeeItems.COFFEE_SHOVEL);
+            event.accept(RavenCoffeeItems.COFFEE_SWORD);
+            event.accept(RavenCoffeeItems.BROWNIE_BLOCK_ITEM);
+            event.accept(RavenCoffeeItems.ROSCA_DE_REYES_BLOCK_ITEM);
+            event.accept(RavenCoffeeItems.TIRAMISU_BLOCK_ITEM);
+            event.accept(RavenCoffeeItems.COFFEE_BEANS_ROASTED_BLOCK_ITEM);
+            event.accept(RavenCoffeeItems.COFFEE_BEANS_MAGMA_BLOCK_ITEM);
+            event.accept(RavenCoffeeItems.COFFEE_GRINDER_ITEM);
+            event.accept(RavenCoffeeItems.COFFEE_MACHINE_ITEM);
+            event.accept(RavenCoffeeItems.SACK_BLOCK_ITEM);
         }
-    };
-    public static final CreativeModeTab COFFEE_MUG_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_mug_tab") {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(RavenCoffeeBrewItems.COFFEE_MUG_BREW_BASIC.get());
+        if(event.getTab() == RavenCoffeeCreativeModeTabs.CUP_SMALL_TAB) {
+            event.accept(RavenCoffeeItems.CUP_SMALL_UNFIRED);
+            event.accept(RavenCoffeeItems.CUP_SMALL);
+            event.accept(RavenCoffeeBrewItems.CUP_SMALL_BREW_BASIC);
         }
-    };
-    public static final CreativeModeTab CUP_SMALL_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_small_tab") {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(RavenCoffeeBrewItems.CUP_SMALL_BREW_BASIC.get());
+        if(event.getTab() == RavenCoffeeCreativeModeTabs.CUP_MEDIUM_TAB) {
+            event.accept(RavenCoffeeItems.CUP_MEDIUM_UNFIRED);
+            event.accept(RavenCoffeeItems.CUP_MEDIUM);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_BASIC);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_SUGAR);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_APPLE);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_BERRY);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_HONEY);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_CHOCOLATE);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_MILK);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_MOCHA);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_AWKWARD);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_CARROT);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_CARROT_GOLDEN);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_COOKIESANDCREAM);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_END);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_MELON);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_MELON_GOLDEN);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_NETHER);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_PHANTASM);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_PUMPKINSPICELATTE);
+            event.accept(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN);
         }
-    };
-    public static final CreativeModeTab CUP_MEDIUM_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_medium_tab") {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(RavenCoffeeBrewItems.CUP_MEDIUM_BREW_BASIC.get());
+        if(event.getTab() == RavenCoffeeCreativeModeTabs.CUP_LARGE_TAB) {
+            event.accept(RavenCoffeeItems.CUP_LARGE_UNFIRED);
+            event.accept(RavenCoffeeItems.CUP_LARGE);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_BASIC);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_SUGAR);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_APPLE);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_BERRY);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_HONEY);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_CHOCOLATE);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_MILK);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_MOCHA);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_AWKWARD);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_CARROT);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_CARROT_GOLDEN);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_COOKIESANDCREAM);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_END);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_MELON);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_MELON_GOLDEN);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_NETHER);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_PHANTASM);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_PUMPKINSPICELATTE);
+            event.accept(RavenCoffeeBrewItems.CUP_LARGE_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN);
         }
-    };
-    public static final CreativeModeTab CUP_LARGE_TAB = new CreativeModeTab(Constants.MOD_ID + ".ravencoffee_large_tab") {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(RavenCoffeeBrewItems.CUP_LARGE_BREW_BASIC.get());
+        if(event.getTab() == RavenCoffeeCreativeModeTabs.COFFEE_MUG_TAB) {
+            event.accept(RavenCoffeeItems.COFFEE_MUG);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_BASIC);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_SUGAR);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_APPLE);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_BERRY);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_HONEY);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_CHOCOLATE);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_MILK);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_MOCHA);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_AWKWARD);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_CARROT);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_CARROT_GOLDEN);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_COOKIESANDCREAM);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_END);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_MELON);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_MELON_GOLDEN);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_NETHER);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_PHANTASM);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_PUMPKINSPICELATTE);
+            event.accept(RavenCoffeeBrewItems.COFFEE_MUG_BREW_PUMPKINSPICELATTE_WITH_PUMPKIN);
         }
-    };
+    }
 }
