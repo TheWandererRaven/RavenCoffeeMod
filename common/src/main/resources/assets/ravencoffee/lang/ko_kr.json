@@ -14,7 +14,7 @@
   "item.ravencoffee.coffee_cherries": "커피 체리",
   "item.ravencoffee.coffee_beans": "커피 생두",
   "item.ravencoffee.coffee_beans_roasted": "커피 원두",
-  "item.ravencoffee.coffee_beans_roasted_magma": "마그마가 스민 커피 원두",
+  "item.ravencoffee.coffee_beans_magma": "마그마가 스민 커피 원두",
 
 
   "item.ravencoffee.coffee_beans_roasted_ground": "원두 커피 가루",
@@ -41,11 +41,11 @@
 
   "item.ravencoffee.cup_small_unfired": "굽지 않은 소형 커피잔",
   "item.ravencoffee.cup_small": "소형 커피잔",
-  "item.ravencoffee.cup_small_brew_espresso": "에스프레소",
+  "item.ravencoffee.cup_small_brew_basic": "에스프레소",
 
   "item.ravencoffee.cup_medium_unfired": "굽지 않은 커피잔",
   "item.ravencoffee.cup_medium": "커피잔",
-  "item.ravencoffee.cup_medium_brew_american": "아메리카노",
+  "item.ravencoffee.cup_medium_brew_basic": "아메리카노",
   "item.ravencoffee.cup_medium_brew_apple": "사과 커피",
   "item.ravencoffee.cup_medium_brew_berry": "달콤한 열매 커피",
   "item.ravencoffee.cup_medium_brew_chocolate": "핫초코",
@@ -67,7 +67,7 @@
 
   "item.ravencoffee.cup_large_unfired": "굽지 않은 대형 커피잔",
   "item.ravencoffee.cup_large": "대형 커피잔",
-  "item.ravencoffee.cup_large_brew_american": "큰 잔에 담긴 아메리카노",
+  "item.ravencoffee.cup_large_brew_basic": "큰 잔에 담긴 아메리카노",
   "item.ravencoffee.cup_large_brew_apple": "큰 잔에 담긴 사과 커피",
   "item.ravencoffee.cup_large_brew_berry": "큰 잔에 담긴 달콤한 열매 커피",
   "item.ravencoffee.cup_large_brew_chocolate": "큰 잔에 담긴 핫초코",
@@ -88,8 +88,8 @@
   "item.ravencoffee.cup_large_brew_pumpkinspicelatte_with_pumpkin": "호박이 들어간 펌킨 스파이스 라떼 벤티 사이즈",
 
   "item.ravencoffee.coffee_mug": "커피 머그잔",
-  "item.ravencoffee.coffee_mug_brew_american": "아메리카노",
-  "item.ravencoffee.coffee_mug_brew_american.description": "진한 커피향을 느껴보세요.",
+  "item.ravencoffee.coffee_mug_brew_basic": "아메리카노",
+  "item.ravencoffee.coffee_mug_brew_basic.tooltip": "진한 커피향을 느껴보세요.",
   "item.ravencoffee.coffee_mug_brew_apple": "사과 커피",
   "item.ravencoffee.coffee_mug_brew_berry": "달콤한 열매 커피",
   "item.ravencoffee.coffee_mug_brew_chocolate": "핫초코",
@@ -108,7 +108,6 @@
   "item.ravencoffee.coffee_mug_brew_phantasm": "잠들지 못할 커피",
   "item.ravencoffee.coffee_mug_brew_pumpkinspicelatte": "펌킨 스파이스 라떼",
   "item.ravencoffee.coffee_mug_brew_pumpkinspicelatte_with_pumpkin": "호박이 들어간 펌킨 스파이스 라떼",
-
 
 
   "item.ravencoffee.coffee_plates": "커피 판",
