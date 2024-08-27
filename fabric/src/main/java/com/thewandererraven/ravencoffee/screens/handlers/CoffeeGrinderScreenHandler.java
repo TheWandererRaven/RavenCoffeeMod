@@ -1,6 +1,5 @@
 package com.thewandererraven.ravencoffee.screens.handlers;
 
-import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.recipes.CoffeeGrindingRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -8,11 +7,14 @@ import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
 import java.util.Optional;
@@ -59,9 +61,19 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
     private final ScreenHandlerContext context;
     protected final PlayerEntity player;
 
+    public CoffeeGrinderScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
+        this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
+    }
+
+    public CoffeeGrinderScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+        this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
+    }
+
     public CoffeeGrinderScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
     }
+
+
 
     public CoffeeGrinderScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
         super(RavenCoffeeScreenHandlers.COFFEE_GRINDER_SCREEN_HANDLER, syncId);
@@ -115,8 +127,10 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
 
     // ############################################### SCREEN ###############################################
 
-    public void close(PlayerEntity player) {
-        super.close(player);
+
+    @Override
+    public void onClosed(PlayerEntity player) {
+        super.onClosed(player);
         this.dropInventory(this.player, this.input);
     }
 
@@ -137,7 +151,7 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
             if (optional.isPresent()) {
                 CoffeeGrindingRecipe craftingRecipe = optional.get();
                 if (resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe)) {
-                    itemStack = craftingRecipe.craft(craftingInventory);
+                    itemStack = craftingRecipe.craft(craftingInventory, world.getRegistryManager());
                 }
             }
 
@@ -160,7 +174,8 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
         this.decrementStack(0);
         this.decrementStack(1);
         this.context.run((world, pos) -> {
-            world.syncWorldEvent(1044, pos, 0);
+            world.playSound((PlayerEntity)null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            //world.syncWorldEvent(1044, pos, 0);
         });
     }
 

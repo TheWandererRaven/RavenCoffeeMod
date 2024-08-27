@@ -3,7 +3,6 @@ package com.thewandererraven.ravencoffee.entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
@@ -44,7 +43,7 @@ public class MuffinEntity extends SnowballEntity {
                 hitPlayer.world.playSound(null, hitPlayer.getBlockPos(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.AMBIENT, 1.0f, 1.0f);
                 hitPlayer.world.playSound(null, hitPlayer.getBlockPos(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.AMBIENT, 1.0f, 1.0f);
             } else
-                hitPlayer.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float)0.5);
+                hitPlayer.damage(getDamageSources().thrown(this, this.getOwner()), (float)0.5);
         }
         else if (hitEntity instanceof VillagerEntity) {
             VillagerEntity hitVillager = (VillagerEntity)hitEntity;
@@ -64,7 +63,7 @@ public class MuffinEntity extends SnowballEntity {
             hitAnimal.world.playSound(null, hitAnimal.getBlockPos(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.AMBIENT, 1.0f, 1.1f);
         }
         else if(!(hitEntity instanceof GolemEntity))  {
-            hitEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float) 1.0);
+            hitEntity.damage(getDamageSources().thrown(this, this.getOwner()), (float) 1.0);
         }
     }
 

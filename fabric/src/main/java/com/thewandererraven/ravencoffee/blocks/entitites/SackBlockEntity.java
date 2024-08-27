@@ -4,6 +4,7 @@ import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.blocks.SackBlock;
 import com.thewandererraven.ravencoffee.screens.handlers.SackScreenHandler;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,12 +14,15 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 
-public class SackBlockEntity extends LootableContainerBlockEntity implements Inventory {
+public class SackBlockEntity extends LootableContainerBlockEntity implements Inventory, ExtendedScreenHandlerFactory {
     public static final int CONTENTS_SLOT_COUNT = 4;
     public static final int CONTENTS_FIRST_SLOT_INDEX = 0;
 
@@ -202,10 +206,13 @@ public class SackBlockEntity extends LootableContainerBlockEntity implements Inv
     }
 
     @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(this.pos);
+    }
+    @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
         return new SackScreenHandler(syncId, playerInventory, this);
     }
-
     // ================================================= DATA =================================================
 /*
     public void load(CompoundTag tag) {
@@ -232,29 +239,4 @@ public class SackBlockEntity extends LootableContainerBlockEntity implements Inv
         super.readNbt(nbt);
         Inventories.readNbt(nbt, inventory);
     }
-
-    // ================================================= WORLDLY CONTAINER =================================================
-/*
-    @Override
-    public int[] getSlotsForFace(Direction direction) {
-        return SLOTS_FOR_HOPPER;
-    }
-
-    @Override
-    public boolean canPlaceItemThroughFace(int slot, ItemStack itemStack, @Nullable Direction direction) {
-        return direction.equals(Direction.UP);
-    }
-
-    @Override
-    public boolean canTakeItemThroughFace(int slot, ItemStack itemStack, Direction direction) {
-        return false;
-    }
-
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int i, net.minecraft.world.entity.player.Inventory inventory, Player player) {
-        return null;
-    }
-
- */
 }

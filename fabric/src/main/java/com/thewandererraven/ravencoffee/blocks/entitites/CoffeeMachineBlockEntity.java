@@ -6,6 +6,7 @@ import com.thewandererraven.ravencoffee.recipes.CoffeeBrewSizedIngredient;
 import com.thewandererraven.ravencoffee.recipes.CoffeeBrewingRecipe;
 import com.thewandererraven.ravencoffee.screens.handlers.CoffeeMachineScreenHandler;
 import com.thewandererraven.ravencoffee.util.Cups;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,9 +17,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class CoffeeMachineBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
+public class CoffeeMachineBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
 
     private static final int INPUT_SLOT = 0;
@@ -101,6 +104,11 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements NamedScreen
     public void markDirty() {
         super.markDirty();
         updateBlockState();
+    }
+
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(this.pos);
     }
 
     // ################################################### INVENTORY ###################################################

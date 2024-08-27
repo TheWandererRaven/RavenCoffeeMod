@@ -2,11 +2,12 @@ package com.thewandererraven.ravencoffee.screens.handlers;
 
 import com.thewandererraven.ravencoffee.blocks.entitites.SackBlockEntity;
 import com.thewandererraven.ravencoffee.screens.slots.SackContentsSlot;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -44,20 +45,18 @@ public class SackScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
 
-    public SackScreenHandler(int syncId, PlayerInventory inventory) {
-        this(syncId, inventory, new SimpleInventory(4), new ArrayPropertyDelegate(1));
+    public SackScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()), new ArrayPropertyDelegate(1));
+    }
+    public SackScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity) {
+        this(syncId, playerInventory, blockEntity, new ArrayPropertyDelegate(1));
     }
 
-    public SackScreenHandler(int syncId, PlayerInventory inventory, Inventory entityInventory) {
-        //this(syncId, inventory, new SimpleInventory(4), new ArrayPropertyDelegate(1));
-        this(syncId, inventory, entityInventory, new ArrayPropertyDelegate(1));
-    }
-
-    protected SackScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
+    protected SackScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate delegate) {
         super(RavenCoffeeScreenHandlers.SACK_SCREEN_HANDLER, syncId);
 
-        checkSize(inventory, 4);
-        this.inventory = inventory;
+        checkSize(((Inventory) blockEntity), 4);
+        this.inventory = ((Inventory) blockEntity);
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
 

@@ -5,8 +5,7 @@ import com.thewandererraven.ravencoffee.screens.handlers.CoffeeGrinderScreenHand
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.screen.*;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.text.Text;
@@ -65,7 +64,7 @@ public class CoffeeGrinderBlock extends Block {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx).with(FACING, ctx.getPlayerFacing().getOpposite());
+        return super.getPlacementState(ctx).with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
     // #################################################### SHAPES ####################################################
@@ -105,9 +104,10 @@ public class CoffeeGrinderBlock extends Block {
         return ActionResult.success(world.isClient);
     }
 
+    @Nullable
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
         return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> {
-            return new CoffeeGrinderScreenHandler(syncId, inventory);
+            return new CoffeeGrinderScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos));
         }, TITLE);
     }
 }

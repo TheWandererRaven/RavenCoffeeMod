@@ -8,6 +8,7 @@ import com.thewandererraven.ravencoffee.containers.inventory.BrewCupInputSlot;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeBrewItems;
 import com.thewandererraven.ravencoffee.items.RavenCoffeeItems;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -35,8 +36,9 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
         this.cookingTime = cookingTime;
     }
 
+
     @Override
-    public ItemStack assemble(SimpleContainer inventory) {
+    public ItemStack assemble(SimpleContainer inventory, RegistryAccess registryAccess) {
         return null;
     }
 
@@ -106,7 +108,7 @@ public class CoffeeBrewRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
         return new ItemStack(RavenCoffeeItems.COFFEE_MUG.get());
     }
 

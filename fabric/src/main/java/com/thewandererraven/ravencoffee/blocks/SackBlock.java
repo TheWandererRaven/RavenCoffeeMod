@@ -64,7 +64,7 @@ public class SackBlock extends BlockWithEntity implements BlockEntityProvider, I
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         return this.getDefaultState()
-                .with(FACING, context.getPlayerFacing().getOpposite());
+                .with(FACING, context.getHorizontalPlayerFacing().getOpposite());
     }
 
     public static int getFullnessState(int percentage) {

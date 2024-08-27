@@ -242,7 +242,7 @@ public class CoffeeGrinderContainer extends AbstractContainerMenu {
             if (optional.isPresent()) {
                 CoffeeGrinderRecipe craftingrecipe = optional.get();
                 if (inventoryResult.setRecipeUsed(world, serverplayer, craftingrecipe)) {
-                    itemstack = craftingrecipe.assemble(inventory);
+                    itemstack = craftingrecipe.assemble(inventory, null);
                 }
             }
             inventoryResult.setItem(0, itemstack);

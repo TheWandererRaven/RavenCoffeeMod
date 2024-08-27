@@ -58,7 +58,7 @@ public class StackingCupsBlock extends BlockWithEntity implements BlockEntityPro
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         return this.getDefaultState()
-                .with(FACING, context.getPlayerFacing().getOpposite());
+                .with(FACING, context.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Override

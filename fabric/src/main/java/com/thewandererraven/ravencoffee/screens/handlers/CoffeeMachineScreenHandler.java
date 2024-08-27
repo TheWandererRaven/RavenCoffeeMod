@@ -3,11 +3,12 @@ package com.thewandererraven.ravencoffee.screens.handlers;
 import com.thewandererraven.ravencoffee.blocks.entitites.CoffeeMachineBlockEntity;
 import com.thewandererraven.ravencoffee.recipes.CoffeeBrewingRecipe;
 import com.thewandererraven.ravencoffee.util.Cups;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -51,14 +52,18 @@ public class CoffeeMachineScreenHandler extends ScreenHandler {
     public static final int SLOT_X_SPACING = 18;
     public static final int SLOT_Y_SPACING = 18;
 
-    public CoffeeMachineScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(3), new ArrayPropertyDelegate(3));
+    public CoffeeMachineScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
+        this(syncId, playerInventory, playerInventory.player.getWorld().getBlockEntity(buf.readBlockPos()), new ArrayPropertyDelegate(3));
     }
 
-    public CoffeeMachineScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
+    public CoffeeMachineScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity) {
+        this(syncId, playerInventory, blockEntity, new ArrayPropertyDelegate(3));
+    }
+
+    public CoffeeMachineScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate delegate) {
         super(RavenCoffeeScreenHandlers.COFFEE_MACHINE_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 3);
-        this.inventory = inventory;
+        checkSize(((Inventory) blockEntity), 3);
+        this.inventory = ((Inventory) blockEntity);
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
         // Add the tile output containers to the gui
@@ -151,7 +156,6 @@ public class CoffeeMachineScreenHandler extends ScreenHandler {
     public boolean canUse(PlayerEntity player) {
         return this.inventory.canPlayerUse(player);
     }
-
     // ##################################################### SLOTS #####################################################
 
     private void addPlayerInventory(PlayerInventory playerInventory) {

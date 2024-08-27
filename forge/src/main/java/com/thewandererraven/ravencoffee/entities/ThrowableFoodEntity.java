@@ -2,7 +2,6 @@ package com.thewandererraven.ravencoffee.entities;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -48,7 +47,7 @@ public class ThrowableFoodEntity extends Snowball {
                 hitPlayer.level.playSound(null, hitPlayer.blockPosition(), SoundEvents.GENERIC_EAT, SoundSource.AMBIENT, 1.0f, 1.0f);
                 hitPlayer.level.playSound(null, hitPlayer.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.AMBIENT, 1.0f, 1.0f);
             } else
-                hitPlayer.hurt(DamageSource.thrown(this, this.getOwner()), (float)0.5);
+                hitPlayer.hurt(damageSources().thrown(this, this.getOwner()), (float)0.5);
         }
         else if (hitEntity instanceof Villager) {
             Villager hitVillager = (Villager)hitEntity;
@@ -68,7 +67,7 @@ public class ThrowableFoodEntity extends Snowball {
             hitAnimal.level.playSound(null, hitAnimal.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.AMBIENT, 1.0f, 1.1f);
         }
         else {
-            hitEntity.hurt(DamageSource.thrown(this, this.getOwner()), (float) 1.0);
+            hitEntity.hurt(damageSources().thrown(this, this.getOwner()), (float) 1.0);
         }
     }
 
