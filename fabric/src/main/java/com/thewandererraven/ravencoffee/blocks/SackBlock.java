@@ -1,7 +1,5 @@
 package com.thewandererraven.ravencoffee.blocks;
 
-
-import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.entitites.SackBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -11,7 +9,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -28,7 +25,6 @@ import net.minecraft.world.World;
 import net.minecraft.util.shape.VoxelShape;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.stream.Stream;
 
 public class SackBlock extends BlockWithEntity implements BlockEntityProvider, ItemConvertible {
@@ -101,12 +97,6 @@ public class SackBlock extends BlockWithEntity implements BlockEntityProvider, I
 
             super.onStateReplaced(state, world, pos, newState, moved);
         }
-    }
-
-    @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-        Constants.LOGGER.info("GET DROPPED STACKS");
-        return super.getDroppedStacks(state, builder);
     }
 
     @Override

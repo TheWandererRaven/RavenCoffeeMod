@@ -3,6 +3,7 @@ package com.thewandererraven.ravencoffee.screens;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.screens.handlers.CoffeeMachineScreenHandler;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -35,34 +36,34 @@ public class CoffeeMachineScreen extends HandledScreen<CoffeeMachineScreenHandle
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
+    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
 
-        this.drawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        context.drawTexture(TEXTURE, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
 
         float progress = this.getScreenHandler().getScaledProgress(); // From 0 to 1
         if(progress > 0f)
-            this.drawTexture(matrices, x + PROGRESS_INDICATOR_X, y + PROGRESS_INDICATOR_Y,
+            context.drawTexture(TEXTURE, x + PROGRESS_INDICATOR_X, y + PROGRESS_INDICATOR_Y,
                     this.backgroundWidth, 0,
                     ProgressIndicatorWidth, Math.round(ProgressIndicatorHeight * progress));
         if(this.getScreenHandler().isCupsSlotEmpty())
-            this.drawTexture(matrices, x + CoffeeMachineScreenHandler.CUPS_SLOT_POS_X, y + CoffeeMachineScreenHandler.CUPS_SLOT_POS_Y,
+            context.drawTexture(TEXTURE, x + CoffeeMachineScreenHandler.CUPS_SLOT_POS_X, y + CoffeeMachineScreenHandler.CUPS_SLOT_POS_Y,
                     this.backgroundWidth + ProgressIndicatorWidth, 0,
                     EmptyCupSlotWidth, EmptyCupSlotHeight);
         if(this.getScreenHandler().isOutputSlotEmpty())
-            this.drawTexture(matrices, x + CoffeeMachineScreenHandler.CUP_OUTPUT_SLOT_POS_X, y + CoffeeMachineScreenHandler.CUP_OUTPUT_SLOT_POS_Y,
+            context.drawTexture(TEXTURE, x + CoffeeMachineScreenHandler.CUP_OUTPUT_SLOT_POS_X, y + CoffeeMachineScreenHandler.CUP_OUTPUT_SLOT_POS_Y,
                     this.backgroundWidth + ProgressIndicatorWidth + EmptyCupSlotWidth, 0,
                     EmptyCupSlotWidth, EmptyCupSlotHeight);
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
         RenderSystem.disableBlend();
-        this.drawMouseoverTooltip(matrices, mouseX, mouseY);
+        this.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 }

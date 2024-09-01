@@ -2,6 +2,7 @@ package com.thewandererraven.ravencoffee.blocks;
 
 import com.thewandererraven.ravencoffee.Constants;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -10,8 +11,9 @@ import net.minecraft.util.Identifier;
 public class RavenCoffeeBlocks {
     public static final Block BROWNIE_BLOCK = registerItem(
             "brownie_block",
-            new Block(AbstractBlock.Settings
-                    .of(Material.CAKE)
+            new Block(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.NORMAL)
                     .sounds(BlockSoundGroup.WOOL)
                     .strength(0.5F)
             )
@@ -19,8 +21,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block ROSCA_DE_REYES_BLOCK = registerItem(
             "rosca_de_reyes_block",
-            new RoscaDeReyesBlock(AbstractBlock.Settings
-                    .of(Material.CAKE)
+            new RoscaDeReyesBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.DESTROY)
                     .sounds(BlockSoundGroup.WOOL)
                     .nonOpaque(),
                     2,
@@ -30,8 +33,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block TIRAMISU_BLOCK = registerItem(
             "tiramisu_block",
-            new TiramisuBlock(AbstractBlock.Settings
-                    .of(Material.CAKE)
+            new TiramisuBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.DESTROY)
                     .sounds(BlockSoundGroup.WOOL)
                     .nonOpaque()
             )
@@ -39,8 +43,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block COFFEE_BEANS_ROASTED_BLOCK = registerItem(
             "coffee_beans_roasted_block",
-            new Block(AbstractBlock.Settings
-                    .of(Material.CACTUS)
+            new Block(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.NORMAL)
                     .strength(1.0f, 1.0f)
                     .sounds(BlockSoundGroup.STONE)
             )
@@ -48,8 +53,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block COFFEE_BEANS_MAGMA_BLOCK = registerItem(
             "coffee_beans_magma_block",
-            new MagmaBlock(AbstractBlock.Settings
-                    .of(Material.CACTUS)
+            new MagmaBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.NORMAL)
                     .strength(1.0f, 1.0f)
                     .sounds(BlockSoundGroup.STONE)
                     .velocityMultiplier(1.5f)
@@ -58,8 +64,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block COFFEE_TREE_LEAVES_BLOCK = registerItem(
             "coffee_tree_leaves_block",
-            new CoffeeTreeLeavesBlock(AbstractBlock.Settings
-                    .of(Material.PLANT)
+            new CoffeeTreeLeavesBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.DESTROY)
                     .sounds(BlockSoundGroup.GRASS)
                     .ticksRandomly()
                     .nonOpaque()
@@ -68,8 +75,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block COFFEE_TREE_TRUNK_BLOCK = registerItem(
             "coffee_tree_trunk_block",
-            new CoffeeTreeTrunkBlock(AbstractBlock.Settings
-                    .of(Material.PLANT)
+            new CoffeeTreeTrunkBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.DESTROY)
                     .sounds(BlockSoundGroup.GRASS)
                     .strength(1.0F)
                     .ticksRandomly()
@@ -79,8 +87,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block COFFEE_GRINDER = registerItem(
             "coffee_grinder_block",
-            new CoffeeGrinderBlock(AbstractBlock.Settings
-                    .of(Material.WOOD)
+            new CoffeeGrinderBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.NORMAL)
                     .sounds(BlockSoundGroup.WOOD)
                     .strength(0.8F)
             )
@@ -88,8 +97,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block COFFEE_MACHINE_BLOCK = registerItem(
             "coffee_machine_block",
-            new CoffeeMachineBlock(AbstractBlock.Settings
-                    .of(Material.METAL)
+            new CoffeeMachineBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.NORMAL)
                     .sounds(BlockSoundGroup.METAL)
                     .strength(0.8F)
                     .nonOpaque()
@@ -98,8 +108,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block SACK_BLOCK = registerItem(
             "sack_block",
-            new SackBlock(AbstractBlock.Settings
-                    .of(Material.WOOL)
+            new SackBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.NORMAL)
                     .sounds(BlockSoundGroup.WOOL)
                     .strength(0.8F)
                     .nonOpaque()
@@ -108,8 +119,9 @@ public class RavenCoffeeBlocks {
 
     public static final Block STACKING_CUPS_BLOCK = registerItem(
             "stacking_cups_block",
-            new StackingCupsBlock(AbstractBlock.Settings
-                    .of(Material.STONE)
+            new StackingCupsBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .pistonBehavior(PistonBehavior.DESTROY)
                     .sounds(BlockSoundGroup.STONE)
                     .strength(0.5F)
             )

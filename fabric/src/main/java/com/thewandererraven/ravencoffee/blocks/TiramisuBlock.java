@@ -98,7 +98,7 @@ public class TiramisuBlock extends Block implements ICakeLikeBlock {
 
     @Override
     public boolean canPlaceAt(BlockState blockState, WorldView worldView, BlockPos blockPos) {
-        return worldView.getBlockState(blockPos.down()).getMaterial().isSolid();
+        return worldView.getBlockState(blockPos.down()).isSolid();
     }
 
     @Override
