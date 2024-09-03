@@ -47,6 +47,7 @@ public class RavenCoffeeCreativeModeTabs {
                         pOutput.accept(RavenCoffeeItems.BAGEL_CHICKEN.get());
                         pOutput.accept(RavenCoffeeItems.COFFEE_PLATES.get());
                         pOutput.accept(RavenCoffeeItems.COFFEE_INGOT.get());
+                        pOutput.accept(RavenCoffeeItems.COFFEE_UPGRADE_SMITHING_TEMPLATE.get());
                         pOutput.accept(RavenCoffeeItems.COFFEE_PICKAXE.get());
                         pOutput.accept(RavenCoffeeItems.COFFEE_AXE.get());
                         pOutput.accept(RavenCoffeeItems.COFFEE_HOE.get());

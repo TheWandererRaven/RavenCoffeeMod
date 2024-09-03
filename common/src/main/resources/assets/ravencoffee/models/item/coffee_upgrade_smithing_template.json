@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ravencoffee:item/coffee_upgrade_smithing_template"
+  }
+}
