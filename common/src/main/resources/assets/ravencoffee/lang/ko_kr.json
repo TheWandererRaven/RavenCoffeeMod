@@ -1,9 +1,9 @@
 {
-  "itemGroup.ravencoffee.general_tab": "레이븐의 커피 모드 일반 아이템",
-  "itemGroup.ravencoffee.mug_tab": "머그잔 커피",
-  "itemGroup.ravencoffee.small_tab": "작은 커피",
-  "itemGroup.ravencoffee.medium_tab": "일반 커피",
-  "itemGroup.ravencoffee.large_tab": "큰 커피",
+  "ravencoffee.general_tab": "레이븐의 커피 모드 일반 아이템",
+  "ravencoffee.mug_tab": "머그잔 커피",
+  "ravencoffee.small_tab": "작은 커피",
+  "ravencoffee.medium_tab": "일반 커피",
+  "ravencoffee.large_tab": "큰 커피",
 
   "upgrade.ravencoffee.coffee_upgrade": "커피 업그레이드",
   "item.ravencoffee.smithing_template.coffee_upgrade.applies_to": "철 도구 및 무기",
