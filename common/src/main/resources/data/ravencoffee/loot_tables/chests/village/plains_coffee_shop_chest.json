@@ -38,6 +38,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "ravencoffee:coffee_upgrade_smithing_template",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "add": false,
