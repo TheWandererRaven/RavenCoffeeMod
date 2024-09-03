@@ -32,8 +32,7 @@ public class MuffinEntity extends SnowballEntity {
         //int lvt_3_1_ = lvt_2_1_ instanceof BlazeEntity ? 3 : 0;
         if(hitEntity instanceof SheepEntity) ((SheepEntity)hitEntity).onEatingGrass();
 
-        if (hitEntity instanceof PlayerEntity) {
-            PlayerEntity hitPlayer = (PlayerEntity)hitEntity;
+        if (hitEntity instanceof PlayerEntity hitPlayer) {
             if (hitPlayer.canConsume(false)) {
                 hitPlayer.eatFood(hitPlayer.getWorld(), this.getItem());
                 // SOUND PITCH
@@ -45,13 +44,11 @@ public class MuffinEntity extends SnowballEntity {
             } else
                 hitPlayer.damage(getDamageSources().thrown(this, this.getOwner()), (float)0.5);
         }
-        else if (hitEntity instanceof VillagerEntity) {
-            VillagerEntity hitVillager = (VillagerEntity)hitEntity;
+        else if (hitEntity instanceof VillagerEntity hitVillager) {
             if (hitVillager.canBreed()) hitVillager.eatFood(hitVillager.getWorld(), Items.BREAD.getDefaultStack());
             hitVillager.takeKnockback(0.5f, this.getPos().x - hitEntity.getX(), this.getPos().z - hitEntity.getZ());
         }
-        else if(hitEntity instanceof AnimalEntity) {
-            AnimalEntity hitAnimal = (AnimalEntity)hitEntity;
+        else if(hitEntity instanceof AnimalEntity hitAnimal) {
             hitAnimal.setLoveTicks(600);
             this.getWorld().sendEntityStatus(hitAnimal, (byte)18);
             hitAnimal.takeKnockback(0.5f, this.getPos().x - hitEntity.getX(), this.getPos().z - hitEntity.getZ());
