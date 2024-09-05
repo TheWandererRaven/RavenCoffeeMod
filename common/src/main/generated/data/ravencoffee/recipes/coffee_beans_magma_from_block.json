@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "ravencoffee:coffee_beans_magma_block"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "ravencoffee:coffee_beans_magma"
+  }
+}

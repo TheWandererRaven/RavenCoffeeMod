@@ -1,0 +1,91 @@
+plugins {
+    id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'maven-publish'
+    id 'idea'
+}
+
+archivesBaseName = "${mod_name}-fabric-${minecraft_version}"
+
+repositories {
+    flatDir {
+        dir 'libs'
+    }
+    maven {
+        name = 'Wisp Forest'
+        url = 'https://maven.wispforest.io'
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    //mappings loom.officialMojangMappings()
+    mappings "net.fabricmc:yarn:${project.fabric_yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    modImplementation "com.thewandererraven.ravenbrewscore:ravenbrewscore-fabric-${minecraft_version}-${ravebrewscore_version}:api"
+    //implementation fg.deobf("com.thewandererraven.ravenbrewscore:ravenbrewscore-fabric-${minecraft_version}-${ravebrewscore_version}:api")
+
+    modImplementation "maven.modrinth:Wd844r7Q:${project.structurized_reborn_version}"
+    include("maven.modrinth:Wd844r7Q:${project.structurized_reborn_version}")
+
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
+    implementation project(":Common")
+    annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
+    include "io.wispforest:owo-sentinel:${project.owo_version}"
+}
+
+loom {
+    runs {
+        client {
+            client()
+            setConfigName("Fabric Client")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+        server {
+            server()
+            setConfigName("Fabric Server")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+    }
+}
+
+
+
+fabricApi {
+    configureDataGeneration {
+        outputDirectory.set(project(":Common").file(datagen_output_dir))
+    }
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from project(":Common").sourceSets.main.resources
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile) {
+    source(project(":Common").sourceSets.main.allSource)
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url "file://" + System.getenv("local_maven")
+        }
+    }
+}

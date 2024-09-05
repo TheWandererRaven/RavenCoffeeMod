@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.15,
+  "ingredient": {
+    "item": "ravencoffee:coffee_beans_magma_block"
+  },
+  "result": "ravencoffee:coffee_plates"
+}

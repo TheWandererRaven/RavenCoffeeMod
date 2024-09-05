@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "ravencoffee:coffee_plates"
+    },
+    {
+      "item": "ravencoffee:coffee_plates"
+    },
+    {
+      "item": "ravencoffee:coffee_plates"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:coffee_ingot"
+  }
+}

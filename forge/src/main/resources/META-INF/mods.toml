@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[44,)"
+license="Apache-2.0"
+issueTrackerURL="https://github.com/TheWandererRaven/RavenCoffeeMod/issues"
+[[mods]]
+    modId="ravencoffee"
+    version="0.5.2"
+    displayName="Raven Coffee Mod"
+    updateJSONURL="https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/raven-coffee"
+    logoFile="ravenCoffeeLogo.png"
+    credits="Credits to me, TheWandererRaven, cheers."
+    authors="The Wanderer Raven"
+    description='''
+    I haven't finished this yet! Thanks for downloading tho.
+    '''
+[[dependencies.raven_coffee]]
+    modId="forge"
+    mandatory=true
+    versionRange="[45,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.raven_coffee]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.4]"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.raven_coffee]]
+    modId="ravenbrewscore"
+    mandatory=true
+    versionRange="[1.0.1]"
+    ordering="NONE"
+    side="BOTH"

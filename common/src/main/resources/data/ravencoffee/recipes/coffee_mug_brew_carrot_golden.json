@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ravencoffee:coffee_mug_brew_basic"
+    },
+    {
+      "item": "minecraft:golden_carrot"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:coffee_mug_brew_carrot_golden",
+    "count": 1
+  }
+}

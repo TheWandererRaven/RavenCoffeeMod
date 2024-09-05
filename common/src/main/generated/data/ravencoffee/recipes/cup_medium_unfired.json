@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "pattern": [
+    "C C",
+    " C "
+  ],
+  "result": {
+    "item": "ravencoffee:cup_medium_unfired"
+  }
+}

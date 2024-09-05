@@ -16,14 +16,12 @@ out
 # gradle
 build
 .gradle
-gradle.properties
 
 # other
 eclipse
 run
+libs
 
 # Files from Forge MDK
 forge*changelog.txt
-
-src/main/resources/assets/ravencoffee/textures/items/references
-latest_builds
+.cache

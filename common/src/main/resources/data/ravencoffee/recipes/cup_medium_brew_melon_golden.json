@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:glistering_melon_slice"
+    },
+    {
+      "item": "ravencoffee:cup_medium_brew_basic"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:cup_medium_brew_melon_golden",
+    "count": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ravencoffee:item/cup_large/brew_melon"
+  }
+}

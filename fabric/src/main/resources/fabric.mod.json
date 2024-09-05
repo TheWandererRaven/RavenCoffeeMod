@@ -1,0 +1,43 @@
+{
+    "schemaVersion": 1,
+    "id": "ravencoffee",
+    "version": "${version}",
+  
+    "name": "Raven Coffee",
+    "description": "I haven't finished this yet! Thanks for downloading tho.",
+    "authors": [
+      "The Wanderer Raven"
+    ],
+    "contact": {
+      "homepage": "https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme",
+      "sources": "https://github.com/TheWandererRaven/RavenCoffeeMod/tree/main#readme"
+    },
+  
+    "license": "Apache-2.0 license",
+    "icon": "ravenCoffeeLogo.png",
+  
+    "environment": "*",
+    "entrypoints": {
+      "main": [
+        "com.thewandererraven.ravencoffee.RavenCoffeeFabric"
+      ],
+      "client": [
+        "com.thewandererraven.ravencoffee.RavenCoffeeClient"
+      ],
+      "fabric-datagen": [
+        "com.thewandererraven.ravencoffee.RavenCoffeeDataGenerator"
+      ]
+    },
+    "mixins": [
+      "ravencoffee.mixins.json"
+    ],
+  
+    "depends": {
+      "ravenbrewscore": "1.0.1",
+      "fabricloader": ">=0.16.2",
+      "fabric": "*",
+      "minecraft": "1.19.4",
+      "java": ">=17"
+    }
+  }
+  

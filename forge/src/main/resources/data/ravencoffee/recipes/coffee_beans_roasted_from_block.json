@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ravencoffee:coffee_beans_roasted_block"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "ravencoffee:coffee_beans_roasted"
+  }
+}

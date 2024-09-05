@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:cocoa_beans"
+    },
+    "G": {
+      "item": "ravencoffee:coffee_beans_roasted_ground"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "GGG",
+    "WWW"
+  ],
+  "result": {
+    "count": 3,
+    "item": "ravencoffee:coffee_eclair"
+  }
+}

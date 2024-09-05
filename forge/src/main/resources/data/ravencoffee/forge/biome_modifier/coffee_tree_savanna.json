@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": ["minecraft:savanna", "minecraft:savanna_plateau"],
+  "features": "ravencoffee:coffee_tree_savanna",
+  "step": "vegetal_decoration"
+}

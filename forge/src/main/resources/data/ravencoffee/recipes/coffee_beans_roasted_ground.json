@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ravencoffee:roasted_beans"
+    },
+    {
+      "tag": "ravencoffee:roasted_beans"
+    },
+    {
+      "tag": "ravencoffee:roasted_beans"
+    }
+  ],
+  "result": {
+    "item": "ravencoffee:coffee_beans_roasted_ground"
+  }
+}

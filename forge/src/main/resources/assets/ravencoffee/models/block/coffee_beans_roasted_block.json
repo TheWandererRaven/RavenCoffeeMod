@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ravencoffee:block/coffee_beans_roasted_block"
+  }
+}

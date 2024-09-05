@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.15,
+  "ingredient": {
+    "item": "ravencoffee:coffee_beans_magma_block"
+  },
+  "result": "ravencoffee:coffee_plates"
+}
