@@ -120,7 +120,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements ExtendedScr
 
     public boolean canInsertIntoOutput(ItemStack itemStack) {
         ItemStack stackInOutput = this.getStack(OUTPUT_FIRST_SLOT_INDEX);
-        return stackInOutput.isEmpty() || (stackInOutput.isItemEqual(itemStack) && stackInOutput.getCount() + itemStack.getCount() <= stackInOutput.getMaxCount());
+        return stackInOutput.isEmpty() || (stackInOutput.isOf(itemStack.getItem()) && stackInOutput.getCount() + itemStack.getCount() <= stackInOutput.getMaxCount());
     }
 
     @Override
@@ -137,7 +137,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements ExtendedScr
             this.setStack(OUTPUT_FIRST_SLOT_INDEX, itemStack);
             return;
         }
-        if(stackInOutput.isItemEqual(itemStack) && stackInOutput.getCount() + itemStack.getCount() <= stackInOutput.getMaxCount())
+        if(stackInOutput.isOf(itemStack.getItem()) && stackInOutput.getCount() + itemStack.getCount() <= stackInOutput.getMaxCount())
             stackInOutput.increment(itemStack.getCount());
     }
 

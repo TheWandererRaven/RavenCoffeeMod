@@ -12,6 +12,7 @@ import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -303,6 +304,18 @@ public class RavenCoffeeItems {
 
     // ################################################# COFFEE TOOLS ##################################################
     //                               Material Tier || Extra Attack Points || Attack Speed = 4 + n || Creative GENERAL_TAB
+    public static final Item COFFEE_UPGRADE_SMITHING_TEMPLATE = registerItem(
+            "coffee_upgrade_smithing_template",
+            new SmithingTemplateItem(
+            Text.translatable(String.format("item.%s.smithing_template.coffee_upgrade.applies_to", Constants.MOD_ID)).formatted(Formatting.BLUE),
+                    Text.translatable(String.format("item.%s.smithing_template.coffee_upgrade.ingredients", Constants.MOD_ID)).formatted(Formatting.BLUE),
+                    Text.translatable(String.format("upgrade.%s.coffee_upgrade", Constants.MOD_ID)).formatted(Formatting.GRAY),
+                    Text.translatable(String.format("item.%s.smithing_template.coffee_upgrade.base_slot_description", Constants.MOD_ID)),
+                    Text.translatable(String.format("item.%s.smithing_template.coffee_upgrade.additions_slot_description", Constants.MOD_ID)),
+                    List.of(new Identifier("item/empty_slot_sword"), new Identifier("item/empty_slot_pickaxe"), new Identifier("item/empty_slot_axe"), new Identifier("item/empty_slot_hoe"), new Identifier("item/empty_slot_shovel")),
+                    List.of(new Identifier("item/empty_slot_ingot"))
+            )
+    );
     public static final Item COFFEE_PICKAXE = registerItem(
             "coffee_pickaxe",
             new PickaxeItem(RavenCoffeeToolMaterial.COFFEE, 3, -2.8f, new FabricItemSettings())
@@ -418,6 +431,7 @@ public class RavenCoffeeItems {
 
         entries.add(COFFEE_PLATES);
         entries.add(COFFEE_INGOT);
+        entries.add(COFFEE_UPGRADE_SMITHING_TEMPLATE);
         entries.add(COFFEE_PICKAXE);
         entries.add(COFFEE_AXE);
         entries.add(COFFEE_HOE);

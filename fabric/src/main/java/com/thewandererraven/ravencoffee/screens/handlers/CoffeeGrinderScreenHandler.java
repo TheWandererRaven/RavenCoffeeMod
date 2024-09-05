@@ -139,7 +139,7 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
     public void onContentChanged(Inventory inventory) {
         super.onContentChanged(inventory);
         if (inventory == this.input) {
-            updateResult(this, this.player.world, this.player, this.input, this.output);
+            updateResult(this, this.player.getWorld(), this.player, this.input, this.output);
         }
     }
 
@@ -169,8 +169,8 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
     }
 
     protected void onTakeOutput(PlayerEntity player, ItemStack stack) {
-        stack.onCraft(player.world, player, stack.getCount());
-        this.output.unlockLastRecipe(player);
+        stack.onCraft(player.getWorld(), player, stack.getCount());
+        //this.output.unlockLastRecipe(player);
         this.decrementStack(0);
         this.decrementStack(1);
         this.context.run((world, pos) -> {
@@ -188,7 +188,7 @@ public class CoffeeGrinderScreenHandler extends AbstractRecipeScreenHandler<Craf
 
     @Override
     public boolean matches(Recipe<? super CraftingInventory> recipe) {
-        return recipe.matches(this.input, this.player.world);
+        return recipe.matches(this.input, this.player.getWorld());
     }
 
     @Override

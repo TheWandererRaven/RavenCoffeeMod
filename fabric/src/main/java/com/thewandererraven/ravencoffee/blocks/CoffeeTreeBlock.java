@@ -79,18 +79,13 @@ public abstract class CoffeeTreeBlock extends CropBlock {
     }
 
     @Override
-    protected int getAge(BlockState state) {
+    public int getAge(BlockState state) {
         return (Integer)state.get(this.getAgeProperty());
     }
 
     @Override
     public BlockState withAge(int age) {
         return (BlockState)this.getDefaultState().with(this.getAgeProperty(), age);
-    }
-
-    @Override
-    public boolean isMature(BlockState state) {
-        return (Integer)state.get(this.getAgeProperty()) >= this.getMaxAge();
     }
 
     // ##################################### TICKS #####################################

@@ -1,12 +1,15 @@
 {
-  "type": "minecraft:smithing",
-  "base": {
-    "item": "minecraft:iron_axe"
-  },
+  "type": "minecraft:smithing_transform",
   "addition": {
     "item": "ravencoffee:coffee_ingot"
   },
+  "base": {
+    "item": "minecraft:iron_axe"
+  },
   "result": {
     "item": "ravencoffee:coffee_axe"
+  },
+  "template": {
+    "item": "ravencoffee:coffee_upgrade_smithing_template"
   }
 }

@@ -4,10 +4,10 @@ import com.thewandererraven.ravencoffee.blocks.CoffeeTreeTrunkBlock;
 import com.thewandererraven.ravencoffee.world.features.configs.DualBlockPileFeatureConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 
 public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPileFeatureConfig> {
     public DefaultCoffeeTreesFeature(Codec<DualBlockPileFeatureConfig> p_i231922_1_) {
@@ -15,7 +15,7 @@ public class DefaultCoffeeTreesFeature<U> extends CoffeeTreeFeature<DualBlockPil
     }
 
     boolean isSurroundingBlockAcceptable(LevelAccessor world, BlockPos pos) {
-        return world.isEmptyBlock(pos) || (!world.getBlockState(pos).getMaterial().isSolid() && !world.getBlockState(pos).getMaterial().equals(Material.LEAVES));
+        return world.isEmptyBlock(pos) || (!world.getBlockState(pos).isSolid() && !world.getBlockState(pos).is(BlockTags.LEAVES));
     }
 
     public boolean isValidPosition(LevelAccessor world, BlockPos pos, DualBlockPileFeatureConfig config) {

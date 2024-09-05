@@ -13,7 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 public class CoffeeMachineMenu extends AbstractContainerMenu {
     private final CoffeeMachineBlockEntity blockEntity;
@@ -55,14 +54,14 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     public static final int SLOT_Y_SPACING = 18;
 
     public CoffeeMachineMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerId, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
     public CoffeeMachineMenu(int containerId, Inventory inventory, BlockEntity blockEntity, ContainerData data) {
         super(RavenCoffeeMenuTypes.COFFEE_MACHINE_MENU.get(), containerId);
         checkContainerSize(inventory, COFFEE_MACHINE_SLOT_CONT);
         this.blockEntity = ((CoffeeMachineBlockEntity) blockEntity);
-        this.level = inventory.player.level;
+        this.level = inventory.player.level();
         this.data = data;
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {

@@ -32,35 +32,32 @@ public class MuffinEntity extends SnowballEntity {
         //int lvt_3_1_ = lvt_2_1_ instanceof BlazeEntity ? 3 : 0;
         if(hitEntity instanceof SheepEntity) ((SheepEntity)hitEntity).onEatingGrass();
 
-        if (hitEntity instanceof PlayerEntity) {
-            PlayerEntity hitPlayer = (PlayerEntity)hitEntity;
+        if (hitEntity instanceof PlayerEntity hitPlayer) {
             if (hitPlayer.canConsume(false)) {
-                hitPlayer.eatFood(hitPlayer.world, this.getItem());
+                hitPlayer.eatFood(hitPlayer.getWorld(), this.getItem());
                 // SOUND PITCH
                 //      HIGH = 2
                 //    NORMAL = 1
                 //       LOW =
-                hitPlayer.world.playSound(null, hitPlayer.getBlockPos(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.AMBIENT, 1.0f, 1.0f);
-                hitPlayer.world.playSound(null, hitPlayer.getBlockPos(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.AMBIENT, 1.0f, 1.0f);
+                hitPlayer.getWorld().playSound(null, hitPlayer.getBlockPos(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.AMBIENT, 1.0f, 1.0f);
+                hitPlayer.getWorld().playSound(null, hitPlayer.getBlockPos(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.AMBIENT, 1.0f, 1.0f);
             } else
                 hitPlayer.damage(getDamageSources().thrown(this, this.getOwner()), (float)0.5);
         }
-        else if (hitEntity instanceof VillagerEntity) {
-            VillagerEntity hitVillager = (VillagerEntity)hitEntity;
-            if (hitVillager.canBreed()) hitVillager.eatFood(hitVillager.world, Items.BREAD.getDefaultStack());
+        else if (hitEntity instanceof VillagerEntity hitVillager) {
+            if (hitVillager.canBreed()) hitVillager.eatFood(hitVillager.getWorld(), Items.BREAD.getDefaultStack());
             hitVillager.takeKnockback(0.5f, this.getPos().x - hitEntity.getX(), this.getPos().z - hitEntity.getZ());
         }
-        else if(hitEntity instanceof AnimalEntity) {
-            AnimalEntity hitAnimal = (AnimalEntity)hitEntity;
+        else if(hitEntity instanceof AnimalEntity hitAnimal) {
             hitAnimal.setLoveTicks(600);
-            this.world.sendEntityStatus(hitAnimal, (byte)18);
+            this.getWorld().sendEntityStatus(hitAnimal, (byte)18);
             hitAnimal.takeKnockback(0.5f, this.getPos().x - hitEntity.getX(), this.getPos().z - hitEntity.getZ());
             // SOUND PITCH
             //      HIGH = 2
             //    NORMAL = 1
             //       LOW = 0
-            hitAnimal.world.playSound(null, hitAnimal.getBlockPos(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.AMBIENT, 1.0f, 1.15f);
-            hitAnimal.world.playSound(null, hitAnimal.getBlockPos(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.AMBIENT, 1.0f, 1.1f);
+            hitAnimal.getWorld().playSound(null, hitAnimal.getBlockPos(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.AMBIENT, 1.0f, 1.15f);
+            hitAnimal.getWorld().playSound(null, hitAnimal.getBlockPos(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.AMBIENT, 1.0f, 1.1f);
         }
         else if(!(hitEntity instanceof GolemEntity))  {
             hitEntity.damage(getDamageSources().thrown(this, this.getOwner()), (float) 1.0);
@@ -70,8 +67,8 @@ public class MuffinEntity extends SnowballEntity {
     @Override
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
-        if (this.world.isClient) {
-            this.world.sendEntityStatus(this, (byte)3);
+        if (this.getWorld().isClient) {
+            this.getWorld().sendEntityStatus(this, (byte)3);
             this.remove(RemovalReason.DISCARDED);
         }
 

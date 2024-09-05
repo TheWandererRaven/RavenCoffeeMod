@@ -3,7 +3,9 @@ package com.thewandererraven.ravencoffee.items;
 import com.thewandererraven.ravencoffee.Constants;
 import com.thewandererraven.ravencoffee.blocks.RavenCoffeeBlocks;
 import com.thewandererraven.ravencoffee.items.tools.RavenCoffeeItemTier;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -280,6 +282,18 @@ public class RavenCoffeeItems {
 
     // ################################################# COFFEE TOOLS ##################################################
     //                               Material Tier || Extra Attack Points || Attack Speed = 4 + n || Creative GENERAL_TAB
+    public static final RegistryObject<Item> COFFEE_UPGRADE_SMITHING_TEMPLATE = ITEMS.register(
+            "coffee_upgrade_smithing_template",
+            () -> new SmithingTemplateItem(
+                    Component.translatable(String.format("item.%s.smithing_template.coffee_upgrade.applies_to", Constants.MOD_ID)).withStyle(ChatFormatting.BLUE),
+                    Component.translatable(String.format("item.%s.smithing_template.coffee_upgrade.ingredients", Constants.MOD_ID)).withStyle(ChatFormatting.BLUE),
+                    Component.translatable(String.format("upgrade.%s.coffee_upgrade", Constants.MOD_ID)).withStyle(ChatFormatting.GRAY),
+                    Component.translatable(String.format("item.%s.smithing_template.coffee_upgrade.base_slot_description", Constants.MOD_ID)),
+                    Component.translatable(String.format("item.%s.smithing_template.coffee_upgrade.additions_slot_description", Constants.MOD_ID)),
+                    List.of(new ResourceLocation("item/empty_slot_sword"), new ResourceLocation("item/empty_slot_pickaxe"), new ResourceLocation("item/empty_slot_axe"), new ResourceLocation("item/empty_slot_hoe"), new ResourceLocation("item/empty_slot_shovel")),
+                    List.of(new ResourceLocation("item/empty_slot_ingot"))
+            )
+    );
     public static final RegistryObject<Item> COFFEE_PICKAXE = ITEMS.register(
             "coffee_pickaxe",
             () -> new PickaxeItem(RavenCoffeeItemTier.COFFEE, 3, -2.8f, new Item.Properties())

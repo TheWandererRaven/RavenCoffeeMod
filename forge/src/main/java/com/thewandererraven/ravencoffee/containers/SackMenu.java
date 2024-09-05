@@ -41,7 +41,7 @@ public class SackMenu extends AbstractContainerMenu {
     public static final int ROWS = 2;
 
     public SackMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerId, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()));
+        this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()));
     }
 
     public SackMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {

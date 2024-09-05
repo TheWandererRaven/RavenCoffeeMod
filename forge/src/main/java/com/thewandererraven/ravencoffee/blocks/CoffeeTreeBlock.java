@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
@@ -64,13 +63,8 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
     }
 
     @Override
-    protected int getAge(BlockState blockState) {
+    public int getAge(BlockState blockState) {
         return blockState.getValue(this.getAgeProperty());
-    }
-
-    @Override
-    public boolean isMaxAge(BlockState blockState) {
-        return blockState.getValue(this.getAgeProperty()) >= this.getMaxAge();
     }
 
     @Override
@@ -200,7 +194,6 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
 
         Iterator<Direction> var4 = Direction.Plane.HORIZONTAL.iterator();
         Direction direction;
-        Material material;
         BlockState blockstate;
 
         do {
@@ -211,8 +204,7 @@ public class CoffeeTreeBlock extends CropBlock implements BonemealableBlock {
 
             direction = var4.next();
             blockstate = blockGetter.getBlockState(blockPos.offset(direction.getNormal()));
-            material = blockstate.getMaterial();
-        } while((!material.isSolid() || material.equals(Material.LEAVES) || blockstate.is(Tags.Blocks.FENCES) || blockstate.is(Tags.Blocks.FENCE_GATES) || blockstate.is(Blocks.JIGSAW)) && !blockGetter.getFluidState(blockPos.offset(direction.getNormal())).is(FluidTags.LAVA));
+        } while((!blockstate.isSolid() || blockstate.is(BlockTags.LEAVES) || blockstate.is(Tags.Blocks.FENCES) || blockstate.is(Tags.Blocks.FENCE_GATES) || blockstate.is(Blocks.JIGSAW)) && !blockGetter.getFluidState(blockPos.offset(direction.getNormal())).is(FluidTags.LAVA));
         return false;
     }
 
