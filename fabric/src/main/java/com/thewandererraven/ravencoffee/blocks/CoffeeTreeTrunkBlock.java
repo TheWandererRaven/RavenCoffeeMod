@@ -12,6 +12,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
@@ -138,7 +139,7 @@ public class CoffeeTreeTrunkBlock extends CoffeeTreeBlock {
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         if(world.getBlockState(pos.up()).isOf(this.getLeavesBlock())) {
             BlockState upBlock = world.getBlockState(pos.up());
             return !this.isMature(state) || !state.get(HAS_LEAVES) || !((CoffeeTreeLeavesBlock) upBlock.getBlock()).isMature(upBlock);
