@@ -32,5 +32,6 @@
     "recipes": [
       "minecraft:tiramisu_block"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

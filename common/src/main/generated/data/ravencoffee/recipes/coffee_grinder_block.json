@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "ravencoffee:coffee_grinder_block"
-  }
+  },
+  "show_notification": true
 }

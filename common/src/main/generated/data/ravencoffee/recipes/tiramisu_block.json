@@ -28,5 +28,6 @@
   ],
   "result": {
     "item": "ravencoffee:tiramisu_block"
-  }
+  },
+  "show_notification": true
 }

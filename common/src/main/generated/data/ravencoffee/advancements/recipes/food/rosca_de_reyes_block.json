@@ -32,5 +32,6 @@
     "recipes": [
       "minecraft:rosca_de_reyes_block"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

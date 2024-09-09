@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "ravencoffee:cup_large_unfired"
-  }
+  },
+  "show_notification": true
 }

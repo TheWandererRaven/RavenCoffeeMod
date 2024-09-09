@@ -43,5 +43,6 @@
     "recipes": [
       "minecraft:croissant_ham"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

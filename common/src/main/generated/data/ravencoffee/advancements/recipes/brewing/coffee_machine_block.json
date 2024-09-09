@@ -41,5 +41,6 @@
     "recipes": [
       "minecraft:coffee_machine_block"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

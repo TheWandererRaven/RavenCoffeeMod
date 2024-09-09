@@ -15,5 +15,6 @@
   ],
   "result": {
     "item": "ravencoffee:muffin"
-  }
+  },
+  "show_notification": true
 }

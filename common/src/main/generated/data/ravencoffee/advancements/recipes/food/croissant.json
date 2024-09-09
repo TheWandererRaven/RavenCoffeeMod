@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:croissant"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

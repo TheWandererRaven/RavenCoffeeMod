@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "ravencoffee:croissant"
-  }
+  },
+  "show_notification": true
 }

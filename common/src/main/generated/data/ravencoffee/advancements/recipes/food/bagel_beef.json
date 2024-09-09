@@ -43,5 +43,6 @@
     "recipes": [
       "minecraft:bagel_beef"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

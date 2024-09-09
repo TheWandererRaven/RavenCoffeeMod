@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "ravencoffee:coffee_beans_magma_block"
-  }
+  },
+  "show_notification": true
 }

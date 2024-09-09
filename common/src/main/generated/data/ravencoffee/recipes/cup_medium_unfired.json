@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "ravencoffee:cup_medium_unfired"
-  }
+  },
+  "show_notification": true
 }
