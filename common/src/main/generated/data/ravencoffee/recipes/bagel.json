@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "ravencoffee:bagel"
-  }
+  },
+  "show_notification": true
 }

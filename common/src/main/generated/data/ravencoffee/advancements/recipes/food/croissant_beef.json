@@ -43,5 +43,6 @@
     "recipes": [
       "minecraft:croissant_beef"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

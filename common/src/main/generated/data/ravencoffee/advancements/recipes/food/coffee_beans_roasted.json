@@ -30,5 +30,6 @@
     "recipes": [
       "ravencoffee:coffee_beans_roasted"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

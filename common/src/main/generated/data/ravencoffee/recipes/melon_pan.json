@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "ravencoffee:melon_pan"
-  }
+  },
+  "show_notification": true
 }

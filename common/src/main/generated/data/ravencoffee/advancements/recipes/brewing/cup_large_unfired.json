@@ -31,5 +31,6 @@
     "recipes": [
       "minecraft:cup_large_unfired"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

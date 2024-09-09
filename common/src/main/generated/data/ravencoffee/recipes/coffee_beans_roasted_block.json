@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "ravencoffee:coffee_beans_roasted_block"
-  }
+  },
+  "show_notification": true
 }

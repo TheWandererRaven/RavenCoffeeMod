@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "ravencoffee:brownie_block"
-  }
+  },
+  "show_notification": true
 }

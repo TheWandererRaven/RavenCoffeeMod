@@ -28,5 +28,6 @@
   ],
   "result": {
     "item": "ravencoffee:rosca_de_reyes_block"
-  }
+  },
+  "show_notification": true
 }

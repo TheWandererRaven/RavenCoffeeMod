@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "ravencoffee:coffee_machine_block"
-  }
+  },
+  "show_notification": true
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "ravencoffee:cup_medium"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "minecraft:sandwich_chicken"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
